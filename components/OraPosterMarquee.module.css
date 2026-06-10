@@ -1,0 +1,47 @@
+.section {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 40px 0;
+}
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px;
+}
+
+.item {
+  display: block;
+  flex-shrink: 0;
+  width: auto !important;
+  max-width: none !important;
+  height: 480px;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .item {
+    height: 352px;
+  }
+}
