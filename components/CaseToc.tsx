@@ -26,25 +26,23 @@ export default function CaseToc({
   theme = "dark",
 }: Props) {
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
-  const [isVisible, setIsVisible] = useState(false);
+  const [pastCover, setPastCover] = useState(false);
+  const isVisible = !showAfterCover || pastCover;
 
   useEffect(() => {
-    if (!showAfterCover) {
-      setIsVisible(true);
-      return;
-    }
+    if (!showAfterCover) return;
 
     const intro = document.getElementById("case-intro");
     if (!intro) {
-      setIsVisible(true);
-      return;
+      const frame = requestAnimationFrame(() => setPastCover(true));
+      return () => cancelAnimationFrame(frame);
     }
 
     const updateVisibility = () => {
-      setIsVisible(shouldShowTocAfterIntro(intro));
+      setPastCover(shouldShowTocAfterIntro(intro));
     };
 
-    updateVisibility();
+    const frame = requestAnimationFrame(updateVisibility);
     window.addEventListener("scroll", updateVisibility, { passive: true });
     window.addEventListener("resize", updateVisibility);
 
@@ -59,6 +57,7 @@ export default function CaseToc({
     }
 
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", updateVisibility);
       window.removeEventListener("resize", updateVisibility);
       coverImage?.removeEventListener("load", updateVisibility);
