@@ -3,7 +3,10 @@ import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import { heartbitsGalleryImages } from "@/data/heartbits-gallery";
+import { getProject } from "@/data/projects";
 import { buildCaseTocSections } from "@/lib/case-toc";
+
+const heartbitsProject = getProject("heartbits")!;
 
 const heartbitsSections = buildCaseTocSections(
   [
@@ -15,7 +18,7 @@ const heartbitsSections = buildCaseTocSections(
 
 export default function HeartbitsPage() {
   return (
-    <main className="case-page">
+    <main className="case-page case-page-with-toc">
       <CaseToc sections={heartbitsSections} />
 
       <header className="case-nav">
@@ -28,7 +31,7 @@ export default function HeartbitsPage() {
       <CaseHero
         title="Heartbits"
         subtitle="Interactive Rehabilitation Experience"
-        tags={["Healthcare", "UX", "Game-based Recovery"]}
+        tags={heartbitsProject.tags}
         intro="Heartbits is a family-centered rehabilitation experience that transforms repetitive rotator cuff recovery into collaborative gameplay. By combining physical therapy movements with emotional support and shared interaction, the system encourages long-term engagement while reducing anxiety throughout the rehabilitation journey."
         image="/images/heartbits.jpg"
         imageAlt="Heartbits interactive rehabilitation system"

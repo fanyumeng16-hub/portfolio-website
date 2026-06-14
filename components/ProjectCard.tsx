@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef } from "react";
+import ProjectTitle from "@/components/ProjectTitle";
 import { Project } from "@/data/projects";
 
 type SlideState = "active" | "past" | "future";
@@ -41,13 +42,7 @@ const ProjectCard = forwardRef<HTMLElement, Props>(function ProjectCard(
           <div className="project-slide-content">
             <div className="project-slide-head">
               <h2 className="project-slide-heading">
-                {project.title.includes("SCADpro") ? (
-                  <>
-                    MAYO CLINIC × SCAD<span className="brand-lowercase">pro</span>
-                  </>
-                ) : (
-                  project.title
-                )}
+                <ProjectTitle title={project.title} />
               </h2>
 
               <p className="project-slide-subtitle">{project.subtitle}</p>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProjectTitle from "@/components/ProjectTitle";
 import { Project } from "@/data/projects";
 
 type Props = {
@@ -28,13 +29,7 @@ export default function ProjectGridCard({ project, index }: Props) {
           </span>
 
           <h2 className="project-grid-heading">
-            {project.title.includes("SCADpro") ? (
-              <>
-                MAYO CLINIC × SCAD<span className="brand-lowercase">pro</span>
-              </>
-            ) : (
-              project.title
-            )}
+            <ProjectTitle title={project.title} />
           </h2>
 
           <p className="project-grid-subtitle">{project.subtitle}</p>

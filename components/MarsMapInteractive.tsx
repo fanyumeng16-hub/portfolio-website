@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { MarsMapHotspot } from "@/data/horizon-map";
 
@@ -22,13 +21,14 @@ export default function MarsMapInteractive({
       className="mars-map"
       onMouseLeave={() => setActiveId(null)}
     >
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={image}
         alt={imageAlt}
         width={11881}
         height={6075}
-        priority
         className="mars-map-image"
+        decoding="async"
       />
 
       {hotspots.map((hotspot) => {

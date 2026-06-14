@@ -8,7 +8,10 @@ import MarsMapInteractive from "@/components/MarsMapInteractive";
 import { horizonGallery } from "@/data/horizon-gallery";
 import { horizonFeatures } from "@/data/horizon-features";
 import { horizonMapHotspots } from "@/data/horizon-map";
+import { getProject } from "@/data/projects";
 import { buildCaseTocSections } from "@/lib/case-toc";
+
+const horizonProject = getProject("horizon")!;
 
 const horizonSections = buildCaseTocSections(
   [
@@ -22,7 +25,7 @@ const horizonSections = buildCaseTocSections(
 
 export default function HorizonPage() {
   return (
-    <main className="case-page case-page-horizon">
+    <main className="case-page case-page-horizon case-page-with-toc">
       <CaseToc sections={horizonSections} />
 
       <header className="case-nav">
@@ -35,7 +38,7 @@ export default function HorizonPage() {
       <CaseHero
         title="Horizon"
         subtitle="Mars Exploration Simulation"
-        tags={["XR / MR", "Unity", "Scientific Communication", "UX & Interaction"]}
+        tags={horizonProject.tags}
         intro="Horizon is a high-fidelity XR simulation grounded in planetary science, designed to transform complex space agency procedures into an immersive training experience for living and working on the Red Planet."
         image="/images/horizon-cover.jpg"
         imageAlt="Horizon Mars Exploration Simulation"

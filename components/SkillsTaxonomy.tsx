@@ -3,70 +3,13 @@
 import { useState } from "react";
 import { skillGroups, type SkillGroup } from "@/data/skill-groups";
 
-function SkillBranchPanel({ group }: { group: SkillGroup }) {
-  const count = group.skills.length;
-  const cols = Math.min(count, 4);
-  const rows = Math.ceil(count / cols);
-
-  const nodes = group.skills.map((skill, index) => {
-    const row = Math.floor(index / cols);
-    const col = index % cols;
-    const itemsInRow = Math.min(count - row * cols, cols);
-    const x = ((col + 1) / (itemsInRow + 1)) * 100;
-    const y = 28 + row * 52;
-
-    return { skill, x, y };
-  });
-
-  const svgHeight = 24 + rows * 52;
-
+function SkillList({ group }: { group: SkillGroup }) {
   return (
-    <div className="skills-taxonomy-expand">
-      <svg
-        className="skills-taxonomy-branch-svg"
-        viewBox={`0 0 100 ${svgHeight}`}
-        preserveAspectRatio="xMidYMin meet"
-        aria-hidden="true"
-      >
-        <line
-          x1="50"
-          y1="0"
-          x2="50"
-          y2="14"
-          stroke="rgba(255,255,255,0.45)"
-          strokeWidth="0.35"
-          vectorEffect="non-scaling-stroke"
-        />
-        {nodes.map((node) => (
-          <line
-            key={node.skill}
-            x1="50"
-            y1="14"
-            x2={node.x}
-            y2={node.y}
-            stroke="rgba(255,255,255,0.35)"
-            strokeWidth="0.35"
-            vectorEffect="non-scaling-stroke"
-          />
-        ))}
-      </svg>
-
-      <div
-        className="skills-taxonomy-skill-grid"
-        style={{ minHeight: `${rows * 52}px` }}
-      >
-        {nodes.map((node) => (
-          <div
-            key={node.skill}
-            className="skills-taxonomy-skill-node"
-            style={{ left: `${node.x}%`, top: `${node.y - 10}px` }}
-          >
-            <span className="skills-taxonomy-skill-dot" aria-hidden="true" />
-            <p>{node.skill}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <ul className="skills-taxonomy-skills">
+      {group.skills.map((skill) => (
+        <li key={skill}>{skill}</li>
+      ))}
+    </ul>
   );
 }
 
@@ -78,7 +21,8 @@ export default function SkillsTaxonomy() {
       <header className="skills-taxonomy-hub">
         <h3 className="skills-taxonomy-hero">Technical &amp; Creative Range</h3>
         <p className="skills-taxonomy-hero-sub">
-          3 disciplines across research, interaction, and physical making.
+          UX research, immersive systems, and physical prototyping — from
+          healthcare and XR to AI product and installation work.
         </p>
       </header>
 
@@ -133,7 +77,11 @@ export default function SkillsTaxonomy() {
                   </span>
                 </button>
 
-                {isActive && <SkillBranchPanel group={group} />}
+                {isActive && (
+                  <div className="skills-taxonomy-expand">
+                    <SkillList group={group} />
+                  </div>
+                )}
               </div>
             );
           })}

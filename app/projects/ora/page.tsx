@@ -1,18 +1,23 @@
 import Link from "next/link";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
+import CaseYouTubeSection from "@/components/CaseYouTubeSection";
 import OraPosterMarquee from "@/components/OraPosterMarquee";
 import { oraPosters } from "@/data/ora-posters";
+import { getProject } from "@/data/projects";
+
+const oraProject = getProject("ora")!;
 
 const oraSections = [
   { id: "case-intro", label: "Introduction" },
   { id: "case-overview", label: "Overview" },
   { id: "case-posters", label: "Posters" },
+  { id: "case-video", label: "Video" },
 ];
 
 export default function OraPage() {
   return (
-    <main className="case-page case-page-light">
+    <main className="case-page case-page-light case-page-with-toc">
       <CaseToc sections={oraSections} theme="light" />
 
       <header className="case-nav">
@@ -25,7 +30,7 @@ export default function OraPage() {
       <CaseHero
         title="ORA"
         subtitle="Speculative Wellness Critique"
-        tags={["Speculative Design", "Critical Design", "Wellness Tech"]}
+        tags={oraProject.tags}
         intro="ORA is a speculative critique disguised as a wellness product. In a near future where attention has become the most contested resource, we imagine a device that reaches into the body's most intimate cavity—the mouth—to manufacture flow on demand."
         image="/images/ORA.jpg"
         imageAlt="ORA speculative wellness device"
@@ -77,6 +82,8 @@ export default function OraPage() {
       </section>
 
       <OraPosterMarquee posters={oraPosters} />
+
+      <CaseYouTubeSection videoId="SZPOds-gKLc" />
     </main>
   );
 }

@@ -1,9 +1,12 @@
 export const PROJECT_TAGS = {
   "xr-mr": "XR / MR",
+  ar: "AR",
   ux: "UX & Interaction",
-  healthcare: "Healthcare & Wellness",
+  product: "Product Design",
+  healthcare: "Healthcare",
+  ai: "AI",
   speculative: "Speculative Design",
-  branding: "Branding",
+  installation: "Installation",
   unity: "Unity",
   communication: "Scientific Communication",
 } as const;

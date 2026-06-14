@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { GalleryGroup, GallerySlide } from "@/data/horizon-gallery";
 
 type Props = {
@@ -28,15 +27,45 @@ export default function CaseGallery({
                   key={image.id}
                   id={image.id}
                 >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={1920}
-                    height={1080}
-                    className="case-gallery-seamless-image"
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                  />
+                  {image.summary ? (
+                    <div className="case-gallery-seamless-copy">
+                      <h4 className="case-gallery-seamless-title">
+                        {image.title}
+                      </h4>
+                      <p>{image.summary}</p>
+                    </div>
+                  ) : null}
+                  {image.videoSrc ? (
+                    <video
+                      className="case-gallery-seamless-video"
+                      src={image.videoSrc}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      aria-label={image.alt}
+                    />
+                  ) : null}
+                  {image.src ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="case-gallery-seamless-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : null}
+                  {image.videos?.map((video) => (
+                    <video
+                      key={video.src}
+                      className="case-gallery-seamless-video"
+                      src={video.src}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      aria-label={video.alt}
+                    />
+                  ))}
                 </div>
               ) : (
                 <section
@@ -45,11 +74,13 @@ export default function CaseGallery({
                   id={image.id}
                 >
                   <div className="case-gallery-frame">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={image.src}
                       alt={image.alt}
-                      fill
                       className="case-gallery-image"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </section>
@@ -77,11 +108,13 @@ export default function CaseGallery({
               {group.images.map((image) => (
                 <section className="case-gallery-panel" key={image.src}>
                   <div className="case-gallery-frame">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={image.src}
                       alt={image.alt}
-                      fill
                       className="case-gallery-image"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </section>

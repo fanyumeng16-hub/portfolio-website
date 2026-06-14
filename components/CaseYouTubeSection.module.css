@@ -8,6 +8,18 @@
   border: none !important;
 }
 
+:global(.case-page-light) .section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+:global(.case-page-light) .label {
+  color: #666;
+}
+
+:global(.case-page-light) .title {
+  color: #111;
+}
+
 .inner {
   width: min(1320px, calc(100vw - 320px));
   margin: 0 auto;
@@ -40,6 +52,10 @@
 
 :global(.case-page-horizon) .title {
   color: #b7ffa8;
+}
+
+:global(.case-page-light.case-page-medical) .title {
+  color: #6b4fa0;
 }
 
 .player {

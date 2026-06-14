@@ -97,14 +97,11 @@ export default function CaseToc({
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  if (!isVisible) {
-    return null;
-  }
-
   return (
     <nav
-      className={`case-toc is-visible case-toc--${theme}`}
+      className={`case-toc case-toc--${theme} ${isVisible ? "is-visible" : ""}`}
       aria-label="Page sections"
+      aria-hidden={!isVisible}
     >
       <ol className="case-toc-list">
         {sections.map((section, index) => (

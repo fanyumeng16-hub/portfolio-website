@@ -3,9 +3,21 @@ export type GalleryImage = {
   alt: string;
 };
 
-export type GallerySlide = GalleryImage & {
+export type GalleryVideo = {
+  src: string;
+  alt: string;
+};
+
+export type GallerySlide = {
   id: string;
   title: string;
+  alt: string;
+  src?: string;
+  videoSrc?: string;
+  /** Extra videos rendered below the main media without a separate heading */
+  videos?: GalleryVideo[];
+  /** Optional copy block shown above the slide in seamless galleries */
+  summary?: string;
   /** Omit from TOC when false; use a shorter label when string */
   tocLabel?: string | false;
 };

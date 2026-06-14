@@ -3,7 +3,10 @@ import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import { tracklyGalleryImages } from "@/data/trackly-gallery";
+import { getProject } from "@/data/projects";
 import { buildCaseTocSections } from "@/lib/case-toc";
+
+const tracklyProject = getProject("trackly")!;
 
 const tracklySections = buildCaseTocSections(
   [
@@ -15,7 +18,7 @@ const tracklySections = buildCaseTocSections(
 
 export default function TracklyPage() {
   return (
-    <main className="case-page case-page-light">
+    <main className="case-page case-page-light case-page-with-toc">
       <CaseToc sections={tracklySections} theme="light" />
 
       <header className="case-nav">
@@ -28,7 +31,7 @@ export default function TracklyPage() {
       <CaseHero
         title="Trackly"
         subtitle="Habit & Goal Tracking Experience"
-        tags={["UX & Interaction", "Product Design", "Mobile App"]}
+        tags={tracklyProject.tags}
         intro="Trackly is a habit and goal tracking experience designed to help users build consistent routines without the friction of overly complex productivity tools. The interface focuses on clarity, momentum, and lightweight daily check-ins."
         image="/images/Trackly-cover.jpg"
         imageAlt="Trackly habit and goal tracking experience"
