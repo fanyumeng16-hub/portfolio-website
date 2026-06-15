@@ -47,7 +47,7 @@ const ProjectCard = forwardRef<HTMLElement, Props>(function ProjectCard(
 
               <p className="project-slide-subtitle">{project.subtitle}</p>
 
-              <ul className="project-slide-tags">
+              <ul className="project-slide-tags tag-bar tag-bar--static">
                 {project.tags.map((tag) => (
                   <li key={tag}>{tag}</li>
                 ))}

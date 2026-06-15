@@ -97,6 +97,7 @@ export default function MassieProjectPage() {
   return (
     <ProtectedProjectLock
       password={PASSWORD}
+      showPasswordHint
       lockTheme="light"
       pageClassName="case-page-massie"
       hero={{

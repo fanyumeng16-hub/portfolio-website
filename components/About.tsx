@@ -1,4 +1,5 @@
 import SkillsTaxonomy from "./SkillsTaxonomy";
+import FunFactsCards from "./FunFactsCards";
 
 export default function About() {
   return (
@@ -8,33 +9,42 @@ export default function About() {
       </div>
 
       <div className="about-content">
-        <div className="about-meta">
-          <div>
-            <span>Education</span>
-            <p>
-              M.F.A. Interactive Design &amp; Game Development, SCAD — 2023 –
-              Present
-            </p>
-            <p className="about-detail-secondary">
-              B.A. Digital Media Art, Xiamen University — 2018 – 2022
-            </p>
-          </div>
-          <div>
-            <span>Contact</span>
-            <p>
-              <a href="mailto:fanyumeng16@gmail.com">fanyumeng16@gmail.com</a>
-            </p>
-            <p className="about-detail-secondary">(412) 430-2950</p>
-          </div>
+        <div className="about-intro-col">
+          <p className="about-intro">
+            <span className="about-intro-rest">From </span>
+            <span className="about-intro-em">digital media art</span>
+            <span className="about-intro-rest"> to </span>
+            <span className="about-intro-em">interaction design</span>
+            <span className="about-intro-rest">
+              , I&apos;ve been exploring how people and media interact.
+            </span>
+          </p>
+
+          <ol className="about-timeline">
+            <li>
+              <span className="about-timeline-year">2018 – 2022</span>
+              <div className="about-timeline-body">
+                <span className="about-timeline-degree">
+                  B.A. Digital Media Art
+                </span>
+                <span className="about-timeline-school">Xiamen University</span>
+              </div>
+            </li>
+            <li>
+              <span className="about-timeline-year">2023 – Present</span>
+              <div className="about-timeline-body">
+                <span className="about-timeline-degree">
+                  M.F.A. Interactive Design
+                </span>
+                <span className="about-timeline-school">SCAD</span>
+              </div>
+            </li>
+          </ol>
         </div>
 
-        <div className="about-body">
-          <h2>Designing experiences that connect systems with people.</h2>
-          <p>
-            I am an interactive experience designer working across XR, healthcare,
-            and digital systems — combining UX research, immersive interaction,
-            and prototyping to make complex workflows intuitive.
-          </p>
+        <div className="about-fun-facts-col">
+          <span className="about-fun-facts-label">Fun facts?</span>
+          <FunFactsCards />
         </div>
       </div>
 

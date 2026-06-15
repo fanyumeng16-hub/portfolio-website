@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PROJECT_TAGS, ProjectTagId, getUsedTagIds } from "@/data/project-tags";
-import { Project, projects } from "@/data/projects";
+import { Project, visibleProjects } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectGridCard from "./ProjectGridCard";
 
@@ -11,8 +11,15 @@ type LayoutMode = "stack" | "grid";
 function LayoutIcon({ mode }: { mode: LayoutMode }) {
   if (mode === "stack") {
     return (
-      <svg className="projects-layout-svg" viewBox="0 0 16 16" aria-hidden="true">
-        <rect x="3" y="3" width="10" height="10" rx="2" fill="currentColor" />
+      <svg className="projects-layout-svg" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <rect
+          x="3"
+          y="3"
+          width="10"
+          height="10"
+          stroke="currentColor"
+          strokeWidth="1.25"
+        />
       </svg>
     );
   }
@@ -29,7 +36,6 @@ function LayoutIcon({ mode }: { mode: LayoutMode }) {
         y="3"
         width="10"
         height="10"
-        rx="2"
         stroke="currentColor"
         strokeWidth="1.25"
       />
@@ -127,11 +133,11 @@ export default function Projects() {
   const [layout, setLayout] = useState<LayoutMode>("stack");
   const [activeTag, setActiveTag] = useState<ProjectTagId | "all">("all");
 
-  const filterTags = useMemo(() => getUsedTagIds(projects), []);
+  const filterTags = useMemo(() => getUsedTagIds(visibleProjects), []);
 
   const filteredProjects = useMemo(() => {
-    if (activeTag === "all") return projects;
-    return projects.filter((project) => project.tagIds.includes(activeTag));
+    if (activeTag === "all") return visibleProjects;
+    return visibleProjects.filter((project) => project.tagIds.includes(activeTag));
   }, [activeTag]);
 
   return (
@@ -143,28 +149,30 @@ export default function Projects() {
 
         <div className="projects-filter-bar">
           <div className="projects-filters" role="group" aria-label="Filter projects">
-            <button
-              type="button"
-              className={`projects-filter ${activeTag === "all" ? "is-active" : ""}`}
-              onClick={() => setActiveTag("all")}
-            >
-              All
-            </button>
-            {filterTags.map((tagId) => (
+            <div className="tag-bar">
               <button
-                key={tagId}
                 type="button"
-                className={`projects-filter ${
-                  activeTag === tagId ? "is-active" : ""
-                }`}
-                onClick={() => setActiveTag(tagId)}
+                className={`projects-filter ${activeTag === "all" ? "is-active" : ""}`}
+                onClick={() => setActiveTag("all")}
               >
-                {PROJECT_TAGS[tagId]}
+                All
               </button>
-            ))}
+              {filterTags.map((tagId) => (
+                <button
+                  key={tagId}
+                  type="button"
+                  className={`projects-filter ${
+                    activeTag === tagId ? "is-active" : ""
+                  }`}
+                  onClick={() => setActiveTag(tagId)}
+                >
+                  {PROJECT_TAGS[tagId]}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="projects-layout-toggle" role="group" aria-label="Layout">
+          <div className="tag-bar projects-layout-toggle" role="group" aria-label="Layout">
             <button
               type="button"
               className={`projects-layout-btn ${

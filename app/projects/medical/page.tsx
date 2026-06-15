@@ -111,6 +111,7 @@ export default function MedicalProjectPage() {
   return (
     <ProtectedProjectLock
       password={PASSWORD}
+      showPasswordHint
       lockTheme="light"
       pageClassName="case-page-medical"
       hero={{

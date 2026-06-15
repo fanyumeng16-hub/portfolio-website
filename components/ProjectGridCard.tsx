@@ -34,7 +34,7 @@ export default function ProjectGridCard({ project, index }: Props) {
 
           <p className="project-grid-subtitle">{project.subtitle}</p>
 
-          <ul className="project-grid-tags">
+          <ul className="project-grid-tags tag-bar tag-bar--static">
             {project.tags.map((tag) => (
               <li key={tag}>{tag}</li>
             ))}

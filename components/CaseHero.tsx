@@ -67,7 +67,7 @@ export default function CaseHero({
           <div className="case-hero-right">
             <p className="case-hero-subtitle">{subtitle}</p>
             <p className="case-hero-intro">{intro}</p>
-            <ul className="case-hero-tags">
+            <ul className="case-hero-tags tag-bar tag-bar--static">
               {tags.map((tag) => (
                 <li key={tag}>{tag}</li>
               ))}

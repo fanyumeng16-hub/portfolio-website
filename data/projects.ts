@@ -12,6 +12,7 @@ export type Project = {
   description: string;
   bullets: string[];
   image: string;
+  hidden?: boolean;
 };
 
 function withTags<T extends Omit<Project, "tags">>(project: T): Project {
@@ -33,8 +34,64 @@ export const projects: Project[] = [
     image: "/images/horizon.jpg",
   }),
   withTags({
-    id: "ora",
+    id: "medical",
     number: "002",
+    year: "2025",
+    title: "MAYO CLINIC × SCADpro",
+    subtitle: "Mixed Reality Medical Training System",
+    tagIds: ["xr-mr", "unity", "healthcare", "ux"],
+    category: "XR / MR / Unity / Healthcare / UX",
+    description:
+      "A Mayo Clinic × SCADpro mixed reality project exploring clinical training workflows, hardware integration, and immersive BLS assessment design.",
+    bullets: ["Mixed reality training", "Clinical assessment", "Medical interaction design"],
+    image: "/images/medical.jpg",
+  }),
+  withTags({
+    id: "heartbits",
+    number: "003",
+    year: "2026",
+    title: "Heartbits",
+    subtitle: "Interactive Rehabilitation Experience",
+    tagIds: ["healthcare", "ux"],
+    category: "Healthcare / UX",
+    description:
+      "An interactive rehabilitation system that turns post-surgery recovery into cooperative family play through safe movement guidance and emotional support.",
+    bullets: ["Healthcare interaction", "Family-centered UX", "Motion-guided recovery"],
+    image: "/images/heartbits.jpg",
+  }),
+  withTags({
+    id: "universal",
+    number: "004",
+    year: "2025",
+    title: "UNIVERSAL × SCADpro",
+    subtitle: "Mardi Gras Installation & AR Experience",
+    tagIds: ["ar", "installation", "ux"],
+    category: "AR / Installation / UX",
+    description:
+      "A Universal × SCADpro Mardi Gras project combining physical installations, augmented reality, and guest UI for immersive festival experiences.",
+    bullets: ["Mardi Gras installation", "AR interaction", "Guest-facing UI"],
+    image: "/images/universal.jpg",
+  }),
+  withTags({
+    id: "massie",
+    number: "005",
+    year: "2025",
+    title: "MASSIE HERITAGE CENTER × ScadServe",
+    subtitle: "City Plan Exhibit & Visitor Experience",
+    tagIds: ["ux", "communication", "installation"],
+    category: "Museum Experience / Interpretation / UX",
+    description:
+      "A Massie Heritage Center × ScadServe collaboration reimagining the City Plan Exhibit—grounded in visitor research, Savannah Grid interpretation, and a Premium Package concept for wayfinding and guided engagement.",
+    bullets: [
+      "Premium Package concept",
+      "Savannah Grid interpretation",
+      "Visitor journey research",
+    ],
+    image: "/images/Massie.jpg",
+  }),
+  withTags({
+    id: "ora",
+    number: "006",
     year: "2026",
     title: "ORA",
     subtitle: "Speculative Wellness Critique",
@@ -50,34 +107,8 @@ export const projects: Project[] = [
     image: "/images/ORA.jpg",
   }),
   withTags({
-    id: "medical",
-    number: "003",
-    year: "2025",
-    title: "MAYO CLINIC × SCADpro",
-    subtitle: "Mixed Reality Medical Training System",
-    tagIds: ["xr-mr", "healthcare", "ux"],
-    category: "XR / MR / Healthcare / UX",
-    description:
-      "A Mayo Clinic × SCADpro mixed reality project exploring clinical training workflows, hardware integration, and immersive BLS assessment design.",
-    bullets: ["Mixed reality training", "Clinical assessment", "Medical interaction design"],
-    image: "/images/medical.jpg",
-  }),
-  withTags({
-    id: "heartbits",
-    number: "004",
-    year: "2026",
-    title: "Heartbits",
-    subtitle: "Interactive Rehabilitation Experience",
-    tagIds: ["healthcare", "ux"],
-    category: "Healthcare / UX",
-    description:
-      "An interactive rehabilitation system that turns post-surgery recovery into cooperative family play through safe movement guidance and emotional support.",
-    bullets: ["Healthcare interaction", "Family-centered UX", "Motion-guided recovery"],
-    image: "/images/heartbits.jpg",
-  }),
-  withTags({
     id: "trackly",
-    number: "005",
+    number: "007",
     year: "2026",
     title: "Trackly",
     subtitle: "Habit & Goal Tracking Experience",
@@ -89,21 +120,8 @@ export const projects: Project[] = [
     image: "/images/Trackly.jpg",
   }),
   withTags({
-    id: "universal",
-    number: "006",
-    year: "2025",
-    title: "UNIVERSAL × SCADpro",
-    subtitle: "Mardi Gras Installation & AR Experience",
-    tagIds: ["ar", "installation", "ux"],
-    category: "AR / Installation / UX",
-    description:
-      "A Universal × SCADpro Mardi Gras project combining physical installations, augmented reality, and guest UI for immersive festival experiences.",
-    bullets: ["Mardi Gras installation", "AR interaction", "Guest-facing UI"],
-    image: "/images/universal.jpg",
-  }),
-  withTags({
     id: "arcana",
-    number: "007",
+    number: "008",
     year: "2025",
     title: "The Arcana",
     subtitle: "AI Tarot Experience",
@@ -113,25 +131,11 @@ export const projects: Project[] = [
       "An AI-powered tarot experience blending symbolic ritual with conversational intelligence—guiding reflection through digitally reimagined readings.",
     bullets: ["AI tarot readings", "Conversational UX", "Symbolic interface"],
     image: "/images/arcana.jpg",
-  }),
-  withTags({
-    id: "massie",
-    number: "008",
-    year: "2025",
-    title: "MASSIE HERITAGE CENTER × ScadServe",
-    subtitle: "City Plan Exhibit & Visitor Experience",
-    tagIds: ["ux", "communication", "installation"],
-    category: "Museum Experience / Interpretation / UX",
-    description:
-      "A Massie Heritage Center × ScadServe collaboration reimagining the City Plan Exhibit—grounded in visitor research, Savannah Grid interpretation, and a Premium Package concept for wayfinding and guided engagement.",
-    bullets: [
-      "Premium Package concept",
-      "Savannah Grid interpretation",
-      "Visitor journey research",
-    ],
-    image: "/images/Massie.jpg",
+    hidden: true,
   }),
 ];
+
+export const visibleProjects = projects.filter((project) => !project.hidden);
 
 export function getProject(id: string) {
   return projects.find((project) => project.id === id);

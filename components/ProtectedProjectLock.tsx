@@ -15,6 +15,7 @@ type HeroProps = {
 
 type Props = {
   password: string;
+  showPasswordHint?: boolean;
   pageClassName?: string;
   lockTheme?: "light" | "dark";
   hero: HeroProps;
@@ -23,6 +24,7 @@ type Props = {
 
 export default function ProtectedProjectLock({
   password,
+  showPasswordHint = false,
   pageClassName = "case-page-medical",
   lockTheme = "light",
   hero,
@@ -72,6 +74,9 @@ export default function ProtectedProjectLock({
             <button type="submit">UNLOCK</button>
           </form>
           {error && <p className="protected-error">{error}</p>}
+          {showPasswordHint && (
+            <p className="protected-password-hint">Password: {password}</p>
+          )}
         </div>
       </section>
     </main>
