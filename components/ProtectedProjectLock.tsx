@@ -75,7 +75,9 @@ export default function ProtectedProjectLock({
           </form>
           {error && <p className="protected-error">{error}</p>}
           {showPasswordHint && (
-            <p className="protected-password-hint">Password: {password}</p>
+            <p className="protected-password-hint">
+              Password: <span className="protected-password-value">{password}</span>
+            </p>
           )}
         </div>
       </section>

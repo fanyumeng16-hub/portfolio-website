@@ -23,10 +23,7 @@ export default function ProjectGridCard({ project, index }: Props) {
         </div>
 
         <div className="project-grid-body">
-          <span className="project-grid-code">
-            {project.number}
-            {project.year}
-          </span>
+          <span className="project-grid-year">{project.year}</span>
 
           <h2 className="project-grid-heading">
             <ProjectTitle title={project.title} />
@@ -34,11 +31,9 @@ export default function ProjectGridCard({ project, index }: Props) {
 
           <p className="project-grid-subtitle">{project.subtitle}</p>
 
-          <ul className="project-grid-tags tag-bar tag-bar--static">
-            {project.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
+          {project.tags[0] ? (
+            <p className="project-grid-tag">{project.tags[0]}</p>
+          ) : null}
         </div>
       </Link>
     </article>

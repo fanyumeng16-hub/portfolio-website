@@ -12,7 +12,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const work = document.getElementById("work");
       const about = document.getElementById("about");
-      const triggerPoint = window.scrollY + 56;
+      const triggerPoint = window.scrollY + 60;
 
       if (about && triggerPoint >= about.offsetTop) {
         setActive("about");

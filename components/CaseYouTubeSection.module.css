@@ -1,15 +1,10 @@
 .section {
   width: 100%;
   padding: var(--space-section) 0;
-  border-bottom: 1px solid #fff;
 }
 
 :global(.case-page-horizon) .section {
   border: none !important;
-}
-
-:global(.case-page-light) .section {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 :global(.case-page-light) .label {

@@ -1,14 +1,7 @@
 export const PROJECT_TAGS = {
-  "xr-mr": "XR / MR",
-  ar: "AR",
-  ux: "UX & Interaction",
-  product: "Product Design",
-  healthcare: "Healthcare",
-  ai: "AI",
-  speculative: "Speculative Design",
-  installation: "Installation",
+  "xr-mr": "XR/MR",
+  "ui-ux": "UI/UX",
   unity: "Unity",
-  communication: "Scientific Communication",
 } as const;
 
 export type ProjectTagId = keyof typeof PROJECT_TAGS;

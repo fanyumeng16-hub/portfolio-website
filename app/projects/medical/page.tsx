@@ -1,22 +1,36 @@
 "use client";
 
 import Link from "next/link";
+import CaseBrandUISection from "@/components/CaseBrandUISection";
+import CaseUserTestingTimeline from "@/components/CaseUserTestingTimeline";
+import CaseConstraintGrid from "@/components/CaseConstraintGrid";
 import CaseDetailSection from "@/components/CaseDetailSection";
-import CaseEditorial from "@/components/CaseEditorial";
+import CaseResearchSection from "@/components/CaseResearchSection";
 import CaseHero from "@/components/CaseHero";
-import CaseHighlights from "@/components/CaseHighlights";
-import CaseToc from "@/components/CaseToc";
-import CaseYouTubeSection from "@/components/CaseYouTubeSection";
+import CaseHighlightGrid from "@/components/CaseHighlightGrid";
+import CaseOnboardingEverydayBlock from "@/components/CaseOnboardingEverydayBlock";
+import CaseOnboardingInsightCards from "@/components/CaseOnboardingInsightCards";
+import CaseOnboardingInteractive from "@/components/CaseOnboardingInteractive";
+import CaseOverviewSection from "@/components/CaseOverviewSection";
+import CaseProseSection from "@/components/CaseProseSection";
+import CaseTemplateLayout from "@/components/CaseTemplateLayout";
 import ProjectTitle from "@/components/ProjectTitle";
 import ProtectedProjectLock from "@/components/ProtectedProjectLock";
 import {
-  medicalHighlights,
-  medicalJourney,
-  medicalOverview,
+  medicalBrandUI,
+  medicalChallenge,
+  medicalHero,
+  medicalOnboarding,
+  medicalOverviewVideo,
+  medicalRole,
+  medicalSpec,
+  medicalUserTesting,
 } from "@/data/medical-content";
+import { CaseTocSection } from "@/components/CaseToc";
 import {
-  medicalContextDetail,
-  medicalDetailSections,
+  medicalEvaluationSection,
+  medicalResearch,
+  medicalSegmentSection,
 } from "@/data/medical-detail";
 import { getProject } from "@/data/projects";
 
@@ -24,86 +38,126 @@ const medicalProject = getProject("medical")!;
 
 const PASSWORD = "mayo";
 
-const medicalSections = [
+const medicalSections: CaseTocSection[] = [
   { id: "case-intro", label: "Introduction" },
   { id: "case-overview", label: "Overview" },
-  { id: "case-highlights", label: "Impact" },
-  { id: "mayo-journey", label: "Context" },
-  { id: "case-video", label: "Video" },
-  { id: "mayo-onboarding", label: "Onboarding" },
-  { id: "mayo-manikin", label: "Manikin" },
-  { id: "mayo-bls-interaction", label: "BLS Interaction" },
+  { id: "mayo-role", label: "My Role" },
+  { id: "mayo-challenge", label: "Challenge" },
+  { id: "mayo-research", label: "Research" },
+  {
+    id: "mayo-brand-ui",
+    label: "Brand & UI",
+    children: medicalBrandUI.subsections.map((subsection) => ({
+      id: subsection.id,
+      label: `${subsection.title} · ${subsection.subtitle}`,
+    })),
+  },
+  {
+    id: "mayo-onboarding",
+    label: "Onboarding",
+    children: medicalOnboarding.stages.map((stage) => ({
+      id: stage.id,
+      label: `${stage.label} · ${stage.title}`,
+    })),
+  },
+  { id: "mayo-segment", label: "Segment" },
   { id: "mayo-evaluation", label: "Evaluation" },
+  {
+    id: "mayo-user-testing",
+    label: "Usability Test",
+    children: medicalUserTesting.timeline.map((round) => ({
+      id: round.id,
+      label: `${round.roundLabel} · ${round.title}`,
+    })),
+  },
 ];
 
 const medicalTitle = <ProjectTitle title="MAYO CLINIC × SCADpro" />;
 
 function MedicalCaseContent() {
   return (
-    <main className="case-page case-page-light case-page-medical case-page-with-toc">
-      <CaseToc sections={medicalSections} theme="light" />
-
-      <header className="case-nav">
-        <Link href="/" className="case-back">
-          BACK TO WORK
-        </Link>
-        <span className="case-nav-title">MAYO CLINIC × SCADpro / 2025</span>
-      </header>
-
-      <CaseHero
-        title={medicalTitle}
-        subtitle="Mixed Reality BLS Assessment Platform"
-        tags={medicalProject.tags}
-        intro="In partnership with Mayo Clinic, SCADpro reimagined how nursing staff complete Basic Life Support certification—transforming a process limited by scarce evaluators and physical mannequins into an immersive, rigorous, and scalable mixed-reality assessment."
-        image="/images/medical.jpg"
-        imageAlt="Mayo Clinic SCADpro mixed reality BLS training system"
+    <CaseTemplateLayout
+      projectClass="case-page-medical"
+      sections={medicalSections}
+      tocTheme="light"
+      nav={
+        <header className="case-nav">
+          <Link href="/" className="case-back">
+            BACK TO WORK
+          </Link>
+          <span className="case-nav-title">MAYO CLINIC × SCADpro / 2025</span>
+        </header>
+      }
+      hero={
+        <CaseHero
+          title={medicalTitle}
+          subtitle={medicalHero.subtitle}
+          tags={medicalProject.tags}
+          intro={medicalHero.intro}
+          image="/images/medical.jpg"
+          imageAlt="Mayo Clinic SCADpro mixed reality BLS certification system"
+        />
+      }
+    >
+      <CaseOverviewSection
+        body={medicalHero.intro}
+        spec={medicalSpec}
+        media={medicalOverviewVideo}
       />
 
-      <section className="case-overview" id="case-overview">
-        <div className="case-meta">
-          <div>
-            <span>Role</span>
-            <p>{medicalOverview.role}</p>
-          </div>
-          <div>
-            <span>Tools</span>
-            <p>{medicalOverview.tools}</p>
-          </div>
-          <div>
-            <span>Focus</span>
-            <p>{medicalOverview.focus}</p>
-          </div>
-        </div>
+      <CaseProseSection
+        id="mayo-role"
+        title={medicalRole.title}
+        paragraphs={medicalRole.paragraphs}
+      >
+        <CaseHighlightGrid highlights={medicalRole.highlights} />
+      </CaseProseSection>
 
-        <div className="case-body">
-          <h3>Project Overview</h3>
-          {medicalOverview.paragraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+      <CaseProseSection id="mayo-challenge" title={medicalChallenge.title}>
+        <CaseConstraintGrid constraints={medicalChallenge.constraints} />
+      </CaseProseSection>
+
+      <CaseResearchSection
+        id="mayo-research"
+        title={medicalResearch.title}
+        intro={medicalResearch.intro}
+        introQuote={medicalResearch.introQuote}
+        blocks={medicalResearch.blocks}
+      />
+
+      <CaseBrandUISection
+        id="mayo-brand-ui"
+        title={medicalBrandUI.title}
+        subsections={medicalBrandUI.subsections}
+      />
+
+      <section className="case-prose-section" id="mayo-onboarding">
+        <div className="case-prose-inner">
+          <h3 className="case-prose-title">{medicalOnboarding.title}</h3>
+          <p className="case-prose-body">{medicalOnboarding.intro}</p>
+          <CaseOnboardingInsightCards insights={medicalOnboarding.insights} />
+          <CaseOnboardingEverydayBlock block={medicalOnboarding.everydayBlock} />
+          <div className="case-onboarding-stage-intro">
+            {medicalOnboarding.stageIntro.map((paragraph, index) => (
+              <p className="case-prose-body" key={index}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <CaseOnboardingInteractive stages={medicalOnboarding.stages} />
         </div>
       </section>
 
-      <CaseHighlights highlights={medicalHighlights} />
+      <CaseDetailSection section={medicalSegmentSection} />
+      <CaseDetailSection section={medicalEvaluationSection} />
 
-      <CaseEditorial
-        sectionId="mayo-journey"
-        label={medicalJourney.label}
-        headline={medicalJourney.headline}
-        blocks={medicalJourney.blocks}
+      <CaseUserTestingTimeline
+        id="mayo-user-testing"
+        title={medicalUserTesting.title}
+        intro={medicalUserTesting.intro}
+        timeline={medicalUserTesting.timeline}
       />
-
-      <CaseDetailSection section={medicalContextDetail} />
-
-      <CaseYouTubeSection
-        videoId="q8XeJHdjQ1I"
-        label="Project Video"
-        title="Mixed Reality BLS Assessment Overview"
-      />
-
-      {medicalDetailSections.map((section) => (
-        <CaseDetailSection key={section.id} section={section} />
-      ))}
-    </main>
+    </CaseTemplateLayout>
   );
 }
 
@@ -113,15 +167,14 @@ export default function MedicalProjectPage() {
       password={PASSWORD}
       showPasswordHint
       lockTheme="light"
-      pageClassName="case-page-medical"
+      pageClassName="case-page-medical case-page-template"
       hero={{
         title: medicalTitle,
-        subtitle: "Mixed Reality BLS Assessment Platform",
+        subtitle: medicalHero.subtitle,
         tags: medicalProject.tags,
-        intro:
-          "In partnership with Mayo Clinic, SCADpro reimagined how nursing staff complete Basic Life Support certification through immersive mixed reality.",
+        intro: medicalHero.intro,
         image: "/images/medical.jpg",
-        imageAlt: "Mayo Clinic SCADpro mixed reality BLS training system",
+        imageAlt: "Mayo Clinic SCADpro mixed reality BLS certification system",
       }}
     >
       <MedicalCaseContent />

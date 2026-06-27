@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export type CaseTocSection = {
   id: string;
   label: string;
+  children?: CaseTocSection[];
 };
 
 type Props = {
@@ -20,6 +21,106 @@ function shouldShowTocAfterIntro(intro: HTMLElement) {
   return rect.top <= navOffset + 48;
 }
 
+function collectSectionIds(sections: CaseTocSection[]): string[] {
+  return sections.flatMap((section) => [
+    section.id,
+    ...(section.children ? collectSectionIds(section.children) : []),
+  ]);
+}
+
+function sectionContainsId(section: CaseTocSection, id: string): boolean {
+  if (section.id === id) return true;
+  return section.children?.some((child) => sectionContainsId(child, id)) ?? false;
+}
+
+function getScrollSpyOffset() {
+  if (typeof window === "undefined") return 104;
+
+  const styles = getComputedStyle(document.documentElement);
+  const navHeight = parseFloat(styles.getPropertyValue("--case-nav-height")) || 88;
+
+  return navHeight + 20;
+}
+
+function resolveActiveSection(ids: string[]) {
+  if (!ids.length) return "";
+
+  const offset = getScrollSpyOffset();
+  const scrollBottom = window.scrollY + window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
+
+  if (scrollBottom >= docHeight - 4) {
+    return ids[ids.length - 1]!;
+  }
+
+  let active = ids[0]!;
+
+  for (const id of ids) {
+    const element = document.getElementById(id);
+    if (!element) continue;
+
+    if (element.getBoundingClientRect().top <= offset) {
+      active = id;
+    }
+  }
+
+  return active;
+}
+
+type TocEntryProps = {
+  section: CaseTocSection;
+  index?: number;
+  activeId: string;
+  onScroll: (id: string) => void;
+  depth?: number;
+};
+
+function TocEntry({
+  section,
+  index,
+  activeId,
+  onScroll,
+  depth = 0,
+}: TocEntryProps) {
+  const isActive = activeId === section.id;
+  const hasActiveChild =
+    !isActive && section.children?.some((child) => sectionContainsId(child, activeId));
+  const isExpanded =
+    depth === 0 && Boolean(section.children?.length) && sectionContainsId(section, activeId);
+
+  return (
+    <li className={depth > 0 ? "case-toc-sublist-item" : undefined}>
+      <button
+        type="button"
+        className={`case-toc-item${depth > 0 ? " case-toc-item--sub" : ""}${
+          isActive ? " is-active" : hasActiveChild ? " is-active-parent" : ""
+        }`}
+        aria-current={isActive ? "true" : undefined}
+        aria-expanded={section.children?.length ? isExpanded : undefined}
+        onClick={() => onScroll(section.id)}
+      >
+        {depth === 0 && typeof index === "number" ? (
+          <span className="case-toc-index">{String(index + 1).padStart(2, "0")}</span>
+        ) : null}
+        <span className="case-toc-label">{section.label}</span>
+      </button>
+      {isExpanded ? (
+        <ol className="case-toc-sublist">
+          {section.children!.map((child) => (
+            <TocEntry
+              key={child.id}
+              section={child}
+              activeId={activeId}
+              onScroll={onScroll}
+              depth={depth + 1}
+            />
+          ))}
+        </ol>
+      ) : null}
+    </li>
+  );
+}
+
 export default function CaseToc({
   sections,
   showAfterCover = true,
@@ -28,6 +129,7 @@ export default function CaseToc({
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
   const [pastCover, setPastCover] = useState(false);
   const isVisible = !showAfterCover || pastCover;
+  const sectionIds = useMemo(() => collectSectionIds(sections), [sections]);
 
   useEffect(() => {
     if (!showAfterCover) return;
@@ -66,35 +168,40 @@ export default function CaseToc({
   }, [showAfterCover]);
 
   useEffect(() => {
-    const elements = sections
-      .map((section) => document.getElementById(section.id))
-      .filter(Boolean) as HTMLElement[];
+    let frame = 0;
 
-    if (!elements.length) return;
+    const updateActive = () => {
+      setActiveId((current) => {
+        const next = resolveActiveSection(sectionIds);
+        return next === current ? current : next;
+      });
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActive);
+    };
 
-        if (visible[0]?.target.id) {
-          setActiveId(visible[0].target.id);
-        }
-      },
-      {
-        rootMargin: "-32% 0px -42% 0px",
-        threshold: [0, 0.2, 0.45, 0.7],
-      }
-    );
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateActive);
 
-    elements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, [sections]);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateActive);
+    };
+  }, [sectionIds]);
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.dispatchEvent(new CustomEvent("case-toc-navigate", { detail: id }));
+
+    const panel = document.getElementById(`${id}-panel`);
+    const element = panel ?? document.getElementById(id);
+    if (!element) return;
+
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveId(id);
   };
 
   return (
@@ -105,21 +212,13 @@ export default function CaseToc({
     >
       <ol className="case-toc-list">
         {sections.map((section, index) => (
-          <li key={section.id}>
-            <button
-              type="button"
-              className={`case-toc-item ${
-                activeId === section.id ? "is-active" : ""
-              }`}
-              aria-current={activeId === section.id ? "true" : undefined}
-              onClick={() => scrollToSection(section.id)}
-            >
-              <span className="case-toc-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="case-toc-label">{section.label}</span>
-            </button>
-          </li>
+          <TocEntry
+            key={section.id}
+            section={section}
+            index={index}
+            activeId={activeId}
+            onScroll={scrollToSection}
+          />
         ))}
       </ol>
     </nav>
