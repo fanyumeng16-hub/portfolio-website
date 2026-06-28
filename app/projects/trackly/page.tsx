@@ -2,26 +2,42 @@ import CaseBackLink from "@/components/CaseBackLink";
 import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
-import { tracklyGalleryImages } from "@/data/trackly-gallery";
+import ProjectTitle from "@/components/ProjectTitle";
+import TracklyBoard from "@/components/trackly/TracklyBoard";
+import TracklyStepFlow from "@/components/trackly/TracklyStepFlow";
+import {
+  tracklyHeroBoard,
+  tracklyIntro,
+  tracklyOpeningBoards,
+  tracklyResearchBoards,
+  tracklySpec,
+} from "@/data/trackly-content";
+import {
+  tracklyGalleryAfterFlow,
+  tracklyGalleryBeforeFlow,
+  tracklyGalleryImages,
+} from "@/data/trackly-gallery";
 import { buildCaseTocSections } from "@/lib/case-toc";
-
-const tracklySpec = [
-  { label: "Role", value: "UX Design / Interaction Design / Visual System" },
-  { label: "Tools", value: "Figma / Prototyping / UI Design" },
-  { label: "Focus", value: "Habit Tracking / Goal Management / Mobile UX" },
-];
+import styles from "./trackly.module.css";
 
 const tracklySections = buildCaseTocSections(
   [
     { id: "case-intro", label: "Introduction" },
-    { id: "case-overview", label: "Overview" },
+    { id: "trackly-goal", label: "Goal" },
+    { id: "trackly-problem", label: "Problem" },
+    { id: "trackly-research", label: "Research" },
+    { id: "trackly-step-flow", label: "User Flow" },
   ],
-  { images: tracklyGalleryImages }
+  { images: tracklyGalleryImages },
 );
+
+const tracklyTitle = <ProjectTitle title="Trackly" />;
 
 export default function TracklyPage() {
   return (
-    <main className="case-page case-page-light case-page-with-toc">
+    <main
+      className={`case-page case-page-light case-page-trackly case-page-with-toc ${styles.page}`}
+    >
       <CaseToc sections={tracklySections} theme="light" />
 
       <header className="case-nav">
@@ -30,36 +46,38 @@ export default function TracklyPage() {
       </header>
 
       <CaseHero
-        title="Trackly"
-        subtitle="Habit & Goal Tracking Experience"
+        title={tracklyTitle}
+        subtitle="Package Tracking Experience"
         spec={tracklySpec}
-        intro="Trackly is a habit and goal tracking experience designed to help users build consistent routines without the friction of overly complex productivity tools. The interface focuses on clarity, momentum, and lightweight daily check-ins."
-        image="/images/Trackly-cover.jpg"
-        imageAlt="Trackly habit and goal tracking experience"
-        coverIntrinsic
-        coverWidth={5613}
-        coverHeight={3157}
+        intro={tracklyIntro}
+        image={tracklyHeroBoard.src}
+        imageAlt={tracklyHeroBoard.alt}
         priority
+        coverIntrinsic
+        coverWidth={tracklyHeroBoard.width}
+        coverHeight={tracklyHeroBoard.height}
       />
 
-      <section className="case-overview" id="case-overview">
-        <div className="case-body">
-          <h3>Project Overview</h3>
-          <p>
-            Many tracking apps overwhelm users with dashboards, streak pressure,
-            and dense data before habits have a chance to form. Trackly explores
-            a calmer alternative—structuring progress around simple daily
-            actions, visible momentum, and interfaces that stay out of the way.
-          </p>
-          <p>
-            The experience maps goals into repeatable routines, surfaces only the
-            information needed for the current moment, and uses visual rhythm to
-            reinforce consistency over perfection.
-          </p>
-        </div>
+      {tracklyOpeningBoards.map((board) => (
+        <TracklyBoard key={board.id} board={board} className={styles.board} />
+      ))}
+
+      <section className={styles.researchGroup} id="trackly-research">
+        {tracklyResearchBoards.map((board) => (
+          <TracklyBoard
+            key={board.id}
+            board={board}
+            className={styles.board}
+            embedded
+          />
+        ))}
       </section>
 
-      <CaseGallery images={tracklyGalleryImages} seamless />
+      <CaseGallery images={tracklyGalleryBeforeFlow} seamless />
+
+      <TracklyStepFlow />
+
+      <CaseGallery images={tracklyGalleryAfterFlow} seamless />
     </main>
   );
 }

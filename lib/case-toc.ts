@@ -31,6 +31,7 @@ export function buildCaseTocSections(
           id: image.id,
           label:
             typeof image.tocLabel === "string" ? image.tocLabel : image.title,
+          indexLabel: image.tocIndex,
         }))
     );
   }

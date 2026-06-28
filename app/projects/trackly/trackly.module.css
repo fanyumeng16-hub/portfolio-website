@@ -1,0 +1,102 @@
+.page {
+  --trackly-blue: #4a69e2;
+  --trackly-text: #1a3260;
+  --trackly-content-max: 1080px;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  background: #fff;
+  color: var(--trackly-text);
+}
+
+/* 设计板 — 限制宽度、水平居中 */
+.board {
+  display: block;
+  width: min(var(--trackly-content-max), 100%);
+  margin: 0 auto;
+  line-height: 0;
+  background: #fff;
+}
+
+.page :global(.trackly-board-image) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.page :global(.case-toc-item) {
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.page :global(.case-toc-item:hover) {
+  color: #64748b;
+}
+
+.page :global(.case-toc-item.is-active) {
+  transform: none;
+  font-weight: 500;
+}
+
+.page :global(.case-toc-index) {
+  min-width: 1.75rem;
+  flex-shrink: 0;
+  margin-top: 0;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  line-height: 1;
+  font-size: 10px;
+  font-weight: 400;
+  color: #cbd5e1;
+}
+
+.page :global(.case-toc-item:hover .case-toc-index) {
+  color: #94a3b8;
+}
+
+.page :global(.case-toc-label) {
+  flex: 1;
+  min-width: 0;
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+}
+
+.page :global(.case-toc-item.is-active .case-toc-label) {
+  font-weight: 500;
+}
+
+.researchGroup {
+  width: min(var(--trackly-content-max), 100%);
+  margin: 0 auto;
+}
+
+/* Gallery */
+.page :global(.case-gallery-section--seamless) {
+  background: #fff;
+  width: min(var(--trackly-content-max), 100%);
+  margin: 0 auto;
+}
+
+.page :global(.case-gallery-section--seamless .case-gallery-inner) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page :global(.case-gallery-seamless-panel) {
+  background: #fff;
+  padding: 0;
+}
+
+.page :global(.case-gallery-seamless-image) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.page :global(#trackly-step-flow) {
+  width: min(var(--trackly-content-max), 100%);
+  margin: 0 auto;
+}

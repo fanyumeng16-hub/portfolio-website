@@ -21,6 +21,8 @@ export type GallerySlide = {
   summary?: string;
   /** Omit from TOC when false; use a shorter label when string */
   tocLabel?: string | false;
+  /** Override auto TOC index (e.g. "13.5") */
+  tocIndex?: string;
 };
 
 export type GalleryGroup = {

@@ -4173,6 +4173,10 @@ img {
   color: #8b6f47;
 }
 
+.case-page-light.case-page-trackly .case-hero-subtitle {
+  color: #4a69e2;
+}
+
 .case-page-light.case-page-massie .case-toc--light .case-toc-item.is-active {
   color: #8b6f47;
 }
@@ -4182,6 +4186,17 @@ img {
   .case-toc-item.is-active
   .case-toc-index {
   color: rgba(139, 111, 71, 0.75);
+}
+
+.case-page-light.case-page-trackly .case-toc--light .case-toc-item.is-active {
+  color: #4a69e2;
+}
+
+.case-page-light.case-page-trackly
+  .case-toc--light
+  .case-toc-item.is-active
+  .case-toc-index {
+  color: rgba(74, 105, 226, 0.72);
 }
 
 .protected-page--light.case-page-massie .case-hero-subtitle {

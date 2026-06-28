@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 export type CaseTocSection = {
   id: string;
   label: string;
+  indexLabel?: string;
   children?: CaseTocSection[];
 };
 
@@ -88,6 +89,10 @@ function TocEntry({
   const isExpanded =
     depth === 0 && Boolean(section.children?.length) && sectionContainsId(section, activeId);
 
+  const indexDisplay =
+    section.indexLabel ??
+    (typeof index === "number" ? String(index + 1).padStart(2, "0") : null);
+
   return (
     <li className={depth > 0 ? "case-toc-sublist-item" : undefined}>
       <button
@@ -99,8 +104,8 @@ function TocEntry({
         aria-expanded={section.children?.length ? isExpanded : undefined}
         onClick={() => onScroll(section.id)}
       >
-        {depth === 0 && typeof index === "number" ? (
-          <span className="case-toc-index">{String(index + 1).padStart(2, "0")}</span>
+        {depth === 0 && indexDisplay ? (
+          <span className="case-toc-index">{indexDisplay}</span>
         ) : null}
         <span className="case-toc-label">{section.label}</span>
       </button>
