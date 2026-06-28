@@ -1,16 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import CaseBackLink from "@/components/CaseBackLink";
 import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import ProjectTitle from "@/components/ProjectTitle";
 import ProtectedProjectLock from "@/components/ProtectedProjectLock";
 import { massieGalleryImages } from "@/data/massie-gallery";
-import { getProject } from "@/data/projects";
 import { buildCaseTocSections } from "@/lib/case-toc";
-
-const massieProject = getProject("massie")!;
 
 const PASSWORD = "massie";
 
@@ -26,15 +23,19 @@ const massieTitle = (
   <ProjectTitle title="MASSIE HERITAGE CENTER × ScadServe" />
 );
 
+const massieSpec = [
+  { label: "Role", value: "UX Research / Experience Strategy / Interpretive Design" },
+  { label: "Tools", value: "Figma / Interviews / Surveys / Experience Prototyping" },
+  { label: "Focus", value: "City Plan Exhibit / Savannah Grid / Visitor Journey" },
+];
+
 function MassieCaseContent() {
   return (
     <main className="case-page case-page-light case-page-massie case-page-with-toc">
       <CaseToc sections={massieSections} theme="light" />
 
       <header className="case-nav">
-        <Link href="/" className="case-back">
-          BACK TO WORK
-        </Link>
+        <CaseBackLink />
         <span className="case-nav-title">
           MASSIE HERITAGE CENTER × ScadServe / 2025
         </span>
@@ -43,28 +44,13 @@ function MassieCaseContent() {
       <CaseHero
         title={massieTitle}
         subtitle="City Plan Exhibit & Visitor Experience"
-        tags={massieProject.tags}
+        spec={massieSpec}
         intro="Massie Heritage Center tells Savannah's story through one of its most distinctive artifacts—the City Plan. With ScadServe, this project reimagines how that history reaches visitors through research-led experience design, from wayfinding and guided interpretation to a Premium Package concept built for deeper engagement."
         image="/images/Massie.jpg"
         imageAlt="Massie Heritage Center City Plan Exhibit visitor experience"
       />
 
       <section className="case-overview" id="case-overview">
-        <div className="case-meta">
-          <div>
-            <span>Role</span>
-            <p>UX Research / Experience Strategy / Interpretive Design</p>
-          </div>
-          <div>
-            <span>Tools</span>
-            <p>Figma / Interviews / Surveys / Experience Prototyping</p>
-          </div>
-          <div>
-            <span>Focus</span>
-            <p>City Plan Exhibit / Savannah Grid / Visitor Journey</p>
-          </div>
-        </div>
-
         <div className="case-body">
           <h3>Project Overview</h3>
           <p>
@@ -103,7 +89,7 @@ export default function MassieProjectPage() {
       hero={{
         title: massieTitle,
         subtitle: "City Plan Exhibit & Visitor Experience",
-        tags: massieProject.tags,
+        spec: massieSpec,
         intro:
           "Massie Heritage Center and ScadServe reimagine the City Plan Exhibit through research-led visitor experience design and the Premium Package concept.",
         image: "/images/Massie.jpg",

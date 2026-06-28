@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import CaseBackLink from "@/components/CaseBackLink";
 import CaseBrandUISection from "@/components/CaseBrandUISection";
 import CaseUserTestingTimeline from "@/components/CaseUserTestingTimeline";
 import CaseConstraintGrid from "@/components/CaseConstraintGrid";
@@ -32,9 +32,6 @@ import {
   medicalResearch,
   medicalSegmentSection,
 } from "@/data/medical-detail";
-import { getProject } from "@/data/projects";
-
-const medicalProject = getProject("medical")!;
 
 const PASSWORD = "mayo";
 
@@ -82,9 +79,7 @@ function MedicalCaseContent() {
       tocTheme="light"
       nav={
         <header className="case-nav">
-          <Link href="/" className="case-back">
-            BACK TO WORK
-          </Link>
+          <CaseBackLink />
           <span className="case-nav-title">MAYO CLINIC × SCADpro / 2025</span>
         </header>
       }
@@ -92,18 +87,14 @@ function MedicalCaseContent() {
         <CaseHero
           title={medicalTitle}
           subtitle={medicalHero.subtitle}
-          tags={medicalProject.tags}
           intro={medicalHero.intro}
+          spec={medicalSpec}
           image="/images/medical.jpg"
           imageAlt="Mayo Clinic SCADpro mixed reality BLS certification system"
         />
       }
     >
-      <CaseOverviewSection
-        body={medicalHero.intro}
-        spec={medicalSpec}
-        media={medicalOverviewVideo}
-      />
+      <CaseOverviewSection media={medicalOverviewVideo} />
 
       <CaseProseSection
         id="mayo-role"
@@ -171,8 +162,8 @@ export default function MedicalProjectPage() {
       hero={{
         title: medicalTitle,
         subtitle: medicalHero.subtitle,
-        tags: medicalProject.tags,
         intro: medicalHero.intro,
+        spec: medicalSpec,
         image: "/images/medical.jpg",
         imageAlt: "Mayo Clinic SCADpro mixed reality BLS certification system",
       }}

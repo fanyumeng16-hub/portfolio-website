@@ -1,11 +1,13 @@
+import CaseOverviewMeta from "@/components/CaseOverviewMeta";
+import type { CaseTemplateSpecRow } from "@/lib/case-template";
 import Image from "next/image";
 import { ReactNode } from "react";
 
 type Props = {
   title: ReactNode;
   subtitle: string;
-  tags: string[];
   intro: string;
+  spec?: CaseTemplateSpecRow[];
   image: string;
   imageAlt: string;
   priority?: boolean;
@@ -18,8 +20,8 @@ type Props = {
 export default function CaseHero({
   title,
   subtitle,
-  tags,
   intro,
+  spec,
   image,
   imageAlt,
   priority = false,
@@ -59,19 +61,25 @@ export default function CaseHero({
       </div>
 
       <div className="case-hero-body" id={sectionId}>
-        <div className="case-hero-layout">
-          <div className="case-hero-left">
-            <h1>{title}</h1>
-          </div>
+        <div className="case-hero-intro-block">
+          <h1 className="case-hero-title">{title}</h1>
+          <p className="case-hero-subtitle">{subtitle}</p>
 
-          <div className="case-hero-right">
-            <p className="case-hero-subtitle">{subtitle}</p>
-            <p className="case-hero-intro">{intro}</p>
-            <ul className="case-hero-tags tag-bar tag-bar--static">
-              {tags.map((tag) => (
-                <li key={tag}>{tag}</li>
+          <div
+            className={`case-hero-detail-grid ${
+              spec?.length ? "" : "case-hero-detail-grid--full"
+            }`}
+          >
+            {spec?.length ? (
+              <CaseOverviewMeta rows={spec} layout="hero" />
+            ) : null}
+            <div className="case-hero-copy">
+              {intro.split("\n\n").map((paragraph, index) => (
+                <p className="case-hero-intro" key={index}>
+                  {paragraph}
+                </p>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>

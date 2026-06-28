@@ -47,8 +47,25 @@ export const projects: Project[] = [
     image: "/images/heartbits.jpg",
   }),
   withTags({
-    id: "massie",
+    id: "outloop",
     number: "003",
+    year: "2026",
+    title: "Outloop",
+    subtitle: "Multi-Modal Mind Offboarding System",
+    tagIds: ["ui-ux"],
+    category: "UI/UX",
+    description:
+      "A multi-modal intervention system for the hour between work and sleep — helping Gen Z students disengage from rumination loops through neuroscience-informed interaction design.",
+    bullets: [
+      "Triple Network Model",
+      "Cognitive offboarding",
+      "Multi-modal intervention",
+    ],
+    image: "/images/outloop.png",
+  }),
+  withTags({
+    id: "massie",
+    number: "004",
     year: "2025",
     title: "MASSIE HERITAGE CENTER × ScadServe",
     subtitle: "City Plan Exhibit & Visitor Experience",
@@ -65,7 +82,7 @@ export const projects: Project[] = [
   }),
   withTags({
     id: "trackly",
-    number: "004",
+    number: "005",
     year: "2026",
     title: "Trackly",
     subtitle: "Habit & Goal Tracking Experience",
@@ -78,7 +95,7 @@ export const projects: Project[] = [
   }),
   withTags({
     id: "horizon",
-    number: "005",
+    number: "006",
     year: "2026",
     title: "Horizon",
     subtitle: "Mars Exploration Simulation",
@@ -91,7 +108,7 @@ export const projects: Project[] = [
   }),
   withTags({
     id: "universal",
-    number: "006",
+    number: "007",
     year: "2025",
     title: "UNIVERSAL × SCADpro",
     subtitle: "Mardi Gras Installation & AR Experience",
@@ -105,7 +122,7 @@ export const projects: Project[] = [
   }),
   withTags({
     id: "ora",
-    number: "007",
+    number: "008",
     year: "2026",
     title: "ORA",
     subtitle: "Speculative Wellness Critique",
@@ -123,7 +140,7 @@ export const projects: Project[] = [
   }),
   withTags({
     id: "arcana",
-    number: "008",
+    number: "009",
     year: "2025",
     title: "The Arcana",
     subtitle: "AI Tarot Experience",

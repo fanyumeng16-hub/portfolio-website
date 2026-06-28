@@ -1,9 +1,12 @@
-import Link from "next/link";
+import CaseBackLink from "@/components/CaseBackLink";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
-import { getProject } from "@/data/projects";
 
-const arcanaProject = getProject("arcana")!;
+const arcanaSpec = [
+  { label: "Role", value: "Product Design / UX / Interaction Design" },
+  { label: "Tools", value: "Figma / AI Prototyping / Visual Design" },
+  { label: "Focus", value: "AI Tarot / Conversational UX / Symbolic Interface" },
+];
 
 const arcanaSections = [
   { id: "case-intro", label: "Introduction" },
@@ -16,37 +19,20 @@ export default function ArcanaPage() {
       <CaseToc sections={arcanaSections} />
 
       <header className="case-nav">
-        <Link href="/" className="case-back">
-          BACK TO WORK
-        </Link>
+        <CaseBackLink />
         <span className="case-nav-title">THE ARCANA / 2025</span>
       </header>
 
       <CaseHero
         title="The Arcana"
         subtitle="AI Tarot Experience"
-        tags={arcanaProject.tags}
+        spec={arcanaSpec}
         intro="The Arcana is an AI-powered tarot experience that blends symbolic ritual with conversational intelligence—helping users explore reflection, intuition, and narrative through a digitally reimagined reading practice."
         image="/images/arcana.jpg"
         imageAlt="The Arcana AI tarot experience"
       />
 
       <section className="case-overview" id="case-overview">
-        <div className="case-meta">
-          <div>
-            <span>Role</span>
-            <p>Product Design / UX / Interaction Design</p>
-          </div>
-          <div>
-            <span>Tools</span>
-            <p>Figma / AI Prototyping / Visual Design</p>
-          </div>
-          <div>
-            <span>Focus</span>
-            <p>AI Tarot / Conversational UX / Symbolic Interface</p>
-          </div>
-        </div>
-
         <div className="case-body">
           <h3>Project Overview</h3>
           <p>

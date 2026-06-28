@@ -8,9 +8,9 @@ import {
 type Props = {
   id?: string;
   title?: string;
-  body: string;
-  spec: CaseTemplateSpecRow[];
-  media: CaseOverviewMedia;
+  body?: string;
+  spec?: CaseTemplateSpecRow[];
+  media?: CaseOverviewMedia;
 };
 
 export default function CaseOverviewSection({
@@ -27,34 +27,52 @@ export default function CaseOverviewSection({
     >
       <h3 className="case-prose-title">{title}</h3>
 
-      <div className="case-overview-grid">
-        <p className="case-prose-body">{body}</p>
-        <CaseOverviewMeta rows={spec} />
-      </div>
+      {body || spec?.length ? (
+        <div
+          className={`case-overview-grid ${
+            spec?.length ? "" : "case-overview-grid--body-only"
+          }`}
+        >
+          {spec?.length ? (
+            <CaseOverviewMeta rows={spec} layout="stack" />
+          ) : null}
+          {body ? (
+            <div className="case-overview-copy">
+              {body.split("\n\n").map((paragraph, index) => (
+                <p className="case-prose-body" key={index}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
-      <figure className="case-overview-figure">
-        {media.type === "youtube" ? (
-          <div className="case-overview-youtube">
-            <iframe
-              className="case-overview-youtube-embed"
-              src={`https://www.youtube.com/embed/${media.videoId}`}
-              title={media.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
+      {media ? (
+        <figure className="case-overview-figure">
+          {media.type === "youtube" ? (
+            <div className="case-overview-youtube">
+              <iframe
+                className="case-overview-youtube-embed"
+                src={`https://www.youtube.com/embed/${media.videoId}`}
+                title={media.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <video
+              className="case-overview-video case-video-player"
+              src={media.src}
+              controls
+              playsInline
+              preload="metadata"
+              aria-label={media.alt}
             />
-          </div>
-        ) : (
-          <video
-            className="case-overview-video case-video-player"
-            src={media.src}
-            controls
-            playsInline
-            preload="metadata"
-            aria-label={media.alt}
-          />
-        )}
-      </figure>
+          )}
+        </figure>
+      ) : null}
     </section>
   );
 }

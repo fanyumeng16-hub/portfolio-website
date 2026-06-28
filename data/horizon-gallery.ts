@@ -14,6 +14,7 @@ export type GallerySlide = {
   alt: string;
   src?: string;
   videoSrc?: string;
+  youtubeVideoId?: string;
   /** Extra videos rendered below the main media without a separate heading */
   videos?: GalleryVideo[];
   /** Optional copy block shown above the slide in seamless galleries */

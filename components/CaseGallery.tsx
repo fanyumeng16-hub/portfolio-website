@@ -35,6 +35,18 @@ export default function CaseGallery({
                       <p>{image.summary}</p>
                     </div>
                   ) : null}
+                  {image.youtubeVideoId ? (
+                    <div className="case-overview-youtube">
+                      <iframe
+                        className="case-overview-youtube-embed"
+                        src={`https://www.youtube.com/embed/${image.youtubeVideoId}`}
+                        title={image.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : null}
                   {image.videoSrc ? (
                     <video
                       className="case-gallery-seamless-video"

@@ -1,12 +1,18 @@
-import Link from "next/link";
+import CaseBackLink from "@/components/CaseBackLink";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import CaseYouTubeSection from "@/components/CaseYouTubeSection";
 import OraPosterMarquee from "@/components/OraPosterMarquee";
 import { oraPosters } from "@/data/ora-posters";
-import { getProject } from "@/data/projects";
 
-const oraProject = getProject("ora")!;
+const oraSpec = [
+  { label: "Role", value: "Concept Development / Critical Narrative / Experience Design" },
+  { label: "Medium", value: "Speculative Product / Physical Prototype / Visual System" },
+  {
+    label: "Focus",
+    value: "Critical Design / Attention Economy / Wellness Technology",
+  },
+];
 
 const oraSections = [
   { id: "case-intro", label: "Introduction" },
@@ -21,16 +27,14 @@ export default function OraPage() {
       <CaseToc sections={oraSections} theme="light" />
 
       <header className="case-nav">
-        <Link href="/" className="case-back">
-          BACK TO WORK
-        </Link>
+        <CaseBackLink />
         <span className="case-nav-title">ORA / 2026</span>
       </header>
 
       <CaseHero
         title="ORA"
         subtitle="Speculative Wellness Critique"
-        tags={oraProject.tags}
+        spec={oraSpec}
         intro="ORA is a speculative critique disguised as a wellness product. In a near future where attention has become the most contested resource, we imagine a device that reaches into the body's most intimate cavity—the mouth—to manufacture flow on demand."
         image="/images/ORA.jpg"
         imageAlt="ORA speculative wellness device"
@@ -38,23 +42,6 @@ export default function OraPage() {
       />
 
       <section className="case-overview" id="case-overview">
-        <div className="case-meta">
-          <div>
-            <span>Role</span>
-            <p>Concept Development / Critical Narrative / Experience Design</p>
-          </div>
-          <div>
-            <span>Medium</span>
-            <p>Speculative Product / Physical Prototype / Visual System</p>
-          </div>
-          <div>
-            <span>Focus</span>
-            <p>
-              Critical Design / Attention Economy / Wellness Technology
-            </p>
-          </div>
-        </div>
-
         <div className="case-body">
           <h3>Project Overview</h3>
           <p>

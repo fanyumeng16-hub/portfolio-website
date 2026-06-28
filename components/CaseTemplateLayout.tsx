@@ -7,6 +7,7 @@ type Props = {
   projectClass: string;
   sections: CaseTocSection[];
   tocTheme?: "light" | "dark";
+  pageTheme?: "light" | "dark";
   nav: ReactNode;
   hero: ReactNode;
   children: ReactNode;
@@ -20,12 +21,13 @@ export default function CaseTemplateLayout({
   projectClass,
   sections,
   tocTheme = "light",
+  pageTheme = "light",
   nav,
   hero,
   children,
 }: Props) {
   return (
-    <main className={caseTemplateMainClassName(projectClass)}>
+    <main className={caseTemplateMainClassName(projectClass, true, pageTheme)}>
       <CaseToc sections={sections} theme={tocTheme} />
       {nav}
       {hero}

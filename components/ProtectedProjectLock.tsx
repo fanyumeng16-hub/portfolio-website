@@ -1,14 +1,15 @@
 "use client";
 
-import Link from "next/link";
+import CaseBackLink from "@/components/CaseBackLink";
 import { FormEvent, ReactNode, useState } from "react";
 import CaseHero from "@/components/CaseHero";
+import type { CaseTemplateSpecRow } from "@/lib/case-template";
 
 type HeroProps = {
   title: ReactNode;
   subtitle: string;
-  tags: string[];
   intro: string;
+  spec?: CaseTemplateSpecRow[];
   image: string;
   imageAlt: string;
 };
@@ -54,9 +55,7 @@ export default function ProtectedProjectLock({
         lockTheme === "light" ? "protected-page--light" : ""
       } ${pageClassName}`}
     >
-      <Link href="/#work" className="protected-back">
-        BACK TO WORK
-      </Link>
+      <CaseBackLink className="protected-back" />
 
       <CaseHero {...hero} priority />
 

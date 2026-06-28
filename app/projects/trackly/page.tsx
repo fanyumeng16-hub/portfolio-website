@@ -1,12 +1,15 @@
-import Link from "next/link";
+import CaseBackLink from "@/components/CaseBackLink";
 import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import { tracklyGalleryImages } from "@/data/trackly-gallery";
-import { getProject } from "@/data/projects";
 import { buildCaseTocSections } from "@/lib/case-toc";
 
-const tracklyProject = getProject("trackly")!;
+const tracklySpec = [
+  { label: "Role", value: "UX Design / Interaction Design / Visual System" },
+  { label: "Tools", value: "Figma / Prototyping / UI Design" },
+  { label: "Focus", value: "Habit Tracking / Goal Management / Mobile UX" },
+];
 
 const tracklySections = buildCaseTocSections(
   [
@@ -22,16 +25,14 @@ export default function TracklyPage() {
       <CaseToc sections={tracklySections} theme="light" />
 
       <header className="case-nav">
-        <Link href="/" className="case-back">
-          BACK TO WORK
-        </Link>
+        <CaseBackLink />
         <span className="case-nav-title">TRACKLY / 2026</span>
       </header>
 
       <CaseHero
         title="Trackly"
         subtitle="Habit & Goal Tracking Experience"
-        tags={tracklyProject.tags}
+        spec={tracklySpec}
         intro="Trackly is a habit and goal tracking experience designed to help users build consistent routines without the friction of overly complex productivity tools. The interface focuses on clarity, momentum, and lightweight daily check-ins."
         image="/images/Trackly-cover.jpg"
         imageAlt="Trackly habit and goal tracking experience"
@@ -42,21 +43,6 @@ export default function TracklyPage() {
       />
 
       <section className="case-overview" id="case-overview">
-        <div className="case-meta">
-          <div>
-            <span>Role</span>
-            <p>UX Design / Interaction Design / Visual System</p>
-          </div>
-          <div>
-            <span>Tools</span>
-            <p>Figma / Prototyping / UI Design</p>
-          </div>
-          <div>
-            <span>Focus</span>
-            <p>Habit Tracking / Goal Management / Mobile UX</p>
-          </div>
-        </div>
-
         <div className="case-body">
           <h3>Project Overview</h3>
           <p>

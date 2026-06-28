@@ -10,7 +10,7 @@ export const CASE_TEMPLATE = {
   shellClass: "case-content-shell",
   overviewClass: "case-overview--template",
   contentMax: "1100px",
-  contentGutter: "320px",
+  contentGutter: "clamp(32px, 4vw, 56px)",
   type: {
     t1: "1.75rem", // 28px — section titles
     t2: "1.125rem", // 18px — subheadings
@@ -67,10 +67,11 @@ export type CaseTemplateVideo = CaseTemplateVideoEmbed & {
 export function caseTemplateMainClassName(
   projectClass: string,
   withToc = true,
+  pageTheme: "light" | "dark" = "light",
 ): string {
   return [
     "case-page",
-    "case-page-light",
+    pageTheme === "light" ? "case-page-light" : "",
     CASE_TEMPLATE.pageClass,
     projectClass,
     withToc ? "case-page-with-toc" : "",
