@@ -1,10 +1,10 @@
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import ProjectTitle from "@/components/ProjectTitle";
 import TracklyBoard from "@/components/trackly/TracklyBoard";
-import TracklyStepFlow from "@/components/trackly/TracklyStepFlow";
+import TracklyFeatureMocks from "@/components/trackly/TracklyFeatureMocks";
 import {
   tracklyHeroBoard,
   tracklyIntro,
@@ -13,23 +13,13 @@ import {
   tracklySpec,
 } from "@/data/trackly-content";
 import {
-  tracklyGalleryAfterFlow,
+  tracklyGalleryAfterMocks,
   tracklyGalleryBeforeFlow,
-  tracklyGalleryImages,
 } from "@/data/trackly-gallery";
-import { buildCaseTocSections } from "@/lib/case-toc";
+import { buildTracklyTocSections } from "@/data/trackly-toc";
 import styles from "./trackly.module.css";
 
-const tracklySections = buildCaseTocSections(
-  [
-    { id: "case-intro", label: "Introduction" },
-    { id: "trackly-goal", label: "Goal" },
-    { id: "trackly-problem", label: "Problem" },
-    { id: "trackly-research", label: "Research" },
-    { id: "trackly-step-flow", label: "User Flow" },
-  ],
-  { images: tracklyGalleryImages },
-);
+const tracklySections = buildTracklyTocSections();
 
 const tracklyTitle = <ProjectTitle title="Trackly" />;
 
@@ -40,10 +30,7 @@ export default function TracklyPage() {
     >
       <CaseToc sections={tracklySections} theme="light" />
 
-      <header className="case-nav">
-        <CaseBackLink />
-        <span className="case-nav-title">TRACKLY / 2026</span>
-      </header>
+      <CaseNavbar projectId="trackly" />
 
       <CaseHero
         title={tracklyTitle}
@@ -59,10 +46,17 @@ export default function TracklyPage() {
       />
 
       {tracklyOpeningBoards.map((board) => (
-        <TracklyBoard key={board.id} board={board} className={styles.board} />
+        <TracklyBoard
+          key={board.id}
+          board={board}
+          className={`${styles.board} case-content-column`}
+        />
       ))}
 
-      <section className={styles.researchGroup} id="trackly-research">
+      <section
+        className={`case-content-column ${styles.researchGroup}`}
+        id="trackly-research"
+      >
         {tracklyResearchBoards.map((board) => (
           <TracklyBoard
             key={board.id}
@@ -75,9 +69,9 @@ export default function TracklyPage() {
 
       <CaseGallery images={tracklyGalleryBeforeFlow} seamless />
 
-      <TracklyStepFlow />
+      <TracklyFeatureMocks />
 
-      <CaseGallery images={tracklyGalleryAfterFlow} seamless />
+      <CaseGallery images={tracklyGalleryAfterMocks} seamless />
     </main>
   );
 }

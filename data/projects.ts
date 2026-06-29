@@ -6,6 +6,8 @@ export type Project = {
   year: string;
   title: string;
   subtitle: string;
+  navLabel: string;
+  navHint: string;
   tagIds: ProjectTagId[];
   tags: string[];
   category: string;
@@ -23,11 +25,13 @@ export const projects: Project[] = [
   withTags({
     id: "medical",
     number: "001",
-    year: "2025",
+    year: "2026",
     title: "MAYO CLINIC × SCADpro",
     subtitle: "Mixed Reality Medical Training System",
-    tagIds: ["xr-mr", "unity", "ui-ux"],
-    category: "XR/MR / Unity / UI/UX",
+    navLabel: "Mayo Clinic",
+    navHint: "Mixed Reality Training",
+    tagIds: ["branding", "ui-ux", "xr-mr", "unity"],
+    category: "Branding / UI/UX / XR/MR / Unity",
     description:
       "A Mayo Clinic × SCADpro mixed reality project exploring clinical training workflows, hardware integration, and immersive BLS assessment design.",
     bullets: ["Mixed reality training", "Clinical assessment", "Medical interaction design"],
@@ -39,6 +43,8 @@ export const projects: Project[] = [
     year: "2026",
     title: "Outloop",
     subtitle: "Multi-Modal Mind Offboarding System",
+    navLabel: "Outloop",
+    navHint: "Mind Offboarding",
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:
@@ -56,6 +62,8 @@ export const projects: Project[] = [
     year: "2026",
     title: "Trackly",
     subtitle: "Package Tracking Experience",
+    navLabel: "Trackly",
+    navHint: "Package Tracking",
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:
@@ -69,8 +77,10 @@ export const projects: Project[] = [
     year: "2026",
     title: "Heartbits",
     subtitle: "Interactive Rehabilitation Experience",
-    tagIds: ["ui-ux"],
-    category: "UI/UX",
+    navLabel: "Heartbits",
+    navHint: "Rehabilitation Play",
+    tagIds: ["sensor", "ui-ux"],
+    category: "Sensor / UI/UX",
     description:
       "An interactive rehabilitation system that turns post-surgery recovery into cooperative family play through safe movement guidance and emotional support.",
     bullets: ["Healthcare interaction", "Family-centered UX", "Motion-guided recovery"],
@@ -82,8 +92,10 @@ export const projects: Project[] = [
     year: "2025",
     title: "MASSIE HERITAGE CENTER × ScadServe",
     subtitle: "City Plan Exhibit & Visitor Experience",
-    tagIds: ["ui-ux"],
-    category: "UI/UX",
+    navLabel: "Massie",
+    navHint: "Visitor Experience",
+    tagIds: ["branding", "ui-ux"],
+    category: "Branding / UI/UX",
     description:
       "A Massie Heritage Center × ScadServe collaboration reimagining the City Plan Exhibit—grounded in visitor research, Savannah Grid interpretation, and a Premium Package concept for wayfinding and guided engagement.",
     bullets: [
@@ -99,6 +111,8 @@ export const projects: Project[] = [
     year: "2026",
     title: "Horizon",
     subtitle: "Mars Exploration Simulation",
+    navLabel: "Horizon",
+    navHint: "Mars Simulation",
     tagIds: ["xr-mr", "unity", "ui-ux"],
     category: "XR/MR / Unity / UI/UX",
     description:
@@ -112,6 +126,8 @@ export const projects: Project[] = [
     year: "2025",
     title: "UNIVERSAL × SCADpro",
     subtitle: "Mardi Gras Installation & AR Experience",
+    navLabel: "Universal",
+    navHint: "Mardi Gras AR",
     tagIds: ["xr-mr", "ui-ux"],
     category: "XR/MR / UI/UX",
     description:
@@ -126,6 +142,8 @@ export const projects: Project[] = [
     year: "2026",
     title: "ORA",
     subtitle: "Speculative Wellness Critique",
+    navLabel: "ORA",
+    navHint: "Wellness Critique",
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:
@@ -144,6 +162,8 @@ export const projects: Project[] = [
     year: "2025",
     title: "The Arcana",
     subtitle: "AI Tarot Experience",
+    navLabel: "Arcana",
+    navHint: "AI Tarot",
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:

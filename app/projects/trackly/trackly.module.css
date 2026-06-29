@@ -1,17 +1,13 @@
 .page {
   --trackly-blue: #4a69e2;
   --trackly-text: #1a3260;
-  --trackly-content-max: 1080px;
   font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
   background: #fff;
   color: var(--trackly-text);
 }
 
-/* 设计板 — 限制宽度、水平居中 */
 .board {
   display: block;
-  width: min(var(--trackly-content-max), 100%);
-  margin: 0 auto;
   line-height: 0;
   background: #fff;
 }
@@ -66,23 +62,49 @@
   font-weight: 500;
 }
 
+.page :global(.case-toc-sublist) {
+  gap: 6px;
+  margin-top: 8px;
+  padding-left: 2.35rem;
+  border-left: none;
+}
+
+.page :global(.case-toc-item--sub) {
+  gap: 0;
+  padding-left: 0;
+}
+
+.page :global(.case-toc-item--sub .case-toc-label) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+.page :global(.case-toc-item--sub .case-toc-label)::before {
+  content: "";
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.page :global(.case-toc-item--sub.is-active .case-toc-label)::before,
+.page :global(.case-toc-item--sub:hover .case-toc-label)::before {
+  opacity: 0.85;
+}
+
 .researchGroup {
-  width: min(var(--trackly-content-max), 100%);
-  margin: 0 auto;
+  display: block;
+  scroll-margin-top: calc(var(--case-nav-height, 88px) + 20px);
 }
 
-/* Gallery */
-.page :global(.case-gallery-section--seamless) {
-  background: #fff;
-  width: min(var(--trackly-content-max), 100%);
-  margin: 0 auto;
-}
-
-.page :global(.case-gallery-section--seamless .case-gallery-inner) {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
+.page :global([id]) {
+  scroll-margin-top: calc(var(--case-nav-height, 88px) + 20px);
 }
 
 .page :global(.case-gallery-seamless-panel) {
@@ -94,9 +116,4 @@
   display: block;
   width: 100%;
   height: auto;
-}
-
-.page :global(#trackly-step-flow) {
-  width: min(var(--trackly-content-max), 100%);
-  margin: 0 auto;
 }

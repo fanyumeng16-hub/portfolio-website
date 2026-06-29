@@ -17,7 +17,7 @@ export default function TracklyStepFlow() {
   const current = tracklyFlowSteps.find((item) => item.step === activeStep)!;
 
   return (
-    <section className={styles.flow} id="trackly-step-flow">
+    <section className={`case-content-column ${styles.flow}`} id="trackly-step-flow">
       <nav className={styles.stepper} aria-label="Trackly user flow steps">
         <ol className={styles.stepperTrack}>
           {tracklyFlowSteps.map((item, index) => (
@@ -50,7 +50,7 @@ export default function TracklyStepFlow() {
           alt={current.alt}
           width={current.width}
           height={current.height}
-          sizes="(min-width: 901px) 1080px, calc(100vw - 116px)"
+          sizes="(min-width: 901px) 1500px, calc(100vw - 116px)"
           className={styles.panelImage}
           priority={activeStep === 1}
         />

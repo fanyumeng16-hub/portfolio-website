@@ -2,19 +2,19 @@ import { GallerySlide } from "@/data/horizon-gallery";
 
 const base = "/images/trackly";
 
-/** 06–17：Step Flow 之前 */
+/** 06–17：图库（目录见 data/trackly-toc.ts） */
 export const tracklyGalleryBeforeFlow: GallerySlide[] = [
   {
     id: "trackly-interviews",
     title: "User Interviews",
-    tocLabel: "Interviews",
+    tocLabel: false,
     src: `${base}/Trackly06.png`,
     alt: "User interview goals, participant criteria, and quotes from seven participants",
   },
   {
     id: "trackly-insight",
     title: "Research Insight",
-    tocLabel: "Insight",
+    tocLabel: false,
     src: `${base}/Trackly07.png`,
     alt: "Main problems in the delivery experience — visibility, security, and rigidity",
   },
@@ -28,20 +28,21 @@ export const tracklyGalleryBeforeFlow: GallerySlide[] = [
   {
     id: "trackly-hmw",
     title: "Problem Statement",
-    tocLabel: "Statement",
+    tocLabel: false,
     src: `${base}/Trackly09.png`,
     alt: "How might we improve parcel delivery security for apartment residents",
   },
   {
     id: "trackly-ideation",
     title: "Ideation",
+    tocLabel: false,
     src: `${base}/Trackly10.png`,
     alt: "Concept ideation mapped to delivery pain points",
   },
   {
     id: "trackly-design-process",
     title: "Design Process",
-    tocLabel: "Concept",
+    tocLabel: false,
     src: `${base}/Trackly11.png`,
     alt: "Final concept with smart locker technologies and IoT communication",
   },
@@ -62,7 +63,7 @@ export const tracklyGalleryBeforeFlow: GallerySlide[] = [
   {
     id: "trackly-midfi",
     title: "Mid-Fi Wireframes",
-    tocLabel: "Mid Fi",
+    tocLabel: false,
     src: `${base}/Trackly13.5.png`,
     alt: "Mid-fidelity wireframes for tracking, pickup, and issue reporting flows",
   },
@@ -76,15 +77,9 @@ export const tracklyGalleryBeforeFlow: GallerySlide[] = [
   {
     id: "trackly-prototype",
     title: "Prototype",
+    tocLabel: false,
     src: `${base}/Trackly15.png`,
     alt: "Trackly mobile app prototype screens",
-  },
-  {
-    id: "trackly-overview",
-    title: "Delivery Experience Overview",
-    tocLabel: false,
-    src: `${base}/Trackly16.png`,
-    alt: "Delivery drama pain points and how Trackly helps",
   },
   {
     id: "trackly-locker",
@@ -95,25 +90,38 @@ export const tracklyGalleryBeforeFlow: GallerySlide[] = [
   },
 ];
 
-/** 18–19：Step Flow 之后 */
-export const tracklyGalleryAfterFlow: GallerySlide[] = [
+/** 18–19：refer 布局视频区块，见 TracklyFeatureMocks */
+export const tracklyGalleryAfterFlow: GallerySlide[] = [];
+
+/** 21–22、16：视频 mock 之后 */
+export const tracklyGalleryAfterMocks: GallerySlide[] = [
   {
-    id: "trackly-pickup-cta",
-    title: "Click Pickup and Open App",
+    id: "trackly-anomaly-alert",
+    title: "Anomaly Alert",
     tocLabel: false,
-    src: `${base}/Trackly18.png`,
-    alt: "Pickup flow connecting the Trackly app with the locker",
+    src: `${base}/Trackly21.png`,
+    alt: "Anomaly alert — Trackly catches issues and connects you to Sarah before you ask",
   },
   {
-    id: "trackly-pickup-qr",
-    title: "Pickup at Locker",
+    id: "trackly-delivery-proof",
+    title: "Delivery Proof",
     tocLabel: false,
-    src: `${base}/Trackly19.png`,
-    alt: "Scan QR code at locker for package pickup",
+    src: `${base}/Trackly22.png`,
+    alt: "Photo and weight data captured at every drop-off for delivery disputes",
+  },
+  {
+    id: "trackly-overview",
+    title: "Delivery Experience Overview",
+    tocLabel: false,
+    src: `${base}/Trackly16.png`,
+    alt: "Delivery drama pain points and how Trackly helps",
   },
 ];
 
-export const tracklyGalleryImages = [
+export const tracklyTocGalleryImages = [
   ...tracklyGalleryBeforeFlow,
-  ...tracklyGalleryAfterFlow,
+  ...tracklyGalleryAfterMocks,
 ];
+
+/** @deprecated 使用 buildTracklyTocSections */
+export const tracklyGalleryImages = tracklyTocGalleryImages;

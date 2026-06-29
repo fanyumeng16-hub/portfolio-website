@@ -1,6 +1,6 @@
 "use client";
 
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseBrandUISection from "@/components/CaseBrandUISection";
 import CaseUserTestingTimeline from "@/components/CaseUserTestingTimeline";
 import CaseConstraintGrid from "@/components/CaseConstraintGrid";
@@ -77,12 +77,7 @@ function MedicalCaseContent() {
       projectClass="case-page-medical"
       sections={medicalSections}
       tocTheme="light"
-      nav={
-        <header className="case-nav">
-          <CaseBackLink />
-          <span className="case-nav-title">MAYO CLINIC × SCADpro / 2025</span>
-        </header>
-      }
+      nav={<CaseNavbar projectId="medical" />}
       hero={
         <CaseHero
           title={medicalTitle}
@@ -158,6 +153,7 @@ export default function MedicalProjectPage() {
       password={PASSWORD}
       showPasswordHint
       lockTheme="light"
+      projectId="medical"
       pageClassName="case-page-medical case-page-template"
       hero={{
         title: medicalTitle,

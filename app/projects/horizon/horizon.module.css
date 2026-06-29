@@ -1,0 +1,280 @@
+/* Figures */
+.figure {
+  margin: 0;
+}
+
+.figureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+  margin-top: clamp(24px, 4vw, 40px);
+}
+
+.figureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.figureCaption {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.figureCaptionText {
+  max-width: none;
+  margin: 0;
+}
+
+/* Goal */
+.goalGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.goalCell {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.goalEmphasis {
+  font-style: normal;
+  color: #fff;
+}
+
+.goalHighlight {
+  color: #b7ffa8;
+}
+
+/* Research */
+.researchList {
+  display: grid;
+  gap: clamp(24px, 3vw, 32px);
+  margin: clamp(24px, 4vw, 32px) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.researchItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: clamp(24px, 3vw, 32px);
+}
+
+.researchItem p {
+  max-width: none;
+  margin: 0;
+}
+
+/* Decisions */
+.decisionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 40px);
+  margin-top: clamp(24px, 4vw, 32px);
+}
+
+.decisionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: clamp(20px, 3vw, 24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.decisionCard h4,
+.decisionCard p {
+  max-width: none;
+  margin: 0;
+}
+
+/* Flow */
+.flowList {
+  display: grid;
+  gap: 0;
+  margin: clamp(24px, 4vw, 32px) 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.flowItem {
+  display: grid;
+  grid-template-columns: minmax(7rem, 10rem) 1fr auto;
+  gap: clamp(16px, 2vw, 24px);
+  align-items: baseline;
+  padding: clamp(16px, 2vw, 20px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.flowLabel {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--case-t3);
+  font-weight: 600;
+}
+
+.flowDesc {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--case-t3);
+  line-height: 1.5;
+}
+
+.flowOptional {
+  color: rgba(183, 255, 168, 0.65);
+  font-size: var(--case-t4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Phases */
+.phasesList {
+  display: grid;
+  gap: clamp(48px, 6vw, 72px);
+  margin-top: clamp(24px, 4vw, 32px);
+}
+
+.phaseItem {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 28px);
+  padding-top: clamp(32px, 4vw, 40px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.phaseItem:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.phaseHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phaseHeader h4 {
+  max-width: none;
+  margin: 0;
+}
+
+.phaseOptionalTag {
+  margin-left: 12px;
+  color: rgba(183, 255, 168, 0.6);
+  font-size: var(--case-t4);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phasePanel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.phaseDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.phaseDetail p {
+  max-width: none;
+  margin: 0;
+}
+
+/* UI System */
+.uiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 5vw, 56px);
+  margin-top: clamp(24px, 4vw, 32px);
+}
+
+.uiCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.uiCardCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.uiCardHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.uiCardHeader h4,
+.uiCardCopy p {
+  max-width: none;
+  margin: 0;
+}
+
+/* Interaction & Testing */
+.testingGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 56px);
+  align-items: start;
+  margin-top: clamp(8px, 2vw, 16px);
+}
+
+.testingGrid h4,
+.testingGrid p {
+  max-width: none;
+}
+
+.testingOutcome {
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.futureList {
+  display: grid;
+  gap: clamp(24px, 3vw, 32px);
+  margin-top: clamp(40px, 5vw, 56px);
+  padding-top: clamp(32px, 4vw, 40px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.futureItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.futureItem h4,
+.futureItem p {
+  max-width: none;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .figureGrid,
+  .goalGrid,
+  .decisionsGrid,
+  .uiGrid,
+  .testingGrid,
+  .phasePanel {
+    grid-template-columns: 1fr;
+  }
+
+  .flowItem {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
@@ -34,12 +34,7 @@ function MassieCaseContent() {
     <main className="case-page case-page-light case-page-massie case-page-with-toc">
       <CaseToc sections={massieSections} theme="light" />
 
-      <header className="case-nav">
-        <CaseBackLink />
-        <span className="case-nav-title">
-          MASSIE HERITAGE CENTER × ScadServe / 2025
-        </span>
-      </header>
+      <CaseNavbar projectId="massie" />
 
       <CaseHero
         title={massieTitle}
@@ -85,6 +80,7 @@ export default function MassieProjectPage() {
       password={PASSWORD}
       showPasswordHint
       lockTheme="light"
+      projectId="massie"
       pageClassName="case-page-massie"
       hero={{
         title: massieTitle,

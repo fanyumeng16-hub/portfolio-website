@@ -4,9 +4,15 @@ type Props = {
   src: string;
   alt: string;
   className?: string;
+  controls?: boolean;
 };
 
-export default function CaseAutoplayVideo({ src, alt, className }: Props) {
+export default function CaseAutoplayVideo({
+  src,
+  alt,
+  className,
+  controls = true,
+}: Props) {
   return (
     <video
       className={className}
@@ -15,7 +21,7 @@ export default function CaseAutoplayVideo({ src, alt, className }: Props) {
       muted
       loop
       playsInline
-      controls
+      controls={controls}
       preload="auto"
       aria-label={alt}
       onEnded={(event) => {

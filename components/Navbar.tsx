@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ProjectTitle from "@/components/ProjectTitle";
+import NavWorkDropdown from "@/components/NavWorkDropdown";
 import { visibleProjects } from "@/data/projects";
 
 export default function Navbar() {
@@ -53,17 +53,7 @@ export default function Navbar() {
             Work
           </a>
 
-          <div className="nav-work-dropdown">
-            {visibleProjects.map((project) => (
-              <Link
-                key={project.id}
-                href={`/projects/${project.id}`}
-                className="nav-work-item"
-              >
-                <ProjectTitle title={project.title} />
-              </Link>
-            ))}
-          </div>
+          <NavWorkDropdown projects={visibleProjects} />
         </div>
 
         <span className="nav-divider" aria-hidden="true" />

@@ -31,8 +31,8 @@ export default function ProjectGridCard({ project, index }: Props) {
 
           <p className="project-grid-subtitle">{project.subtitle}</p>
 
-          {project.tags[0] ? (
-            <p className="project-grid-tag">{project.tags[0]}</p>
+          {project.tags.length ? (
+            <p className="project-grid-tag">{project.tags.join(" · ")}</p>
           ) : null}
         </div>
       </Link>

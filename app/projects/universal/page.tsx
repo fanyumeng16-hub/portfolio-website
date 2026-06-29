@@ -1,6 +1,6 @@
 "use client";
 
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import ProjectTitle from "@/components/ProjectTitle";
@@ -26,10 +26,7 @@ function UniversalCaseContent() {
     <main className="case-page case-page-universal case-page-with-toc">
       <CaseToc sections={universalSections} />
 
-      <header className="case-nav">
-        <CaseBackLink />
-        <span className="case-nav-title">UNIVERSAL × SCADpro / 2025</span>
-      </header>
+      <CaseNavbar projectId="universal" />
 
       <CaseHero
         title={universalTitle}
@@ -65,6 +62,7 @@ export default function UniversalProjectPage() {
   return (
     <ProtectedProjectLock
       password={PASSWORD}
+      projectId="universal"
       lockTheme="dark"
       pageClassName="case-page-universal"
       hero={{

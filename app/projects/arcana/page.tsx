@@ -1,4 +1,4 @@
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 
@@ -18,10 +18,7 @@ export default function ArcanaPage() {
     <main className="case-page case-page-with-toc">
       <CaseToc sections={arcanaSections} />
 
-      <header className="case-nav">
-        <CaseBackLink />
-        <span className="case-nav-title">THE ARCANA / 2025</span>
-      </header>
+      <CaseNavbar projectId="arcana" />
 
       <CaseHero
         title="The Arcana"

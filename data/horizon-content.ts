@@ -1,24 +1,16 @@
 import type { CaseSpecRow } from "@/data/medical-content";
 
 export const horizonHero = {
-  subtitle: "Mars Exploration Simulation",
+  subtitle: "UI + Spatial + Interaction Design",
   intro:
-    "Horizon is a high-fidelity XR simulation grounded in planetary science, designed to transform complex space agency procedures into an immersive training experience for living and working on the Red Planet.",
+    "A high-immersion VR experience that makes the invisible hazards of Mars — radiation, pressure loss, oxygen depletion — physically perceivable. Built for the general public, not astronaut trainees.",
 };
 
 export const horizonSpec: CaseSpecRow[] = [
-  {
-    label: "Role",
-    value: "Interaction Design / XR Experience / Visual System",
-  },
-  {
-    label: "Tools",
-    value: "Unity / Figma / XR Prototype",
-  },
-  {
-    label: "Focus",
-    value: "Training Simulation / Scientific Workflow / Immersive Learning",
-  },
+  { label: "Platform", value: "Meta Quest 3" },
+  { label: "Engine", value: "Unity" },
+  { label: "Duration", value: "3 Weeks" },
+  { label: "Team", value: "4 Persons" },
 ];
 
 export const horizonOverviewBody =

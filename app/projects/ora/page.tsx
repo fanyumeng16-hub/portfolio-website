@@ -1,4 +1,4 @@
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseHero from "@/components/CaseHero";
 import CaseToc from "@/components/CaseToc";
 import CaseYouTubeSection from "@/components/CaseYouTubeSection";
@@ -26,10 +26,7 @@ export default function OraPage() {
     <main className="case-page case-page-light case-page-with-toc">
       <CaseToc sections={oraSections} theme="light" />
 
-      <header className="case-nav">
-        <CaseBackLink />
-        <span className="case-nav-title">ORA / 2026</span>
-      </header>
+      <CaseNavbar projectId="ora" />
 
       <CaseHero
         title="ORA"

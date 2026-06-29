@@ -1,4 +1,4 @@
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseDetailSection from "@/components/CaseDetailSection";
 import CaseHero from "@/components/CaseHero";
 import CaseOverviewSection from "@/components/CaseOverviewSection";
@@ -27,12 +27,7 @@ export default function HeartbitsPage() {
       projectClass="case-page-heartbits"
       sections={heartbitsSections}
       tocTheme="light"
-      nav={
-        <header className="case-nav">
-          <CaseBackLink />
-          <span className="case-nav-title">HEARTBITS / 2026</span>
-        </header>
-      }
+      nav={<CaseNavbar projectId="heartbits" />}
       hero={
         <CaseHero
           title="Heartbits"

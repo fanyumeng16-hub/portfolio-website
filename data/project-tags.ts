@@ -2,6 +2,8 @@ export const PROJECT_TAGS = {
   "xr-mr": "XR/MR",
   "ui-ux": "UI/UX",
   unity: "Unity",
+  branding: "Branding",
+  sensor: "Sensor",
 } as const;
 
 export type ProjectTagId = keyof typeof PROJECT_TAGS;

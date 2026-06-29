@@ -16,7 +16,11 @@ type Props = {
 };
 
 function shouldShowTocAfterIntro(intro: HTMLElement) {
-  const navOffset = 88;
+  const styles = getComputedStyle(document.documentElement);
+  const navOffset =
+    parseFloat(styles.getPropertyValue("--site-nav-height")) ||
+    parseFloat(styles.getPropertyValue("--case-nav-height")) ||
+    60;
   const rect = intro.getBoundingClientRect();
 
   return rect.top <= navOffset + 48;

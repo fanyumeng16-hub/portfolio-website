@@ -1,4 +1,4 @@
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseOverviewSection from "@/components/CaseOverviewSection";
@@ -26,12 +26,7 @@ export default function OutloopPage() {
       sections={outloopSections}
       tocTheme="dark"
       pageTheme="dark"
-      nav={
-        <header className="case-nav">
-          <CaseBackLink />
-          <span className="case-nav-title">OUTLOOP / 2026</span>
-        </header>
-      }
+      nav={<CaseNavbar projectId="outloop" />}
       hero={
         <CaseHero
           title="Outloop"

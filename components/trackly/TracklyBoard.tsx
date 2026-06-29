@@ -15,14 +15,14 @@ export default function TracklyBoard({
   const Tag = embedded ? "div" : "section";
 
   return (
-    <Tag className={className} id={embedded ? undefined : board.id}>
+    <Tag className={className} id={board.id}>
       <Image
         src={board.src}
         alt={board.alt}
         width={board.width}
         height={board.height}
         priority={board.priority}
-        sizes="(min-width: 901px) 1080px, calc(100vw - 116px)"
+        sizes="(min-width: 901px) 1500px, calc(100vw - 116px)"
         className="trackly-board-image"
       />
     </Tag>

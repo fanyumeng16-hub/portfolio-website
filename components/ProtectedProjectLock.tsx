@@ -1,6 +1,6 @@
 "use client";
 
-import CaseBackLink from "@/components/CaseBackLink";
+import CaseNavbar from "@/components/CaseNavbar";
 import { FormEvent, ReactNode, useState } from "react";
 import CaseHero from "@/components/CaseHero";
 import type { CaseTemplateSpecRow } from "@/lib/case-template";
@@ -16,6 +16,7 @@ type HeroProps = {
 
 type Props = {
   password: string;
+  projectId: string;
   showPasswordHint?: boolean;
   pageClassName?: string;
   lockTheme?: "light" | "dark";
@@ -25,6 +26,7 @@ type Props = {
 
 export default function ProtectedProjectLock({
   password,
+  projectId,
   showPasswordHint = false,
   pageClassName = "case-page-medical",
   lockTheme = "light",
@@ -55,7 +57,7 @@ export default function ProtectedProjectLock({
         lockTheme === "light" ? "protected-page--light" : ""
       } ${pageClassName}`}
     >
-      <CaseBackLink className="protected-back" />
+      <CaseNavbar projectId={projectId} />
 
       <CaseHero {...hero} priority />
 
