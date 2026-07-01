@@ -14,6 +14,7 @@ export type Project = {
   description: string;
   bullets: string[];
   image: string;
+  imageFit?: "cover" | "contain";
   hidden?: boolean;
 };
 
@@ -45,16 +46,17 @@ export const projects: Project[] = [
     subtitle: "Multi-Modal Mind Offboarding System",
     navLabel: "Outloop",
     navHint: "Mind Offboarding",
-    tagIds: ["ui-ux"],
-    category: "UI/UX",
+    tagIds: ["ui-ux", "wellness", "offboarding"],
+    category: "UI/UX / Wellness / Offboarding",
     description:
-      "A multi-modal intervention system for the hour between work and sleep — helping Gen Z students disengage from rumination loops through neuroscience-informed interaction design.",
+      "A multi-modal intervention system for the hour between work and sleep, helping Gen Z students disengage from rumination loops through neuroscience-informed interaction design.",
     bullets: [
       "Triple Network Model",
       "Cognitive offboarding",
       "Multi-modal intervention",
     ],
     image: "/images/outloop.png",
+    imageFit: "cover",
   }),
   withTags({
     id: "trackly",
@@ -64,16 +66,35 @@ export const projects: Project[] = [
     subtitle: "Package Tracking Experience",
     navLabel: "Trackly",
     navHint: "Package Tracking",
-    tagIds: ["ui-ux"],
-    category: "UI/UX",
+    tagIds: ["ui-ux", "logistics", "delivery"],
+    category: "UI/UX / Logistics / Delivery",
     description:
       "A package tracking experience focused on rebuilding trust across the last-mile delivery journey, from research through mobile and locker interfaces.",
     bullets: ["Delivery UX research", "Trust-centered product design", "Mobile & locker flows"],
     image: "/images/Trackly.jpg",
   }),
   withTags({
-    id: "heartbits",
+    id: "massie",
     number: "004",
+    year: "2025",
+    title: "MASSIE HERITAGE CENTER × ScadServe",
+    subtitle: "City Plan Exhibit & Visitor Experience",
+    navLabel: "Massie",
+    navHint: "Visitor Experience",
+    tagIds: ["branding", "ui-ux"],
+    category: "Branding / UI/UX",
+    description:
+      "A Massie Heritage Center × ScadServe collaboration reimagining the City Plan Exhibit: grounded in visitor research, Savannah Grid interpretation, and a Premium Package concept for wayfinding and guided engagement.",
+    bullets: [
+      "Premium Package concept",
+      "Savannah Grid interpretation",
+      "Visitor journey research",
+    ],
+    image: "/images/Massie.jpg",
+  }),
+  withTags({
+    id: "heartbits",
+    number: "005",
     year: "2026",
     title: "Heartbits",
     subtitle: "Interactive Rehabilitation Experience",
@@ -85,25 +106,6 @@ export const projects: Project[] = [
       "An interactive rehabilitation system that turns post-surgery recovery into cooperative family play through safe movement guidance and emotional support.",
     bullets: ["Healthcare interaction", "Family-centered UX", "Motion-guided recovery"],
     image: "/images/heartbits.jpg",
-  }),
-  withTags({
-    id: "massie",
-    number: "005",
-    year: "2025",
-    title: "MASSIE HERITAGE CENTER × ScadServe",
-    subtitle: "City Plan Exhibit & Visitor Experience",
-    navLabel: "Massie",
-    navHint: "Visitor Experience",
-    tagIds: ["branding", "ui-ux"],
-    category: "Branding / UI/UX",
-    description:
-      "A Massie Heritage Center × ScadServe collaboration reimagining the City Plan Exhibit—grounded in visitor research, Savannah Grid interpretation, and a Premium Package concept for wayfinding and guided engagement.",
-    bullets: [
-      "Premium Package concept",
-      "Savannah Grid interpretation",
-      "Visitor journey research",
-    ],
-    image: "/images/Massie.jpg",
   }),
   withTags({
     id: "horizon",
@@ -129,13 +131,12 @@ export const projects: Project[] = [
     subtitle: "Mardi Gras Installation & AR Experience",
     navLabel: "Universal",
     navHint: "Mardi Gras AR",
-    tagIds: ["xr-mr", "ui-ux"],
-    category: "XR/MR / UI/UX",
+    tagIds: ["branding", "xr-mr", "ui-ux"],
+    category: "Branding / XR/MR / UI/UX",
     description:
       "A Universal × SCADpro Mardi Gras project combining physical installations, augmented reality, and guest UI for immersive festival experiences.",
     bullets: ["Mardi Gras installation", "AR interaction", "Guest-facing UI"],
     image: "/images/universal.jpg",
-    hidden: true,
   }),
   withTags({
     id: "ora",
@@ -148,7 +149,7 @@ export const projects: Project[] = [
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:
-      "A speculative critique disguised as a wellness product—imagining a device that manufactures flow on demand and asking who owns the silence when calm becomes a subscription.",
+      "A speculative critique disguised as a wellness product, imagining a device that manufactures flow on demand and asking who owns the silence when calm becomes a subscription.",
     bullets: [
       "Critical design narrative",
       "Speculative product fiction",
@@ -168,7 +169,7 @@ export const projects: Project[] = [
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:
-      "An AI-powered tarot experience blending symbolic ritual with conversational intelligence—guiding reflection through digitally reimagined readings.",
+      "An AI-powered tarot experience blending symbolic ritual with conversational intelligence, guiding reflection through digitally reimagined readings.",
     bullets: ["AI tarot readings", "Conversational UX", "Symbolic interface"],
     image: "/images/arcana.jpg",
     hidden: true,

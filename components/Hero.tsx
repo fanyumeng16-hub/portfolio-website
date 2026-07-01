@@ -10,8 +10,8 @@ export default function Hero() {
           <div className="hero-home-right">
             <p>
               <span className="hero-home-em">
-                I design experiences for things that are hard to understand —
-                clinical systems, spatial interfaces, complex tools —
+                I design experiences for things that are hard to understand:
+                clinical systems, spatial interfaces, complex tools,
               </span>{" "}
               <span className="hero-home-rest">
                 and make them feel like second nature.

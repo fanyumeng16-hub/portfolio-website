@@ -24,7 +24,7 @@ export default function ArcanaPage() {
         title="The Arcana"
         subtitle="AI Tarot Experience"
         spec={arcanaSpec}
-        intro="The Arcana is an AI-powered tarot experience that blends symbolic ritual with conversational intelligence—helping users explore reflection, intuition, and narrative through a digitally reimagined reading practice."
+        intro="The Arcana is an AI-powered tarot experience that blends symbolic ritual with conversational intelligence, helping users explore reflection, intuition, and narrative through a digitally reimagined reading practice."
         image="/images/arcana.jpg"
         imageAlt="The Arcana AI tarot experience"
       />
@@ -33,13 +33,13 @@ export default function ArcanaPage() {
         <div className="case-body">
           <h3>Project Overview</h3>
           <p>
-            The Arcana reframes tarot as a guided dialogue between user and AI—
+            The Arcana reframes tarot as a guided dialogue between user and AI,
             preserving the mystery and symbolism of traditional readings while
             making interpretation accessible, personal, and responsive to context.
           </p>
           <p>
             The experience spans card presentation, reading flows, and AI-generated
-            narrative layers—designing interaction patterns that feel ritualistic
+            narrative layers. The design focuses on interaction patterns that feel ritualistic
             without losing clarity, and building trust through tone, pacing, and
             visual language rooted in archetypal imagery.
           </p>

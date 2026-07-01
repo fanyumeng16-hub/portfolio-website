@@ -1,4 +1,35 @@
+import CaseAutoplayVideo from "@/components/CaseAutoplayVideo";
 import { GalleryGroup, GallerySlide } from "@/data/horizon-gallery";
+
+type GalleryVideoProps = {
+  src: string;
+  alt: string;
+  autoPlay?: boolean;
+};
+
+function GallerySeamlessVideo({ src, alt, autoPlay = false }: GalleryVideoProps) {
+  if (autoPlay) {
+    return (
+      <CaseAutoplayVideo
+        src={src}
+        alt={alt}
+        className="case-gallery-seamless-video"
+        controls={false}
+      />
+    );
+  }
+
+  return (
+    <video
+      className="case-gallery-seamless-video"
+      src={src}
+      controls
+      playsInline
+      preload="metadata"
+      aria-label={alt}
+    />
+  );
+}
 
 type Props = {
   groups?: GalleryGroup[];
@@ -48,13 +79,10 @@ export default function CaseGallery({
                     </div>
                   ) : null}
                   {image.videoSrc ? (
-                    <video
-                      className="case-gallery-seamless-video"
+                    <GallerySeamlessVideo
                       src={image.videoSrc}
-                      controls
-                      playsInline
-                      preload="metadata"
-                      aria-label={image.alt}
+                      alt={image.alt}
+                      autoPlay={image.autoPlay}
                     />
                   ) : null}
                   {image.src ? (
@@ -68,14 +96,11 @@ export default function CaseGallery({
                     />
                   ) : null}
                   {image.videos?.map((video) => (
-                    <video
+                    <GallerySeamlessVideo
                       key={video.src}
-                      className="case-gallery-seamless-video"
                       src={video.src}
-                      controls
-                      playsInline
-                      preload="metadata"
-                      aria-label={video.alt}
+                      alt={video.alt}
+                      autoPlay={video.autoPlay}
                     />
                   ))}
                 </div>

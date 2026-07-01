@@ -38,34 +38,65 @@ function sectionContainsId(section: CaseTocSection, id: string): boolean {
   return section.children?.some((child) => sectionContainsId(child, id)) ?? false;
 }
 
-function getScrollSpyOffset() {
-  if (typeof window === "undefined") return 104;
+function readScrollMarginTop(element: HTMLElement) {
+  const margin = parseFloat(getComputedStyle(element).scrollMarginTop);
+  return Number.isFinite(margin) && margin > 0 ? margin : 0;
+}
+
+function getScrollSpyOffset(referenceId?: string) {
+  if (typeof window === "undefined") return 116;
+
+  const reference =
+    (referenceId ? document.getElementById(referenceId) : null) ??
+    document.querySelector<HTMLElement>(
+      ".case-hero-body, .case-gallery-seamless-panel, .case-gallery-panel"
+    );
+
+  if (reference) {
+    const margin = readScrollMarginTop(reference);
+    if (margin > 0) return margin;
+  }
 
   const styles = getComputedStyle(document.documentElement);
   const navHeight = parseFloat(styles.getPropertyValue("--case-nav-height")) || 88;
 
-  return navHeight + 20;
+  return navHeight + 28;
 }
 
 function resolveActiveSection(ids: string[]) {
   if (!ids.length) return "";
 
-  const offset = getScrollSpyOffset();
+  const offset = getScrollSpyOffset(ids[0]);
   const scrollBottom = window.scrollY + window.innerHeight;
   const docHeight = document.documentElement.scrollHeight;
 
   if (scrollBottom >= docHeight - 4) {
-    return ids[ids.length - 1]!;
+    const lastVisible = [...ids]
+      .reverse()
+      .find((id) => document.getElementById(id));
+    return lastVisible ?? ids[ids.length - 1]!;
   }
 
-  let active = ids[0]!;
+  const positioned = ids
+    .map((id) => {
+      const element = document.getElementById(id);
+      if (!element) return null;
+      return {
+        id,
+        top: element.getBoundingClientRect().top + window.scrollY,
+      };
+    })
+    .filter((entry): entry is { id: string; top: number } => entry !== null)
+    .sort((a, b) => a.top - b.top);
 
-  for (const id of ids) {
-    const element = document.getElementById(id);
-    if (!element) continue;
+  if (!positioned.length) return ids[0]!;
 
-    if (element.getBoundingClientRect().top <= offset) {
-      active = id;
+  const scrollY = window.scrollY;
+  let active = positioned[0]!.id;
+
+  for (const entry of positioned) {
+    if (entry.top - scrollY <= offset) {
+      active = entry.id;
     }
   }
 

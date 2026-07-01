@@ -123,7 +123,7 @@ export const medicalBrandUI = {
       title: "Brand Research",
       subtitle: "Visual Audit & Identity Analysis",
       paragraphs: [
-        "Before designing a single screen, we studied how Mayo Clinic's brand actually lives across contexts — social media, internal presentations, clinical publications, and the visual language of studios and partners who have worked within their identity system.",
+        "Before designing a single screen, we studied how Mayo Clinic's brand actually lives across contexts, including social media, internal presentations, clinical publications, and the visual language of studios and partners who have worked within their identity system.",
       ],
       images: [
         {
@@ -132,7 +132,7 @@ export const medicalBrandUI = {
         },
       ],
       tailParagraphs: [
-        "Mayo Clinic's brand guidelines position the institution as confident, compassionate, and accessible — a visual identity built on clarity and trust, not decoration. The language is conversational and direct; the aesthetic is clean and authoritative.",
+        "Mayo Clinic's brand guidelines position the institution as confident, compassionate, and accessible: a visual identity built on clarity and trust, not decoration. The language is conversational and direct; the aesthetic is clean and authoritative.",
       ],
       keywords: [
         "Confident",
@@ -147,7 +147,7 @@ export const medicalBrandUI = {
       title: "Brand Direction",
       subtitle: "Correct Use of Blue",
       paragraphs: [
-        "From the audit, Mayo Blue emerged as the anchor across the system — usable as a vibrant background, a headline accent on white, a natural element in photography, and a gradient range from bright blue to the darkest Mayo Blue. This became our baseline before any spatial interface work began.",
+        "From the audit, Mayo Blue emerged as the anchor across the system: usable as a vibrant background, a headline accent on white, a natural element in photography, and a gradient range from bright blue to the darkest Mayo Blue. This became our baseline before any spatial interface work began.",
       ],
       images: [
         {
@@ -161,7 +161,7 @@ export const medicalBrandUI = {
       title: "Spatial UI Research",
       subtitle: "MR & AR on Device",
       paragraphs: [
-        "Applying a brand built for print and web to mixed reality is not a translation — it is a rebuild. We tested visual and interaction standards directly on Meta Quest 3 in passthrough, studying what stays readable when UI overlays real clinical environments under variable lighting.",
+        "Applying a brand built for print and web to mixed reality is not a translation. It is a rebuild. We tested visual and interaction standards directly on Meta Quest 3 in passthrough, studying what stays readable when UI overlays real clinical environments under variable lighting.",
       ],
       images: [
         {
@@ -186,7 +186,7 @@ export const medicalBrandUI = {
         {
           index: "03",
           title: "Spatial UI needs its own loop",
-          body: "Spatial UI requires its own testing loop — Figma previews are not a substitute.",
+          body: "Spatial UI requires its own testing loop. Figma previews are not a substitute.",
         },
       ],
     },
@@ -195,7 +195,7 @@ export const medicalBrandUI = {
       title: "Design Direction",
       subtitle: "Fluidity Within Brand Constraints",
       paragraphs: [
-        "With both the brand identity and the spatial constraints understood, we developed a visual system that carries Mayo Clinic's clean, authoritative character into the MR environment while introducing a sense of fluidity — soft transitions, layered depth, and motion that feels native to space rather than lifted from a flat screen.",
+        "With both the brand identity and the spatial constraints understood, we developed a visual system that carries Mayo Clinic's clean, authoritative character into the MR environment while introducing a sense of fluidity: soft transitions, layered depth, and motion that feels native to space rather than lifted from a flat screen.",
       ],
       images: [
         {

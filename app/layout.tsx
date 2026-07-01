@@ -12,9 +12,9 @@ const albertSans = Albert_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Yumeng Fan — UX & Interaction Designer",
+  title: "Yumeng Fan, UX & Interaction Designer",
   description:
-    "Portfolio of Yumeng Fan — UX designer and interaction designer based in Savannah, Georgia.",
+    "Portfolio of Yumeng Fan, UX designer and interaction designer based in Savannah, Georgia.",
 };
 
 export default function RootLayout({

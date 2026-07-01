@@ -4,7 +4,7 @@
  * Guide: docs/CASE-TEMPLATE.md
  */
 
-/** Fixed content column + type scale — see .case-page-template in globals.css */
+/** Fixed content column + type scale. See .case-page-template in globals.css */
 export const CASE_TEMPLATE = {
   pageClass: "case-page-template",
   shellClass: "case-content-shell",
@@ -12,10 +12,10 @@ export const CASE_TEMPLATE = {
   contentMax: "1100px",
   contentGutter: "clamp(32px, 4vw, 56px)",
   type: {
-    t1: "1.75rem", // 28px — section titles
-    t2: "1.125rem", // 18px — subheadings
-    t3: "1.0625rem", // 17px — body
-    t4: "0.8125rem", // 13px — meta / labels
+    t1: "1.75rem", // 28px, section titles
+    t2: "1.125rem", // 18px, subheadings
+    t3: "1.0625rem", // 17px, body
+    t4: "0.8125rem", // 13px, meta / labels
   },
 } as const;
 

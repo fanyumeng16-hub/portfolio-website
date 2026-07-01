@@ -17,25 +17,38 @@ export default function Projects() {
   return (
     <section className="projects-section projects-section--grid" id="work">
       <div className="home-block home-work-head">
-        <div className="home-work-bar" role="group" aria-label="Filter projects">
+        <div className="home-work-bar" aria-label="Filter projects">
           <h2 className="home-work-bar-label">Work</h2>
-          {filterTags.map((tagId) => (
-            <Fragment key={tagId}>
-              <span className="home-work-bar-sep" aria-hidden="true" />
-              <button
-                type="button"
-                className={`home-work-filter${
-                  activeTag === tagId ? " is-active" : ""
-                }`}
-                onClick={() =>
-                  setActiveTag((current) => (current === tagId ? "all" : tagId))
-                }
-                aria-pressed={activeTag === tagId}
-              >
-                {PROJECT_TAGS[tagId]}
-              </button>
-            </Fragment>
-          ))}
+
+          <div className="home-work-bar-filters" role="group">
+            <span className="home-work-bar-sep" aria-hidden="true" />
+            <button
+              type="button"
+              className={`home-work-filter${
+                activeTag === "all" ? " is-active" : ""
+              }`}
+              onClick={() => setActiveTag("all")}
+              aria-pressed={activeTag === "all"}
+            >
+              All
+            </button>
+
+            {filterTags.map((tagId) => (
+              <Fragment key={tagId}>
+                <span className="home-work-bar-sep" aria-hidden="true" />
+                <button
+                  type="button"
+                  className={`home-work-filter${
+                    activeTag === tagId ? " is-active" : ""
+                  }`}
+                  onClick={() => setActiveTag(tagId)}
+                  aria-pressed={activeTag === tagId}
+                >
+                  {PROJECT_TAGS[tagId]}
+                </button>
+              </Fragment>
+            ))}
+          </div>
         </div>
       </div>
 

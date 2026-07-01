@@ -6,6 +6,7 @@ export type GalleryImage = {
 export type GalleryVideo = {
   src: string;
   alt: string;
+  autoPlay?: boolean;
 };
 
 export type GallerySlide = {
@@ -15,6 +16,7 @@ export type GallerySlide = {
   src?: string;
   videoSrc?: string;
   youtubeVideoId?: string;
+  autoPlay?: boolean;
   /** Extra videos rendered below the main media without a separate heading */
   videos?: GalleryVideo[];
   /** Optional copy block shown above the slide in seamless galleries */

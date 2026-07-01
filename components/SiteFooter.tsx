@@ -8,7 +8,7 @@ export default function SiteFooter() {
           <p className="site-footer-name">Yumeng Fan</p>
           <p className="site-footer-role">Interactive Experience Designer</p>
           <p className="site-footer-note">
-            XR, healthcare, and digital systems — Savannah, GA
+            XR, healthcare, and digital systems. Based in Savannah, GA
           </p>
         </div>
 

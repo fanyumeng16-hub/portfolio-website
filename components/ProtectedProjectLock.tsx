@@ -18,6 +18,7 @@ type Props = {
   password: string;
   projectId: string;
   showPasswordHint?: boolean;
+  passwordNote?: string;
   pageClassName?: string;
   lockTheme?: "light" | "dark";
   hero: HeroProps;
@@ -28,6 +29,7 @@ export default function ProtectedProjectLock({
   password,
   projectId,
   showPasswordHint = false,
+  passwordNote,
   pageClassName = "case-page-medical",
   lockTheme = "light",
   hero,
@@ -80,6 +82,9 @@ export default function ProtectedProjectLock({
               Password: <span className="protected-password-value">{password}</span>
             </p>
           )}
+          {passwordNote ? (
+            <p className="protected-password-hint">{passwordNote}</p>
+          ) : null}
         </div>
       </section>
     </main>

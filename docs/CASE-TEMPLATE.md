@@ -57,10 +57,10 @@ Add `case-page-{id}` on `projectClass` for accent colors (subtitle, TOC active s
 
 1. Every TOC entry needs a matching `id` on a section element.
 2. The **first visible heading** at that `id` must match the TOC label (use `.case-prose-title` / T1).
-3. Subsections use `.case-prose-subtitle` (T2) — not duplicate T1 titles in following `CaseDetailSection` headers.
+3. Subsections use `.case-prose-subtitle` (T2), not duplicate T1 titles in following `CaseDetailSection` headers.
 4. Section ids use `scroll-margin-top` under `.case-page-template` for fixed nav offset.
 
-Example — Onboarding:
+Example: Onboarding
 
 ```tsx
 <section id="mayo-onboarding">          {/* TOC: "Onboarding" */}
@@ -99,7 +99,7 @@ All text and media stay inside one column:
 | `.case-prose-body`, `.case-detail-copy p`, `.case-detail-intro` | T3 |
 | `.case-section-label`, `.case-overview-meta-item dt`, `.case-spec-row dt` | T4 |
 
-Do not set ad-hoc `font-size` or `max-width` on case content — use these classes.
+Do not set ad-hoc `font-size` or `max-width` on case content. Use these classes.
 
 ## Building blocks
 
@@ -144,4 +144,4 @@ data/yourproject-detail.ts    → CaseDetailSection blocks, videos, images
 - [ ] ora
 - [ ] arcana
 - [x] medical (reference)
-- [ ] massie (partial — gallery layout differs)
+- [ ] massie (partial: gallery layout differs)

@@ -14,20 +14,20 @@ export const tracklyFlowSteps: TracklyFlowStep[] = [
     src: `${base}/Trackly20-1.png`,
     width: 1920,
     height: 1080,
-    alt: "Step 1 — The locker sensed that there was no package",
+    alt: "Step 1: The locker sensed that there was no package",
   },
   {
     step: 2,
     src: `${base}/Trackly20-2.png`,
     width: 1920,
     height: 1080,
-    alt: "Step 2 — The locker sends a notification to the app",
+    alt: "Step 2: The locker sends a notification to the app",
   },
   {
     step: 3,
     src: `${base}/Trackly20-3.png`,
     width: 1920,
     height: 1080,
-    alt: "Step 3 — User can quickly get help",
+    alt: "Step 3: User can quickly get help",
   },
 ];

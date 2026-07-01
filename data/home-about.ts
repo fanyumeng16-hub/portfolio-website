@@ -14,7 +14,7 @@ export const homeAboutParagraphs: AboutParagraph[] = [
     { text: " based in Savannah, Georgia." },
   ],
   [
-    { text: "My work spans XR, healthcare, and digital systems — from clinical MR training to interactive rehabilitation and museum experiences." },
+    { text: "My work spans XR, healthcare, and digital systems, from clinical MR training to interactive rehabilitation and museum experiences." },
   ],
   [
     { text: "Outside the studio, I ride a " },

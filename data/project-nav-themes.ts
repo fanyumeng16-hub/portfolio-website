@@ -37,7 +37,7 @@ export const projectNavThemes: Record<string, ProjectNavTheme> = {
   },
   universal: {
     navTheme: "dark",
-    accent: "#d4af37",
+    accent: "#e8c96a",
     accentContrast: "#0b0b0b",
   },
   arcana: {

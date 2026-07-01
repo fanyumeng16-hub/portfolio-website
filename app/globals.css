@@ -586,14 +586,19 @@ img {
 .project-grid-media {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
   background: #151515;
   overflow: hidden;
 }
 
 .project-grid-image {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   transition: transform 0.5s ease;
+}
+
+.project-grid-image--cover {
+  object-fit: cover;
 }
 
 .project-grid-link:hover .project-grid-image {
@@ -1808,7 +1813,7 @@ img {
 }
 
 .case-page [id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: calc(var(--case-nav-height, 88px) + 24px);
 }
 
 .case-toc {
@@ -1955,6 +1960,7 @@ img {
 .case-page-with-toc {
   --case-content-max: 1500px;
   --case-content-width: min(var(--case-content-max), 100%);
+  --case-content-gutter: clamp(32px, 4vw, 56px);
 }
 
 .case-page-with-toc:not(.case-page-template) .case-hero-body,
@@ -1964,6 +1970,7 @@ img {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding-inline: var(--case-content-gutter);
   box-sizing: border-box;
 }
 
@@ -2036,7 +2043,9 @@ img {
     padding-inline: var(--page-gutter);
   }
 
-  .case-page-with-toc:not(.case-page-template) .case-hero-body {
+  .case-page-with-toc:not(.case-page-template) .case-hero-body,
+  .case-page-with-toc:not(.case-page-template) .case-content-column,
+  .case-page-with-toc:not(.case-page-template) .case-gallery-section--seamless {
     padding-inline: 0;
   }
 }
@@ -3917,6 +3926,18 @@ img {
     font-size: clamp(2rem, 9vw, 2.75rem);
   }
 
+  .case-page-universal .case-hero-title,
+  .protected-page.case-page-universal .case-hero-title,
+  .case-page-light.case-page-massie .case-hero-title {
+    white-space: normal;
+  }
+
+  .case-page-universal .case-overview-meta--hero .case-overview-meta-item dd,
+  .protected-page.case-page-universal .case-overview-meta--hero .case-overview-meta-item dd,
+  .case-page-light.case-page-massie .case-overview-meta--hero .case-overview-meta-item dd {
+    white-space: normal;
+  }
+
   .case-cover:not(.case-cover--intrinsic) {
     height: 58vh;
   }
@@ -4193,6 +4214,10 @@ img {
   border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
+.case-page-template.case-page-outloop .case-cover {
+  height: min(44vh, 460px);
+}
+
 .case-page-template.case-page-outloop .case-gallery-section--seamless,
 .case-page-template.case-page-outloop .case-gallery-seamless-panel {
   background: #0b0b0b;
@@ -4330,6 +4355,20 @@ img {
   color: #8b6f47;
 }
 
+.case-page-light.case-page-massie .case-hero-title {
+  max-width: none;
+  white-space: nowrap;
+}
+
+.case-page-light.case-page-massie .case-overview-meta--hero .case-overview-meta-item dt {
+  color: rgba(139, 111, 71, 0.72);
+}
+
+.case-page-light.case-page-massie .case-overview-meta--hero .case-overview-meta-item dd {
+  color: #3a3530;
+  white-space: nowrap;
+}
+
 .case-page-light.case-page-trackly .case-hero-subtitle {
   color: #4a69e2;
 }
@@ -4343,6 +4382,25 @@ img {
   .case-toc-item.is-active
   .case-toc-index {
   color: rgba(139, 111, 71, 0.75);
+}
+
+.case-page-light.case-page-massie .case-toc--light .case-toc-item--sub .case-toc-label {
+  font-size: var(--text-meta);
+  letter-spacing: 0.02em;
+}
+
+.case-page-light.case-page-massie .case-toc--light .case-toc-item--sub.is-active {
+  color: #8b6f47;
+}
+
+.case-page-light.case-page-massie .case-toc--light .case-toc-item--sub:hover {
+  color: #5c4a30;
+}
+
+.case-page-light.case-page-massie .case-gallery-seamless-panel,
+.case-page-light.case-page-massie .case-gallery-seamless-video,
+.case-page-light.case-page-massie .case-hero-body {
+  scroll-margin-top: calc(var(--case-nav-height, 88px) + 28px);
 }
 
 .case-page-light.case-page-trackly .case-toc--light .case-toc-item.is-active {
@@ -4481,15 +4539,37 @@ img {
 
 .case-page-universal .case-hero-subtitle,
 .case-page-universal .case-toc-item.is-active {
-  color: #d4af37;
+  color: #e8c96a;
+}
+
+.case-page-universal .case-hero-subtitle,
+.protected-page.case-page-universal .case-hero-subtitle {
+  font-size: clamp(1.0625rem, 1.45vw, 1.3125rem);
 }
 
 .case-page-universal .case-toc-item.is-active .case-toc-index {
-  color: rgba(212, 175, 55, 0.75);
+  color: rgba(232, 201, 106, 0.72);
+}
+
+.case-page-universal .case-hero-title,
+.protected-page.case-page-universal .case-hero-title {
+  max-width: none;
+  white-space: nowrap;
+}
+
+.case-page-universal .case-overview-meta--hero .case-overview-meta-item dt,
+.protected-page.case-page-universal .case-overview-meta--hero .case-overview-meta-item dt {
+  color: rgba(232, 201, 106, 0.62);
+}
+
+.case-page-universal .case-overview-meta--hero .case-overview-meta-item dd,
+.protected-page.case-page-universal .case-overview-meta--hero .case-overview-meta-item dd {
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
 }
 
 .protected-page.case-page-universal .case-hero-subtitle {
-  color: #d4af37;
+  color: #e8c96a;
 }
 
 .protected-page {
@@ -5932,19 +6012,28 @@ img {
 
 .home-work-bar {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(14px, 2vw, 18px);
+}
+
+.home-work-bar-filters {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: clamp(18px, 2.5vw, 32px);
+  row-gap: clamp(12px, 1.8vw, 16px);
 }
 
 .home-work-bar-label,
 .home-work-filter {
+  flex: 0 0 auto;
   font-family: var(--font-bitcount);
   font-size: clamp(1.125rem, 1.35vw, 1.3125rem);
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .home-work-bar-label {
@@ -5956,12 +6045,20 @@ img {
   padding: 0;
   border: none;
   background: transparent;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.34);
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
+.home-work-filter:hover {
+  color: rgba(255, 255, 255, 0.58);
+}
+
 .home-work-filter.is-active {
+  color: #fff;
+}
+
+.home-work-filter.is-active:hover {
   color: #fff;
 }
 
@@ -5969,12 +6066,18 @@ img {
   flex: 0 0 auto;
   width: 10px;
   height: 10px;
+  margin-right: clamp(4px, 0.45vw, 6px);
+  margin-left: clamp(18px, 2.5vw, 32px);
   background-image: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.78) 1.2px,
     transparent 1.2px
   );
   background-size: 3.33px 3.33px;
+}
+
+.home-work-bar-filters > .home-work-bar-sep:first-child {
+  margin-left: 0;
 }
 
 .home-page .projects-section {

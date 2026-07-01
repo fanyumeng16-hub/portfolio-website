@@ -16,7 +16,7 @@ export const tracklyGalleryBeforeFlow: GallerySlide[] = [
     title: "Research Insight",
     tocLabel: false,
     src: `${base}/Trackly07.png`,
-    alt: "Main problems in the delivery experience — visibility, security, and rigidity",
+    alt: "Main problems in the delivery experience: visibility, security, and rigidity",
   },
   {
     id: "trackly-insecurity",
@@ -100,7 +100,7 @@ export const tracklyGalleryAfterMocks: GallerySlide[] = [
     title: "Anomaly Alert",
     tocLabel: false,
     src: `${base}/Trackly21.png`,
-    alt: "Anomaly alert — Trackly catches issues and connects you to Sarah before you ask",
+    alt: "Anomaly alert: Trackly catches issues and connects you to Sarah before you ask",
   },
   {
     id: "trackly-delivery-proof",

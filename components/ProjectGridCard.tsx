@@ -18,7 +18,9 @@ export default function ProjectGridCard({ project, index }: Props) {
             alt={project.title}
             fill
             priority={index < 2}
-            className="project-grid-image"
+            className={`project-grid-image${
+              project.imageFit === "cover" ? " project-grid-image--cover" : ""
+            }`}
           />
         </div>
 

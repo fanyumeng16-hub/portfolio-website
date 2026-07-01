@@ -50,7 +50,7 @@ export const horizonIntroduction = {
   headline: "Between NASA and YouTube",
   market: {
     label: "Existing Market",
-    text: "NASA-grade training systems built for astronauts — or low-immersion WebXR experiences that feel like a 360° documentary.",
+    text: "NASA-grade training systems built for astronauts, or low-immersion WebXR experiences that feel like a 360° documentary.",
     image: "/images/horizon-5.jpg",
     imageAlt: "Mars surface environment in existing VR experiences",
   },
@@ -61,14 +61,14 @@ export const horizonIntroduction = {
     imageAlt: "Horizon Mars Station exterior overview",
   },
   audience:
-    "Target audience: science museum visitors, space enthusiasts — people who deserve to feel what planetary exploration actually weighs.",
+    "Target audience: science museum visitors, space enthusiasts, people who deserve to feel what planetary exploration actually weighs.",
 };
 
 export const horizonGoal = {
   problem:
-    "The most dangerous conditions on Mars — radiation, pressure loss, oxygen depletion — are invisible and abstract. Existing media tells you they exist. Nothing makes you feel them.",
+    "The most dangerous conditions on Mars (radiation, pressure loss, oxygen depletion) are invisible and abstract. Existing media tells you they exist. Nothing makes you feel them.",
   problemEmphasis: "Nothing makes you feel them.",
-  goal: "Design a high-immersion VR experience that makes these invisible hazards physically perceivable — for general public audiences, not astronaut trainees.",
+  goal: "Design a high-immersion VR experience that makes these invisible hazards physically perceivable for general public audiences, not astronaut trainees.",
   goalHighlight: "physically perceivable",
   image: "/images/horizon-4.jpg",
   imageAlt: "Horizon rover driving across the Martian surface",
@@ -79,7 +79,7 @@ export const horizonResearch = {
   insights: [
     {
       source: "PMC · arXiv",
-      text: "High-immersion VR significantly outperforms low-immersion environments in both declarative and procedural knowledge acquisition — while increasing presence, intrinsic motivation, and cognitive engagement.",
+      text: "High-immersion VR significantly outperforms low-immersion environments in both declarative and procedural knowledge acquisition, while increasing presence, intrinsic motivation, and cognitive engagement.",
     },
     {
       source: "NASA · MIT Media Lab",
@@ -97,7 +97,7 @@ export const horizonDecisions = {
   items: [
     {
       title: "Embody the invisible",
-      desc: "Use VR's presence to make unfelt dangers felt. Radiation, pressure, oxygen — each translated into a perceptible spatial signal.",
+      desc: "Use VR's presence to make unfelt dangers felt. Radiation, pressure, and oxygen are each translated into a perceptible spatial signal.",
     },
     {
       title: "Diegetic everything",
@@ -105,7 +105,7 @@ export const horizonDecisions = {
     },
     {
       title: "Real physics, real scale",
-      desc: "38% Martian gravity. Smooth locomotion. Distance means something. Scale is the medium — it cannot be faked or compressed.",
+      desc: "38% Martian gravity. Smooth locomotion. Distance means something. Scale is the medium; it cannot be faked or compressed.",
     },
     {
       title: "Agency over punishment",
@@ -139,7 +139,7 @@ export const horizonPhases: HorizonPhase[] = [
     title: "Deployment",
     objective:
       "Exit the habitat and establish a surface perimeter around the landing zone.",
-    interaction: "Airlock hand-tracking sequence — grip, twist, push.",
+    interaction: "Airlock hand-tracking sequence: grip, twist, push.",
     environment: "Clear visibility. Radiation nominal. Full O₂ reserves.",
     image: "/images/horizon-3.jpg",
     imageAlt: "Horizon Mars Station lobby interior before surface deployment",
@@ -149,7 +149,7 @@ export const horizonPhases: HorizonPhase[] = [
     title: "Survey",
     objective:
       "Locate and scan three geological sample sites across the surface zone.",
-    interaction: "Geological scanner — trigger, aim, hold for reading.",
+    interaction: "Geological scanner: trigger, aim, hold for reading.",
     environment: "Dust haze building. UV index climbing. Oxygen at 72%.",
     image: "/images/horizon-5.jpg",
     imageAlt: "Horizon geological survey and sample scanning on the surface",
@@ -160,7 +160,7 @@ export const horizonPhases: HorizonPhase[] = [
     objective:
       "Collect resource samples before suit integrity reaches critical threshold.",
     interaction:
-      "Resource collector — proximity grab, capacity feedback on HUD.",
+      "Resource collector: proximity grab, capacity feedback on HUD.",
     environment: "Storm front approaching. Radiation elevated. O₂ at 41%.",
     image: "/images/horizon-4.jpg",
     imageAlt: "Horizon rover extraction mission on the Martian surface",
@@ -184,7 +184,7 @@ export const horizonUIComponents: HorizonUIComponent[] = [
   {
     id: "hud",
     title: "Helmet HUD",
-    desc: "Real-time O₂, radiation, and temperature overlay — always readable within Quest 3's safe FOV zone, never obstructive.",
+    desc: "Real-time O₂, radiation, and temperature overlay: always readable within Quest 3's safe FOV zone, never obstructive.",
     tag: "Always-on · Diegetic",
     image: "/images/horizon-9.jpg",
     imageAlt: "Horizon VR rover interface with helmet HUD",
@@ -208,7 +208,7 @@ export const horizonUIComponents: HorizonUIComponent[] = [
   {
     id: "console",
     title: "Diegetic Console",
-    desc: "Settings and system access live inside the world as physical consoles — approached, activated, and read in context.",
+    desc: "Settings and system access live inside the world as physical consoles: approached, activated, and read in context.",
     tag: "Physical · In-world",
     image: "/images/horizon-7.jpg",
     imageAlt: "Horizon shelter system interior console",
@@ -217,10 +217,10 @@ export const horizonUIComponents: HorizonUIComponent[] = [
 
 export const horizonInteraction = {
   headline: "Interaction Design",
-  body: "Every interaction supports both controller and hand tracking input. Tasks move through assigned, active, and resolved states — communicated through visual signals only, without audio dependency for museum environments.",
+  body: "Every interaction supports both controller and hand tracking input. Tasks move through assigned, active, and resolved states, communicated through visual signals only, without audio dependency for museum environments.",
   paragraphs: [
-    "Controller input uses button triggers with haptic confirmation — precise, binary feedback with low latency.",
-    "Hand tracking relies on spatial gesture recognition, where visual feedback substitutes for haptics — higher presence, lower precision.",
+    "Controller input uses button triggers with haptic confirmation: precise, binary feedback with low latency.",
+    "Hand tracking relies on spatial gesture recognition, where visual feedback substitutes for haptics: higher presence, lower precision.",
     "Geological scanners, resource collectors, and station systems each operate as physical diegetic objects: approached, activated, and read in the world.",
   ],
   image: "/images/horizon-3.jpg",
@@ -238,7 +238,7 @@ export const horizonTesting = {
     {
       id: "usability",
       title: "Structured Usability Testing",
-      desc: "Task completion rates, error rates, and presence measurement via IPQ scale — particularly for HUD readability under high-pressure conditions.",
+      desc: "Task completion rates, error rates, and presence measurement via IPQ scale, particularly for HUD readability under high-pressure conditions.",
     },
     {
       id: "locomotion",

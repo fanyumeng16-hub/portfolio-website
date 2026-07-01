@@ -32,7 +32,7 @@ export default function OraPage() {
         title="ORA"
         subtitle="Speculative Wellness Critique"
         spec={oraSpec}
-        intro="ORA is a speculative critique disguised as a wellness product. In a near future where attention has become the most contested resource, we imagine a device that reaches into the body's most intimate cavity—the mouth—to manufacture flow on demand."
+        intro="ORA is a speculative critique disguised as a wellness product. In a near future where attention has become the most contested resource, we imagine a device that reaches into the body's most intimate cavity (the mouth) to manufacture flow on demand."
         image="/images/ORA.jpg"
         imageAlt="ORA speculative wellness device"
         priority
@@ -45,7 +45,7 @@ export default function OraPage() {
             The piece asks: when technology can engineer our inner stillness,
             who owns the silence? As Big Tech expands from screens into our
             nervous systems, &ldquo;mental wellness&rdquo; risks becoming the
-            next frontier of extraction—calm sold back to us as a subscription,
+            next frontier of extraction: calm sold back to us as a subscription,
             focus delivered through a mouthpiece, presence outsourced to an
             algorithm.
           </p>
@@ -56,7 +56,7 @@ export default function OraPage() {
             for frictionless states optimized by someone else&apos;s metrics.
           </p>
           <p>
-            ORA is designed to feel seductive—because the most dangerous futures
+            ORA is designed to feel seductive, because the most dangerous futures
             are the ones we willingly walk into. We invite viewers to sit with
             their own discomfort: would you accept this device? And if your
             answer hesitates, what does that hesitation tell you about the world

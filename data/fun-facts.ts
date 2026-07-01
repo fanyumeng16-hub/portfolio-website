@@ -1,6 +1,6 @@
 export const funFacts: string[] = [
   "Everyone needs practice pronouncing my name.",
-  "I once slept 18 hours straight — still a personal record.",
+  "I once slept 18 hours straight. That is still a personal record.",
   "I once rode a motorcycle at midnight to \"catch ghosts.\"",
   "I have a younger sister. She's a white cat.",
   "I have a lasting fascination with the universe and the night sky.",

@@ -3,7 +3,7 @@ import type { CaseSpecRow } from "@/data/medical-content";
 export const horizonHero = {
   subtitle: "UI + Spatial + Interaction Design",
   intro:
-    "A high-immersion VR experience that makes the invisible hazards of Mars — radiation, pressure loss, oxygen depletion — physically perceivable. Built for the general public, not astronaut trainees.",
+    "A high-immersion VR experience that makes the invisible hazards of Mars (radiation, pressure loss, oxygen depletion) physically perceivable. Built for the general public, not astronaut trainees.",
 };
 
 export const horizonSpec: CaseSpecRow[] = [
