@@ -20,19 +20,22 @@ export function HorizonContextSection() {
       title={horizonIntroduction.headline}
       paragraphs={[horizonIntroduction.audience]}
     >
-      <div className={styles.figureGrid}>
-        <HorizonFigure
-          src={horizonIntroduction.market.image}
-          alt={horizonIntroduction.market.imageAlt}
-          label={horizonIntroduction.market.label}
-          caption={horizonIntroduction.market.text}
-        />
-        <HorizonFigure
-          src={horizonIntroduction.horizon.image}
-          alt={horizonIntroduction.horizon.imageAlt}
-          label={horizonIntroduction.horizon.label}
-          caption={horizonIntroduction.horizon.text}
-        />
+      <div className={styles.contextGrid}>
+        {horizonIntroduction.highlights.map((item) => (
+          <article className={styles.contextCard} key={item.stat}>
+            <span className="case-section-label">{item.stat}</span>
+            <h4 className={styles.contextLabel}>{item.label}</h4>
+            <p className={styles.contextDesc}>{item.description}</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={item.image}
+              alt={item.imageAlt}
+              className={styles.contextImage}
+              loading="lazy"
+              decoding="async"
+            />
+          </article>
+        ))}
       </div>
     </CaseProseSection>
   );
@@ -43,28 +46,35 @@ export function HorizonGoalSection() {
     <section className="case-prose-section" id="horizon-goal">
       <div className="case-prose-inner">
         <h3 className="case-prose-title">Goal</h3>
-        <div className={styles.goalGrid}>
-          <div className={styles.goalCell}>
-            <span className="case-section-label">Problem</span>
-            <p className="case-prose-body">
-              {horizonGoal.problem.replace(horizonGoal.problemEmphasis, "")}
-              <em className={styles.goalEmphasis}>
-                {horizonGoal.problemEmphasis}
-              </em>
-            </p>
+        <div className={styles.goalLayout}>
+          <div className={styles.goalCopy}>
+            <div className={styles.goalCell}>
+              <span className="case-section-label">Problem</span>
+              <p className="case-prose-body">
+                {horizonGoal.problem.replace(horizonGoal.problemEmphasis, "")}
+                <em className={styles.goalEmphasis}>
+                  {horizonGoal.problemEmphasis}
+                </em>
+              </p>
+            </div>
+            <div className={styles.goalCell}>
+              <span className="case-section-label">Goal</span>
+              <p className="case-prose-body">
+                {horizonGoal.goal.split(horizonGoal.goalHighlight)[0]}
+                <span className={styles.goalHighlight}>
+                  {horizonGoal.goalHighlight}
+                </span>
+                {horizonGoal.goal.split(horizonGoal.goalHighlight)[1]}
+              </p>
+            </div>
           </div>
-          <div className={styles.goalCell}>
-            <span className="case-section-label">Goal</span>
-            <p className="case-prose-body">
-              {horizonGoal.goal.split(horizonGoal.goalHighlight)[0]}
-              <span className={styles.goalHighlight}>
-                {horizonGoal.goalHighlight}
-              </span>
-              {horizonGoal.goal.split(horizonGoal.goalHighlight)[1]}
-            </p>
+          <div className={styles.goalMedia}>
+            <HorizonFigure
+              src={horizonGoal.image}
+              alt={horizonGoal.imageAlt}
+            />
           </div>
         </div>
-        <HorizonFigure src={horizonGoal.image} alt={horizonGoal.imageAlt} />
       </div>
     </section>
   );
@@ -78,8 +88,12 @@ export function HorizonResearchSection() {
         <ul className={styles.researchList}>
           {horizonResearch.insights.map(({ source, text }) => (
             <li key={source} className={styles.researchItem}>
-              <span className="case-section-label">{source}</span>
-              <p className="case-prose-body">{text}</p>
+              <blockquote className={styles.researchQuote}>
+                <p>&ldquo;{text}&rdquo;</p>
+                <footer className={styles.researchQuoteFooter}>
+                  <cite className="case-section-label">{source}</cite>
+                </footer>
+              </blockquote>
             </li>
           ))}
         </ul>
@@ -96,10 +110,11 @@ export function HorizonDecisionsSection() {
       paragraphs={[horizonDecisions.intro]}
     >
       <div className={styles.decisionsGrid}>
-        {horizonDecisions.items.map(({ title, desc }) => (
-          <article key={title} className={styles.decisionCard}>
-            <h4 className="case-prose-subtitle">{title}</h4>
-            <p className="case-prose-body">{desc}</p>
+        {horizonDecisions.items.map((item) => (
+          <article key={item.label} className={styles.decisionCard}>
+            <span className="case-section-label">{item.label}</span>
+            <h4 className={styles.decisionTitle}>{item.title}</h4>
+            <p className="case-prose-body">{item.desc}</p>
           </article>
         ))}
       </div>
@@ -113,23 +128,47 @@ export function HorizonFlowSection() {
       <div className="case-prose-inner">
         <h3 className="case-prose-title">Experience Flow</h3>
         <p className="case-prose-body">{horizonFlow.intro}</p>
-        <ol className={styles.flowList}>
-          {horizonFlow.steps.map((step) => (
-            <li key={step.id} className={styles.flowItem} id={step.id}>
-              <span className={styles.flowLabel}>{step.label}</span>
-              <span className={styles.flowDesc}>{step.desc}</span>
-              {step.optional ? (
-                <span className={styles.flowOptional}>Optional</span>
-              ) : null}
-            </li>
+        <div className={styles.flowTimeline}>
+          {horizonFlow.steps.map((step, index) => (
+            <div key={step.id} className={styles.flowTimelineGroup}>
+              <article className={styles.flowCard} id={step.id}>
+                <div className={styles.flowCardHeader}>
+                  <span className="case-section-label">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {step.optional ? (
+                    <span className={styles.flowOptional}>Optional</span>
+                  ) : null}
+                </div>
+                <h4 className={styles.flowCardTitle}>{step.label}</h4>
+                <p className={styles.flowCardDesc}>{step.desc}</p>
+              </article>
+              <div
+                className={`${styles.flowArrow} ${
+                  index < horizonFlow.steps.length - 1
+                    ? ""
+                    : styles.flowArrowSpacer
+                }`.trim()}
+                aria-hidden="true"
+              >
+                <span className={styles.flowArrowIcon} />
+              </div>
+            </div>
           ))}
-        </ol>
-        <HorizonFigure
-          src={horizonMapImage.src}
-          alt={horizonMapImage.alt}
-          label="Mission Map"
-          caption="Surface zones connect the station, shelter, and resource collection areas across the mission layout."
-        />
+        </div>
+        <div className={styles.flowMap}>
+          <h4 className={`case-prose-subtitle ${styles.flowMapTitle}`}>
+            Mission Map
+          </h4>
+          <p className={`case-prose-body ${styles.flowMapBody}`}>
+            Surface zones connect the station, shelter, and resource collection
+            areas across the mission layout.
+          </p>
+          <HorizonFigure
+            src={horizonMapImage.src}
+            alt={horizonMapImage.alt}
+          />
+        </div>
       </div>
     </section>
   );
@@ -171,12 +210,17 @@ export function HorizonInteractionSection() {
     <section className="case-prose-section" id="horizon-interaction">
       <div className="case-prose-inner">
         <h3 className="case-prose-title">{horizonInteraction.headline}</h3>
-        <p className="case-prose-body">{horizonInteraction.body}</p>
-        {horizonInteraction.paragraphs.map((paragraph) => (
-          <p className="case-prose-body" key={paragraph}>
-            {paragraph}
-          </p>
-        ))}
+        <div className={styles.interactionGrid}>
+          {horizonInteraction.points.map((point, index) => (
+            <article className={styles.interactionCard} key={point.title}>
+              <span className="case-section-label">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="case-section-label">{point.title}</span>
+              <p className="case-prose-body">{point.text}</p>
+            </article>
+          ))}
+        </div>
         <HorizonFigure
           src={horizonInteraction.image}
           alt={horizonInteraction.imageAlt}
@@ -190,28 +234,97 @@ export function HorizonTestingSection() {
   return (
     <section className="case-prose-section" id="horizon-testing">
       <div className="case-prose-inner">
-        <h3 className="case-prose-title">Testing & Outlook</h3>
-        <div className={styles.testingGrid}>
-          <div>
+        <h3 className="case-prose-title">Testing & Future</h3>
+
+        <div className={styles.testingPlan}>
+          <section className={styles.testingSection}>
             <h4 className="case-prose-subtitle">{horizonTesting.headline}</h4>
-            <p className="case-prose-body">{horizonTesting.body}</p>
-            <p className={`case-prose-body ${styles.testingOutcome}`}>
-              {horizonTesting.outcome}
-            </p>
-          </div>
-          <HorizonFigure
-            src={horizonTesting.image}
-            alt={horizonTesting.imageAlt}
-          />
+            <p className="case-prose-body">{horizonTesting.methodology}</p>
+            <dl className={styles.testingMetaGrid}>
+              {horizonTesting.meta.map((item) => (
+                <div key={item.label} className={styles.testingMetaCell}>
+                  <dt className="case-section-label">{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <section className={styles.testingSection}>
+            <h4 className={`case-prose-subtitle ${styles.testingSectionTitle}`}>
+              Outcomes
+            </h4>
+            <div className={styles.testingOutcomeList}>
+              {horizonTesting.findings.map((finding) => (
+                <article key={finding.id} className={styles.testingOutcomeRow}>
+                  <p className={styles.testingOutcomeValue}>{finding.value}</p>
+                  <div className={styles.testingOutcomeCopy}>
+                    <p className={styles.testingOutcomeLabel}>{finding.label}</p>
+                    <p className="case-prose-body">{finding.note}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className={styles.testingSection}>
+            <h4 className={`case-prose-subtitle ${styles.testingSectionTitle}`}>
+              Participant Voice
+            </h4>
+            <blockquote className={styles.testingQuote}>
+              <p className={styles.testingQuoteText}>
+                &ldquo;{horizonTesting.quote.text}&rdquo;
+              </p>
+              <p className={styles.testingQuoteDetail}>
+                {horizonTesting.quote.detail}
+              </p>
+            </blockquote>
+          </section>
+
+          <section className={styles.testingSection}>
+            <h4 className="case-prose-subtitle">
+              {horizonTesting.adjustments.headline}
+            </h4>
+            <p className="case-prose-body">{horizonTesting.adjustments.intro}</p>
+            <div className={styles.adjustmentsCards}>
+              {horizonTesting.adjustments.items.map((item, index) => (
+                <article key={item.id} className={styles.adjustmentCard}>
+                  <div className={styles.adjustmentCardHeader}>
+                    <span className={styles.adjustmentCardIndex}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h5 className={styles.adjustmentCardTitle}>{item.title}</h5>
+                  </div>
+                  <div className={styles.adjustmentCardRow}>
+                    <span className={styles.adjustmentTag}>Finding</span>
+                    <p className="case-prose-body">{item.finding}</p>
+                  </div>
+                  <div className={styles.adjustmentCardRow}>
+                    <span className={styles.adjustmentTag}>Change</span>
+                    <p className="case-prose-body">{item.change}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
         </div>
-        <div className={styles.futureList}>
-          <span className="case-section-label">Future Directions</span>
-          {horizonTesting.future.map(({ id, title, desc }) => (
-            <article key={id} className={styles.futureItem} id={`horizon-future-${id}`}>
-              <h4 className="case-prose-subtitle">{title}</h4>
-              <p className="case-prose-body">{desc}</p>
-            </article>
-          ))}
+
+        <div className={styles.futureSection}>
+          <h4 className={`case-prose-subtitle ${styles.futureHeading}`}>
+            Future Directions
+          </h4>
+          <div className={styles.futureGrid}>
+            {horizonTesting.future.map(({ id, title, desc }) => (
+              <article
+                key={id}
+                className={styles.futureCard}
+                id={`horizon-future-${id}`}
+              >
+                <span className="case-section-label">{title}</span>
+                <p className="case-prose-body">{desc}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

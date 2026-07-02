@@ -1,9 +1,9 @@
-import CaseGallery from "@/components/CaseGallery";
 import CaseNavbar from "@/components/CaseNavbar";
 import CaseHero from "@/components/CaseHero";
 import CaseOverviewSection from "@/components/CaseOverviewSection";
 import CaseTemplateLayout from "@/components/CaseTemplateLayout";
 import HorizonPhasesSection from "@/components/horizon/HorizonPhasesSection";
+import HorizonProcessSection from "@/components/horizon/HorizonProcessSection";
 import {
   HorizonContextSection,
   HorizonDecisionsSection,
@@ -21,8 +21,8 @@ import {
   horizonOverviewVideo,
   horizonSpec,
 } from "@/data/horizon-content";
-import { horizonGallery } from "@/data/horizon-gallery";
-import { horizonPhases, horizonTesting, horizonUIComponents } from "@/data/horizon-sections";
+import { horizonProcessGroups } from "@/data/horizon-process";
+import { horizonPhases } from "@/data/horizon-sections";
 
 const horizonSections: CaseTocSection[] = [
   { id: "case-intro", label: "Introduction" },
@@ -34,37 +34,23 @@ const horizonSections: CaseTocSection[] = [
   { id: "horizon-flow", label: "Experience Flow" },
   {
     id: "horizon-phases",
-    label: "Four Phases",
+    label: "Phases",
     children: horizonPhases.map((phase) => ({
       id: `horizon-phase-${phase.n}`,
-      label: phase.title,
+      label: phase.optional ? `${phase.title} (Optional)` : phase.title,
     })),
   },
-  {
-    id: "horizon-ui",
-    label: "UI System",
-    children: horizonUIComponents.map((component) => ({
-      id: `horizon-ui-${component.id}`,
-      label: component.title,
-    })),
-  },
+  { id: "horizon-ui", label: "UI System" },
   { id: "horizon-interaction", label: "Interaction" },
   {
-    id: "horizon-gallery",
-    label: "Gallery",
-    children: horizonGallery.map((group) => ({
+    id: "horizon-process",
+    label: "Development Process",
+    children: horizonProcessGroups.map((group) => ({
       id: group.id,
       label: group.title,
     })),
   },
-  {
-    id: "horizon-testing",
-    label: "Testing & Outlook",
-    children: horizonTesting.future.map((item) => ({
-      id: `horizon-future-${item.id}`,
-      label: item.title,
-    })),
-  },
+  { id: "horizon-testing", label: "Testing & Future" },
 ];
 
 export default function HorizonPage() {
@@ -100,10 +86,7 @@ export default function HorizonPage() {
       <HorizonPhasesSection phases={horizonPhases} />
       <HorizonUISection />
       <HorizonInteractionSection />
-
-      <div id="horizon-gallery">
-        <CaseGallery groups={horizonGallery} />
-      </div>
+      <HorizonProcessSection />
 
       <HorizonTestingSection />
     </CaseTemplateLayout>

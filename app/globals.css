@@ -4179,7 +4179,9 @@ img {
 
 .case-page-template.case-page-outloop .case-hero-left h1,
 .case-page-template.case-page-outloop .case-hero-title,
-.case-page-template.case-page-outloop .case-prose-title {
+.case-page-template.case-page-outloop .case-prose-title,
+.case-page-template.case-page-outloop .case-prose-subtitle,
+.case-page-template.case-page-outloop .case-detail-item-title {
   color: #fff;
 }
 
@@ -4435,15 +4437,44 @@ img {
 
 /* Horizon — dark template */
 .case-page-template.case-page-horizon {
-  background: #0b0b0b;
+  --case-t2: 1.25rem;
+  background: #000;
+}
+
+html:has(.case-page-horizon),
+body:has(.case-page-horizon) {
+  background: #000;
 }
 
 .case-page-template.case-page-horizon .case-hero-subtitle,
 .case-page-template.case-page-horizon .case-prose-title,
+.case-page-template.case-page-horizon .case-prose-subtitle,
 .case-page-template.case-page-horizon .case-detail-title,
+.case-page-template.case-page-horizon .case-detail-item-title,
 .case-page-template.case-page-horizon .case-features-heading,
 .case-page-template.case-page-horizon .case-feature-title {
   color: #b7ffa8;
+}
+
+.case-page-template.case-page-horizon .case-highlight-stat {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: var(--case-t4);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-weight: var(--weight-medium);
+}
+
+.case-page-template.case-page-horizon .case-highlight-label {
+  margin-top: 8px;
+  color: #fff;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: var(--weight-semibold);
+}
+
+.case-page-template.case-page-horizon .case-highlight-desc {
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .case-page-template.case-page-horizon .case-prose-body,
@@ -4457,18 +4488,50 @@ img {
 
 .case-page-template.case-page-horizon .case-overview-meta-item dt,
 .case-page-template.case-page-horizon .case-section-label {
-  color: rgba(255, 255, 255, 0.45);
+  display: inline;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #b7ffa8;
+  font-size: var(--case-t4);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
 }
 
 .case-page-template.case-page-horizon .case-toc-item.is-active {
   color: #b7ffa8;
 }
 
+.case-page-template.case-page-horizon .case-toc-list {
+  gap: 10px;
+}
+
+.case-page-template.case-page-horizon .case-toc-sublist {
+  gap: 4px;
+  margin-top: 6px;
+  padding-left: 28px;
+}
+
+.case-page-template.case-page-horizon .case-toc-item--sub .case-toc-label {
+  font-size: 0.875rem;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.case-page-template.case-page-horizon .case-toc-item--sub.is-active .case-toc-label {
+  color: #b7ffa8;
+}
+
+.case-page-template.case-page-horizon .case-cover,
 .case-page-template.case-page-horizon .case-cover--intrinsic,
 .case-page-template.case-page-horizon .case-hero-body,
 .case-page-template.case-page-horizon .case-overview--template,
-.case-page-template.case-page-horizon .case-detail-section {
-  background: #0b0b0b;
+.case-page-template.case-page-horizon .case-detail-section,
+.case-page-template.case-page-horizon .case-content-shell {
+  background: #000;
 }
 
 .case-page-template.case-page-horizon .case-features {
@@ -4912,6 +4975,11 @@ img {
   letter-spacing: -0.03em;
   font-weight: var(--weight-bold);
   text-transform: uppercase;
+}
+
+.case-page-template.case-page-light .case-body h3,
+.case-page-template.case-page-light .case-prose-title,
+.case-page-template.case-page-light .case-detail-title {
   color: #111;
 }
 
@@ -4932,6 +5000,9 @@ img {
   line-height: 0.95;
   letter-spacing: -0.03em;
   font-weight: var(--weight-bold);
+}
+
+.case-page-template.case-page-light .case-highlight-stat {
   color: #111;
 }
 
@@ -4941,8 +5012,11 @@ img {
   line-height: 1.35;
   letter-spacing: -0.02em;
   font-weight: var(--weight-semibold);
-  color: #111;
   text-transform: none;
+}
+
+.case-page-template.case-page-light .case-highlight-label {
+  color: #111;
 }
 
 .case-page-template .case-highlight-desc {
@@ -4950,6 +5024,9 @@ img {
   font-size: var(--case-t3);
   line-height: 1.5;
   font-weight: var(--weight-regular);
+}
+
+.case-page-template.case-page-light .case-highlight-desc {
   color: #666;
 }
 
@@ -4963,6 +5040,13 @@ img {
   line-height: 1.35;
   letter-spacing: -0.02em;
   font-weight: var(--weight-semibold);
+}
+
+.case-page-template.case-page-light .case-prose-subtitle,
+.case-page-template.case-page-light .case-detail-item-title,
+.case-page-template.case-page-light .case-constraint-title,
+.case-page-template.case-page-light .case-video-caption,
+.case-page-template.case-page-light .case-youtube-section .title {
   color: #111;
 }
 
@@ -4982,6 +5066,19 @@ img {
   line-height: 1.5;
   letter-spacing: -0.01em;
   font-weight: var(--weight-regular);
+}
+
+.case-page-template.case-page-light .case-body p,
+.case-page-template.case-page-light .case-prose-body,
+.case-page-template.case-page-light .case-detail-intro,
+.case-page-template.case-page-light .case-detail-intro-list li,
+.case-page-template.case-page-light .case-detail-copy p,
+.case-page-template.case-page-light .case-constraint-body,
+.case-page-template.case-page-light .case-findings-item p,
+.case-page-template.case-page-light .case-testing-timeline-finding .case-prose-body,
+.case-page-template.case-page-light .case-overview-meta-item dd,
+.case-page-template.case-page-light .case-spec-row dd,
+.case-page-template.case-page-light .case-stage-flow-title {
   color: #333;
 }
 

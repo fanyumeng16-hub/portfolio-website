@@ -65,6 +65,14 @@ export const horizonGallery: GalleryGroup[] = [
         src: "/images/horizon-9.jpg",
         alt: "Horizon VR rover interface and driving experience",
       },
+      {
+        src: "/images/horizon-10.jpg",
+        alt: "Horizon first-person driving experience with helmet HUD",
+      },
+      {
+        src: "/images/horizon-11.jpg",
+        alt: "VR user playtesting Horizon Mars frontier interaction zone",
+      },
     ],
   },
   {
@@ -76,6 +84,10 @@ export const horizonGallery: GalleryGroup[] = [
       {
         src: "/images/horizon-5.jpg",
         alt: "Horizon resource collection and sample extraction",
+      },
+      {
+        src: "/images/horizon-process-geological-scan.jpg",
+        alt: "Horizon geological sample scanner with distance markers",
       },
     ],
   },

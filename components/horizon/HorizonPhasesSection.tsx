@@ -10,7 +10,6 @@ export default function HorizonPhasesSection({ phases }: Props) {
   return (
     <section className="case-prose-section" id="horizon-phases">
       <div className="case-prose-inner">
-        <h3 className="case-prose-title">Four Phases</h3>
         <div className={styles.phasesList}>
           {phases.map((phase) => (
             <article
@@ -19,16 +18,13 @@ export default function HorizonPhasesSection({ phases }: Props) {
               className={styles.phaseItem}
             >
               <div className={styles.phaseHeader}>
-                <span className="case-section-label">Phase {phase.n}</span>
-                <h4 className="case-prose-subtitle">
+                <h3 className="case-prose-subtitle">
                   {phase.title}
                   {phase.optional ? (
                     <span className={styles.phaseOptionalTag}>Optional</span>
                   ) : null}
-                </h4>
+                </h3>
               </div>
-
-              <HorizonFigure src={phase.image} alt={phase.imageAlt} />
 
               <div className={styles.phasePanel}>
                 {[
@@ -42,6 +38,26 @@ export default function HorizonPhasesSection({ phases }: Props) {
                   </div>
                 ))}
               </div>
+
+              <p className={`case-prose-body ${styles.phaseSummary}`}>
+                {phase.summary}
+              </p>
+
+              <div
+                className={`${styles.phaseGallery} ${
+                  phase.images.length === 3
+                    ? styles.phaseGalleryCols3
+                    : styles.phaseGalleryCols2
+                } ${phase.n === "03" ? styles.phaseGalleryUniform : ""}`}
+              >
+                {phase.images.map((image) => (
+                  <HorizonFigure
+                    key={image.src}
+                    src={image.src}
+                    alt={image.alt}
+                  />
+                ))}
+              </div>
             </article>
           ))}
         </div>
@@ -49,3 +65,4 @@ export default function HorizonPhasesSection({ phases }: Props) {
     </section>
   );
 }
+

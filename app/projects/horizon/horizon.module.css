@@ -24,23 +24,96 @@
   margin-top: 16px;
 }
 
+.figureCaptionAbove {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
 .figureCaptionText {
   max-width: none;
   margin: 0;
 }
 
-/* Goal */
-.goalGrid {
+.processCard .figureCaption .case-section-label {
+  color: #b7ffa8;
+  font-size: var(--case-t4, 0.8125rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+}
+
+/* Context */
+.contextGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 4vw, 48px);
-  margin-bottom: clamp(32px, 5vw, 48px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(20px, 3vw, 32px);
+  margin-top: clamp(20px, 3vw, 28px);
+}
+
+.contextCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  height: 100%;
+}
+
+.contextLabel {
+  margin: 0;
+  color: #fff;
+  font-size: var(--case-t2, 1.125rem);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  font-weight: var(--weight-semibold);
+}
+
+.contextDesc {
+  margin: 0;
+  flex: 1 1 auto;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: var(--case-t3, 1.0625rem);
+  line-height: 1.45;
+}
+
+.contextImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  margin-top: auto;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Goal */
+.goalLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 56px);
+  align-items: start;
+}
+
+.goalCopy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 4vw, 48px);
 }
 
 .goalCell {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.goalMedia {
+  min-width: 0;
+}
+
+.goalCell p {
+  max-width: none;
+  margin: 0;
 }
 
 .goalEmphasis {
@@ -55,23 +128,99 @@
 /* Research */
 .researchList {
   display: grid;
-  gap: clamp(24px, 3vw, 32px);
+  gap: clamp(28px, 4vw, 40px);
   margin: clamp(24px, 4vw, 32px) 0 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .researchItem {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: clamp(24px, 3vw, 32px);
+  margin: 0;
 }
 
-.researchItem p {
+.researchQuote {
+  margin: 0;
+  padding: 0 0 0 clamp(20px, 3vw, 28px);
+  border: none;
+  border-left: 2px solid rgba(183, 255, 168, 0.45);
+}
+
+.researchQuote p {
   max-width: none;
   margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--case-t3, 1.0625rem);
+  line-height: 1.55;
+}
+
+.researchQuoteFooter {
+  margin-top: 12px;
+}
+
+.researchQuoteFooter cite {
+  font-style: normal;
+}
+
+/* Process */
+.processGroups {
+  display: grid;
+  gap: clamp(48px, 7vw, 80px);
+  margin-top: clamp(32px, 5vw, 48px);
+}
+
+.processGroup {
+  display: grid;
+  gap: clamp(24px, 4vw, 32px);
+}
+
+.processGroupHeader {
+  display: grid;
+  gap: 12px;
+  max-width: 52rem;
+}
+
+.processGroupHeader h4,
+.processGroupHeader p {
+  margin: 0;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+  align-items: start;
+}
+
+.processGridCols2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.processGridCols3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.processGridCols4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.processGridCols2 .figureImage,
+.processGridCols3 .figureImage,
+.processGridCols4 .figureImage {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.processCard {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .processGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Decisions */
@@ -90,48 +239,141 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.decisionCard h4,
+.decisionCard .case-section-label {
+  margin: 0;
+}
+
+.decisionTitle {
+  margin: 0;
+  color: #fff;
+  font-size: var(--case-t2, 1.125rem);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  font-weight: var(--weight-semibold);
+}
+
 .decisionCard p {
   max-width: none;
   margin: 0;
 }
 
-/* Flow */
-.flowList {
-  display: grid;
+/* Flow timeline */
+.flowTimeline {
+  display: flex;
+  align-items: stretch;
   gap: 0;
   margin: clamp(24px, 4vw, 32px) 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
 }
 
-.flowItem {
-  display: grid;
-  grid-template-columns: minmax(7rem, 10rem) 1fr auto;
-  gap: clamp(16px, 2vw, 24px);
-  align-items: baseline;
-  padding: clamp(16px, 2vw, 20px) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.flowTimelineGroup {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
-.flowLabel {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: var(--case-t3);
-  font-weight: 600;
+.flowCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: clamp(132px, 14vw, 156px);
+  padding: clamp(18px, 2.5vw, 24px);
+  border: 1px solid #fff;
+  background: #000;
+  transition: border-color 0.2s ease;
 }
 
-.flowDesc {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: var(--case-t3);
+.flowCard:hover {
+  border-color: #b7ffa8;
+}
+
+.flowCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 28px;
+}
+
+.flowCardHeader .case-section-label {
+  margin: 0;
+}
+
+.flowCardTitle {
+  margin: 0;
+  min-height: 2.5lh;
+  color: #fff;
+  font-size: var(--case-t2, 1.125rem);
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.flowCard:hover .flowCardTitle {
+  color: #b7ffa8;
+}
+
+.flowCardDesc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--case-t3, 1.0625rem);
   line-height: 1.5;
 }
 
+.flowArrow {
+  display: flex;
+  flex: 0 0 clamp(36px, 4vw, 44px);
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.flowArrowSpacer {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.flowArrowIcon {
+  display: block;
+  width: 28px;
+  height: 14px;
+  background: linear-gradient(
+    to right,
+    rgba(183, 255, 168, 0.15) 0%,
+    rgba(183, 255, 168, 0.85) 45%,
+    rgba(183, 255, 168, 0.85) 55%,
+    rgba(183, 255, 168, 0.15) 100%
+  );
+  clip-path: polygon(100% 50%, 42% 0, 42% 32%, 0 32%, 0 68%, 42% 68%, 42% 100%);
+}
+
 .flowOptional {
-  color: rgba(183, 255, 168, 0.65);
-  font-size: var(--case-t4);
+  color: rgba(183, 255, 168, 0.85);
+  font-size: var(--case-t4, 0.8125rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.flowMap {
+  margin-top: clamp(40px, 6vw, 56px);
+}
+
+.flowMapTitle {
+  margin: 0 0 12px;
+  max-width: none;
+}
+
+.flowMapBody {
+  margin: 0 0 clamp(20px, 3vw, 28px);
+  max-width: none;
 }
 
 /* Phases */
@@ -160,7 +402,7 @@
   gap: 8px;
 }
 
-.phaseHeader h4 {
+.phaseHeader h3 {
   max-width: none;
   margin: 0;
 }
@@ -189,6 +431,48 @@
 .phaseDetail p {
   max-width: none;
   margin: 0;
+}
+
+.phaseSummary {
+  max-width: none;
+  margin: 0;
+}
+
+.phaseGallery {
+  display: grid;
+  gap: 0;
+  line-height: 0;
+}
+
+.phaseGallery .figure {
+  margin: 0;
+}
+
+.phaseGalleryCols2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.phaseGalleryCols3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.phaseGallery .figureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  vertical-align: top;
+}
+
+.phaseGalleryUniform .figure {
+  overflow: hidden;
+}
+
+.phaseGalleryUniform .figureImage {
+  aspect-ratio: 16 / 10;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* UI System */
@@ -224,57 +508,339 @@
   margin: 0;
 }
 
-/* Interaction & Testing */
-.testingGrid {
+/* Interaction */
+.interactionGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(32px, 5vw, 56px);
-  align-items: start;
-  margin-top: clamp(8px, 2vw, 16px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 28px);
+  margin: clamp(24px, 4vw, 32px) 0;
 }
 
-.testingGrid h4,
-.testingGrid p {
-  max-width: none;
-}
-
-.testingOutcome {
-  margin-top: 16px;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.futureList {
-  display: grid;
-  gap: clamp(24px, 3vw, 32px);
-  margin-top: clamp(40px, 5vw, 56px);
-  padding-top: clamp(32px, 4vw, 40px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.futureItem {
+.interactionCard {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  min-width: 0;
+  padding: clamp(18px, 2.5vw, 24px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: #000;
 }
 
-.futureItem h4,
-.futureItem p {
+.interactionCard p {
   max-width: none;
   margin: 0;
 }
 
+/* Testing */
+.testingPlan {
+  display: grid;
+  gap: 0;
+  margin-top: clamp(8px, 2vw, 16px);
+}
+
+.testingSection {
+  display: grid;
+  gap: 16px;
+  padding: clamp(24px, 3vw, 32px) 0;
+  border: none;
+  background: transparent;
+}
+
+.testingSection + .testingSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0;
+}
+
+.testingSection h4,
+.testingSection p {
+  margin: 0;
+  max-width: none;
+}
+
+.testingSectionTitle {
+  margin-bottom: 2px;
+}
+
+.testingMetaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.testingMetaCell {
+  display: grid;
+  gap: 6px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.testingMetaCell:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.testingMetaCell dt {
+  margin: 0;
+}
+
+.testingMetaCell dd {
+  margin: 0;
+  color: #fff;
+  font-size: var(--case-t3, 1.0625rem);
+  line-height: 1.35;
+  font-weight: var(--weight-medium);
+}
+
+.testingOutcomeList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 18px);
+}
+
+.testingOutcomeRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  align-items: start;
+  padding: clamp(16px, 2.2vw, 20px);
+  border: none;
+  background: transparent;
+}
+
+.testingOutcomeValue {
+  margin: 0;
+  color: #b7ffa8;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: var(--weight-semibold);
+}
+
+.testingOutcomeCopy {
+  display: grid;
+  gap: 8px;
+}
+
+.testingOutcomeCopy p {
+  margin: 0;
+}
+
+.testingOutcomeLabel {
+  margin: 0;
+  color: #b7ffa8;
+  font-size: var(--case-t3, 1.0625rem);
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  font-weight: var(--weight-medium);
+}
+
+.testingQuote {
+  margin: 0;
+  padding-left: clamp(14px, 2vw, 18px);
+  border: none;
+  border-left: 2px solid rgba(183, 255, 168, 0.45);
+}
+
+.testingQuoteText {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: var(--weight-semibold);
+}
+
+.testingQuoteDetail {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--case-t3, 1.0625rem);
+  line-height: 1.5;
+}
+
+.adjustmentsCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.8vw, 24px);
+}
+
+.adjustmentCard {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: clamp(18px, 2.4vw, 24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #000;
+}
+
+.adjustmentCardHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.adjustmentCardIndex {
+  color: rgba(183, 255, 168, 0.7);
+  font-size: var(--case-t4, 0.8125rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+}
+
+.adjustmentCardTitle {
+  margin: 0;
+  color: #b7ffa8;
+  font-size: var(--case-t3, 1.0625rem);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: var(--weight-semibold);
+}
+
+.adjustmentCardRow {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding-left: 2px;
+}
+
+.adjustmentCardRow + .adjustmentCardRow {
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.adjustmentCardRow p {
+  margin: 0;
+  max-width: none;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.adjustmentRow {
+  display: grid;
+  gap: 8px;
+}
+
+.adjustmentRow p {
+  max-width: none;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.adjustmentTag {
+  color: rgba(183, 255, 168, 0.85);
+  font-size: var(--case-t4, 0.8125rem);
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+.futureSection {
+  margin-top: clamp(48px, 6vw, 72px);
+  padding-top: clamp(32px, 4vw, 40px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.futureHeading {
+  max-width: none;
+  margin: 0 0 clamp(24px, 3vw, 32px);
+}
+
+.futureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 28px);
+}
+
+.futureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: clamp(18px, 2.5vw, 24px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: #000;
+}
+
+.futureCard .case-section-label {
+  margin: 0;
+}
+
+.futureCard p {
+  max-width: none;
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  .testingMetaGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 900px) {
   .figureGrid,
-  .goalGrid,
+  .contextGrid,
+  .goalLayout,
   .decisionsGrid,
+  .interactionGrid,
+  .adjustmentsCards,
+  .futureGrid,
+  .processGrid,
+  .processGridCols2,
+  .processGridCols3,
+  .processGridCols4,
   .uiGrid,
-  .testingGrid,
-  .phasePanel {
+  .phasePanel,
+  .phaseGallery,
+  .phaseGalleryCols2,
+  .phaseGalleryCols3 {
     grid-template-columns: 1fr;
   }
 
-  .flowItem {
+  .testingMetaGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .testingMetaCell {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .testingOutcomeRow {
     grid-template-columns: 1fr;
     gap: 6px;
+    padding: 14px;
+  }
+
+  .adjustmentCardRow {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding-left: 0;
+  }
+
+  .phaseGallery:not(.phaseGalleryUniform) .figureImage,
+  .processGridCols2 .figureImage,
+  .processGridCols3 .figureImage,
+  .processGridCols4 .figureImage {
+    aspect-ratio: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .contextDesc {
+    flex: none;
+  }
+
+  .contextImage {
+    margin-top: 8px;
+    aspect-ratio: auto;
+    object-fit: contain;
   }
 }
