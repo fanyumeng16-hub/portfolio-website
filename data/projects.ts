@@ -91,6 +91,7 @@ export const projects: Project[] = [
       "A high-fidelity XR simulation grounded in planetary science, transforming complex extraterrestrial workflows into an immersive training experience.",
     bullets: ["Unity scene building", "XR interaction design", "Scientific simulation"],
     image: "/images/horizon.jpg",
+    imageFit: "cover",
   }),
   withTags({
     id: "trackly",
