@@ -191,18 +191,10 @@ export default function CaseToc({
     const resizeObserver = new ResizeObserver(updateVisibility);
     resizeObserver.observe(intro);
 
-    const cover = document.getElementById("case-cover");
-    const coverImage = cover?.querySelector("img");
-    coverImage?.addEventListener("load", updateVisibility);
-    if (cover) {
-      resizeObserver.observe(cover);
-    }
-
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", updateVisibility);
       window.removeEventListener("resize", updateVisibility);
-      coverImage?.removeEventListener("load", updateVisibility);
       resizeObserver.disconnect();
     };
   }, [showAfterCover]);

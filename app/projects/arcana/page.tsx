@@ -25,8 +25,6 @@ export default function ArcanaPage() {
         subtitle="AI Tarot Experience"
         spec={arcanaSpec}
         intro="The Arcana is an AI-powered tarot experience that blends symbolic ritual with conversational intelligence, helping users explore reflection, intuition, and narrative through a digitally reimagined reading practice."
-        image="/images/arcana.jpg"
-        imageAlt="The Arcana AI tarot experience"
       />
 
       <section className="case-overview" id="case-overview">

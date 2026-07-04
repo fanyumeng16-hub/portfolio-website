@@ -10,8 +10,6 @@ type HeroProps = {
   subtitle: string;
   intro: string;
   spec?: CaseTemplateSpecRow[];
-  image: string;
-  imageAlt: string;
 };
 
 type Props = {
@@ -61,7 +59,7 @@ export default function ProtectedProjectLock({
     >
       <CaseNavbar projectId={projectId} />
 
-      <CaseHero {...hero} priority />
+      <CaseHero {...hero} />
 
       <section className="protected-lock-section">
         <div className="protected-lock-copy">

@@ -30,8 +30,6 @@ export default function MassieProjectPage() {
         subtitle="City Plan Exhibit & Visitor Experience"
         spec={massieSpec}
         intro="Massie Heritage Center tells Savannah's story through one of its most distinctive artifacts, the City Plan. With ScadServe, this project reimagines how that history reaches visitors through research-led experience design, from wayfinding and guided interpretation to a Premium Package concept built for deeper engagement."
-        image="/images/Massie.jpg"
-        imageAlt="Massie Heritage Center City Plan Exhibit visitor experience"
       />
 
       <CaseGallery images={massieGalleryImages} seamless />

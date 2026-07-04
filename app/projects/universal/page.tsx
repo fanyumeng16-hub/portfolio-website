@@ -37,8 +37,6 @@ function UniversalCaseContent() {
         subtitle="Mardi Gras Installation & AR Experience"
         spec={universalSpec}
         intro={universalIntro}
-        image="/images/universal.jpg"
-        imageAlt="Universal SCADpro Mardi Gras installation and AR experience"
       />
 
       <section className="case-overview" id="case-overview">
@@ -75,8 +73,6 @@ export default function UniversalProjectPage() {
         subtitle: "Mardi Gras Installation & AR Experience",
         spec: universalSpec,
         intro: universalIntro,
-        image: "/images/universal.jpg",
-        imageAlt: "Universal SCADpro Mardi Gras installation and AR experience",
       }}
     >
       <UniversalCaseContent />

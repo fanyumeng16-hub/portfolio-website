@@ -6,7 +6,6 @@ import ProjectTitle from "@/components/ProjectTitle";
 import TracklyBoard from "@/components/trackly/TracklyBoard";
 import TracklyFeatureMocks from "@/components/trackly/TracklyFeatureMocks";
 import {
-  tracklyHeroBoard,
   tracklyIntro,
   tracklyOpeningBoards,
   tracklyResearchBoards,
@@ -37,12 +36,6 @@ export default function TracklyPage() {
         subtitle="Package Tracking Experience"
         spec={tracklySpec}
         intro={tracklyIntro}
-        image={tracklyHeroBoard.src}
-        imageAlt={tracklyHeroBoard.alt}
-        priority
-        coverIntrinsic
-        coverWidth={tracklyHeroBoard.width}
-        coverHeight={tracklyHeroBoard.height}
       />
 
       {tracklyOpeningBoards.map((board) => (

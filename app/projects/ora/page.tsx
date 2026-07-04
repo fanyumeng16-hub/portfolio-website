@@ -33,9 +33,6 @@ export default function OraPage() {
         subtitle="Speculative Wellness Critique"
         spec={oraSpec}
         intro="ORA is a speculative critique disguised as a wellness product. In a near future where attention has become the most contested resource, we imagine a device that reaches into the body's most intimate cavity (the mouth) to manufacture flow on demand."
-        image="/images/ORA.jpg"
-        imageAlt="ORA speculative wellness device"
-        priority
       />
 
       <section className="case-overview" id="case-overview">

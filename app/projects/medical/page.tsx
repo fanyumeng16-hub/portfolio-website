@@ -1,5 +1,3 @@
-"use client";
-
 import CaseNavbar from "@/components/CaseNavbar";
 import CaseBrandUISection from "@/components/CaseBrandUISection";
 import CaseUserTestingTimeline from "@/components/CaseUserTestingTimeline";
@@ -15,7 +13,6 @@ import CaseOverviewSection from "@/components/CaseOverviewSection";
 import CaseProseSection from "@/components/CaseProseSection";
 import CaseTemplateLayout from "@/components/CaseTemplateLayout";
 import ProjectTitle from "@/components/ProjectTitle";
-import ProtectedProjectLock from "@/components/ProtectedProjectLock";
 import {
   medicalBrandUI,
   medicalChallenge,
@@ -32,8 +29,6 @@ import {
   medicalResearch,
   medicalSegmentSection,
 } from "@/data/medical-detail";
-
-const PASSWORD = "mayo";
 
 const medicalSections: CaseTocSection[] = [
   { id: "case-intro", label: "Introduction" },
@@ -71,7 +66,7 @@ const medicalSections: CaseTocSection[] = [
 
 const medicalTitle = <ProjectTitle title="MAYO CLINIC × SCADpro" />;
 
-function MedicalCaseContent() {
+export default function MedicalProjectPage() {
   return (
     <CaseTemplateLayout
       projectClass="case-page-medical"
@@ -84,8 +79,6 @@ function MedicalCaseContent() {
           subtitle={medicalHero.subtitle}
           intro={medicalHero.intro}
           spec={medicalSpec}
-          image="/images/medical.jpg"
-          imageAlt="Mayo Clinic SCADpro mixed reality BLS certification system"
         />
       }
     >
@@ -144,27 +137,5 @@ function MedicalCaseContent() {
         timeline={medicalUserTesting.timeline}
       />
     </CaseTemplateLayout>
-  );
-}
-
-export default function MedicalProjectPage() {
-  return (
-    <ProtectedProjectLock
-      password={PASSWORD}
-      showPasswordHint
-      lockTheme="light"
-      projectId="medical"
-      pageClassName="case-page-medical case-page-template"
-      hero={{
-        title: medicalTitle,
-        subtitle: medicalHero.subtitle,
-        intro: medicalHero.intro,
-        spec: medicalSpec,
-        image: "/images/medical.jpg",
-        imageAlt: "Mayo Clinic SCADpro mixed reality BLS certification system",
-      }}
-    >
-      <MedicalCaseContent />
-    </ProtectedProjectLock>
   );
 }

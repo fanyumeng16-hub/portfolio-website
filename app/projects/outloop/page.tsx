@@ -25,9 +25,6 @@ export default function OutloopPage() {
           subtitle={outloopHero.subtitle}
           intro={outloopHero.intro}
           spec={outloopSpec}
-          image={outloopHero.cover.src}
-          imageAlt={outloopHero.cover.alt}
-          priority
         />
       }
     >

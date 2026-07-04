@@ -41,12 +41,6 @@ export default function HorizonPage() {
           subtitle={horizonHero.subtitle}
           intro={horizonHero.intro}
           spec={horizonSpec}
-          image="/images/horizon-cover.jpg"
-          imageAlt="Horizon Mars Exploration Simulation"
-          coverIntrinsic
-          coverWidth={11814}
-          coverHeight={6075}
-          priority
         />
       }
     >

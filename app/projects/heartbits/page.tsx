@@ -34,9 +34,6 @@ export default function HeartbitsPage() {
           subtitle={heartbitsHero.subtitle}
           intro={heartbitsHero.intro}
           spec={heartbitsSpec}
-          image="/images/heartbits.jpg"
-          imageAlt="Heartbits interactive rehabilitation system"
-          priority
         />
       }
     >
