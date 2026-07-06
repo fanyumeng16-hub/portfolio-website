@@ -1,5 +1,6 @@
 import { AnnotatedMedia, MedicalDetailSection } from "@/data/medical-detail";
 import CaseAutoplayVideo from "@/components/CaseAutoplayVideo";
+import { ReactNode } from "react";
 
 function DetailVideo({
   src,
@@ -184,9 +185,10 @@ function DetailItem({
 
 type Props = {
   section: MedicalDetailSection;
+  children?: ReactNode;
 };
 
-export default function CaseDetailSection({ section }: Props) {
+export default function CaseDetailSection({ section, children }: Props) {
   const headerSplit = section.headerLayout === "split";
   const mediaWide = section.mediaRatio === "wide";
 
@@ -198,7 +200,7 @@ export default function CaseDetailSection({ section }: Props) {
       id={section.id}
     >
       <div className="case-detail-inner">
-        {section.title || section.intro ? (
+        {section.title || section.kicker || section.intro ? (
           <header
             className={`case-detail-header ${
               headerSplit ? "case-detail-header--split" : ""
@@ -206,6 +208,9 @@ export default function CaseDetailSection({ section }: Props) {
           >
             {section.title ? (
               <h3 className="case-detail-title">{section.title}</h3>
+            ) : null}
+            {section.kicker ? (
+              <p className="case-detail-kicker">{section.kicker}</p>
             ) : null}
             {section.introPoints?.length ? (
               <ul className="case-detail-intro-list">
@@ -237,6 +242,13 @@ export default function CaseDetailSection({ section }: Props) {
             />
           ))}
         </div>
+        {section.validation ? (
+          <div className="case-detail-validation">
+            <h4 className="case-prose-subtitle">{section.validation.title}</h4>
+            <p className="case-prose-body">{section.validation.body}</p>
+          </div>
+        ) : null}
+        {children}
       </div>
     </section>
   );

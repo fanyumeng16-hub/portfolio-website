@@ -8,6 +8,7 @@ import {
 type Props = {
   id: string;
   title: string;
+  kicker?: string;
   intro?: string;
   timeline: CaseTestingTimelineItem[];
 };
@@ -80,6 +81,7 @@ function TimelineFinding({ finding }: { finding: CaseFinding }) {
 export default function CaseUserTestingTimeline({
   id,
   title,
+  kicker,
   intro,
   timeline,
 }: Props) {
@@ -87,6 +89,7 @@ export default function CaseUserTestingTimeline({
     <section className="case-prose-section case-testing-section" id={id}>
       <div className="case-prose-inner">
         <h3 className="case-prose-title">{title}</h3>
+        {kicker ? <p className="case-testing-kicker">{kicker}</p> : null}
         {intro ? <p className="case-prose-body">{intro}</p> : null}
 
         <ol className="case-testing-timeline">
@@ -104,9 +107,9 @@ export default function CaseUserTestingTimeline({
                 <div className="case-testing-timeline-rail-content">
                   <div className="case-testing-timeline-round-heading">
                     <h4 className="case-prose-subtitle">{item.roundLabel}</h4>
-                    <h4 className="case-prose-subtitle">{item.title}</h4>
+                    <h4 className="case-prose-subtitle">{item.siteLabel}</h4>
                   </div>
-                  <p className="case-prose-body">{item.body}</p>
+                  <p className="case-prose-body">{item.purpose}</p>
                 </div>
               </li>
 

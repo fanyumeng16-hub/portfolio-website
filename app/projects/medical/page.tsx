@@ -1,67 +1,52 @@
-import CaseNavbar from "@/components/CaseNavbar";
-import CaseBrandUISection from "@/components/CaseBrandUISection";
-import CaseUserTestingTimeline from "@/components/CaseUserTestingTimeline";
-import CaseConstraintGrid from "@/components/CaseConstraintGrid";
-import CaseDetailSection from "@/components/CaseDetailSection";
-import CaseResearchSection from "@/components/CaseResearchSection";
 import CaseHero from "@/components/CaseHero";
-import CaseHighlightGrid from "@/components/CaseHighlightGrid";
-import CaseOnboardingEverydayBlock from "@/components/CaseOnboardingEverydayBlock";
-import CaseOnboardingInsightCards from "@/components/CaseOnboardingInsightCards";
-import CaseOnboardingInteractive from "@/components/CaseOnboardingInteractive";
+import CaseNavbar from "@/components/CaseNavbar";
 import CaseOverviewSection from "@/components/CaseOverviewSection";
-import CaseProseSection from "@/components/CaseProseSection";
 import CaseTemplateLayout from "@/components/CaseTemplateLayout";
 import ProjectTitle from "@/components/ProjectTitle";
 import {
-  medicalBrandUI,
-  medicalChallenge,
+  MedicalBrandSpatialSection,
+  MedicalDecisionSection,
+  MedicalEvaluationSection,
+  MedicalOnboardingSection,
+  MedicalOutcomeSection,
+  MedicalProblemSection,
+} from "@/components/medical/MedicalSections";
+import { MedicalInsightSection } from "@/components/medical/MedicalInsightSection";
+import { MedicalResearchSection } from "@/components/medical/MedicalResearchSection";
+import { MedicalUserTestingSection } from "@/components/medical/MedicalUserTestingSection";
+import {
   medicalHero,
-  medicalOnboarding,
   medicalOverviewVideo,
-  medicalRole,
   medicalSpec,
   medicalUserTesting,
 } from "@/data/medical-content";
 import { CaseTocSection } from "@/components/CaseToc";
-import {
-  medicalEvaluationSection,
-  medicalResearch,
-  medicalSegmentSection,
-} from "@/data/medical-detail";
 
 const medicalSections: CaseTocSection[] = [
   { id: "case-intro", label: "Introduction" },
-  { id: "case-overview", label: "Overview" },
-  { id: "mayo-role", label: "My Role" },
-  { id: "mayo-challenge", label: "Challenge" },
+  { id: "case-overview", label: "Video" },
+  { id: "mayo-problem", label: "Problem Identification" },
+  {
+    id: "mayo-decision",
+    label: "The Decision",
+    children: [
+      { id: "mayo-standards", label: "Design Standards" },
+    ],
+  },
   { id: "mayo-research", label: "Research" },
-  {
-    id: "mayo-brand-ui",
-    label: "Brand & UI",
-    children: medicalBrandUI.subsections.map((subsection) => ({
-      id: subsection.id,
-      label: `${subsection.title} · ${subsection.subtitle}`,
-    })),
-  },
-  {
-    id: "mayo-onboarding",
-    label: "Onboarding",
-    children: medicalOnboarding.stages.map((stage) => ({
-      id: stage.id,
-      label: `${stage.label} · ${stage.title}`,
-    })),
-  },
-  { id: "mayo-segment", label: "Segment" },
-  { id: "mayo-evaluation", label: "Evaluation" },
+  { id: "mayo-insight", label: "Insight" },
+  { id: "mayo-brand-spatial", label: "UI Design" },
+  { id: "mayo-onboarding", label: "Onboarding" },
+  { id: "mayo-evaluation", label: "Evaluation System" },
   {
     id: "mayo-user-testing",
-    label: "Usability Test",
+    label: "Usability Testing",
     children: medicalUserTesting.timeline.map((round) => ({
       id: round.id,
-      label: `${round.roundLabel} · ${round.title}`,
+      label: round.siteLabel,
     })),
   },
+  { id: "mayo-outcome", label: "Outcome" },
 ];
 
 const medicalTitle = <ProjectTitle title="MAYO CLINIC × SCADpro" />;
@@ -79,63 +64,23 @@ export default function MedicalProjectPage() {
           subtitle={medicalHero.subtitle}
           intro={medicalHero.intro}
           spec={medicalSpec}
+          sectionId="case-intro"
         />
       }
     >
-      <CaseOverviewSection media={medicalOverviewVideo} />
+      <CaseOverviewSection title="Video" media={medicalOverviewVideo} />
 
-      <CaseProseSection
-        id="mayo-role"
-        title={medicalRole.title}
-        paragraphs={medicalRole.paragraphs}
-      >
-        <CaseHighlightGrid highlights={medicalRole.highlights} />
-      </CaseProseSection>
+      <MedicalProblemSection />
 
-      <CaseProseSection id="mayo-challenge" title={medicalChallenge.title}>
-        <CaseConstraintGrid constraints={medicalChallenge.constraints} />
-      </CaseProseSection>
+      <MedicalDecisionSection />
+      <MedicalResearchSection />
+      <MedicalInsightSection />
+      <MedicalBrandSpatialSection />
+      <MedicalOnboardingSection />
+      <MedicalEvaluationSection />
+      <MedicalUserTestingSection />
 
-      <CaseResearchSection
-        id="mayo-research"
-        title={medicalResearch.title}
-        intro={medicalResearch.intro}
-        introQuote={medicalResearch.introQuote}
-        blocks={medicalResearch.blocks}
-      />
-
-      <CaseBrandUISection
-        id="mayo-brand-ui"
-        title={medicalBrandUI.title}
-        subsections={medicalBrandUI.subsections}
-      />
-
-      <section className="case-prose-section" id="mayo-onboarding">
-        <div className="case-prose-inner">
-          <h3 className="case-prose-title">{medicalOnboarding.title}</h3>
-          <p className="case-prose-body">{medicalOnboarding.intro}</p>
-          <CaseOnboardingInsightCards insights={medicalOnboarding.insights} />
-          <CaseOnboardingEverydayBlock block={medicalOnboarding.everydayBlock} />
-          <div className="case-onboarding-stage-intro">
-            {medicalOnboarding.stageIntro.map((paragraph, index) => (
-              <p className="case-prose-body" key={index}>
-                {paragraph}
-              </p>
-            ))}
-          </div>
-          <CaseOnboardingInteractive stages={medicalOnboarding.stages} />
-        </div>
-      </section>
-
-      <CaseDetailSection section={medicalSegmentSection} />
-      <CaseDetailSection section={medicalEvaluationSection} />
-
-      <CaseUserTestingTimeline
-        id="mayo-user-testing"
-        title={medicalUserTesting.title}
-        intro={medicalUserTesting.intro}
-        timeline={medicalUserTesting.timeline}
-      />
+      <MedicalOutcomeSection />
     </CaseTemplateLayout>
   );
 }

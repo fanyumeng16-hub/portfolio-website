@@ -58,6 +58,21 @@ export const projects: Project[] = [
     image: "/images/Massie.jpg",
   }),
   withTags({
+    id: "trackly",
+    number: "003",
+    year: "2026",
+    title: "Trackly",
+    subtitle: "Package Tracking Experience",
+    navLabel: "Trackly",
+    navHint: "Package Tracking",
+    tagIds: ["ui-ux", "logistics", "delivery"],
+    category: "UI/UX / Logistics / Delivery",
+    description:
+      "A package tracking experience focused on rebuilding trust across the last-mile delivery journey, from research through mobile and locker interfaces.",
+    bullets: ["Delivery UX research", "Trust-centered product design", "Mobile & locker flows"],
+    image: "/images/Trackly.jpg",
+  }),
+  withTags({
     id: "outloop",
     number: "002",
     year: "2026",
@@ -92,21 +107,6 @@ export const projects: Project[] = [
     bullets: ["Unity scene building", "XR interaction design", "Scientific simulation"],
     image: "/images/horizon.jpg",
     imageFit: "cover",
-  }),
-  withTags({
-    id: "trackly",
-    number: "003",
-    year: "2026",
-    title: "Trackly",
-    subtitle: "Package Tracking Experience",
-    navLabel: "Trackly",
-    navHint: "Package Tracking",
-    tagIds: ["ui-ux", "logistics", "delivery"],
-    category: "UI/UX / Logistics / Delivery",
-    description:
-      "A package tracking experience focused on rebuilding trust across the last-mile delivery journey, from research through mobile and locker interfaces.",
-    bullets: ["Delivery UX research", "Trust-centered product design", "Mobile & locker flows"],
-    image: "/images/Trackly.jpg",
   }),
   withTags({
     id: "universal",

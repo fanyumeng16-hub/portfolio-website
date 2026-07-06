@@ -1,0 +1,17 @@
+/* Case study design tokens for Tailwind utilities (Mayo + template pages) */
+@theme inline {
+  --color-mayo: #3156af;
+  --color-mayo-deep: #274a96;
+  --color-mayo-human: #6b7fa8;
+  --color-mayo-pass: #1f7a4a;
+  --color-case-muted: #666666;
+  --color-case-body: #333333;
+  --color-case-caption: #555555;
+  --color-case-surface: #ffffff;
+  --color-case-line: rgba(49, 86, 175, 0.14);
+  --text-case-t4: 0.875rem;
+  --text-case-t3: clamp(1rem, 1.05vw, 1.125rem);
+  --text-case-t2: clamp(1.125rem, 1.5vw, 1.375rem);
+  --radius-case: 4px;
+  --spacing-case-section: clamp(2.75rem, 5vw, 4.25rem);
+}

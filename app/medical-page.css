@@ -1,0 +1,293 @@
+/* Mayo medical case page — typography, spacing, readability */
+
+.case-page-template.case-page-light.case-page-medical {
+  --case-medical-accent: #3156af;
+  --case-content-max: 1400px;
+  --case-content-gutter: clamp(24px, 4vw, 48px);
+  --case-title-marker-width: clamp(10px, 1.1vw, 14px);
+  --case-title-marker-gap: clamp(12px, 1.4vw, 16px);
+  --case-title-text-indent: calc(
+    var(--case-title-marker-width) + var(--case-title-marker-gap)
+  );
+  --case-prose-measure: 68ch;
+  --case-space-section: clamp(80px, 10vw, 120px);
+  --case-space-hero-content: 32px;
+  --type-h1: clamp(3rem, 5vw, 4rem);
+  --type-h2: clamp(1.4375rem, 2vw, 1.75rem);
+  --type-h3: clamp(1.125rem, 1.5vw, 1.375rem);
+  --type-body: clamp(1rem, 1.05vw, 1.125rem);
+  --type-label: 0.875rem;
+  --leading-body: 1.65;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-content-shell > * + * {
+  margin-top: var(--case-space-section);
+}
+
+/* H1 — hero project title */
+.case-page-template.case-page-light.case-page-medical .case-hero-left h1,
+.case-page-template.case-page-light.case-page-medical .case-hero-title {
+  font-size: var(--type-h1);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-hero-body {
+  padding-bottom: 16px;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-hero-subtitle {
+  margin-top: 16px;
+  font-size: var(--type-h3);
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: 42ch;
+  color: var(--case-medical-accent);
+}
+
+.case-page-template.case-page-light.case-page-medical .case-spec-row dt {
+  font-size: var(--type-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #666;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-spec-row dd {
+  margin-top: 8px;
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #111;
+}
+
+/* H2 — section titles (Mayo blue) */
+.case-page-template.case-page-light.case-page-medical .case-prose-title,
+.case-page-template.case-page-light.case-page-medical .case-detail-title {
+  display: flex;
+  align-items: center;
+  gap: var(--case-title-marker-gap);
+  margin-bottom: 0;
+  font-size: var(--type-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--case-medical-accent);
+  text-transform: uppercase;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-prose-title::before,
+.case-page-template.case-page-light.case-page-medical .case-detail-title::before {
+  content: "";
+  flex: 0 0 auto;
+  width: var(--case-title-marker-width);
+  height: 0.92em;
+  background: var(--case-medical-accent);
+}
+
+/* H3 — subsection titles (Mayo blue) */
+.case-page-template.case-page-light.case-page-medical .case-prose-subtitle,
+.case-page-template.case-page-light.case-page-medical .case-detail-item-title,
+.case-page-template.case-page-light.case-page-medical .case-constraint-title {
+  font-size: var(--type-h3);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--case-medical-accent);
+  margin-bottom: 12px;
+}
+
+/* Section kickers — lead copy, not title color */
+.case-page-template.case-page-light.case-page-medical .case-detail-kicker,
+.case-page-template.case-page-light.case-page-medical .case-testing-kicker {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  color: #333;
+  max-width: var(--case-prose-measure);
+}
+
+/* Body */
+.case-page-template.case-page-light.case-page-medical .case-prose-body,
+.case-page-template.case-page-light.case-page-medical .case-detail-intro,
+.case-page-template.case-page-light.case-page-medical .case-detail-intro-list li,
+.case-page-template.case-page-light.case-page-medical .case-detail-copy p,
+.case-page-template.case-page-light.case-page-medical .case-testing-timeline-item .case-prose-body,
+.case-page-template.case-page-light.case-page-medical .case-testing-timeline-finding .case-prose-body {
+  max-width: var(--case-prose-measure);
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  color: #333;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-prose-title + .case-prose-body,
+.case-page-template.case-page-light.case-page-medical .case-detail-title + .case-detail-intro,
+.case-page-template.case-page-light.case-page-medical .case-detail-title + .case-detail-intro-list,
+.case-page-template.case-page-light.case-page-medical .case-detail-kicker + .case-prose-body,
+.case-page-template.case-page-light.case-page-medical .case-detail-kicker + .case-detail-intro,
+.case-page-template.case-page-light.case-page-medical .case-testing-kicker + .case-prose-body {
+  margin-top: 16px;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-prose-body + .case-prose-body {
+  margin-top: 16px;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-overview--template .case-overview-copy .case-prose-body {
+  max-width: var(--case-prose-measure);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.case-page-template.case-page-light.case-page-medical .case-overview-figure {
+  margin-top: 32px;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-detail-intro-list {
+  margin-top: 16px;
+  max-width: var(--case-prose-measure);
+}
+
+.case-page-template.case-page-light.case-page-medical .case-detail-intro-list li + li {
+  margin-top: 8px;
+}
+
+/* Labels / captions */
+.case-page-template.case-page-light.case-page-medical .figureCaption,
+.case-page-template.case-page-light.case-page-medical .case-video-caption,
+.case-page-template.case-page-light.case-page-medical .case-testing-timeline-round-heading .case-prose-subtitle:first-child {
+  font-size: var(--type-label);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* Section header — title marker column + shared text column (1400 content grid) */
+.case-page-template.case-page-light.case-page-medical .case-detail-header:not(.case-detail-header--split) {
+  display: grid;
+  grid-template-columns: var(--case-title-marker-width) minmax(0, 1fr);
+  column-gap: var(--case-title-marker-gap);
+  align-items: start;
+  max-width: none;
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-detail-header:not(.case-detail-header--split)::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 0.92em;
+  margin-top: 0.14em;
+  background: var(--case-medical-accent);
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-detail-header:not(.case-detail-header--split)
+  .case-detail-title {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-detail-header:not(.case-detail-header--split)
+  .case-detail-title::before {
+  display: none;
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-detail-header:not(.case-detail-header--split)
+  :is(.case-detail-kicker, .case-detail-intro, .case-detail-intro-list, .case-detail-intro-quote) {
+  grid-column: 2;
+  max-width: var(--case-prose-measure);
+}
+
+.case-page-template.case-page-light.case-page-medical .case-testing-section .case-prose-inner {
+  display: grid;
+  grid-template-columns: var(--case-title-marker-width) minmax(0, 1fr);
+  column-gap: var(--case-title-marker-gap);
+  align-items: start;
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-testing-section
+  .case-prose-inner::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 0.92em;
+  margin-top: 0.14em;
+  background: var(--case-medical-accent);
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-testing-section
+  .case-prose-inner
+  > :is(.case-prose-title, .case-testing-kicker, .case-prose-body) {
+  grid-column: 2;
+  max-width: var(--case-prose-measure);
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-testing-section
+  .case-prose-inner
+  > .case-prose-title::before {
+  display: none;
+}
+
+.case-page-template.case-page-light.case-page-medical
+  .case-testing-section
+  .case-prose-inner
+  > .case-testing-timeline {
+  grid-column: 1 / -1;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-detail-header--split .case-detail-title {
+  text-transform: uppercase;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-detail-intro-list li::before {
+  color: var(--case-medical-accent);
+}
+
+.case-page-template.case-page-light.case-page-medical .case-testing-section .case-prose-title {
+  margin-bottom: 0;
+}
+
+.case-page-template.case-page-light.case-page-medical #mayo-evaluation .case-detail-header {
+  margin-bottom: 48px;
+}
+
+.case-page-template.case-page-light.case-page-medical #mayo-evaluation .case-detail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.case-page-template.case-page-light.case-page-medical #mayo-evaluation .case-detail-item--stack {
+  padding-top: 48px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.case-page-template.case-page-light.case-page-medical #mayo-evaluation .case-detail-item--stack:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-detail-validation {
+  display: none;
+}
+
+.case-page-template.case-page-light.case-page-medical .case-detail-validation .case-prose-subtitle {
+  color: var(--case-medical-accent);
+}
+
+/* Full-width visual blocks inside sections */
+.case-page-template.case-page-light.case-page-medical .case-prose-inner > :not(header):not(.case-prose-title):not(.case-prose-body),
+.case-page-template.case-page-light.case-page-medical .case-detail-inner > :not(.case-detail-header) {
+  max-width: 100%;
+}

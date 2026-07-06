@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./case-tailwind.css";
+@import "./medical-page.css";
 
 :root {
   /* Type scale */
@@ -5128,9 +5130,46 @@ body:has(.case-page-horizon) {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(16px, 2vw, 24px);
-  margin: clamp(32px, 5vw, 48px) 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.case-onboarding-insight-group {
+  margin-top: clamp(32px, 5vw, 48px);
+}
+
+.case-onboarding-insight-group-label {
+  margin: 0 0 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3156af;
+}
+
+.case-onboarding-insight-group--device {
+  padding: clamp(20px, 3vw, 28px);
+  background: rgba(49, 86, 175, 0.05);
+  border: 1px solid rgba(49, 86, 175, 0.12);
+}
+
+.case-onboarding-insight-group--user {
+  padding: clamp(20px, 3vw, 28px);
+  background: rgba(31, 63, 132, 0.05);
+  border: 1px solid rgba(31, 63, 132, 0.12);
+}
+
+.case-onboarding-insight-group--device .case-onboarding-insight-card {
+  background: #3156af;
+}
+
+.case-onboarding-insight-group--user .case-onboarding-insight-card {
+  background: #274a96;
+}
+
+.case-onboarding-insight-card--plain .case-onboarding-insight-title {
+  margin-top: 0;
 }
 
 .case-onboarding-insight-card {
@@ -5597,36 +5636,6 @@ body:has(.case-page-horizon) {
   text-align: center;
 }
 
-.case-page-template.case-page-medical {
-  --case-medical-accent: #3156af;
-}
-
-.case-page-template.case-page-medical .case-prose-title,
-.case-page-template.case-page-medical .case-detail-title {
-  display: flex;
-  align-items: center;
-  gap: clamp(12px, 1.4vw, 16px);
-  color: var(--case-medical-accent);
-  font-weight: var(--weight-bold);
-  letter-spacing: 0.01em;
-}
-
-.case-page-template.case-page-medical .case-prose-title::before,
-.case-page-template.case-page-medical .case-detail-title::before {
-  content: "";
-  flex: 0 0 auto;
-  width: clamp(10px, 1.1vw, 14px);
-  height: 0.92em;
-  background: var(--case-medical-accent);
-}
-
-.case-page-template.case-page-medical .case-prose-subtitle,
-.case-page-template.case-page-medical .case-detail-item-title,
-.case-page-template.case-page-medical .case-constraint-title {
-  color: var(--case-medical-accent);
-  font-weight: var(--weight-bold);
-}
-
 .case-page-template.case-page-medical .case-research-quote {
   margin: clamp(56px, 8vw, 96px) 0 clamp(56px, 8vw, 96px);
 }
@@ -5693,16 +5702,38 @@ body:has(.case-page-horizon) {
   color: var(--case-medical-accent);
 }
 
+.case-page-template.case-page-medical .case-testing-section .case-prose-title {
+  margin-bottom: 0;
+}
+
+.case-page-template.case-page-medical .case-testing-timeline-round-heading .case-prose-subtitle:first-child {
+  font-size: var(--case-t4);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 700;
+}
+
 .case-page-template #mayo-evaluation .case-detail-header {
   margin-bottom: 16px;
 }
 
+.case-detail-validation {
+  margin-top: clamp(40px, 6vw, 56px);
+  padding-top: clamp(32px, 5vw, 48px);
+  border-top: 1px solid rgba(49, 86, 175, 0.14);
+}
+
 .case-page-template #mayo-evaluation .case-detail-items {
-  gap: 16px;
+  gap: clamp(40px, 6vw, 56px);
 }
 
 .case-page-template #mayo-evaluation .case-detail-item--stack .case-detail-copy {
-  margin-bottom: 16px;
+  margin-bottom: clamp(16px, 2.5vw, 24px);
+}
+
+.case-page-template #mayo-evaluation .case-detail-item--stack .case-detail-image {
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .case-page-template #mayo-segment .case-detail-header {

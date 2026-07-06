@@ -1,0 +1,200 @@
+.figure {
+  margin: clamp(28px, 4vw, 36px) 0 0;
+}
+
+.chart {
+  padding: clamp(24px, 4vw, 32px) 0 clamp(20px, 3vw, 28px);
+  animation: scaleVisualIn 0.28s ease;
+}
+
+@keyframes scaleVisualIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart {
+    animation: none;
+  }
+}
+
+.headline {
+  margin: 0 auto clamp(32px, 5vw, 40px);
+  max-width: 52ch;
+  font-size: clamp(1.0625rem, 1.7vw, 1.3125rem);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-align: center;
+  color: #3156af;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: start;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.columnEvaluator {
+  padding-top: 4px;
+}
+
+.count {
+  margin: 0;
+  font-size: clamp(3.5rem, 9vw, 5.5rem);
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.countEvaluator {
+  color: #3156af;
+}
+
+.countCounterpart {
+  color: #111;
+}
+
+.label {
+  margin: clamp(8px, 1.2vw, 12px) 0 clamp(20px, 3vw, 28px);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.labelEvaluator {
+  color: #3156af;
+}
+
+.labelCounterpart {
+  color: #111;
+}
+
+.person {
+  display: inline-grid;
+  justify-items: center;
+  align-content: end;
+  gap: 0.2em;
+  color: inherit;
+  line-height: 0;
+}
+
+.personHead {
+  width: 0.44em;
+  height: 0.44em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.personTorso {
+  width: 1em;
+  height: 0.56em;
+  border-radius: 1em 1em 0 0;
+  background: currentColor;
+}
+
+.personEvaluator {
+  font-size: clamp(48px, 8vw, 64px);
+  color: #3156af;
+}
+
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: clamp(10px, 1.8vw, 16px) clamp(8px, 1.4vw, 12px);
+  width: min(100%, 360px);
+}
+
+.personCounterpart {
+  font-size: clamp(20px, 3.6vw, 28px);
+  color: #333;
+  margin: 0 auto;
+}
+
+.columnCounterpart .personCounterpart:only-child {
+  font-size: clamp(48px, 8vw, 64px);
+}
+
+.checklistGrid {
+  display: grid;
+  gap: clamp(8px, 1.4vw, 12px);
+  width: min(100%, 320px);
+}
+
+.checklist {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 0.72;
+  color: #333;
+}
+
+.checklistSheet {
+  position: absolute;
+  inset: 0;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.checklistLine {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.checklistLine:nth-of-type(2) {
+  top: 34%;
+}
+
+.checklistLine:nth-of-type(3) {
+  top: 50%;
+}
+
+.checklistLine:nth-of-type(4) {
+  top: 66%;
+}
+
+.caption {
+  margin: clamp(16px, 2.5vw, 20px) auto 0;
+  max-width: 56ch;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #555;
+}
+
+@media (max-width: 720px) {
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    max-width: 360px;
+  }
+
+  .iconGrid,
+  .checklistGrid {
+    width: 100%;
+    max-width: 280px;
+  }
+}

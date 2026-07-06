@@ -1,4 +1,5 @@
 import CaseOverviewMeta from "@/components/CaseOverviewMeta";
+import CaseAutoplayVideo from "@/components/CaseAutoplayVideo";
 import {
   CASE_TEMPLATE,
   type CaseOverviewMedia,
@@ -25,7 +26,7 @@ export default function CaseOverviewSection({
       className={`case-overview ${CASE_TEMPLATE.overviewClass}`}
       id={id}
     >
-      <h3 className="case-prose-title">{title}</h3>
+      {title ? <h3 className="case-prose-title">{title}</h3> : null}
 
       {body || spec?.length ? (
         <div
@@ -54,13 +55,21 @@ export default function CaseOverviewSection({
             <div className="case-overview-youtube">
               <iframe
                 className="case-overview-youtube-embed"
-                src={`https://www.youtube.com/embed/${media.videoId}`}
+                src={`https://www.youtube.com/embed/${media.videoId}${
+                  media.autoPlay ? "?autoplay=1&mute=1&playsinline=1" : ""
+                }`}
                 title={media.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
+          ) : media.autoPlay ? (
+            <CaseAutoplayVideo
+              className="case-overview-video case-video-player"
+              src={media.src}
+              alt={media.alt}
+            />
           ) : (
             <video
               className="case-overview-video case-video-player"

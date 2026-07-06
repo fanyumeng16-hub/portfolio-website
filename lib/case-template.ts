@@ -54,8 +54,8 @@ export type CaseTemplateYouTubeEmbed = {
 };
 
 export type CaseOverviewMedia =
-  | ({ type: "youtube" } & CaseTemplateYouTubeEmbed)
-  | ({ type: "local" } & CaseTemplateVideoEmbed);
+  | ({ type: "youtube"; autoPlay?: boolean } & CaseTemplateYouTubeEmbed)
+  | ({ type: "local"; autoPlay?: boolean } & CaseTemplateVideoEmbed);
 
 export type CaseTemplateVideo = CaseTemplateVideoEmbed & {
   id: string;

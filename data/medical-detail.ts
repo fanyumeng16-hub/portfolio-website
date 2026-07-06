@@ -1,3 +1,5 @@
+import { medicalDimensionResearch } from "./medical-content";
+
 export type AnnotatedMedia = {
   id?: string;
   layout: "stack" | "split";
@@ -17,9 +19,14 @@ export type AnnotatedMedia = {
 export type MedicalDetailSection = {
   id: string;
   title?: string;
+  kicker?: string;
   intro?: string;
   introQuote?: string;
   introPoints?: string[];
+  validation?: {
+    title: string;
+    body: string;
+  };
   headerLayout?: "stack" | "split";
   mediaRatio?: "equal" | "wide";
   items: AnnotatedMedia[];
@@ -34,42 +41,153 @@ export const medicalDemoVideo = {
 
 export const medicalResearch = {
   title: "Research",
-  intro:
-    "Before any design began, we needed to understand three things: the users, the clinical process, and the existing landscape.",
-  introQuote:
-    "28 evaluators are responsible for certifying around 400 candidates per year",
-  blocks: [
+  kicker: "Research",
+  dimensionsLead:
+    "With our targets defined in Design Standards, research had to run across these dimensions first, each line feeding a specific requirement, not a generic insights deck.",
+  dimensions: [
     {
-      id: "mayo-research-onsite",
-      title: "On-site Fieldwork",
-      subtitle: "Contextual Inquiry & Stakeholder Interviews",
-      body: "We interviewed nurses and BLS evaluators at Mayo Clinic Jacksonville, observed certification from setup through assessment, and practiced BLS hands-on with a trained instructor.",
-      src: "/images/mayo-research.png",
-      alt: "Design team and Mayo Clinic clinical staff observing BLS certification in a hospital simulation room",
+      id: "user",
+      index: "01",
+      title: "User Research",
+      body: "How nurses with uneven MR fluency experience real-time feedback during BLS certification.",
     },
     {
-      id: "mayo-research-practice",
-      body: "Practicing the procedure ourselves was deliberate. Compression depth, BVM seal, and attention under pressure gave us a baseline no secondary research could replicate.",
-      src: "/images/mayo-research2.png",
-      alt: "Hands-on BLS equipment practice with AED electrode pads during on-site fieldwork",
-    },
-    {
-      id: "mayo-research-clinical-standards",
+      id: "clinical",
+      index: "02",
       title: "Clinical Standards",
-      subtitle: "Domain Research & Expert Consultation",
-      body: "We mapped Mayo Clinic's evaluation rubrics to quantifiable BLS parameters: compression rate, depth, ventilation timing, and electrode placement.",
-      src: "/images/Evaluation%20System.png",
-      alt: "BLS evaluation rubric mapping CPR, BVM, and AED tasks to quantitative clinical assessment criteria",
+      body: "How Mayo's BLS rubric breaks into measurable compression, ventilation, and AED parameters.",
     },
     {
-      id: "mayo-research-competitive",
-      title: "Competitive Landscape",
-      subtitle: "Market & Product Audit",
-      body: "We audited VR training and medical simulation products across clinical and emergency categories. Most emphasized content volume over usability for MR newcomers. That gap shaped our design direction.",
-      src: "/images/mayo-visual%20research.png",
-      alt: "Competitive audit of VR training and medical simulation products across clinical and emergency response categories",
+      id: "competitor",
+      index: "03",
+      title: "Competitor Research",
+      body: "How existing MR training tools trade usability for feature volume, a counter-example at certification scale.",
+    },
+    {
+      id: "rubric",
+      index: "04",
+      title: "Evaluation Rubric",
+      body: "How seventeen certification parameters across CPR, BVM, and AED define what the system must judge.",
     },
   ],
+  dimensionResearch: medicalDimensionResearch,
+  lines: [
+    {
+      id: "user-research",
+      title: "User Research",
+      purpose:
+        "Understand how real-time feedback could work for nurses entering BLS certification with uneven MR familiarity.",
+      persona: {
+        name: "Jordan M.",
+        photo: {
+          src: "/images/mayo/mayo-user-research.png",
+          alt: "A nurse in blue scrubs attending to a patient in a bright clinical setting.",
+        },
+        demographics: [
+          { icon: "experience", label: "Experience", value: "5 years acute care" },
+          { icon: "location", label: "Location", value: "Mayo Clinic Jacksonville" },
+          { icon: "role", label: "Role", value: "Registered Nurse" },
+          {
+            icon: "certification",
+            label: "Certification",
+            value: "BLS candidate · first MR session",
+          },
+        ],
+        bio: "Clinically prepared but new to mixed reality. Enters certification confident in BLS protocol, uncertain with headset gestures and spatial UI under time pressure.",
+        wants: [
+          "Real-time correction during assessment, not after",
+          "Onboarding that separates device learning from clinical stakes",
+          "Feedback readable at a glance while hands stay on task",
+        ],
+        mrFluency: [
+          { label: "Headset comfort", level: 2 },
+          { label: "Hand tracking", level: 2 },
+          { label: "Spatial UI navigation", level: 1 },
+          { label: "Prior MR experience", level: 1 },
+        ],
+        clinicalReadiness: [
+          { label: "BLS clinical prep", level: 4 },
+          { label: "In-person cert experience", level: 4 },
+          { label: "Simulation familiarity", level: 3 },
+          { label: "Confidence under observation", level: 3 },
+        ],
+        frustrations: [
+          "Learning the headset while recalling BLS steps at the same time",
+          "No shared MR baseline across the nurse cohort",
+          "Delayed feedback turns small form errors into failed checkpoints",
+        ],
+        summary:
+          "Device learning and BLS recall compete for attention, feedback must work before MR fluency is established.",
+      },
+    },
+    {
+      id: "clinical-standards",
+      title: "Clinical Standards Research",
+      purpose:
+        "Map BLS clinical requirements into quantifiable parameters aligned with Mayo's certification rubric.",
+      images: [
+        {
+          src: "/images/mayo-Basic%20research.png",
+          alt: "BVM and AED asset research boards mapping equipment references, hand interactions, and clinical specifications",
+          caption: "BVM and AED equipment research, assets, interactions, and clinical specs.",
+        },
+        {
+          src: "/images/List%20of%20Hand%20Interactions%20in%20each%20BLS%20Steps.png",
+          alt: "Hand interaction inventory mapped to each BLS certification step across CPR, BVM, and AED segments",
+          caption: "Hand interactions catalogued per BLS step.",
+        },
+      ],
+    },
+    {
+      id: "competitor-research",
+      title: "Competitor Research",
+      purpose:
+        "Benchmark existing MR training tools to see where feature volume undermines novice usability at certification scale.",
+    },
+  ],
+  evaluationRubric: {
+    intro: "Seventeen parameters across three modules, each tied to a measurable clinical threshold.",
+    modules: [
+      {
+        id: "cpr",
+        label: "CPR",
+        stepCount: 7,
+        parameters: [
+          { name: "Compression depth", threshold: "2 to 2.4 in" },
+          { name: "Compression rate", threshold: "100 to 120 /min" },
+          { name: "Hand placement", threshold: "Lower sternum" },
+          { name: "Chest recoil", threshold: "Full release" },
+          { name: "Compression fraction", threshold: "≥ 80%" },
+          { name: "Cycle timing", threshold: "30:2 ratio" },
+          { name: "Rotation readiness", threshold: "Minimal pause" },
+        ],
+      },
+      {
+        id: "bvm",
+        label: "BVM",
+        stepCount: 5,
+        parameters: [
+          { name: "Mask seal", threshold: "C-E grip" },
+          { name: "Ventilation volume", threshold: "Clinical window" },
+          { name: "Ventilation rate", threshold: "10 to 12 /min" },
+          { name: "Ventilation timing", threshold: "Post-compression pause" },
+          { name: "Airway alignment", threshold: "Head-tilt chin-lift" },
+        ],
+      },
+      {
+        id: "aed",
+        label: "AED",
+        stepCount: 5,
+        parameters: [
+          { name: "Power on", threshold: "Within time window" },
+          { name: "Pad placement, anterior", threshold: "Correct landmark" },
+          { name: "Pad placement, posterior", threshold: "Correct landmark" },
+          { name: "Clear & shock", threshold: "Verbal + visual confirm" },
+          { name: "Post-shock CPR", threshold: "Immediate resume" },
+        ],
+      },
+    ],
+  },
 };
 
 export const medicalSegmentSection: MedicalDetailSection = {
@@ -124,44 +242,38 @@ export const medicalSegmentSection: MedicalDetailSection = {
 
 export const medicalEvaluationSection: MedicalDetailSection = {
   id: "mayo-evaluation",
-  title: "Evaluation System Design",
-  intro:
-    "The evaluation system translates segment performance into credentialing reports. Standards derived from Mayo Clinic assessment requirements drive what the MR interface visualizes, measures, and surfaces back to clinical staff.",
-  headerLayout: "split",
+  title: "Evaluation System",
+  kicker: "Evaluation System Design",
+  introPoints: [
+    "17 evaluation steps, each verified with Mayo clinical staff to match real certification requirements.",
+    "Reports organized by module (CPR / BVM / AED) with drill-down to the specific step that failed.",
+  ],
+  validation: {
+    title: "Validation",
+    body: "During Round 2 on-site testing, a certified human evaluator scored each session live alongside the system. System judgments were compared directly against the evaluator's judgments. This proves the logic is not merely plausible, but aligned with human evaluators on accuracy.",
+  },
   items: [
     {
-      id: "mayo-eval-standards",
-      layout: "split",
-      mediaSide: "left",
-      title: "Evaluation Standards Framework",
-      body: "We distilled certification requirements from Mayo Clinic's assessment reports into a structured set of standards, each mapped to parameters the MR system could visualize and measure in real time.",
-      src: "/images/Evaluation%20System.png",
-      alt: "Evaluation standards derived from Mayo Clinic assessment reports, mapped to visualized and measurable parameters",
-    },
-    {
       id: "mayo-incomplete-tasks",
-      layout: "split",
-      mediaSide: "left",
+      layout: "stack",
       title: "Incomplete Tasks Overview",
-      body: "The evaluation report surfaces incomplete tasks by module, giving nurses and evaluators a clear view of which BLS steps still need correction before certification sign-off.",
+      body: "Module-level view of which BLS steps still need correction before certification sign-off.",
       src: "/images/Incomplete%20Tasks.png",
       alt: "Evaluation report overview highlighting incomplete BLS tasks by module",
     },
     {
       id: "mayo-incomplete-tasks-detail",
-      layout: "split",
-      mediaSide: "left",
+      layout: "stack",
       title: "Incomplete Tasks Detail",
-      body: "Drill-down views break incomplete tasks into CPR, ventilation, and AED segments so nurses can see exactly which parameters failed against clinical standards.",
+      body: "Drill-down into CPR, ventilation, and AED segments with parameter-level feedback.",
       src: "/images/Incomplete%20Tasks-1.png",
       alt: "Detailed incomplete tasks view for CPR and AED evaluation segments",
     },
     {
       id: "mayo-full-report",
-      layout: "split",
-      mediaSide: "left",
+      layout: "stack",
       title: "Full Evaluation Report",
-      body: "The complete credentialing report consolidates performance across all 17 steps, module scores, and improvement areas into a single view for Mayo Clinic review.",
+      body: "Complete credentialing report consolidating performance across all 17 steps.",
       src: "/images/Full%20Report.png",
       alt: "Full BLS evaluation report with module scores and clinical parameter feedback",
     },
