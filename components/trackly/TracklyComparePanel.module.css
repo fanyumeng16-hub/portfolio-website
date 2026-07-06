@@ -1,0 +1,92 @@
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: var(--trackly-gap-xl);
+  align-items: stretch;
+  width: 100%;
+  margin: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-lg);
+  padding: var(--trackly-gap-lg);
+  border-radius: 18px;
+  border: 1px solid rgba(74, 105, 226, 0.12);
+  box-sizing: border-box;
+}
+
+.columnDefault {
+  background: var(--trackly-pale);
+}
+
+.columnAccent {
+  background: var(--trackly-sky);
+  border-color: rgba(74, 105, 226, 0.22);
+}
+
+.columnMuted {
+  background: #fff;
+  border-style: dashed;
+  border-color: rgba(17, 67, 144, 0.18);
+}
+
+.columnHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.columnIcon {
+  width: var(--trackly-icon-sm);
+  height: var(--trackly-icon-sm);
+  flex-shrink: 0;
+}
+
+.columnTitle {
+  margin: 0;
+  font-size: var(--trackly-fs-subtitle);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111;
+}
+
+.columnList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columnList li {
+  list-style: none;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--trackly-blue);
+  color: #fff;
+  font-size: var(--trackly-fs-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+@media (max-width: 800px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .divider {
+    margin-inline: auto;
+  }
+}

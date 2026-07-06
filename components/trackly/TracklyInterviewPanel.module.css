@@ -1,0 +1,172 @@
+.panel {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-2xl);
+}
+
+.criteria {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--trackly-illus-portrait-col, 32%));
+  gap: var(--trackly-gap-xl);
+  align-items: center;
+}
+
+.criteriaCopy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-lg);
+  text-align: left;
+  min-width: 0;
+}
+
+.criteriaTitle {
+  margin: 0;
+  font-size: var(--trackly-fs-subtitle);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111;
+}
+
+.criteriaPills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--trackly-gap-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.criteriaPill {
+  padding: var(--trackly-capsule-py) var(--trackly-capsule-px);
+  border-radius: var(--trackly-capsule-radius);
+  background: var(--trackly-sky);
+  color: #111;
+  font-size: var(--trackly-fs-body);
+  line-height: 1.4;
+  font-weight: 500;
+  width: fit-content;
+  max-width: 100%;
+  text-align: left;
+}
+
+.criteriaArt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr);
+  gap: var(--trackly-gap-2xl);
+  align-items: start;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-2xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.statValue {
+  font-size: var(--trackly-fs-stat-lg);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--trackly-blue);
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-size: var(--trackly-fs-body);
+  line-height: 1.35;
+  color: #333;
+}
+
+.quotes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--trackly-gap-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quote {
+  margin: 0;
+  padding: var(--trackly-gap-md) var(--trackly-gap-lg);
+  border-radius: 18px 18px 4px 18px;
+  background: var(--trackly-pale);
+  font-size: var(--trackly-fs-body);
+  line-height: 1.55;
+  color: #111;
+  max-width: 92%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.quoteAccent {
+  background: var(--trackly-blue);
+  color: #fff;
+  border-radius: 18px 18px 18px 4px;
+}
+
+@media (max-width: 800px) {
+  .criteria {
+    grid-template-columns: 1fr;
+    gap: var(--trackly-gap-xl);
+  }
+
+  .criteriaArt {
+    order: -1;
+  }
+
+  .illustration {
+    width: min(68vw, 20rem);
+    margin-inline: auto;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--trackly-gap-xl);
+  }
+
+  .stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--trackly-gap-xl);
+  }
+
+  .quotes {
+    align-items: stretch;
+  }
+
+  .quote {
+    max-width: none;
+    border-radius: 16px;
+  }
+
+  .quoteAccent {
+    border-radius: 16px;
+  }
+}

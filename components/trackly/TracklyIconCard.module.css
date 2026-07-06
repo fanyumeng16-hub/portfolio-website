@@ -1,0 +1,75 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--trackly-gap-md);
+  padding: var(--trackly-gap-xl) var(--trackly-gap-lg);
+  border-radius: 16px;
+  border: 1px solid rgba(74, 105, 226, 0.12);
+  background: #fff;
+  text-align: left;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.cardDefault {
+  background: var(--trackly-pale);
+}
+
+.cardAccent {
+  background: var(--trackly-sky);
+  border-color: rgba(74, 105, 226, 0.2);
+}
+
+.cardCompact {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--trackly-gap-md);
+  padding: var(--trackly-gap-md) var(--trackly-gap-lg);
+  background: var(--trackly-pale);
+}
+
+.icon {
+  display: block;
+  width: var(--trackly-icon-lg);
+  height: var(--trackly-icon-lg);
+  color: var(--trackly-blue);
+  flex-shrink: 0;
+}
+
+.cardCompact .icon {
+  width: var(--trackly-icon-sm);
+  height: var(--trackly-icon-sm);
+  margin-top: 2px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.label {
+  margin: 0;
+  font-size: var(--trackly-fs-label);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111;
+}
+
+.cardCompact .label {
+  font-size: var(--trackly-fs-body);
+}
+
+.body {
+  margin: 0;
+  font-size: var(--trackly-fs-body);
+  line-height: 1.55;
+  color: #555;
+}
+
+.cardCompact .body {
+  font-size: calc(var(--trackly-fs-body) * 0.92);
+}

@@ -9,7 +9,7 @@ export default function TracklyFeatureMocks() {
         <section
           key={feature.id}
           id={feature.id}
-          className={`case-content-column ${styles.section}`}
+          className={styles.section}
         >
           <div className={styles.composite}>
             {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -23,6 +23,8 @@ export type GallerySlide = {
   summary?: string;
   /** Omit from TOC when false; use a shorter label when string */
   tocLabel?: string | false;
+  /** Hide the seamless heading when the artboard already includes a title */
+  hideTitle?: boolean;
   /** Override auto TOC index (e.g. "13.5") */
   tocIndex?: string;
 };

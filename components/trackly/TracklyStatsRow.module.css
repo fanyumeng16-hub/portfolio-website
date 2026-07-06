@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--trackly-gap-2xl) var(--trackly-gap-3xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.value {
+  font-size: var(--trackly-fs-stat-lg);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--trackly-blue);
+  letter-spacing: -0.02em;
+}
+
+.label {
+  font-size: var(--trackly-fs-body);
+  line-height: 1.35;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+    gap: var(--trackly-gap-xl);
+  }
+}

@@ -1,0 +1,51 @@
+.wrap {
+  display: block;
+  flex-shrink: 0;
+}
+
+.sm {
+  width: 104px;
+}
+
+.md {
+  width: var(--trackly-donut-size, calc(20rem * var(--trackly-scale, 0.433)));
+  min-width: 7.5rem;
+}
+
+.lg {
+  width: 156px;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.value {
+  fill: #4a69e2;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-size: calc(3.75rem * var(--trackly-scale, 0.433));
+  font-weight: 700;
+}
+
+.sm .value {
+  font-size: calc(2rem * var(--trackly-scale, 0.433));
+}
+
+.lg .value {
+  font-size: calc(3.375rem * var(--trackly-scale, 0.433));
+}
+
+.valueCompact {
+  font-size: calc(2.75rem * var(--trackly-scale, 0.433));
+}
+
+.label {
+  max-width: 12ch;
+  font-size: var(--trackly-fs-meta, 0.75rem);
+  line-height: 1.4;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+}

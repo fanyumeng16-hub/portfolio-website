@@ -58,12 +58,20 @@ export default function CaseGallery({
                   key={image.id}
                   id={image.id}
                 >
-                  {image.summary ? (
-                    <div className="case-gallery-seamless-copy">
-                      <h4 className="case-gallery-seamless-title">
-                        {image.title}
-                      </h4>
-                      <p>{image.summary}</p>
+                  {image.summary || (image.title && !image.hideTitle) ? (
+                    <div
+                      className={`case-gallery-seamless-copy${
+                        image.title && !image.summary && !image.hideTitle
+                          ? " case-gallery-seamless-copy--title-only"
+                          : ""
+                      }`}
+                    >
+                      {image.title && !image.hideTitle ? (
+                        <h4 className="case-gallery-seamless-title">
+                          {image.title}
+                        </h4>
+                      ) : null}
+                      {image.summary ? <p>{image.summary}</p> : null}
                     </div>
                   ) : null}
                   {image.youtubeVideoId ? (

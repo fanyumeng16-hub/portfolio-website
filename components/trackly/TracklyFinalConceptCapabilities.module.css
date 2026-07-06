@@ -1,0 +1,60 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-md);
+  width: 100%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--trackly-gap-2xl);
+  width: 100%;
+  align-items: start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-lg);
+  text-align: center;
+}
+
+.body {
+  margin: 0;
+  max-width: 22rem;
+  font-size: var(--trackly-fs-meta);
+  line-height: 1.55;
+  color: #444;
+}
+
+.scene {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: calc(var(--trackly-gap-xl) * -0.35);
+  pointer-events: none;
+}
+
+.art {
+  display: block;
+  width: min(100%, 24rem);
+  height: auto;
+}
+
+@media (max-width: 800px) {
+  .columns {
+    grid-template-columns: 1fr;
+    gap: var(--trackly-gap-xl);
+  }
+
+  .scene {
+    margin-top: 0;
+  }
+
+  .art {
+    width: min(72vw, 20rem);
+  }
+}

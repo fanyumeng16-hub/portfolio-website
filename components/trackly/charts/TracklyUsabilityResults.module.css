@@ -1,0 +1,34 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--trackly-gap-xl);
+  width: 100%;
+}
+
+.panel {
+  padding: var(--trackly-gap-lg) 0;
+  min-width: 0;
+}
+
+.panelWide {
+  grid-column: 1 / -1;
+}
+
+.panelTitle {
+  margin: 0 0 var(--trackly-gap-md);
+  font-size: var(--trackly-fs-body);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #111;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+
+  .panelWide {
+    grid-column: auto;
+  }
+}

@@ -1,8 +1,16 @@
 import Image from "next/image";
-import type { TracklyBoard as TracklyBoardType } from "@/data/trackly-content";
+
+export type TracklyBoardSlide = {
+  id: string;
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  priority?: boolean;
+};
 
 type Props = {
-  board: TracklyBoardType;
+  board: TracklyBoardSlide;
   className?: string;
   embedded?: boolean;
 };

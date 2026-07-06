@@ -1,0 +1,72 @@
+/* Illustration floats beside card grids — Trackly07 proportions */
+.row {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+}
+
+.art {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: var(--trackly-illus-decor, 24%);
+  min-width: 10rem;
+  max-width: 18rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sideRight .art {
+  right: 0;
+}
+
+.sideLeft .art {
+  left: 0;
+}
+
+.sideRight .content {
+  padding-right: calc(min(var(--trackly-illus-decor, 24%), 18rem) + var(--trackly-gap-lg));
+}
+
+.sideLeft .content {
+  padding-left: calc(min(var(--trackly-illus-decor, 24%), 18rem) + var(--trackly-gap-lg));
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--trackly-gap-xl);
+  }
+
+  .art {
+    position: static;
+    width: min(48vw, 14rem);
+    min-width: 0;
+    max-width: none;
+  }
+
+  .sideRight .content,
+  .sideLeft .content {
+    padding-inline: 0;
+    order: 1;
+  }
+}

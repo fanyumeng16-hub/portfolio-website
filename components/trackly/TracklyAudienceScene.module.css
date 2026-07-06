@@ -1,0 +1,96 @@
+.scene {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 var(--trackly-gap-2xl);
+  font-size: var(--trackly-fs-h1);
+  line-height: calc(53 / 50);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111;
+}
+
+.titleBlue {
+  color: var(--trackly-blue, #4a69e2);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-2xl);
+  width: 100%;
+}
+
+.characters {
+  display: block;
+  width: min(100%, 26rem);
+  height: auto;
+  margin-inline: auto;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--trackly-gap-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 52rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--trackly-capsule-min-h);
+  padding: var(--trackly-capsule-py) var(--trackly-capsule-px);
+  border-radius: var(--trackly-capsule-radius);
+  background: var(--trackly-sky, #d6e0ff);
+  color: #111;
+  font-size: var(--trackly-fs-body);
+  line-height: 1.35;
+  font-weight: 500;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 720px) {
+  .characters {
+    width: min(88vw, 22rem);
+  }
+
+  .pills {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pill {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scene {
+    animation: tracklyAudienceIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes tracklyAudienceIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

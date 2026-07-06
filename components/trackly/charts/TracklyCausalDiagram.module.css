@@ -1,0 +1,134 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-md);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--trackly-fs-subtitle);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111;
+  text-align: left;
+}
+
+.diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-sm);
+  width: 100%;
+}
+
+.layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-md);
+  width: 100%;
+}
+
+.layerLabel {
+  font-size: var(--trackly-fs-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--trackly-navy);
+}
+
+.gapRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--trackly-gap-lg);
+}
+
+.gapNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-sm);
+  text-align: center;
+}
+
+.gapPill {
+  width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.nodeSub {
+  font-size: var(--trackly-fs-meta);
+  line-height: 1.45;
+  color: #555;
+  max-width: 20ch;
+}
+
+.connector {
+  display: flex;
+  justify-content: center;
+  padding: 2px 0;
+}
+
+.arrowDown {
+  color: var(--trackly-blue);
+  font-size: var(--trackly-fs-body);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.emotionRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--trackly-gap-sm) var(--trackly-gap-md);
+  width: 100%;
+}
+
+.outcome {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: var(--trackly-gap-xs, 4px);
+}
+
+.breakdown {
+  font-size: var(--trackly-fs-body);
+}
+
+.caption {
+  margin: var(--trackly-gap-sm) 0 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.captionCapsule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(52rem, 100%);
+  min-height: var(--trackly-capsule-min-h);
+  padding: var(--trackly-capsule-py) var(--trackly-capsule-px);
+  border-radius: var(--trackly-capsule-radius);
+  background: var(--trackly-sky);
+  color: var(--trackly-navy);
+  font-size: var(--trackly-fs-meta);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 720px) {
+  .gapRow {
+    grid-template-columns: 1fr;
+    gap: var(--trackly-gap-md);
+  }
+}

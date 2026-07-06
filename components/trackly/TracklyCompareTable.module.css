@@ -1,0 +1,182 @@
+.wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-size: var(--trackly-fs-body);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: var(--trackly-gap-md) var(--trackly-gap-lg);
+  vertical-align: top;
+  border-bottom: 1px solid rgba(17, 67, 144, 0.08);
+}
+
+.table thead th {
+  font-weight: 700;
+  line-height: 1.25;
+  border-bottom: none;
+  padding-bottom: var(--trackly-gap-lg);
+  vertical-align: bottom;
+}
+
+.topicCol {
+  width: 18%;
+  min-width: 7rem;
+}
+
+.leftCol {
+  width: 41%;
+}
+
+.rightCol {
+  width: 41%;
+  background: rgba(214, 224, 255, 0.22);
+}
+
+.headerPillLeft,
+.headerPillRight,
+.topicPill,
+.cellCapsuleLeft,
+.cellCapsuleRight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border-radius: var(--trackly-capsule-radius);
+  line-height: 1.35;
+}
+
+.headerPillLeft,
+.headerPillRight {
+  min-height: var(--trackly-capsule-min-h);
+  padding: var(--trackly-capsule-py) var(--trackly-capsule-px);
+  font-size: var(--trackly-fs-meta);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: normal;
+}
+
+.headerPillLeft {
+  background: var(--trackly-pale);
+  color: var(--trackly-navy);
+}
+
+.headerPillRight {
+  background: var(--trackly-blue);
+  color: #fff;
+}
+
+.topicPill {
+  min-height: calc(var(--trackly-capsule-min-h) * 0.88);
+  padding: var(--trackly-capsule-py) calc(var(--trackly-capsule-px) * 0.72);
+  background: var(--trackly-sky);
+  color: var(--trackly-navy);
+  font-size: calc(var(--trackly-fs-meta) * 0.95);
+  font-weight: 700;
+  white-space: normal;
+}
+
+.topicCell {
+  font-weight: 700;
+}
+
+.leftCell {
+  color: #444;
+}
+
+.rightCell {
+  color: #111;
+  font-weight: 400;
+  background: rgba(214, 224, 255, 0.22);
+}
+
+.cellCapsuleLeft,
+.cellCapsuleRight {
+  display: block;
+  width: 100%;
+  padding: var(--trackly-gap-sm) var(--trackly-gap-md);
+  font-size: var(--trackly-fs-body);
+  font-weight: inherit;
+  white-space: normal;
+}
+
+.cellCapsuleLeft {
+  background: rgba(238, 242, 255, 0.75);
+  color: #444;
+}
+
+.cellCapsuleRight {
+  background: #fff;
+  color: #111;
+  font-size: var(--trackly-fs-meta);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.mobileLabel {
+  display: none;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 720px) {
+  .table thead {
+    display: none;
+  }
+
+  .table tbody tr {
+    display: grid;
+    gap: var(--trackly-gap-sm);
+    padding: var(--trackly-gap-lg) 0;
+    border-bottom: 1px solid rgba(17, 67, 144, 0.1);
+  }
+
+  .table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .topicCell,
+  .leftCell,
+  .rightCell {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .mobileLabel {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: var(--trackly-gap-sm);
+    min-height: calc(var(--trackly-capsule-min-h) * 0.82);
+    padding: var(--trackly-capsule-py) calc(var(--trackly-capsule-px) * 0.65);
+    border-radius: var(--trackly-capsule-radius);
+    font-size: calc(var(--trackly-fs-meta) * 0.9);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: normal;
+  }
+
+  .mobileLabelLeft {
+    background: var(--trackly-pale);
+    color: var(--trackly-navy);
+  }
+
+  .mobileLabelRight {
+    background: var(--trackly-blue);
+    color: #fff;
+  }
+}

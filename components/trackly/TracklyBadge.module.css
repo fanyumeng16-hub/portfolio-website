@@ -1,0 +1,36 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: var(--trackly-capsule-min-h, calc(53px * 0.433));
+  padding: var(--trackly-capsule-py, calc(4px * 0.433))
+    var(--trackly-capsule-px, calc(32px * 0.433));
+  border-radius: var(--trackly-capsule-radius, calc(30px * 0.433));
+  background: var(--trackly-blue, #4a69e2);
+  color: #fff;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-size: var(--trackly-fs-kicker, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.badgeLight {
+  background: var(--trackly-sky, #d6e0ff);
+  color: var(--trackly-navy, #114390);
+}
+
+.badgeNavy {
+  background: var(--trackly-navy, #114390);
+  color: #fff;
+  font-size: var(--trackly-fs-body, 1.08rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  min-height: auto;
+  padding: var(--trackly-capsule-py, calc(4px * 0.433))
+    calc(24px * var(--trackly-scale, 0.433));
+}

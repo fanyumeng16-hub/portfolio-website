@@ -1,0 +1,200 @@
+.root {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-xl);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--trackly-fs-subtitle);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111;
+  text-align: left;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+}
+
+.timelineRail {
+  position: absolute;
+  top: 1.35rem;
+  left: 4%;
+  right: 4%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(74, 105, 226, 0.15) 0%,
+    rgba(74, 105, 226, 0.55) 50%,
+    rgba(74, 105, 226, 0.15) 100%
+  );
+}
+
+.timelineStages {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--trackly-gap-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timelineStage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-sm);
+  text-align: center;
+}
+
+.stagePill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--trackly-capsule-min-h, 2rem);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--trackly-capsule-radius, 999px);
+  background: var(--trackly-blue, #4a69e2);
+  color: #fff;
+  font-size: calc(var(--trackly-fs-meta) * 0.92);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.people {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  min-height: 1.25rem;
+}
+
+.person {
+  display: block;
+  width: 0.85rem;
+  height: auto;
+}
+
+.stagePain {
+  margin: 0;
+  font-size: calc(var(--trackly-fs-meta) * 0.95);
+  line-height: 1.4;
+  color: #555;
+  max-width: 11rem;
+}
+
+.chartWrap {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 5.5rem) minmax(0, 1fr);
+  gap: var(--trackly-gap-md);
+  align-items: stretch;
+  width: 100%;
+}
+
+.yAxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--trackly-gap-sm) 0 2.5rem;
+  font-size: var(--trackly-fs-meta);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--trackly-navy);
+  text-align: right;
+}
+
+.chartArea {
+  min-width: 0;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.xAxis {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--trackly-gap-sm);
+  margin: var(--trackly-gap-sm) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xLabel {
+  font-size: var(--trackly-fs-meta);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #333;
+  text-align: center;
+}
+
+.caption {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.captionCapsule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(52rem, 100%);
+  min-height: var(--trackly-capsule-min-h);
+  padding: var(--trackly-capsule-py) var(--trackly-capsule-px);
+  border-radius: var(--trackly-capsule-radius);
+  background: var(--trackly-sky);
+  color: var(--trackly-navy);
+  font-size: var(--trackly-fs-meta);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .timelineRail {
+    display: none;
+  }
+
+  .timelineStages {
+    grid-template-columns: 1fr;
+    gap: var(--trackly-gap-lg);
+  }
+
+  .timelineStage {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .stagePain {
+    max-width: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .chartWrap {
+    grid-template-columns: 1fr;
+  }
+
+  .yAxis {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--trackly-gap-sm) var(--trackly-gap-md);
+    padding-bottom: 0;
+    text-align: left;
+  }
+
+  .xLabel {
+    font-size: calc(var(--trackly-fs-meta) * 0.9);
+  }
+}

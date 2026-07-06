@@ -1,0 +1,58 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trackly-gap-2xl);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--trackly-gap-lg, 1.5rem);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.factValue {
+  font-size: var(--trackly-fs-logo, 3rem);
+  line-height: 1;
+  font-weight: 700;
+  color: #114390;
+}
+
+.factLabel {
+  font-size: var(--trackly-fs-meta, 0.75rem);
+  line-height: 1.35;
+  color: #333;
+  max-width: 13ch;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 720px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,106 @@
+.root {
+  margin: 0;
+  padding: var(--trackly-gap-lg) 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--trackly-gap-md);
+}
+
+.barGroup {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9rem) minmax(0, 1fr) 2.5rem;
+  gap: var(--trackly-gap-md);
+  align-items: center;
+}
+
+.barLabel {
+  font-size: var(--trackly-fs-sm);
+  font-weight: 600;
+  color: #114390;
+}
+
+.barTrack {
+  height: 12px;
+  border-radius: 999px;
+  background: #d6e0ff;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.barBefore {
+  background: #114390;
+}
+
+.barAfter {
+  background: #4a69e2;
+}
+
+.barValue {
+  font-size: var(--trackly-fs-body);
+  font-weight: 700;
+  color: #114390;
+  text-align: right;
+}
+
+.scale {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9rem) minmax(0, 1fr) 2.5rem;
+  gap: var(--trackly-gap-md);
+  margin-top: var(--trackly-gap-sm);
+}
+
+.scaleTicks {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tick {
+  font-size: var(--trackly-fs-meta);
+  color: #888;
+}
+
+.caption {
+  margin: var(--trackly-gap-md) 0 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.captionCapsule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: var(--trackly-capsule-min-h);
+  padding: var(--trackly-capsule-py) var(--trackly-capsule-px);
+  border-radius: var(--trackly-capsule-radius);
+  background: var(--trackly-sky);
+  color: var(--trackly-navy);
+  font-size: var(--trackly-fs-meta);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .barGroup,
+  .scale {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .scaleTicks {
+    grid-column: 1;
+  }
+}

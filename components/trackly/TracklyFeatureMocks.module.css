@@ -1,16 +1,20 @@
 .section {
-  padding-block: clamp(20px, 3vw, 40px);
+  width: min(var(--trackly-gallery-max, 75rem), 100%);
+  max-width: var(--trackly-gallery-max, 75rem);
+  margin-inline: auto;
+  padding-block: var(--trackly-section-py);
+  padding-inline: var(--trackly-section-px);
   background: #fff;
   overflow: visible;
   scroll-margin-top: calc(var(--case-nav-height, 88px) + 20px);
+  box-sizing: border-box;
 }
 
 .composite {
   position: relative;
   width: 100%;
   line-height: 0;
-  /* 视频略高于底图时留出余量，避免裁切 */
-  padding-bottom: clamp(16px, 3%, 36px);
+  padding-bottom: clamp(16px, 3%, 32px);
   overflow: visible;
 }
 

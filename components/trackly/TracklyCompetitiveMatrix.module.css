@@ -1,0 +1,185 @@
+.wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-size: calc(var(--trackly-fs-meta) * 0.78);
+  line-height: 1.35;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: var(--trackly-gap-sm) calc(var(--trackly-gap-sm) * 1.1);
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(17, 67, 144, 0.1);
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.table thead th {
+  font-size: calc(var(--trackly-fs-meta) * 0.86);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111;
+  border-bottom: 2px solid rgba(74, 105, 226, 0.22);
+  white-space: normal;
+}
+
+.topicCol {
+  width: 13%;
+  text-align: left;
+}
+
+.headCell {
+  font-weight: 700;
+  color: var(--trackly-navy);
+  text-align: center;
+}
+
+.headHighlight {
+  color: var(--trackly-blue);
+  background: rgba(214, 224, 255, 0.35);
+}
+
+.topicCell {
+  font-weight: 700;
+  color: #111;
+  font-size: calc(var(--trackly-fs-meta) * 0.84);
+  line-height: 1.3;
+  padding-right: var(--trackly-gap-md);
+  text-align: left;
+}
+
+.cell {
+  color: #333;
+  text-align: center;
+}
+
+.cellIconOnly {
+  text-align: center;
+}
+
+.cellValueIconOnly,
+.cellValueWithDetail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  max-width: 100%;
+  text-align: center;
+}
+
+.iconYes {
+  width: 1.65em;
+  height: 1.65em;
+  flex-shrink: 0;
+  color: #1a9d5c;
+}
+
+.iconNo {
+  width: 1.65em;
+  height: 1.65em;
+  flex-shrink: 0;
+  color: var(--trackly-red, #e86b6b);
+}
+
+.cellDetail {
+  color: #333;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tracklyCell {
+  color: #111;
+  font-weight: 600;
+  background: rgba(238, 242, 255, 0.55);
+  text-align: center;
+}
+
+.diffRow .topicCell {
+  color: var(--trackly-navy);
+}
+
+.cellHighlight {
+  background: rgba(238, 242, 255, 0.75);
+}
+
+.cellMuted {
+  opacity: 0.85;
+}
+
+.mobileLabel {
+  display: none;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 900px) {
+  .table {
+    min-width: 36rem;
+    font-size: calc(var(--trackly-fs-meta) * 0.85);
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody tr {
+    display: grid;
+    gap: var(--trackly-gap-sm);
+    padding: var(--trackly-gap-md) 0;
+    border-bottom: 1px solid rgba(17, 67, 144, 0.1);
+  }
+
+  .table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .topicCell,
+  .cell,
+  .tracklyCell {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .mobileLabel {
+    display: block;
+    margin-bottom: 4px;
+    font-size: calc(var(--trackly-fs-meta) * 0.8);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--trackly-navy);
+  }
+
+  .tracklyCell .mobileLabel {
+    color: var(--trackly-blue);
+  }
+}
