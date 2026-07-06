@@ -97,6 +97,18 @@ export const medicalProblemIdentification = {
       label: "Client-Provided Brief",
       quote:
         "The BLS certification process feels like it requires too much staff time. We need it optimized, but we do not have a precise problem definition beyond that feeling.",
+      followUp:
+        "To sharpen the problem definition, we investigated four areas on site:",
+      researchAreas: [
+        { id: "workflow", title: "Workflow mapping" },
+        { id: "interviews", title: "Stakeholder interviews" },
+        { id: "observation", title: "End-to-end observation" },
+        { id: "hands-on", title: "Hands-on BLS practice" },
+      ],
+      briefImage: {
+        src: "/images/mayoBrief.png",
+        alt: "Illustration of nurses queued in a hospital corridor outside a BLS certification room, labeled 400 Candidates",
+      },
     },
     {
       id: "mayo-problem-fieldwork",
@@ -114,31 +126,13 @@ export const medicalProblemIdentification = {
         {
           id: "interviews",
           title: "Stakeholder interviews",
-          metricsSummary: { label: "Interviews", value: "11 across 4 roles" },
-          metrics: [
-            { label: "BLS evaluators", value: "4" },
-            { label: "Registered nurses", value: "4" },
-            { label: "Clinical educators", value: "2" },
-            { label: "Simulation coordinator", value: "1" },
-          ],
-          detail:
-            "Semi-structured interviews across planning, delivery, and quality oversight.",
+          metricsInline:
+            "11 interviews — 4 evaluators · 4 nurses · 2 educators · 1 coordinator",
+          detail: "Semi-structured across planning, delivery, and quality oversight.",
           quote:
             "We simply do not have enough evaluators to keep up with volume. Hiring more is not a realistic lever for us.",
           quoteAttribution: "BLS Program Lead",
-        },
-        {
-          id: "observation",
-          title: "End-to-end flow observation",
-          metrics: [
-            { label: "Runs observed", value: "6" },
-            { label: "Avg. session", value: "22 min" },
-          ],
-          detail: "Documented certification from room setup through assessment and debrief.",
-          quote:
-            "One evaluator cannot reliably watch compression depth, hand placement, and AED pad alignment at the same time.",
-          quoteAttribution: "Senior BLS Evaluator",
-          sideImages: [
+          belowImages: [
             {
               src: "/images/mayo-research.png",
               alt: "Design team and Mayo Clinic clinical staff observing BLS certification in a hospital simulation room",
@@ -147,13 +141,22 @@ export const medicalProblemIdentification = {
           ],
         },
         {
+          id: "observation",
+          title: "End-to-end flow observation",
+          compact: true,
+          metricsInline:
+            "6 runs observed · 22 min avg. — documented from room setup through assessment and debrief.",
+          quoteInline:
+            "“One evaluator cannot reliably watch compression depth, hand placement, and AED pad alignment at the same time.” — Senior BLS Evaluator",
+        },
+        {
           id: "hands-on",
           title: "Hands-on BLS practice",
           detail: "Coached practice to see what evaluators must catch and how errors surface live.",
           quote:
             "Even strong nurses miss subtle form errors when they are also managing the room and the clock.",
           quoteAttribution: "Clinical Educator",
-          sideImages: [
+          belowImages: [
             {
               src: "/images/mayo-research2.png",
               alt: "Hands-on BLS equipment practice with AED electrode pads during on-site fieldwork",
@@ -171,13 +174,6 @@ export const medicalProblemIdentification = {
       synthesis: {
         intro:
           "We consolidated field notes, interview transcripts, and workshop output into a structured evidence base before defining the problem.",
-        stickyTotal: "100+",
-        categories: [
-          { label: "Staffing & scheduling pressure", count: 28 },
-          { label: "Observation fidelity & evaluator load", count: 31 },
-          { label: "Workflow friction & session logistics", count: 22 },
-          { label: "Candidate readiness & assessment format", count: 19 },
-        ],
         insightsStep: {
           stat: "8",
           title: "insights consolidated",
@@ -191,51 +187,19 @@ export const medicalProblemIdentification = {
       discovered: {
         title: "What we discovered",
         items: [
-          {
-            id: "candidate-readiness",
-            label: "Candidates were prepared",
-            body: "Nurses arrived well trained. Clinical competency was not the limiting factor in certification throughput.",
-          },
-          {
-            id: "evaluator-scarcity",
-            label: "Evaluators are the scarce resource",
-            body: "Twenty-eight evaluators shoulder roughly 400 annual certifications. Capacity, not candidate skill, drives the bottleneck.",
-          },
-          {
-            id: "multi-point-observation",
-            label: "Multi-point observation is essential",
-            body: "Rigor requires simultaneous tracking of compression depth, hand placement, and AED pad alignment in real time.",
-          },
-          {
-            id: "format-constraint",
-            label: "The 1:1 format is fixed",
-            body: "Credentialing must run one on one, in person. That structural constraint shapes every staffing calculation.",
-          },
+          { id: "candidate-readiness", label: "Candidates were prepared" },
+          { id: "evaluator-scarcity", label: "Evaluators are the scarce resource" },
+          { id: "multi-point-observation", label: "Multi-point observation is essential" },
+          { id: "format-constraint", label: "The 1:1 format is fixed" },
         ],
       },
       ruledOut: {
         title: "What we ruled out",
         items: [
-          {
-            id: "insufficient-competency",
-            label: "Insufficient nurse competency",
-            body: "Preparation levels were not driving delays or failure rates in the sessions we observed.",
-          },
-          {
-            id: "format-scales",
-            label: "The format can absorb volume",
-            body: "The existing one-to-one assessment path cannot scale to meet annual demand as structured today.",
-          },
-          {
-            id: "parallelize-time",
-            label: "Evaluator time can parallelize",
-            body: "Within the current format, one evaluator must own a single live session from setup through debrief.",
-          },
-          {
-            id: "hiring-fix",
-            label: "Hiring closes the gap",
-            body: "Evaluators are already the scarce resource. Adding headcount is not a realistic lever for the program.",
-          },
+          { id: "insufficient-competency", label: "Insufficient nurse competency" },
+          { id: "format-scales", label: "The format can absorb volume" },
+          { id: "parallelize-time", label: "Evaluator time can parallelize" },
+          { id: "hiring-fix", label: "Hiring closes the gap" },
         ],
       },
     },
@@ -290,10 +254,6 @@ export const medicalDecision = {
   kicker: "Why Mixed Reality",
   intro:
     "We evaluated four directions against the goal of removing evaluator dependency without lowering certification rigor.",
-  principle: [
-    "The decision had to show where the other three options failed, not only why mixed reality looked attractive.",
-    "Otherwise it would read like we picked MR first and worked backward.",
-  ],
   matrix: {
     columns: [
       {
@@ -417,28 +377,22 @@ export const medicalDecision = {
   matrixBridge:
     "Real-time Feedback returns in Design Standards by design: judged capable here, built and verified there.",
   standardsIntro:
-    "The decision matrix flagged real-time feedback and clinical fidelity as reasons mixed reality could work. Design Standards converts those directional judgments into non-negotiable requirements, capabilities we had to prove through design and testing, not assumptions we could lean on. Remove one, and the entire proposal collapses.",
+    "Three non-negotiable requirements the MR system had to prove through design and testing.",
   standards: [
     {
       id: "feedback",
       icon: "feedback" as const,
       title: "Real-time Feedback",
-      body: "Performance guidance had to surface during the assessment, not after it, so nurses could correct in the moment.",
-      risk: "Prevents nurses from making clinical errors during assessment without realizing it in the moment.",
     },
     {
       id: "fidelity",
       icon: "fidelity" as const,
       title: "Full Clinical Fidelity",
-      body: "No step could be simplified because MR could not render it. The test had to measure the actual skill being certified.",
-      risk: 'Prevents simplifying an action MR cannot support, which would distort what is being tested.',
     },
     {
       id: "credentialing",
       icon: "credentialing" as const,
       title: "Credentialing-grade Evaluation",
-      body: "The report had to be one Mayo Clinic could stand behind as equivalent to a human evaluator's sign-off.",
-      risk: "Prevents a system judgment Mayo Clinic cannot actually trust or adopt.",
     },
   ],
 };

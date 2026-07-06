@@ -203,7 +203,6 @@ export function MedicalDecisionSection() {
   const {
     title,
     intro,
-    principle,
     matrix,
     matrixNote,
     matrixBridge,
@@ -215,16 +214,8 @@ export function MedicalDecisionSection() {
   return (
     <MedicalSection id="mayo-decision" title={title} intro={intro}>
       <div className={styles.medicalLayers}>
-        <MedicalLayerShell index="01" label="Evaluation Principle">
-          <ul className={styles.problemPoints}>
-            {principle.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-        </MedicalLayerShell>
-
         <MedicalLayerShell
-          index="02"
+          index="01"
           label="Decision Matrix"
           className={styles.medicalLayerFullWidth}
         >
@@ -332,7 +323,7 @@ export function MedicalDecisionSection() {
         </MedicalLayerShell>
 
         <MedicalLayerShell
-          index="03"
+          index="02"
           label="Design Standards"
           anchorId="mayo-standards"
         >
@@ -342,8 +333,6 @@ export function MedicalDecisionSection() {
               <li className={`${styles.medicalCard} ${styles.medicalCardWide}`} key={item.id}>
                 <StandardIcon type={item.icon} />
                 <h4 className={styles.medicalCardTitle}>{item.title}</h4>
-                <p className={styles.medicalCardBody}>{item.body}</p>
-                <p className={styles.standardRisk}>{item.risk}</p>
               </li>
             ))}
           </ul>

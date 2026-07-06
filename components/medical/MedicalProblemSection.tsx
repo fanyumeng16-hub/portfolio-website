@@ -9,6 +9,13 @@ type ClientLayer = {
   index: string;
   label: string;
   quote: string;
+  followUp?: string;
+  researchAreas?: { id: string; title: string }[];
+  briefImage?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
 };
 
 type TimelineImage = {
@@ -30,7 +37,11 @@ type FieldworkStep = {
   metricsSummary?: FieldworkMetric;
   quote?: string;
   quoteAttribution?: string;
+  metricsInline?: string;
+  quoteInline?: string;
+  compact?: boolean;
   sideImages?: TimelineImage[];
+  belowImages?: TimelineImage[];
 };
 
 function FieldworkMetrics({ step }: { step: FieldworkStep }) {
@@ -93,7 +104,7 @@ type FieldworkLayer = {
 type InsightItem = {
   id: string;
   label: string;
-  body: string;
+  body?: string;
 };
 
 type InsightGroup = {
@@ -107,8 +118,6 @@ type FindingsLayer = {
   label: string;
   synthesis: {
     intro: string;
-    stickyTotal: string;
-    categories: { label: string; count: number }[];
     insightsStep: { stat: string; title: string };
     patternsStep: { stat: string; title: string; body: string };
   };
@@ -156,7 +165,9 @@ function ProblemInsightPanels({
               </span>
               <div className={styles.problemInsightCopy}>
                 <p className={styles.problemInsightLabel}>{item.label}</p>
-                <p className={styles.problemInsightBody}>{item.body}</p>
+                {item.body ? (
+                  <p className={styles.problemInsightBody}>{item.body}</p>
+                ) : null}
               </div>
             </li>
           ))}
@@ -178,7 +189,9 @@ function ProblemInsightPanels({
               </span>
               <div className={styles.problemInsightCopy}>
                 <p className={styles.problemInsightLabel}>{item.label}</p>
-                <p className={styles.problemInsightBody}>{item.body}</p>
+                {item.body ? (
+                  <p className={styles.problemInsightBody}>{item.body}</p>
+                ) : null}
               </div>
             </li>
           ))}
@@ -239,15 +252,51 @@ function FieldworkTimeline({ steps }: { steps: FieldworkStep[] }) {
           >
             <div className={styles.problemTimelineContent}>
               <h5 className={styles.problemTimelineTitle}>{step.title}</h5>
-              <FieldworkMetrics step={step} />
-              <p className={styles.problemTimelineDetail}>{step.detail}</p>
-              {step.quote ? (
-                <blockquote className={styles.problemQuote}>
-                  <p>&ldquo;{step.quote}&rdquo;</p>
-                  {step.quoteAttribution ? (
-                    <cite className={styles.problemQuoteCite}>{step.quoteAttribution}</cite>
+              {step.compact && step.metricsInline && step.quoteInline ? (
+                <div className={styles.problemTimelineCompactRow}>
+                  <p className={styles.problemTimelineMetricsInline}>{step.metricsInline}</p>
+                  <p className={styles.problemTimelineQuoteInline}>{step.quoteInline}</p>
+                </div>
+              ) : (
+                <>
+                  {step.metricsInline ? (
+                    <p className={styles.problemTimelineMetricsInline}>{step.metricsInline}</p>
+                  ) : (
+                    <FieldworkMetrics step={step} />
+                  )}
+                  {step.detail ? (
+                    <p className={styles.problemTimelineDetail}>{step.detail}</p>
                   ) : null}
-                </blockquote>
+                  {step.quote ? (
+                    <blockquote className={styles.problemQuote}>
+                      <p>&ldquo;{step.quote}&rdquo;</p>
+                      {step.quoteAttribution ? (
+                        <cite className={styles.problemQuoteCite}>{step.quoteAttribution}</cite>
+                      ) : null}
+                    </blockquote>
+                  ) : null}
+                </>
+              )}
+              {step.belowImages?.length ? (
+                <div className={styles.problemTimelineBelowMedia}>
+                  {step.belowImages.map((image) => (
+                    <figure className={styles.problemTimelineBelowFigure} key={image.src}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className={styles.problemTimelineBelowImage}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      {image.caption ? (
+                        <figcaption className={styles.problemTimelineBelowCaption}>
+                          {image.caption}
+                        </figcaption>
+                      ) : null}
+                    </figure>
+                  ))}
+                </div>
               ) : null}
             </div>
             {step.sideImages?.length ? (
@@ -294,6 +343,39 @@ export function MedicalProblemSection() {
           <blockquote className={styles.problemBriefQuote}>
             <p>&ldquo;{clientLayer.quote}&rdquo;</p>
           </blockquote>
+          {clientLayer.followUp ? (
+            <div className={styles.problemBriefAreas}>
+              <p className={styles.problemBriefFollowUp}>{clientLayer.followUp}</p>
+              {clientLayer.researchAreas?.length ? (
+                <ul
+                  className={`${styles.medicalCardGrid} ${styles.medicalCardGridCols4} ${styles.problemBriefAreaGrid}`}
+                >
+                  {clientLayer.researchAreas.map((area) => (
+                    <li className={`${styles.medicalCard} ${styles.problemBriefAreaCard}`} key={area.id}>
+                      <h4 className={styles.medicalCardTitle}>{area.title}</h4>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ) : null}
+          {clientLayer.briefImage ? (
+            <figure className={styles.problemBriefFigure}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={clientLayer.briefImage.src}
+                alt={clientLayer.briefImage.alt}
+                className={styles.problemBriefImage}
+                loading="lazy"
+                decoding="async"
+              />
+              {clientLayer.briefImage.caption ? (
+                <figcaption className={styles.problemBriefCaption}>
+                  {clientLayer.briefImage.caption}
+                </figcaption>
+              ) : null}
+            </figure>
+          ) : null}
         </ProblemLayerShell>
 
         <ProblemLayerShell
@@ -318,41 +400,7 @@ export function MedicalProblemSection() {
 
         <ProblemLayerShell index={findingsLayer.index} label={findingsLayer.label}>
           <p className={styles.problemSynthesisIntro}>{findingsLayer.synthesis.intro}</p>
-          <ol
-            className={`${styles.problemSynthesisFlow} ${styles.problemSynthesisFlowStep2End}`}
-          >
-            <li className={styles.problemTimelineItem}>
-              <div className={styles.problemTimelineMarker} aria-hidden="true">
-                <span className={styles.problemTimelineDot} />
-                <span className={styles.problemTimelineLine} />
-              </div>
-              <div className={styles.problemTimelineContent}>
-                <h5 className={styles.problemTimelineTitle}>
-                  <span className={styles.problemSynthesisStepStat}>
-                    {findingsLayer.synthesis.stickyTotal}
-                  </span>{" "}
-                  sticky notes synthesized
-                </h5>
-                <div className={styles.problemStickyTableWrap}>
-                  <table className={styles.problemStickyTable}>
-                    <thead>
-                      <tr>
-                        <th scope="col">Category</th>
-                        <th scope="col">Notes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {findingsLayer.synthesis.categories.map((category) => (
-                        <tr key={category.label}>
-                          <th scope="row">{category.label}</th>
-                          <td>{category.count}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </li>
+          <ol className={styles.problemSynthesisFlow}>
             <li className={styles.problemTimelineItem}>
               <div className={styles.problemTimelineMarker} aria-hidden="true">
                 <span className={styles.problemTimelineDot} />
@@ -371,18 +419,6 @@ export function MedicalProblemSection() {
                 />
               </div>
             </li>
-          </ol>
-        </ProblemLayerShell>
-
-        <ProblemLayerShell
-          index={definedProblemsLayer.index}
-          label={definedProblemsLayer.label}
-          anchorId={definedProblemsLayer.id}
-          className={styles.problemLayerFollowSynthesis}
-        >
-          <ol
-            className={`${styles.problemSynthesisFlow} ${styles.problemSynthesisFlowContinued}`}
-          >
             <li className={styles.problemTimelineItem}>
               <div className={styles.problemTimelineMarker} aria-hidden="true">
                 <span className={styles.problemTimelineDot} />
@@ -409,18 +445,25 @@ export function MedicalProblemSection() {
                     />
                   </figure>
                 ) : null}
-                <ul className={styles.problemDefinedGrid}>
-                  {definedProblemsLayer.items.map((item) => (
-                    <li className={styles.problemDefinedCard} key={item.id}>
-                      <p className={styles.problemDefinedStat}>{item.stat}</p>
-                      <p className={styles.problemDefinedStatLabel}>{item.statLabel}</p>
-                      <p className={styles.problemDefinedBody}>{item.body}</p>
-                    </li>
-                  ))}
-                </ul>
               </div>
             </li>
           </ol>
+        </ProblemLayerShell>
+
+        <ProblemLayerShell
+          index={definedProblemsLayer.index}
+          label={definedProblemsLayer.label}
+          anchorId={definedProblemsLayer.id}
+        >
+          <ul className={styles.problemDefinedGrid}>
+            {definedProblemsLayer.items.map((item) => (
+              <li className={styles.problemDefinedCard} key={item.id}>
+                <p className={styles.problemDefinedStat}>{item.stat}</p>
+                <p className={styles.problemDefinedStatLabel}>{item.statLabel}</p>
+                <p className={styles.problemDefinedBody}>{item.body}</p>
+              </li>
+            ))}
+          </ul>
         </ProblemLayerShell>
       </div>
     </MedicalSection>
