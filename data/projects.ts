@@ -137,6 +137,7 @@ export const projects: Project[] = [
       "An interactive rehabilitation system that turns post-surgery recovery into cooperative family play through safe movement guidance and emotional support.",
     bullets: ["Healthcare interaction", "Family-centered UX", "Motion-guided recovery"],
     image: "/images/heartbits.jpg",
+    hidden: true,
   }),
   withTags({
     id: "ora",
