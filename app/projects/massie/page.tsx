@@ -32,7 +32,10 @@ export default function MassieProjectPage() {
         intro="Massie Heritage Center tells Savannah's story through one of its most distinctive artifacts, the City Plan. With ScadServe, this project reimagines how that history reaches visitors through research-led experience design, from wayfinding and guided interpretation to a Premium Package concept built for deeper engagement."
       />
 
-      <CaseGallery images={massieGalleryImages} seamless />
+      <CaseGallery
+        images={massieGalleryImages.map((image) => ({ ...image, hideTitle: true }))}
+        seamless
+      />
     </main>
   );
 }
