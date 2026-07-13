@@ -1,4 +1,5 @@
 import type { medicalDimensionResearch } from "@/data/medical-content";
+import { MayoTextMediaSplit } from "./MayoTextMediaSplit";
 import styles from "./MedicalSections.module.css";
 
 export function MedicalDimensionResearchTracks({
@@ -8,42 +9,42 @@ export function MedicalDimensionResearchTracks({
 }) {
   return (
     <div className={styles.uiDesignResearch}>
-      {tracks.map((track) => (
+      {tracks.map((track, index) => (
         <section className={styles.uiDesignResearchTrack} key={track.id}>
-          <h5 className={styles.uiDesignResearchLabel}>{track.label}</h5>
-          <p className={styles.uiDesignResearchBody}>{track.body}</p>
-          {track.image ? (
-            <figure className={styles.uiDesignResearchFigure}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={track.image.src}
-                alt={track.image.alt}
-                className={styles.uiDesignResearchImage}
-                loading="lazy"
-                decoding="async"
-              />
-              {track.image.caption ? (
-                <figcaption className={styles.figureCaption}>{track.image.caption}</figcaption>
-              ) : null}
-            </figure>
-          ) : null}
-          {"extraImages" in track && track.extraImages
-            ? track.extraImages.map((image) => (
-                <figure className={styles.uiDesignResearchFigure} key={image.src}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className={styles.uiDesignResearchImage}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  {image.caption ? (
-                    <figcaption className={styles.figureCaption}>{image.caption}</figcaption>
-                  ) : null}
-                </figure>
-              ))
-            : null}
+          <MayoTextMediaSplit
+            label={track.label}
+            mediaSide={index % 2 === 0 ? "left" : "right"}
+            image={
+              track.image
+                ? {
+                    src: track.image.src,
+                    alt: track.image.alt,
+                    caption: track.image.caption,
+                  }
+                : undefined
+            }
+            extraMedia={
+              "extraImages" in track && track.extraImages
+                ? track.extraImages.map((image) => (
+                    <figure className={styles.mayoTextMediaSplitExtraFigure} key={image.src}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className={styles.mayoTextMediaSplitImage}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      {image.caption ? (
+                        <figcaption className={styles.figureCaption}>{image.caption}</figcaption>
+                      ) : null}
+                    </figure>
+                  ))
+                : undefined
+            }
+          >
+            <p className={styles.mayoTextMediaSplitBody}>{track.body}</p>
+          </MayoTextMediaSplit>
         </section>
       ))}
     </div>

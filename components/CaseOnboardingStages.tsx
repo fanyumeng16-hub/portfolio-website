@@ -1,5 +1,6 @@
 import CaseAutoplayVideo from "@/components/CaseAutoplayVideo";
 import { CaseOnboardingStage } from "@/data/medical-content";
+import { MayoTextMediaSplit } from "@/components/medical/MayoTextMediaSplit";
 import styles from "@/components/medical/MedicalSections.module.css";
 
 type Props = {
@@ -39,28 +40,28 @@ function StageSideMedia({ stage }: { stage: CaseOnboardingStage }) {
 export default function CaseOnboardingStages({ stages }: Props) {
   return (
     <ol className={`${styles.problemSynthesisFlow} ${styles.onboardingStagesFlow}`}>
-      {stages.map((stage, index) => (
-        <li
-          className={`${styles.problemTimelineItem} ${styles.problemTimelineItemWithMedia}`}
-          id={stage.id}
-          key={stage.id}
-        >
-          <div className={styles.problemTimelineMarker} aria-hidden="true">
-            <span className={styles.problemTimelineDot} />
-            {index < stages.length - 1 ? <span className={styles.problemTimelineLine} /> : null}
-          </div>
-          <div className={styles.onboardingStageRow}>
-            <StageSideMedia stage={stage} />
-            <div className={styles.onboardingStageCopy}>
-              <div className={styles.onboardingStageHead}>
-                <span className={styles.problemTimelineMetricLabel}>{stage.label}</span>
-                <h5 className={styles.problemTimelineTitle}>{stage.title}</h5>
-              </div>
+      {stages.map((stage, index) => {
+        const hasMedia = Boolean(stage.videoSrc || stage.src);
+
+        return (
+          <li
+            className={styles.onboardingStageItem}
+            id={stage.id}
+            key={stage.id}
+          >
+            <MayoTextMediaSplit
+              mediaSide={index % 2 === 0 ? "left" : "right"}
+              media={hasMedia ? <StageSideMedia stage={stage} /> : undefined}
+            >
+              <p className="case-prose-body">
+                <span className="mayoBodyLabel">{stage.label}</span>{" "}
+                <strong className="mayoBodyEm">{stage.title}</strong>
+              </p>
               <p className={styles.onboardingStageDetail}>{stage.body}</p>
-            </div>
-          </div>
-        </li>
-      ))}
+            </MayoTextMediaSplit>
+          </li>
+        );
+      })}
     </ol>
   );
 }

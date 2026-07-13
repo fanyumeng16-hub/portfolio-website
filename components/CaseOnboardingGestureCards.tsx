@@ -41,7 +41,7 @@ export default function CaseOnboardingGestureCards({ cards }: Props) {
       {cards.map((card) => (
         <li className={`${styles.medicalCard} ${styles.medicalCardMedia}`} key={card.id}>
           <div className={styles.medicalCardCopy}>
-            <h4 className={styles.medicalCardTitle}>{card.title}</h4>
+            <p className={styles.medicalCardTitle}>{card.title}</p>
             <p className={styles.medicalCardBody}>{card.body}</p>
           </div>
           <figure className={styles.medicalCardFigure}>

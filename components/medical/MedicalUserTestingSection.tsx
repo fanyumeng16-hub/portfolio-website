@@ -66,16 +66,14 @@ function TestingFinding({ finding }: { finding: CaseFinding }) {
         ) : null}
         <div className={styles.testingFindingCopy}>
           {finding.observed ? (
-            <div className={styles.testingFindingGroup}>
-              <p className={styles.testingFindingLabel}>We observed</p>
-              <p className={styles.testingFindingBody}>{finding.observed}</p>
-            </div>
+            <p className="case-prose-body">
+              <span className="mayoBodyLabel">We observed</span> {finding.observed}
+            </p>
           ) : null}
           {finding.changed ? (
-            <div className={styles.testingFindingGroup}>
-              <p className={styles.testingFindingLabel}>We changed</p>
-              <p className={styles.testingFindingBody}>{finding.changed}</p>
-            </div>
+            <p className="case-prose-body">
+              <span className="mayoBodyLabel">We changed</span> {finding.changed}
+            </p>
           ) : null}
         </div>
       </div>
@@ -96,18 +94,12 @@ function TestingRoundMeta({ items }: { items: CaseTestingRound["meta"] }) {
   );
 }
 
-function TestingRoundLayer({
-  round,
-  index,
-}: {
-  round: CaseTestingRound;
-  index: number;
-}) {
+export function TestingRoundLayer({ round }: { round: CaseTestingRound }) {
   const hasMedia = Boolean(round.src || round.videoSrc || round.photos?.length);
 
   return (
     <MedicalLayerShell
-      index={String(index + 1).padStart(2, "0")}
+
       label={round.roundLabel}
       anchorId={round.id}
     >
@@ -116,7 +108,9 @@ function TestingRoundLayer({
         <TestingRoundMeta items={round.meta} />
       </div>
 
-      <p className={styles.testingSiteTag}>{round.siteLabel}</p>
+      <p className="case-prose-body">
+        <span className="mayoBodyLabel">Site</span> {round.siteLabel}
+      </p>
 
       {round.photos?.length ? (
         <MedicalFieldPhotoGrid photos={round.photos} />
@@ -125,7 +119,9 @@ function TestingRoundLayer({
       ) : null}
 
       <div className={styles.testingFindingsBlock}>
-        <p className={styles.testingFindingsHeading}>{medicalUserTesting.findingsLabel}</p>
+        <p className="case-prose-body">
+          <span className="mayoBodyLabel">{medicalUserTesting.findingsLabel}</span>
+        </p>
         <ul className={styles.testingFindings}>
           {round.findings.map((finding, findingIndex) => (
             <TestingFinding
@@ -146,7 +142,7 @@ export function MedicalUserTestingSection() {
     <MedicalSection id="mayo-user-testing" title={title} intro={intro}>
       <div className={styles.medicalLayers}>
         {timeline.map((round, index) => (
-          <TestingRoundLayer key={round.id} round={round} index={index} />
+          <TestingRoundLayer key={round.id} round={round} />
         ))}
       </div>
     </MedicalSection>
