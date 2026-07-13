@@ -28,12 +28,12 @@
 .headline {
   margin: 0 auto clamp(32px, 5vw, 40px);
   max-width: 52ch;
-  font-size: clamp(1.0625rem, 1.7vw, 1.3125rem);
+  font-size: var(--mayo-t-4);
   line-height: 1.4;
   font-weight: 700;
   letter-spacing: -0.015em;
   text-align: center;
-  color: #3156af;
+  color: #1641a6;
 }
 
 .columns {
@@ -58,34 +58,35 @@
 
 .count {
   margin: 0;
-  font-size: clamp(3.5rem, 9vw, 5.5rem);
+  font-size: var(--mayo-t-9);
   line-height: 0.9;
   font-weight: 700;
   letter-spacing: -0.04em;
 }
 
 .countEvaluator {
-  color: #3156af;
+  color: #111111;
 }
 
 .countCounterpart {
-  color: #111;
+  color: #111111;
 }
 
 .label {
   margin: clamp(8px, 1.2vw, 12px) 0 clamp(20px, 3vw, 28px);
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-size: var(--mayo-t-4);
   line-height: 1.2;
   font-weight: 700;
   letter-spacing: -0.01em;
+  text-transform: capitalize;
 }
 
 .labelEvaluator {
-  color: #3156af;
+  color: #1641a6;
 }
 
 .labelCounterpart {
-  color: #111;
+  color: #1641a6;
 }
 
 .person {
@@ -112,8 +113,8 @@
 }
 
 .personEvaluator {
-  font-size: clamp(48px, 8vw, 64px);
-  color: #3156af;
+  font-size: var(--mayo-t-7);
+  color: #1641a6;
 }
 
 .iconGrid {
@@ -124,13 +125,13 @@
 }
 
 .personCounterpart {
-  font-size: clamp(20px, 3.6vw, 28px);
-  color: #333;
+  font-size: var(--mayo-t-3);
+  color: #888888;
   margin: 0 auto;
 }
 
 .columnCounterpart .personCounterpart:only-child {
-  font-size: clamp(48px, 8vw, 64px);
+  font-size: var(--mayo-t-7);
 }
 
 .checklistGrid {
@@ -179,7 +180,7 @@
 .caption {
   margin: clamp(16px, 2.5vw, 20px) auto 0;
   max-width: 56ch;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.5;
   text-align: center;
   color: #555;

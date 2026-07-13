@@ -85,11 +85,29 @@ export const medicalHero = {
   subtitle:
     "Designing a Mixed Reality BLS Certification System for Clinical Scale",
   intro:
-    "Mayo Clinic's BLS certification process had a scaling problem: 28 evaluators, 400+ nurses, every assessment conducted one-on-one in person. The goal was to build a mixed reality evaluation system that maintained clinical-grade rigor while making certification accessible at scale.",
+    "28 evaluators, 400+ nurses, every assessment one-on-one in person. Build MR certification at clinical scale without lowering rigor.",
+  methodology:
+    "Same research-driven UX process—final medium is XR/VR.",
 };
 
 export const medicalProblemIdentification = {
-  title: "Problem Identification",
+  problemStatement: {
+    title: "Problem Statement",
+  },
+  definedProblems: {
+    title: "Defined Problems",
+  },
+  onsiteResearch: {
+    title: "Primary Research",
+  },
+  synthesis: {
+    title: "Research Synthesis",
+  },
+  researchInsight: {
+    index: "03",
+    title: "Research Insight",
+    kicker: "Three patterns formalized into the problems above.",
+  },
   layers: [
     {
       id: "mayo-problem-client",
@@ -97,8 +115,6 @@ export const medicalProblemIdentification = {
       label: "Client-Provided Brief",
       quote:
         "The BLS certification process feels like it requires too much staff time. We need it optimized, but we do not have a precise problem definition beyond that feeling.",
-      followUp:
-        "To sharpen the problem definition, we investigated four areas on site:",
       researchAreas: [
         { id: "workflow", title: "Workflow mapping" },
         { id: "interviews", title: "Stakeholder interviews" },
@@ -112,23 +128,17 @@ export const medicalProblemIdentification = {
     },
     {
       id: "mayo-problem-fieldwork",
-      index: "02",
-      label: "On-Site Primary Research",
-      purpose:
-        "We went on site to observe how certification actually runs, interview the staff who deliver it, and build a firsthand evidence base before defining the problem.",
+      index: "01",
+      label: "Primary Research",
       location: "Mayo Clinic Jacksonville",
       timeline: [
         {
-          id: "site-immersion",
-          title: "Site immersion",
-          detail: "Mapped workflow, staffing handoffs, and session setup on site.",
-        },
-        {
           id: "interviews",
-          title: "Stakeholder interviews",
-          metricsInline:
-            "11 interviews — 4 evaluators · 4 nurses · 2 educators · 1 coordinator",
-          detail: "Semi-structured across planning, delivery, and quality oversight.",
+          title: "Stakeholder Interviews",
+          cardBody:
+            "We simply do not have enough evaluators to keep up with volume.",
+          footerLeft: "14 Evaluators",
+          footerRight: "30 mins",
           quote:
             "We simply do not have enough evaluators to keep up with volume. Hiring more is not a realistic lever for us.",
           quoteAttribution: "BLS Program Lead",
@@ -136,7 +146,7 @@ export const medicalProblemIdentification = {
             {
               src: "/images/mayo-research.png",
               alt: "Design team and Mayo Clinic clinical staff observing BLS certification in a hospital simulation room",
-              caption: "Observing the full certification flow on site.",
+              caption: "Observing certification on site.",
             },
           ],
         },
@@ -144,15 +154,17 @@ export const medicalProblemIdentification = {
           id: "observation",
           title: "End-to-end flow observation",
           compact: true,
-          metricsInline:
-            "6 runs observed · 22 min avg. — documented from room setup through assessment and debrief.",
+          metricsInline: "6 runs observed · 22 min avg.",
           quoteInline:
             "“One evaluator cannot reliably watch compression depth, hand placement, and AED pad alignment at the same time.” — Senior BLS Evaluator",
         },
         {
           id: "hands-on",
-          title: "Hands-on BLS practice",
-          detail: "Coached practice to see what evaluators must catch and how errors surface live.",
+          title: "Hands-On BLS Practice",
+          cardBody:
+            "Even strong nurses miss subtle form errors when they are also managing the room and the clock.",
+          footerLeft: "14 Evaluators",
+          footerRight: "30 mins",
           quote:
             "Even strong nurses miss subtle form errors when they are also managing the room and the clock.",
           quoteAttribution: "Clinical Educator",
@@ -160,7 +172,7 @@ export const medicalProblemIdentification = {
             {
               src: "/images/mayo-research2.png",
               alt: "Hands-on BLS equipment practice with AED electrode pads during on-site fieldwork",
-              caption: "Practicing BLS hands on with a trained coach.",
+              caption: "Hands-on BLS practice with a trained coach.",
             },
           ],
         },
@@ -169,11 +181,9 @@ export const medicalProblemIdentification = {
     },
     {
       id: "mayo-problem-findings",
-      index: "03",
+      index: "02",
       label: "Research Synthesis",
       synthesis: {
-        intro:
-          "We consolidated field notes, interview transcripts, and workshop output into a structured evidence base before defining the problem.",
         insightsStep: {
           stat: "8",
           title: "insights consolidated",
@@ -181,7 +191,7 @@ export const medicalProblemIdentification = {
         patternsStep: {
           stat: "3",
           title: "patterns formalized",
-          body: "Three patterns rose to the surface across the synthesis. We formalized them into three specific problems below.",
+          body: "Three patterns formalized into the problems above.",
         },
       },
       discovered: {
@@ -207,16 +217,24 @@ export const medicalProblemIdentification = {
       id: "mayo-problem-defined",
       index: "04",
       label: "Defined Problems",
+      kicker: "What is the key problem",
       scaleImage: {
         src: "/images/mayo-problem-scale.png",
-        alt: "28 evaluators responsible for certifying around 400 candidates in person, shown as a 1:14 evaluator-to-candidate ratio",
+        alt: "1 evaluator responsible for certifying 14 candidates, shown as a 1:14 evaluator-to-candidate ratio",
+      },
+      scaleVisual: {
+        evaluatorCount: 1,
+        evaluatorLabel: "Evaluator",
+        counterpartCount: 14,
+        counterpartLabel: "Candidates",
+        counterpartType: "people" as const,
       },
       items: [
         {
           id: "staffing-volume",
           stat: "28 : 400",
           statLabel: "Evaluator capacity vs. annual volume",
-          body: "28 evaluators for ~400 candidates a year. Hiring cannot fix a resource already scarce.",
+          body: "28 evaluators for ~400 candidates. Hiring cannot close the gap.",
         },
         {
           id: "observation-fidelity",
@@ -228,7 +246,7 @@ export const medicalProblemIdentification = {
           id: "format-bottleneck",
           stat: "1:1",
           statLabel: "Required assessment format",
-          body: "One-on-one, in-person only. Evaluator time cannot parallelize.",
+          body: "One-on-one, in person. Cannot parallelize.",
         },
       ],
     },
@@ -242,6 +260,83 @@ export const medicalSpec: CaseSpecRow[] = [
   { label: "Scale", value: "28 Evaluators, 400+ Candidates a Year" },
 ];
 
+export const medicalOverviewChapter = {
+  index: "01",
+  title: "Overview",
+  summary:
+    "28 evaluators, 400+ nurses, every assessment one-on-one in person—same research-driven UX process, final medium XR/VR.",
+};
+
+export const medicalCrossFunctionalAlignment = {
+  title: "Cross-Functional Alignment",
+  body:
+    "[To be completed] How we aligned 17 certification parameters with Mayo clinical advisors, and how passthrough readability constraints were communicated to engineering and hardware partners.",
+};
+
+export const medicalSuccessCriteria = {
+  title: "Success Criteria",
+  intro:
+    "[To be completed] Success metrics defined before build—so Impact outcomes reflect validated targets, not retroactive justification.",
+  items: [
+    {
+      id: "time",
+      label: "Time efficiency",
+      target:
+        "[To be completed] Complete BLS certification within Mayo's 10-minute cap.",
+    },
+    {
+      id: "accuracy",
+      label: "Credentialing accuracy",
+      target:
+        "[To be completed] All 17 parameters align with certified evaluator judgment.",
+    },
+    {
+      id: "adoption",
+      label: "Trust & adoption",
+      target:
+        "[To be completed] Nurses with zero MR experience complete the full certification flow.",
+    },
+  ],
+};
+
+export const medicalSuccessCriteriaRevisited = {
+  title: "Success Criteria Revisited",
+  intro:
+    "[To be completed] Map Chapter 04 success criteria against measured outcomes from Round 2 testing and on-site evaluator review.",
+  items: [
+    {
+      id: "time",
+      label: "Time efficiency",
+      result: "[To be completed] Delivered flow vs. 10-minute cap.",
+    },
+    {
+      id: "accuracy",
+      label: "Credentialing accuracy",
+      result: "[To be completed] Evaluator alignment across 17 steps.",
+    },
+    {
+      id: "adoption",
+      label: "Trust & adoption",
+      result: "[To be completed] MR-novice nurse completion rate.",
+    },
+  ],
+};
+
+export const medicalReflection = {
+  index: "12",
+  title: "Reflection",
+  limitations: {
+    title: "Limitations",
+    body:
+      "[To be completed] Current constraints—including passthrough instability under extreme clinical lighting—and where the system still depends on controlled test conditions.",
+  },
+  whatsNext: {
+    title: "What's Next",
+    body:
+      "[To be completed] Post-delivery stage at Mayo Clinic and what we would adjust in a second iteration.",
+  },
+};
+
 export const medicalOverviewVideo = {
   type: "youtube" as const,
   videoId: "q8XeJHdjQ1I",
@@ -250,10 +345,10 @@ export const medicalOverviewVideo = {
 };
 
 export const medicalDecision = {
-  title: "The Decision",
+  title: "Opportunity Statement",
   kicker: "Why Mixed Reality",
   intro:
-    "We evaluated four directions against the goal of removing evaluator dependency without lowering certification rigor.",
+    "Four directions evaluated. Only MR cleared every structural constraint without lowering certification rigor.",
   matrix: {
     columns: [
       {
@@ -261,38 +356,34 @@ export const medicalDecision = {
         label: "Current Process",
         shortLabel: "Current Process",
         description:
-          "One-to-one, in-person certification. Human evaluators track depth, placement, and AED alignment live.",
+          "One-to-one, in-person. Evaluators track depth, placement, and AED alignment live.",
       },
       {
         id: "more-evaluators",
         label: "Current Process + More Evaluators",
         shortLabel: "More Evaluators",
-        description:
-          "Evaluators are the scarce resource. More headcount does not remove the bottleneck.",
+        description: "More headcount does not remove the bottleneck.",
         verdict: "rejected" as const,
       },
       {
         id: "manikin",
         label: "Improved Physical Manikin",
         shortLabel: "Physical Manikin",
-        description:
-          "Per-use cost scales linearly. Venue dependence and replicability remain unsolved.",
+        description: "Per-use cost scales. Venue dependence remains.",
         verdict: "rejected" as const,
       },
       {
         id: "remote",
         label: "Remote Video Evaluation",
         shortLabel: "Remote Video",
-        description:
-          "Cannot verify hand pressure or angle in real time. Falls short on clinical precision.",
+        description: "Cannot verify pressure or angle in real time.",
         verdict: "rejected" as const,
       },
       {
         id: "mr",
         label: "Mixed Reality",
         shortLabel: "Mixed Reality",
-        description:
-          "Portable, reusable, and capable of data-driven real-time feedback without a fixed venue.",
+        description: "Portable, reusable, real-time spatial feedback.",
         verdict: "selected" as const,
       },
     ],
@@ -354,30 +445,27 @@ export const medicalDecision = {
         type: "assessment" as const,
         values: {
           baseline: {
-            text: "Direct human observation, validated, but capped by evaluator capacity.",
+            text: "Validated, but capped by evaluator capacity.",
           },
           "more-evaluators": {
-            text: "Same observation model; more staff does not change the mechanism.",
+            text: "Same model; more staff changes nothing.",
           },
           manikin: {
-            text: "Sensors cover select metrics, not every spatial checkpoint at once.",
+            text: "Sensors miss spatial checkpoints.",
           },
           remote: {
-            text: "Camera limits real-time verification of pressure, depth, and pad placement.",
+            text: "Camera cannot verify depth or placement.",
           },
           mr: {
-            text: "Spatial tracking could capture depth, rate, and placement with precision, pending validation.",
+            text: "Spatial tracking captures depth, rate, and placement.",
           },
         },
       },
     ],
   },
-  matrixNote:
-    "Checkmarks are directional judgments, not validated conclusions. Clinical Fidelity marks potential, MR pending validation. Only MR cleared every criterion without a structural disqualifier.",
-  matrixBridge:
-    "Real-time Feedback returns in Design Standards by design: judged capable here, built and verified there.",
-  standardsIntro:
-    "Three non-negotiable requirements the MR system had to prove through design and testing.",
+  matrixNote: "",
+  matrixBridge: "",
+  standardsIntro: "Three requirements the MR system had to prove.",
   standards: [
     {
       id: "feedback",
@@ -421,38 +509,32 @@ export type MedicalInsightRow = {
 };
 
 export const medicalInsight = {
-  title: "Insight",
-  intro:
-    "Which solutions had to be built, and in what order.",
-  lead:
-    "Each research line maps to a build direction, what had to exist before the system could work under assessment pressure.",
+  title: "Design Decisions",
   rows: [
     {
       id: "brand",
       research: "Brand Research",
-      researchNote:
-        "Visual tone has defined boundaries, confident, compassionate, accessible.",
+      researchNote: "Confident, compassionate, accessible tone.",
       builds: [
         {
           id: "ui",
           order: "02",
           title: "UI Design",
-          body: "Readable map of the full certification flow.",
-          anchorId: "mayo-brand-spatial",
+          body: "Full certification flow map.",
+          anchorId: "mayo-flow-wireframes",
         },
       ],
     },
     {
       id: "scene",
       research: "Spatial / VR Research",
-      researchNote:
-        "Visibility and contrast carry hard thresholds in passthrough MR.",
+      researchNote: "Passthrough contrast has hard thresholds.",
       builds: [
         {
           id: "onboarding",
           order: "01",
           title: "Onboarding",
-          body: "MR and gesture vocabulary before clinical stakes attach.",
+          body: "Gesture vocabulary before clinical stakes.",
           anchorId: "mayo-onboarding",
         },
       ],
@@ -460,21 +542,20 @@ export const medicalInsight = {
     {
       id: "function",
       research: "Functional Research",
-      researchNote:
-        "Certification-grade rigor and real-time feedback, readable and trustworthy.",
+      researchNote: "Real-time feedback, certification-grade rigor.",
       builds: [
         {
           id: "feedback",
           order: "03",
           title: "Real-time Feedback",
-          body: "Pass or fail surfaced during assessment, not after.",
-          anchorId: "mayo-brand-spatial",
+          body: "Pass/fail during assessment.",
+          anchorId: "mayo-final",
         },
         {
           id: "evaluation",
           order: "04",
           title: "Evaluation System",
-          body: "Seventeen parameters as a report nurses and evaluators can trust.",
+          body: "17 parameters, evaluator-trusted reports.",
           anchorId: "mayo-evaluation",
         },
       ],
@@ -483,49 +564,55 @@ export const medicalInsight = {
 };
 
 export const medicalUIDesign = {
+  flowWireframes: {
+    title: "User Flow & Wireframes",
+  },
+  screens: {
+    title: "UI Screens",
+  },
+  final: {
+    title: "Final UI",
+  },
   title: "UI Design",
   kicker: "UI Design Direction",
-  intro:
-    "UI had to satisfy three dimensions at once, Mayo brand, spatial VR constraints, and certification-grade function, before any visual direction could be proposed.",
+  intro: "",
   dimensions: [
     {
       id: "brand",
       title: "Brand Consistency",
-      body: "Align with Mayo Clinic's established visual language, not a decorative overlay on top of clinical software.",
+      body: "Mayo visual language, not a decorative overlay.",
     },
     {
       id: "scene",
       title: "Scene Adaptation",
-      body: "Meet mixed-reality presentation requirements: visibility, contrast, and interaction usability in real space, not flat-design habits pasted into VR.",
+      body: "Legible in passthrough under real clinical lighting.",
     },
     {
       id: "function",
       title: "Functional Purpose",
-      body: "Serve what this project must achieve, real-time feedback and certification-grade credibility. Readable and trustworthy beats merely attractive.",
+      body: "Real-time feedback and certification-grade credibility.",
     },
   ],
   userFlow: {
     label: "User Flow",
     src: "/images/mayo-onbrording%20flow.png",
     alt: "Onboarding flow diagram from MR experience check through gesture training, applied practice, and CPR/BVM/AED assessment",
-    caption:
-      "Nurses with no MR experience enter a three-stage learning path; experienced users can skip to assessment. CPR, BVM, and AED modules follow onboarding.",
+    caption: "Three-stage path for MR novices; experienced users skip to assessment.",
   },
-  targetDefinition:
-    "UI must carry Mayo's brand tone, stay legible under real spatial lighting, and make assessment states readable at a glance.",
+  targetDefinition: "",
   solutions: {
-    lead: "From that definition, we produced visual direction candidates and mapped the full nurse journey before committing to a single system.",
+    lead: "",
     candidates: [
       {
         label: "Style Guide",
         src: "/images/mayo-brand-styleguide.png",
         alt: "Mayo Clinic MR visual style guide with typography, color, and spatial UI components",
-        caption: "Style guide consolidating type, color, and spatial components.",
+        caption: "Type, color, and spatial components.",
       },
     ],
     applied: {
       label: "Final UI",
-      body: "Nine visual directions were explored against brand tone, spatial legibility, and assessment-state clarity. Solution 9 was selected as the final system after on-device readability testing and on-site nurse feedback.",
+      body: "Nine directions explored. Solution 9 selected after on-device testing and on-site nurse feedback.",
       images: [
         {
           src: "/images/mayo-ui.png",
@@ -541,14 +628,14 @@ export const medicalUIDesign = {
   iconSheet: {
     label: "Icon",
     title: "Interaction Vocabulary",
-    body: "Gesture and module icons map click, rotate, and press from onboarding into CPR, BVM, and AED, so nurses read the same interaction language across the full certification flow.",
+    body: "Click, rotate, press—same language from onboarding through CPR, BVM, and AED.",
     src: "/images/mayo-icon.png",
     alt: "Gesture icon vocabulary for MR onboarding and BLS interactions including click, rotate, press, CPR, BVM, and AED",
   },
   screensOverview: {
     label: "Screens",
     title: "Four Progressive Stages",
-    body: "Screen architecture follows the onboarding sequence, device setup, gesture training, applied practice, and formal assessment, each stage building readiness before clinical stakes appear.",
+    body: "Setup → gesture training → applied practice → assessment.",
     src: "/images/mayo-screens.png",
     alt: "MR Basic, BLS Interaction, Applied Practice, and Assessment UI screens across four onboarding stages",
   },
@@ -559,39 +646,96 @@ export const medicalUIDesign = {
   },
 };
 
+export type MedicalDesignRationale = {
+  id: string;
+  insight: string;
+  decision: string;
+  why: string;
+};
+
+export const medicalDesignRationales: MedicalDesignRationale[] = [
+  {
+    id: "spatial-mr",
+    insight: "One evaluator cannot track depth, placement, and pad alignment at once.",
+    decision: "Spatial MR with parallel checkpoint tracking.",
+    why: "Captures spatial parameters without adding evaluator headcount.",
+  },
+  {
+    id: "progressive-onboarding",
+    insight: "Nurses are clinically ready but MR-fluency varies.",
+    decision: "Four progressive onboarding stages before assessment.",
+    why: "Device learning must not compete with BLS recall under observation.",
+  },
+];
+
+export const medicalIteration = {
+  title: "Iteration",
+  intro:
+    "Usability testing surfaced concrete friction points. Each finding drove a specific design change before the final system was delivered.",
+  items: [
+    {
+      id: "palette-readability",
+      observed:
+        "Several palette options that read clearly in Figma failed legibility in live Quest 3 renders against real clinical backgrounds.",
+      changed:
+        "Narrowed to two candidates with consistent on-device readability, then finalized the brand blue system after on-site nurse preference testing.",
+    },
+    {
+      id: "interaction-cues",
+      observed:
+        "MR zero-experience users showed measurable difficulty at key interaction points—comprehension slowed and operations took longer.",
+      changed:
+        "Added icon-based and motion-guided cues at unfamiliar interaction points to reduce cognitive load without adding tutorial steps.",
+    },
+    {
+      id: "icon-vocabulary",
+      observed:
+        "Gesture icons without motion context were misread during the first on-site round.",
+      changed:
+        "Unified gesture and module icons across onboarding and assessment so nurses read the same interaction language throughout the flow.",
+    },
+  ],
+};
+
+export const medicalFinalVideo = {
+  type: "youtube" as const,
+  videoId: "q8XeJHdjQ1I",
+  title: "Final Concept — Full Certification Flow",
+  caption: "Onboarding through BLS evaluation.",
+};
+
 export const medicalDimensionResearch = [
   {
     id: "brand",
     label: "Brand",
-    body: "Studied Mayo Clinic's visual standards across social, clinical, and partner touchpoints. Anchored on confident, compassionate, and accessible tone, with Mayo Blue as the single color anchor.",
+    body: "Mayo brand tone across social, clinical, and partner touchpoints. Mayo Blue as anchor.",
     image: {
       src: "/images/mayo-brand-research2.png",
       alt: "Mayo Clinic brand audit across social media, presentations, and clinical publications",
-      caption: "Brand research across Mayo's real-world touchpoints.",
+      caption: "Brand research across Mayo touchpoints.",
     },
     extraImages: [
       {
         src: "/images/mayo-visual%20research.png",
         alt: "Brand and design language research board covering Mayo Clinic identity, web and social touchpoints, and clinical case references",
-        caption:
-          "Brand research board, design language, Mayo identity, and clinical context references.",
+        caption: "Brand board: identity, web, social, clinical references.",
       },
     ],
   },
   {
     id: "scene",
     label: "Spatial / VR",
-    body: "Researched spatial UI on Meta Quest 3 in passthrough, what stays readable when UI overlays real clinical environments under variable lighting. Visibility and contrast had to be validated on device, not in Figma alone.",
+    body: "Quest 3 passthrough: what stays readable over real clinical environments.",
     image: {
       src: "/images/mayo-brand-research3.png",
       alt: "Spatial UI readability research comparing contrast and color systems in passthrough MR environments on device",
-      caption: "On-device passthrough testing for contrast and color systems.",
+      caption: "On-device contrast testing.",
     },
   },
   {
     id: "function",
     label: "Functional",
-    body: "Mapped UI back to project goals: real-time feedback and evaluator-grade certification. Assessment states had to be instantly distinguishable, critical information could not rely on subtle color differences alone.",
+    body: "Real-time feedback and evaluator-grade certification. Assessment states instantly distinguishable.",
   },
 ];
 
@@ -607,9 +751,7 @@ export type EvaluatorAlignmentContent = {
 export const medicalEvaluatorComparison = {
   title: "On-site Evaluator Alignment",
   paragraphs: [
-    "During Round 2 on-site testing at Mayo Clinic Jacksonville, a certified BLS evaluator sat in on each session while the system ran.",
-    "For all 17 assessment steps across CPR, BVM, and AED, they reviewed whether the system's pass/fail call matched their clinical judgment, module by module, step by step.",
-    "The evaluator reported that system results aligned with what they observed on site. There were no cases where the system passed a step they would have failed, or failed a step they would have passed.",
+    "A certified BLS evaluator sat in on each Round 2 session. System pass/fail calls aligned with clinical judgment across all 17 steps.",
   ],
   photos: [medicalEvaluatorAlignmentPhoto],
 } satisfies EvaluatorAlignmentContent;
@@ -634,11 +776,10 @@ export type MetricDeltaCard = {
 export type OutcomeDeltaCard = MetricDeltaCard;
 
 export const medicalOutcome = {
-  title: "Outcome",
-  closing:
-    "The project delivered a complete package with detailed operational documentation, not a demo, formally handed to Mayo Clinic.",
+  title: "Impact",
+  closing: "Delivered to Mayo Clinic with full operational documentation.",
   timeComparison: {
-    lead: "The client capped the full experience at 10 minutes. The delivered flow finished in 8, faster than on-site observation and well inside the industry range for one-to-one BLS skills checks.",
+    lead: "Client cap: 10 min. Delivered flow: 8 min.",
     unit: "min",
     matrix: [
       {
@@ -680,26 +821,27 @@ export const medicalOutcome = {
   },
   accuracyComparison: {
     paragraphs: [
-      "Credentialing accuracy was checked the same way, a certified evaluator watching live sessions, not a statistical benchmark study.",
-      "Their on-site feedback matched what we saw in evaluation: system pass/fail calls stayed aligned with clinical judgment across all 17 steps, with no conflicting outcomes in either direction.",
+      "Evaluator on-site feedback matched system pass/fail across all 17 steps.",
     ],
   },
   qualitative: [
     {
       label: "Trust",
-      body: "Mayo Clinic staff provided positive feedback on the system after on-site review.",
+      body: "Positive feedback from Mayo staff after on-site review.",
     },
     {
       label: "Experience",
-      body: "Nurses, including those with zero prior MR experience, completed the full certification flow successfully.",
+      body: "Nurses with zero MR experience completed the full flow.",
     },
   ],
 };
 
 export const medicalRole = {
   title: "My Role",
+  body:
+    "In a 20-person interdisciplinary team, I led brand and spatial experience design—from onboarding architecture through BLS evaluation UI. I owned the four-stage onboarding sequence, mapped all 17 certification parameters to interface checkpoints, and directed two rounds of on-site nurse usability testing.",
   paragraphs: [
-    "As brand and experience lead, I translated Mayo Clinic's clinical standards into a spatial UI system, from onboarding architecture to BLS evaluation flow.",
+    "In a 20-person interdisciplinary team, I led brand and spatial experience design—from onboarding architecture through BLS evaluation UI.",
   ],
   highlights: [
     {
@@ -891,15 +1033,13 @@ export type CaseOnboardingStage = {
 export const medicalOnboarding = {
   title: "Onboarding",
   kicker: "Onboarding",
-  origin:
-    "Onboarding was not a default step in a standard certification flow. The User Insights from brand and spatial research made it a necessary design response.",
-  designMethodLead:
-    "We taught click, rotate, and press through everyday objects nurses already know, building a complete gesture vocabulary before any medical context appeared.",
+  origin: "Required because nurses enter with uneven MR fluency.",
+  designMethodLead: "Click, rotate, press—taught through everyday objects first.",
   gestureCards: [
     {
       id: "mayo-gesture-click",
       title: "Radio · Click",
-      body: "Point and tap to select, like pressing a radio preset, so spatial UI feels familiar before clinical tools appear.",
+      body: "Point and tap, like a radio preset.",
       media: {
         videoSrc: "/images/mayo-unity.mov",
         alt: "Hand-tracking ray cast selecting an object in the MR fundamentals tutorial",
@@ -908,7 +1048,7 @@ export const medicalOnboarding = {
     {
       id: "mayo-gesture-rotate",
       title: "Lamp · Rotate",
-      body: "Pinch and turn a dial the way you would a lamp knob, training wrist rotation without clinical stakes.",
+      body: "Pinch and turn, like a lamp dial.",
       media: {
         videoSrc: "/videos/bls%20Interaction.mov",
         alt: "MR tutorial prompting pinch-and-rotate on an everyday object dial",
@@ -917,7 +1057,7 @@ export const medicalOnboarding = {
     {
       id: "mayo-gesture-press",
       title: "Television · Press",
-      body: "Extend your index finger and press firmly, mapping to a television power button nurses already understand.",
+      body: "Index finger press, like a TV power button.",
       media: {
         videoSrc: "/videos/Mr%20basic.mov",
         clipStart: 0,
@@ -927,13 +1067,10 @@ export const medicalOnboarding = {
     },
   ] satisfies CaseOnboardingGestureCard[],
   dualChannelInput: {
-    problem:
-      "Placing back electrodes on a virtual patient would require rotating the body. MR provides no haptic feedback, which breaks clinical realism at a critical moment.",
-    solution:
-      "Dual-channel input: buttons as the primary path, voice recognition as a secondary channel that preserves emergency communication without depending on it.",
+    problem: "No haptic feedback when placing electrodes on a virtual patient.",
+    solution: "Buttons primary; voice as secondary for emergency communication.",
   },
-  stagesIntro:
-    "Four progressive stages separate device fluency from clinical assessment, each building readiness before the next.",
+  stagesIntro: "",
   stages: [
     {
       id: "mayo-onboarding-stage-1",
@@ -941,7 +1078,7 @@ export const medicalOnboarding = {
       title: "System Setup",
       navLabel: "Setup",
       iconSrc: "/images/set%20up.png",
-      body: "Calibration, spatial awareness, and basic hand-tracking introduction. Zero hardware uncertainty before anything clinical appears.",
+      body: "Calibration and hand-tracking. No clinical stakes yet.",
       videoSrc: "/videos/We%20observed%202.mov",
       alt: "Stage 1 system setup interface with headset calibration and space orientation",
     },
@@ -951,7 +1088,7 @@ export const medicalOnboarding = {
       title: "MR Fundamentals",
       navLabel: "MR Basic",
       iconSrc: "/images/mr%20basic.png",
-      body: "Everyday object interaction practice. Nurses learn click, rotate, and press through familiar items before medical tools appear.",
+      body: "Everyday objects teach click, rotate, press.",
       videoSrc: "/videos/Mr%20basic.mov",
       alt: "Stage 2 MR fundamentals interface teaching everyday object interactions",
     },
@@ -961,7 +1098,7 @@ export const medicalOnboarding = {
       title: "BLS Interaction Training",
       navLabel: "BLS Interaction",
       iconSrc: "/images/BLS%20interaction.png",
-      body: "CPR, BVM, and AED each get dedicated gesture training. Motor patterns are established before clinical stakes are introduced.",
+      body: "CPR, BVM, AED gesture training before assessment.",
       videoSrc: "/videos/bls%20Interaction.mov",
       alt: "Stage 3 BLS-specific gesture training for CPR, BVM, and AED",
     },
@@ -971,7 +1108,7 @@ export const medicalOnboarding = {
       title: "Applied Practice",
       navLabel: "Applied Practice",
       iconSrc: "/images/appied%20practice.png",
-      body: "The same gestures applied in a realistic assessment context. Nurses recognize the movement. They only have to learn the context.",
+      body: "Same gestures in a realistic assessment context.",
       videoSrc: "/videos/applied%20practice.mov",
       alt: "Stage 4 applied practice in a realistic assessment context",
     },
@@ -984,22 +1121,21 @@ export const medicalEvaluation = {
     {
       id: "mayo-eval-framework-steps",
       title: "17 Verified Steps",
-      body: "Each step matches real certification requirements, verified with Mayo clinical staff before it entered the system.",
+      body: "17 steps verified with Mayo clinical staff.",
     },
     {
       id: "mayo-eval-framework-modules",
       title: "Module Organization",
-      body: "Reports group by CPR, BVM, and AED so nurses see which segment failed before drilling into parameter-level feedback.",
+      body: "Grouped by CPR, BVM, and AED modules.",
     },
   ],
-  reportIntro:
-    "Three report views progress from module overview to step-level detail to the full credentialing sign-off.",
+  reportIntro: "",
   reportViews: [
     {
       id: "mayo-incomplete-tasks",
       label: "VIEW 1",
       title: "Incomplete Tasks Overview",
-      body: "Module-level view of which BLS steps still need correction before certification sign-off.",
+      body: "Which BLS steps still need correction.",
       src: "/images/Incomplete%20Tasks.png",
       alt: "Evaluation report overview highlighting incomplete BLS tasks by module",
     },
@@ -1024,16 +1160,14 @@ export const medicalEvaluation = {
 
 export const medicalUserTesting = {
   title: "Usability Testing",
-  intro:
-    "Two rounds of testing validated readability first, then full-flow performance with real nurses on site.",
+  intro: "Round 1: readability on device. Round 2: full flow with nurses on site.",
   findingsLabel: "Findings & Changes",
   timeline: [
     {
       type: "round",
       id: "mayo-round-1-readability",
       roundLabel: "Round 1",
-      purpose:
-        "Validate whether palette candidates met the real-time feedback standard's readability requirement in live Quest 3 passthrough, not just in Figma previews.",
+      purpose: "Palette readability in live Quest 3 passthrough—not Figma alone.",
       meta: [
         { label: "Participants", value: "N=6" },
         { label: "Audience", value: "Internal brand & spatial design team" },
@@ -1048,10 +1182,8 @@ export const medicalUserTesting = {
       alt: "Live Quest 3 readability testing comparing eight palette candidates in clinical lighting",
       findings: [
         {
-          observed:
-            "Several options that read clearly in Figma failed legibility in live Quest 3 renders against real clinical backgrounds.",
-          changed:
-            "Narrowed to two candidates with consistent readability across environments. Both moved forward to on-site testing.",
+          observed: "Figma-clear palettes failed in live Quest 3 renders.",
+          changed: "Narrowed to two on-device candidates for on-site testing.",
           src: "/images/we%20change-1.png",
           alt: "Two UI candidates compared in a Mayo Clinic hospital environment during readability testing",
         },
@@ -1061,8 +1193,7 @@ export const medicalUserTesting = {
       type: "round",
       id: "mayo-round-2-onsite",
       roundLabel: "Round 2",
-      purpose:
-        "Confirm registered nurses could complete the full certification flow without device friction interfering with clinical performance, and run system versus human evaluator scoring in parallel.",
+      purpose: "Full certification flow with nurses; system vs. evaluator scoring in parallel.",
       meta: [
         { label: "Participants", value: "N=6" },
         {
@@ -1079,17 +1210,14 @@ export const medicalUserTesting = {
       photos: medicalOnsiteSessionPhotos,
       findings: [
         {
-          observed:
-            "MR zero-experience users showed measurable difficulty at key interaction points. Comprehension slowed and operations took longer.",
-          changed:
-            "Added icon-based and motion-guided cues at unfamiliar interaction points to reduce cognitive load.",
+          observed: "MR zero-experience users struggled at key interaction points.",
+          changed: "Added icon and motion-guided cues at unfamiliar steps.",
           videoSrc: "/videos/we%20change%203.mov",
           alt: "Icon-based and motion-guided interaction cues added to reduce cognitive load",
         },
         {
-          observed:
-            "Nurses consistently preferred the brand blue over the white palette. Mayo Clinic's identity carried stronger recognition and trust in context.",
-          changed: "Finalized the blue system as the single visual direction.",
+          observed: "Nurses preferred brand blue over white in context.",
+          changed: "Finalized the blue system.",
           src: "/images/mayo-3.jpg",
           alt: "Final blue UI system after on-site palette preference testing",
         },

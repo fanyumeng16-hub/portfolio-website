@@ -7,7 +7,7 @@ export type ProjectNavTheme = {
 export const projectNavThemes: Record<string, ProjectNavTheme> = {
   medical: {
     navTheme: "light",
-    accent: "#3156af",
+    accent: "#1641a6",
     accentContrast: "#ffffff",
   },
   outloop: {

@@ -1,36 +1,36 @@
 .section {
   scroll-margin-top: calc(var(--case-nav-height, 88px) + 28px);
+  font-family: inherit;
 }
 
 .sectionHeader {
-  display: grid;
-  grid-template-columns: var(--case-title-marker-width, clamp(10px, 1.1vw, 14px)) minmax(0, 1fr);
-  column-gap: var(--case-title-marker-gap, clamp(12px, 1.4vw, 16px));
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mayo-gap-lg, 1.5rem);
   width: 100%;
   max-width: none;
-  margin-bottom: 48px;
+  margin-bottom: var(--mayo-chapter-header-space, var(--mayo-gap-xl));
+  padding-bottom: var(--mayo-gap-lg, 1.5rem);
+  border-bottom: 1px solid rgba(22, 65, 166, 0.12);
+  text-align: center;
 }
 
 .sectionHeader::before {
-  content: "";
-  grid-column: 1;
-  grid-row: 1;
-  width: 100%;
-  height: 0.92em;
-  margin-top: 0.14em;
-  background: var(--case-medical-accent, #3156af);
+  display: none;
 }
 
 .sectionTitleRow {
-  display: contents;
+  display: block;
+  width: 100%;
 }
 
 .sectionTitleRow :global(.case-prose-title) {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: unset;
+  grid-row: unset;
   margin: 0;
   max-width: none;
+  justify-content: center;
 }
 
 .sectionTitleRow :global(.case-prose-title::before) {
@@ -38,20 +38,307 @@
 }
 
 .sectionHeader :global(.case-prose-body) {
-  grid-column: 2;
-  grid-row: 2;
-  margin: 16px 0 0;
-  max-width: var(--case-prose-measure, 68ch);
+  grid-column: unset;
+  grid-row: unset;
+  margin: 0;
+  max-width: var(--case-prose-measure, 52ch);
   line-height: 1.65;
+  text-align: center;
+}
+
+.section :global(.case-prose-inner) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Numbered chapter — 01 OVERVIEW */
+
+.chapter {
+  scroll-margin-top: calc(var(--case-nav-height, 88px) + 28px);
+}
+
+.chapterHeader {
+  width: 100%;
+  margin-bottom: var(--mayo-chapter-header-space, var(--mayo-gap-xl));
+}
+
+.chapterHeader :global(.mayo-layout-block),
+.chapterHeader > * {
+  width: 100%;
+  max-width: none;
+}
+
+.chapterInner {
+  width: 100%;
+  max-width: var(--case-medical-block-max, 75rem);
+  margin-inline: auto;
+  padding-block: var(--mayo-section-py, clamp(3.5rem, 6vw, 5rem));
+  box-sizing: border-box;
+}
+
+.chapterIntro {
+  margin: 0 auto;
+  max-width: var(--case-prose-measure, 52ch);
+  font-size: var(--type-body);
+  line-height: var(--leading-body, 1.65);
+  color: #444;
+  text-align: center;
+}
+
+.chapterBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mayo-chapter-beat-gap, var(--mayo-gap-2xl, 3.5rem));
+  width: 100%;
+}
+
+.chapterBody > .medicalLayers {
+  gap: var(--mayo-layer-gap, var(--mayo-gap-2xl, 3.5rem));
+}
+
+.chapterBody > * {
+  margin-block: 0;
+}
+
+.embeddedSection {
+  width: 100%;
+}
+
+/* Overview — 4-up spec grid */
+
+.overviewSpecGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.overviewSpecCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 120px;
+  padding: 24px 16px;
+  border: 2px solid var(--case-medical-accent, #1641a6);
+  background: #fff;
+  text-align: center;
+}
+
+.overviewSpecLabel {
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(22, 65, 166, 0.55);
+}
+
+.overviewSpecValue {
+  font-size: var(--type-body);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--case-medical-accent, #1641a6);
+}
+
+.overviewLead {
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 28px) clamp(24px, 4vw, 32px);
+  max-width: 52rem;
+  width: 100%;
+  border-top: 3px solid var(--case-medical-accent, #1641a6);
+  background: rgba(22, 65, 166, 0.04);
+  font-size: var(--type-body);
+  line-height: var(--leading-body, 1.65);
+  color: #333;
+  text-align: center;
+}
+
+/* Role stat cards */
+
+.roleStatGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.roleStatCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 168px;
+  padding: 28px 20px 24px;
+  border: 2px solid var(--case-medical-accent, #1641a6);
+  background: #fff;
+  text-align: center;
+}
+
+.roleStatValue {
+  font-size: var(--type-h2);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--case-medical-accent, #1641a6);
+}
+
+.roleStatLabel {
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--case-medical-accent, #1641a6);
+}
+
+.roleStatBody {
+  margin: 4px 0 0;
+  font-size: var(--type-body);
+  line-height: 1.55;
+  color: #555;
+}
+
+/* Shared prose block inside panels */
+
+.medicalProse {
+  margin: 0 auto;
+  max-width: var(--case-prose-measure, 52ch);
+  font-size: var(--type-body);
+  line-height: var(--leading-body, 1.65);
+  color: #333;
+  text-align: center;
+}
+
+.contentPlaceholder {
+  width: 100%;
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px dashed rgba(22, 65, 166, 0.28);
+  background: rgba(22, 65, 166, 0.03);
+  text-align: center;
+}
+
+.contentPlaceholder .medicalProse {
+  color: #666;
+  font-style: italic;
+}
+
+/* Success criteria cards */
+
+.successCriteriaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.successCriteriaCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 140px;
+  padding: 24px 18px;
+  border: 2px solid rgba(22, 65, 166, 0.18);
+  border-top: 3px solid var(--case-medical-accent, #1641a6);
+  background: #fff;
+  text-align: center;
+}
+
+.successCriteriaCardLabel {
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--case-medical-accent, #1641a6);
+}
+
+.successCriteriaCardValue {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.55;
+  color: #444;
+}
+
+.successCriteriaList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 42rem;
+}
+
+.successCriteriaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.successCriteriaItem:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.deepDiveSection {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 28px);
+  width: 100%;
+  margin-top: clamp(24px, 3vw, 32px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid rgba(22, 65, 166, 0.12);
+}
+
+.deepDiveTrack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: clamp(20px, 3vw, 28px);
+  border-left: 3px solid var(--case-medical-accent, #1641a6);
+  background: rgba(22, 65, 166, 0.03);
+}
+
+.deepDiveTrackLabel {
+  margin: 0;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--case-medical-accent, #1641a6);
+  text-align: left;
 }
 
 .subsection {
   margin-top: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .subsection :global(.case-prose-subtitle) {
   margin: 0 0 12px;
-  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  font-size: var(--type-h3);
   font-weight: 700;
   line-height: 1.35;
   color: var(--case-medical-accent, #3156af);
@@ -59,8 +346,9 @@
 
 .subsection :global(.case-prose-body) {
   margin: 0 0 24px;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
   line-height: 1.65;
+  text-align: center;
 }
 
 /* Medical card grid — shared across Research, Insight, UI Design, Onboarding, Standards, Outcome */
@@ -71,6 +359,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  width: 100%;
 }
 
 .medicalCardGridCols2 {
@@ -87,15 +376,23 @@
 
 .medicalCardGridSection {
   margin-bottom: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .medicalCard {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
   min-height: 100%;
-  padding: 24px 0 0;
-  border-top: 3px solid var(--case-medical-accent, #3156af);
+  padding: 24px 18px 20px;
+  border: 2px solid rgba(22, 65, 166, 0.14);
+  border-top: 3px solid var(--case-medical-accent, #1641a6);
+  background: #fff;
+  text-align: center;
 }
 
 .medicalCardWide {
@@ -115,15 +412,19 @@
 
 .medicalCardTitle {
   margin: 0;
-  font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
-  line-height: 1.35;
+  font-size: var(--type-body);
+  line-height: var(--leading-body, 1.65);
   font-weight: 700;
-  color: var(--case-medical-accent, #3156af);
+  color: #111;
+}
+
+.medicalLayerBody .medicalCardTitle {
+  color: #111;
 }
 
 .medicalCardBody {
   margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
 }
@@ -149,6 +450,9 @@
 
 .decisionMatrixWrap {
   overflow-x: auto;
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
 }
 
 .decisionMatrix {
@@ -156,25 +460,26 @@
   min-width: 0;
   border-collapse: collapse;
   table-layout: fixed;
+  font-size: var(--mayo-t-1);
 }
 
 .decisionMatrixCorner {
-  width: 14%;
+  width: 13%;
   padding: 0;
   border-bottom: 2px solid var(--case-medical-accent, #3156af);
 }
 
 .decisionMatrixColHead {
   vertical-align: bottom;
-  padding: 0 12px 16px;
+  padding: 0 8px 12px;
   border-bottom: 2px solid var(--case-medical-accent, #3156af);
   text-align: left;
 }
 
 .decisionMatrixColTitle {
   display: block;
-  margin-bottom: 8px;
-  font-size: clamp(0.9375rem, 1.05vw, 1.0625rem);
+  margin-bottom: 6px;
+  font-size: var(--mayo-t-2);
   line-height: 1.35;
   font-weight: 700;
   color: var(--case-medical-accent, #3156af);
@@ -182,7 +487,7 @@
 
 .decisionMatrixColBaseline {
   display: block;
-  font-size: 0.6875rem;
+  font-size: var(--mayo-t-1);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -190,17 +495,55 @@
 }
 
 .decisionMatrixColBaselineBg {
-  background: rgba(49, 86, 175, 0.07);
+  background: rgba(49, 86, 175, 0.05);
 }
 
 .decisionMatrixColSelected {
-  background: rgba(49, 86, 175, 0.04);
+  background: rgba(49, 86, 175, 0.06);
+}
+
+.decisionMatrixColRejected {
+  opacity: 0.72;
+}
+
+.decisionMatrixColMr {
+  position: relative;
+}
+
+.decisionMatrixColHead.decisionMatrixColMr {
+  background: var(--case-medical-accent, #3156af);
+  border-bottom-color: var(--case-medical-accent, #3156af);
+}
+
+.decisionMatrixColHead.decisionMatrixColMr .decisionMatrixColTitle {
+  font-size: var(--mayo-t-2);
+  color: #fff;
+}
+
+.decisionMatrixColHead.decisionMatrixColMr .decisionVerdictSelected {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.decisionMatrixDescCell.decisionMatrixColMr,
+.decisionMatrixCriteriaCell.decisionMatrixColMr,
+.decisionMatrixAssessmentCell.decisionMatrixColMr {
+  background: rgba(49, 86, 175, 0.1);
+  box-shadow:
+    inset 2px 0 0 var(--case-medical-accent, #3156af),
+    inset -2px 0 0 var(--case-medical-accent, #3156af);
+}
+
+.decisionMatrix tbody tr:last-child .decisionMatrixColMr {
+  box-shadow:
+    inset 2px 0 0 var(--case-medical-accent, #3156af),
+    inset -2px 0 0 var(--case-medical-accent, #3156af),
+    inset 0 -2px 0 var(--case-medical-accent, #3156af);
 }
 
 .decisionMatrixRowLabel {
-  width: 14%;
-  padding: 18px 16px 18px 0;
-  font-size: 0.875rem;
+  width: 13%;
+  padding: 12px 10px 12px 0;
+  font-size: var(--mayo-t-1);
   line-height: 1.35;
   font-weight: 700;
   text-align: left;
@@ -211,31 +554,36 @@
 
 .decisionMatrixDescRow .decisionMatrixRowLabel {
   vertical-align: top;
-  padding-top: 20px;
+  padding-top: 14px;
 }
 
 .decisionMatrixDescCell {
-  padding: 20px 12px;
+  padding: 14px 8px;
   vertical-align: top;
   border-top: 1px solid rgba(49, 86, 175, 0.12);
 }
 
 .decisionMatrixDescCell p {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.55;
+  font-size: var(--mayo-t-1);
+  line-height: 1.5;
   color: #666;
 }
 
+.decisionMatrixDescCell.decisionMatrixColMr p {
+  color: #333;
+  font-weight: 500;
+}
+
 .decisionMatrixCriteriaCell {
-  padding: 14px 12px;
+  padding: 10px 8px;
   text-align: center;
   vertical-align: top;
   border-top: 1px solid rgba(49, 86, 175, 0.12);
 }
 
 .decisionMatrixAssessmentCell {
-  padding: 16px 12px;
+  padding: 12px 8px;
   vertical-align: top;
   text-align: left;
   border-top: 1px solid rgba(49, 86, 175, 0.12);
@@ -243,22 +591,27 @@
 
 .decisionMatrixAssessmentCell p {
   margin: 0;
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  font-size: var(--mayo-t-1);
+  line-height: 1.45;
   color: #555;
 }
 
+.decisionMatrixAssessmentCell.decisionMatrixColMr p {
+  color: #222;
+  font-weight: 600;
+}
+
 .decisionMatrixCellNote {
-  margin: 10px 0 0;
-  font-size: 0.75rem;
-  line-height: 1.45;
+  margin: 8px 0 0;
+  font-size: var(--mayo-t-1);
+  line-height: 1.4;
   color: #666;
   text-align: left;
 }
 
 .decisionVerdict {
   display: block;
-  font-size: 0.6875rem;
+  font-size: var(--mayo-t-1);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -272,6 +625,17 @@
   color: #888;
 }
 
+.decisionMatrix .matrixMark {
+  width: 1.375rem;
+  height: 1.375rem;
+  font-size: var(--mayo-t-1);
+}
+
+.decisionMatrixColMr .matrixMarkYes {
+  color: #fff;
+  background: var(--case-medical-accent, #3156af);
+}
+
 .matrixWrap {
   margin-top: 0;
 }
@@ -280,7 +644,7 @@
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: var(--case-t4, 0.8125rem);
+  font-size: var(--mayo-t-2);
 }
 
 .matrixCorner,
@@ -337,7 +701,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: 999px;
-  font-size: 1rem;
+  font-size: var(--mayo-t-3);
   line-height: 1;
   font-weight: 700;
 }
@@ -354,7 +718,7 @@
 
 .matrixNote {
   margin: clamp(16px, 2.5vw, 24px) 0 0;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.5;
   color: #666;
   max-width: none;
@@ -362,7 +726,7 @@
 
 .matrixBridge {
   margin: 10px 0 0;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.5;
   color: #666;
   max-width: none;
@@ -374,77 +738,129 @@
 .problemLayers {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  align-items: center;
+  gap: var(--mayo-layer-gap, var(--mayo-gap-2xl));
+  width: 100%;
+  max-width: var(--case-medical-block-max, 75rem);
   margin-top: 0;
+  margin-inline: auto;
+}
+
+.medicalLayers > *,
+.problemLayers > * {
+  margin-block: 0;
+}
+
+.mayoResearchDetail {
+  max-width: var(--mayo-narrative-width, 52rem);
+  padding-top: var(--mayo-gap-2xl, 3.5rem);
+  border-top: 1px solid rgba(22, 65, 166, 0.12);
 }
 
 .medicalLayer,
 .problemLayer {
-  display: grid;
-  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
-  gap: 32px;
-  align-items: start;
-  padding-top: 48px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  padding-top: 0;
 }
 
+.medicalLayers > .medicalLayer,
+.medicalLayers > .medicalLayerPanelWrap,
+.medicalLayers > .problemLayer,
+.problemLayers > .medicalLayer,
+.problemLayers > .problemLayer {
+  padding-top: 0;
+}
+
+.medicalLayerPanelWrap:first-child,
 .medicalLayer:first-child,
 .problemLayer:first-child {
   padding-top: 0;
+}
+
+.medicalLayerPanel {
+  width: 100%;
+  padding: clamp(24px, 3.5vw, 36px);
+  border: 1px solid rgba(22, 65, 166, 0.14);
+  border-top: 3px solid var(--case-medical-accent, #1641a6);
+  background: #fff;
+}
+
+.medicalLayerFlush .medicalLayerPanel {
+  border: none;
   border-top: none;
+  padding: 0;
+  background: transparent;
+}
+
+.medicalLayerFullWidth .medicalLayerPanel {
+  max-width: 100%;
 }
 
 .medicalLayerHead,
 .problemLayerHead {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 12px 20px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  margin-bottom: var(--mayo-gap-lg, 1.5rem);
+  text-align: center;
+}
+
+.medicalH2 {
+  margin: 0;
+  padding-bottom: 10px;
+  width: 100%;
+  max-width: 56rem;
+  font-size: var(--type-h3);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--case-medical-accent, #1641a6);
+  border-bottom: 1px solid rgba(22, 65, 166, 0.14);
 }
 
 .medicalLayerPurpose {
-  margin: 0 0 20px;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  margin: 0 auto 8px;
+  font-size: var(--type-body);
   line-height: 1.65;
   font-weight: 400;
   color: #555;
-  max-width: var(--case-prose-measure, 68ch);
-}
-
-.medicalLayerIndex,
-.problemLayerIndex {
-  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: rgba(49, 86, 175, 0.28);
-}
-
-.medicalLayerLabel,
-.problemLayerLabel {
-  margin: 0;
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
-  line-height: 1.35;
-  font-weight: 700;
-  color: var(--case-medical-accent, #3156af);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .medicalLayer.medicalLayerFullWidth {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
 }
 
 .medicalLayer.medicalLayerFullWidth .medicalLayerHead {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
+  align-items: center;
 }
 
 .medicalLayer.medicalLayerFullWidth .medicalLayerBody {
   width: 100%;
-  max-width: none;
+  max-width: 100%;
 }
 
 .medicalLayerBody,
 .problemLayerBody {
+  width: 100%;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mayo-gap-xl, 2.25rem);
 }
 
 .problemPoints {
@@ -459,7 +875,7 @@
 .problemPoints li {
   position: relative;
   padding-left: 1.1em;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
 }
@@ -473,15 +889,19 @@
 }
 
 .problemBriefQuote {
-  margin: 0;
-  padding: 0 0 0 20px;
-  border-left: 3px solid var(--case-medical-accent, #3156af);
-  max-width: var(--case-prose-measure, 68ch);
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid rgba(22, 65, 166, 0.14);
+  border-left: 3px solid var(--case-medical-accent, #1641a6);
+  background: rgba(22, 65, 166, 0.03);
+  max-width: 42rem;
+  width: 100%;
+  text-align: center;
 }
 
 .problemBriefQuote p {
   margin: 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   font-style: italic;
   font-weight: 700;
@@ -489,18 +909,21 @@
 }
 
 .problemBriefFollowUp {
-  margin: 0;
-  max-width: var(--case-prose-measure, 68ch);
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto;
+  max-width: var(--case-prose-measure, 52ch);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
+  text-align: center;
 }
 
 .problemBriefAreas {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
   margin: clamp(16px, 2.5vw, 20px) 0 0;
+  width: 100%;
 }
 
 .problemBriefAreaGrid {
@@ -513,30 +936,34 @@
 }
 
 .problemBriefFigure {
-  margin: clamp(20px, 3vw, 28px) 0 0;
+  margin: clamp(20px, 3vw, 28px) auto 0;
   width: 100%;
+  max-width: 48rem;
 }
 
 .problemBriefImage {
   display: block;
   width: 100%;
   height: auto;
+  margin-inline: auto;
   border-radius: 2px;
 }
 
 .problemBriefCaption {
   margin-top: 10px;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.45;
   color: #666;
+  text-align: center;
 }
 
 .problemLocation {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   margin: 0 0 20px;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -550,21 +977,125 @@
   flex: 0 0 auto;
 }
 
+.fieldworkCardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.fieldworkCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: 100%;
+  padding: 20px 0 0;
+  border-top: 3px solid var(--case-medical-accent, #3156af);
+  text-align: center;
+}
+
+.fieldworkCardTitle {
+  margin: 0;
+  font-size: var(--type-h3);
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.fieldworkCardMetric {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  font-weight: 600;
+  color: #333;
+}
+
+.fieldworkCardDetail {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.55;
+  color: #666;
+}
+
+.fieldworkCardQuote {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.fieldworkCardQuoteBlock {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.fieldworkCardQuoteBlock p {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.fieldworkCardQuoteCite {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--type-label);
+  font-style: normal;
+  font-weight: 600;
+  color: #666;
+}
+
+.fieldworkCardMedia {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.fieldworkCardFigure {
+  margin: 0;
+}
+
+.fieldworkCardImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.fieldworkCardCaption {
+  margin-top: 8px;
+  font-size: var(--type-label);
+  line-height: 1.45;
+  color: #666;
+}
+
 .problemInterviewTotal {
   margin: 0 0 24px;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
   max-width: var(--case-prose-measure, 68ch);
 }
 
 .problemTimeline {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0;
+  width: 100%;
+  max-width: 52rem;
 }
 
 .problemTimelineItem {
@@ -604,19 +1135,20 @@
 .problemTimelineContent {
   min-width: 0;
   padding-top: 0;
+  text-align: center;
 }
 
 .problemTimelineTitle {
   margin: 0 0 8px;
-  font-size: clamp(1.125rem, 1.4vw, 1.3125rem);
+  font-size: var(--type-h3);
   line-height: 1.35;
   font-weight: 700;
   color: var(--case-medical-accent, #3156af);
 }
 
 .problemTimelineDetail {
-  margin: 12px 0 0;
-  font-size: 0.875rem;
+  margin: 12px auto 0;
+  font-size: var(--type-body);
   line-height: 1.55;
   color: #666;
   max-width: 42ch;
@@ -630,8 +1162,8 @@
 }
 
 .problemTimelineMetricsInline {
-  margin: 0;
-  font-size: 0.9375rem;
+  margin: 0 auto;
+  font-size: var(--type-body);
   line-height: 1.5;
   color: #333;
   max-width: 52ch;
@@ -655,7 +1187,7 @@
   margin: 0;
   flex: 1 1 24rem;
   max-width: none;
-  font-size: 0.9375rem;
+  font-size: var(--type-body);
   line-height: 1.5;
   font-style: italic;
   font-weight: 500;
@@ -690,7 +1222,7 @@
 }
 
 .problemTimelineMetricLabel {
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -698,28 +1230,29 @@
 }
 
 .problemTimelineMetricValue {
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.35;
   font-weight: 400;
   color: #111;
 }
 
 .problemTimelineMetricValueCount {
-  font-size: clamp(1.125rem, 1.25vw, 1.3125rem);
+  font-size: var(--type-h3);
   font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 .problemQuote {
-  margin: 20px 0 0;
+  margin: 20px auto 0;
   padding: 16px 0 0;
   border-top: 1px solid rgba(49, 86, 175, 0.1);
   max-width: 42ch;
+  text-align: center;
 }
 
 .problemQuote p {
   margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.6;
   font-style: italic;
   font-weight: 500;
@@ -729,7 +1262,7 @@
 .problemQuoteCite {
   display: block;
   margin-top: 8px;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   font-style: normal;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -741,24 +1274,30 @@
 }
 
 .problemTimelineRowWithMedia {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
   min-width: 0;
+  text-align: center;
 }
 
 .problemTimelineRowWithMedia .problemTimelineDetail,
 .problemTimelineRowWithMedia .problemQuote {
-  max-width: 36ch;
+  max-width: 42ch;
+  margin-inline: auto;
 }
 
 .problemTimelineSideMedia {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
   padding-top: 2px;
   min-width: 0;
+  width: 100%;
+  max-width: 36rem;
+  margin-inline: auto;
 }
 
 .problemTimelineSideFigure {
@@ -774,7 +1313,7 @@
 
 .problemTimelineSideCaption {
   margin-top: 8px;
-  font-size: 0.75rem;
+  font-size: var(--mayo-t-1);
   line-height: 1.45;
   color: #666;
 }
@@ -810,7 +1349,7 @@
 
 .problemTimelineBelowCaption {
   margin-top: 10px;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.45;
   color: #666;
 }
@@ -819,34 +1358,35 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  width: 100%;
+  max-width: 56rem;
 }
 
-.onboardingStageRow {
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 28px 36px;
-  align-items: start;
-  min-width: 0;
+.onboardingStageItem {
+  width: 100%;
 }
 
-.onboardingStageCopy {
-  min-width: 0;
+.onboardingStageItem + .onboardingStageItem {
+  margin-top: clamp(32px, 4vw, 48px);
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .onboardingStageDetail {
-  margin: 12px 0 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  margin: 0;
+  font-size: var(--type-body);
   line-height: 1.6;
   color: #666;
-  max-width: none;
+}
+
+.mayoTextMediaSplitCopy .onboardingStageDetail {
+  text-align: left;
 }
 
 .onboardingStageMedia {
   min-width: 0;
-  padding-top: 2px;
-  justify-self: start;
   width: 100%;
-  max-width: 100%;
+  margin-inline: 0;
 }
 
 .onboardingStageFigure {
@@ -872,26 +1412,40 @@
 }
 
 .onboardingStageHead .problemTimelineMetricLabel {
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
 }
 
 .onboardingStageHead .problemTimelineTitle {
   margin: 0;
-  font-size: clamp(1.25rem, 1.5vw, 1.4375rem);
+  font-size: var(--mayo-t-5);
 }
 
 .problemSynthesisIntro {
-  margin: 0 0 24px;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto 24px;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .problemSynthesisFlow {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   list-style: none;
+  width: 100%;
+  max-width: 56rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.problemSynthesisStep {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .problemSynthesisFlow .problemTimelineItem {
@@ -902,32 +1456,30 @@
   padding-bottom: 0;
 }
 
-.problemSynthesisStepStat {
-  font-size: inherit;
-  color: var(--case-medical-accent, #3156af);
-}
-
 .problemInsightContrast {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
   align-items: start;
   margin-top: 0;
+  width: 100%;
 }
 
 .problemInsightPanel {
   min-width: 0;
   padding-top: 0;
   border-top: none;
+  text-align: center;
 }
 
 .problemInsightPanelTitle {
   margin: 0 0 12px;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #666;
+  text-align: center;
 }
 
 .problemInsightPanelDiscovered .problemInsightPanelTitle {
@@ -957,7 +1509,7 @@
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   line-height: 1;
   font-weight: 700;
 }
@@ -978,7 +1530,7 @@
 
 .problemInsightLabel {
   margin: 0;
-  font-size: clamp(1rem, 1.1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.35;
   font-weight: 700;
   color: #111;
@@ -990,7 +1542,7 @@
 
 .problemInsightBody {
   margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1rem);
+  font-size: var(--type-body);
   line-height: 1.6;
   color: #444;
 }
@@ -1004,7 +1556,7 @@
   margin-top: -48px;
   padding-top: 0;
   border-top: none;
-  align-items: start;
+  align-items: center;
 }
 
 .problemLayerFollowSynthesis .medicalLayerHead,
@@ -1023,81 +1575,228 @@
 }
 
 .problemPatternsIntro {
-  margin: 0 0 16px;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto 16px;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .problemScaleFigure {
-  margin: 0;
+  margin: 20px auto 0;
   width: 100%;
-  max-width: none;
+  max-width: 40rem;
 }
 
 .problemScaleImage {
   display: block;
   width: 100%;
   height: auto;
+  margin-inline: auto;
 }
 
 .problemSynthesisFlow .problemDefinedGrid {
   margin-top: 8px;
 }
 
+.mayoLayoutBlock {
+  margin-top: clamp(40px, 5vw, 56px);
+  padding-top: clamp(40px, 5vw, 48px);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 .problemDefinedIntro {
   margin: 0 0 24px;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
   max-width: var(--case-prose-measure, 68ch);
 }
 
+.problemLayoutBlock .medicalLayerIndex {
+  display: none;
+}
+
+.problemLayoutBlock .medicalLayerHead {
+  margin-bottom: 8px;
+}
+
+.problemLayoutBlock .medicalLayerLabel {
+  font-size: var(--type-h3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.problemSectionKicker {
+  margin: 0 auto 24px;
+  font-size: var(--mayo-t-2);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--case-medical-accent, #3156af);
+  text-align: center;
+}
+
 .problemDefinedGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
   margin: 0;
   padding: 0;
   list-style: none;
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
 }
 
 .problemDefinedCard {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
   min-height: 100%;
-  padding: 24px 0 0;
-  border-top: 3px solid var(--case-medical-accent, #3156af);
-  background: transparent;
-  color: #333;
+  padding: 24px 16px;
+  border: 2px solid var(--case-medical-accent, #3156af);
+  border-radius: 0;
+  background: #fff;
+  color: var(--case-medical-accent, #3156af);
+  text-align: center;
 }
 
 .problemDefinedStat {
   margin: 0;
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-size: var(--mayo-t-6);
   line-height: 1;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--case-medical-accent, #3156af);
 }
 
 .problemDefinedStatLabel {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.3;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: var(--mayo-t-2);
+  line-height: 1.35;
+  font-weight: 700;
   color: var(--case-medical-accent, #3156af);
 }
 
 .problemDefinedBody {
-  margin: 8px 0 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
-  line-height: 1.65;
-  color: #333;
+  margin: 4px 0 0;
+  font-size: var(--mayo-t-2);
+  line-height: 1.55;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.fieldworkMosaic {
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.fieldworkMosaicFrame {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding: 20px;
+  border: 2px solid var(--case-medical-accent, #3156af);
+  border-radius: 0;
+}
+
+.fieldworkMosaicCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.fieldworkMosaicColOffset {
+  margin-top: 40px;
+}
+
+.fieldworkInfoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 148px;
+  padding: 18px 16px;
+  border: 2px solid var(--case-medical-accent, #3156af);
+  border-radius: 0;
+  background: #fff;
+  text-align: left;
+}
+
+.fieldworkInfoCardTitle {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.fieldworkInfoCardBody {
+  margin: 0;
+  flex: 1;
+  font-size: var(--mayo-t-2);
+  line-height: 1.55;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.fieldworkInfoCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  font-size: var(--mayo-t-2);
+  font-weight: 700;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.fieldworkQuoteCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 148px;
+  margin: 0;
+  padding: 18px 16px;
+  border: none;
+  border-radius: 0;
+  background: var(--case-medical-accent, #3156af);
+  color: #fff;
+}
+
+.fieldworkQuoteCard p {
+  margin: 0;
+  font-size: var(--mayo-t-2);
+  line-height: 1.55;
+  font-style: italic;
+}
+
+.fieldworkQuoteCardCite {
+  display: block;
+  margin-top: auto;
+  align-self: flex-end;
+  font-size: var(--mayo-t-2);
+  font-style: normal;
+  font-weight: 700;
+  color: #fff;
+}
+
+.fieldworkMosaicImage {
+  margin: 0;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+
+.fieldworkMosaicImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Standards */
@@ -1112,7 +1811,7 @@
   margin: auto 0 0;
   padding-top: 8px;
   border-top: none;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   font-weight: 500;
   line-height: 1.5;
   color: #666;
@@ -1122,7 +1821,7 @@
 
 .insightTakeawayDrives {
   margin: 4px 0 0;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.55;
   color: #555;
 }
@@ -1146,11 +1845,12 @@
 }
 
 .insightCorrespondenceLead {
-  margin: 0 0 24px;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto 24px;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .insightCorrespondence {
@@ -1159,96 +1859,51 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  border-top: 3px solid var(--case-medical-accent, #3156af);
+  gap: 14px;
+  width: 100%;
 }
 
-.insightCorrespondenceRow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1.1fr);
-  gap: 16px 20px;
-  align-items: start;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.insightCorrespondenceLabel {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #888;
-}
-
-.insightCorrespondenceTakeawayTitle,
-.insightCorrespondenceDirectionTitle {
-  display: block;
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
-  line-height: 1.4;
-  font-weight: 700;
-}
-
-.insightCorrespondenceTakeawayTitle {
-  color: #222;
-}
-
-.insightCorrespondenceArrow {
-  justify-self: center;
-  font-size: 1.25rem;
-  line-height: 1;
-  font-weight: 700;
-  color: var(--case-medical-accent, #3156af);
-}
-
-.insightCorrespondenceDirections {
+.insightCorrespondenceItem {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  padding: clamp(18px, 2.5vw, 24px);
+  border: 1px solid rgba(22, 65, 166, 0.14);
+  border-left: 3px solid var(--case-medical-accent, #1641a6);
+  background: rgba(22, 65, 166, 0.03);
+  text-align: left;
 }
 
-.insightCorrespondenceDirection {
-  display: block;
-  text-decoration: none;
+.insightCorrespondenceItem:first-child {
+  padding-top: clamp(18px, 2.5vw, 24px);
+}
+
+.insightCorrespondenceItem:last-child {
+  padding-bottom: clamp(18px, 2.5vw, 24px);
+}
+
+.insightCorrespondenceLink {
   color: inherit;
+  text-decoration: none;
 }
 
-.insightCorrespondenceDirectionTitle {
-  color: var(--case-medical-accent, #3156af);
-}
-
-.insightCorrespondenceDirection:hover .insightCorrespondenceDirectionTitle {
+.insightCorrespondenceLink:hover .mayoBodyEm {
   text-decoration: underline;
 }
 
-.insightCorrespondenceNote {
-  margin: 6px 0 0;
-  font-size: 0.875rem;
-  line-height: 1.55;
-  color: #666;
-}
-
-.insightCorrespondenceOrder {
-  margin-right: 8px;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: rgba(49, 86, 175, 0.45);
-}
-
 .insightConvergenceLead {
-  margin: 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto;
+  font-size: var(--type-body);
   line-height: 1.65;
   font-weight: 600;
   color: #222;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .insightConvergenceBody {
   margin: 12px 0 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
   max-width: var(--case-prose-measure, 68ch);
@@ -1258,7 +1913,7 @@
   margin: 20px 0 0;
   padding: 0 0 0 20px;
   border-left: 3px solid var(--case-medical-accent, #3156af);
-  font-size: clamp(1.0625rem, 1.15vw, 1.25rem);
+  font-size: var(--type-h3);
   line-height: 1.65;
   font-style: italic;
   color: #333;
@@ -1278,7 +1933,7 @@
 
 .insightDirectionGroupLabel {
   margin: 0 0 20px;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1302,7 +1957,7 @@
 }
 
 .insightDirectionIndex {
-  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  font-size: var(--type-h3);
   line-height: 1.2;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -1318,14 +1973,14 @@
 
 .insightDirectionSource {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #888;
 }
 
 .insightDirectionTitle {
-  font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
+  font-size: var(--type-h3);
   line-height: 1.35;
   font-weight: 700;
   color: var(--case-medical-accent, #3156af);
@@ -1338,7 +1993,7 @@
 
 .insightDirectionBody {
   margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.6;
   color: #333;
   max-width: 52ch;
@@ -1357,12 +2012,16 @@
 .testingRoundIntro {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
+  width: 100%;
+  text-align: center;
 }
 
 .testingRoundIntro :global(.case-prose-body) {
-  margin: 0;
-  max-width: var(--case-prose-measure, 68ch);
+  margin: 0 auto;
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .testingMetaGrid {
@@ -1391,52 +2050,46 @@
 
 .testingMetaCell dd {
   margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.45;
   font-weight: 600;
   color: #222;
 }
 
 .testingSiteTag {
-  margin: 28px 0 16px;
-  font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
-  line-height: 1.35;
-  font-weight: 700;
-  color: var(--case-medical-accent, #3156af);
+  margin: 0;
 }
 
 .testingFindingsBlock {
-  margin-top: 32px;
-  padding-top: 32px;
+  margin-top: 28px;
+  padding-top: 28px;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
 }
 
 .testingFindingsHeading {
-  margin: 0 0 20px;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #666;
+  margin: 0;
 }
 
 .testingFindingRow {
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 28px 36px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
   min-width: 0;
+  text-align: center;
 }
 
 .testingRoundRowCopyOnly,
 .testingFindingRowCopyOnly {
-  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
 }
 
 .testingMedia {
   min-width: 0;
-  justify-self: start;
   width: 100%;
+  max-width: 36rem;
+  margin-inline: auto;
 }
 
 .testingFigure {
@@ -1472,30 +2125,106 @@
 .testingFindingCopy {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  min-width: 0;
+  max-width: var(--case-prose-measure, 52ch);
+}
+
+/* Text + media split — 3:2 ratio, bottom-aligned */
+
+.mayoTextMediaSplitBlock {
+  width: 100%;
+}
+
+.mayoTextMediaSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(20px, 3vw, 36px);
+  align-items: end;
+  width: 100%;
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.mayoTextMediaSplitMediaRight {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+}
+
+.mayoTextMediaSplitMedia {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
   min-width: 0;
 }
 
-.testingFindingGroup {
+.mayoTextMediaSplitMediaRight .mayoTextMediaSplitMedia {
+  grid-column: 2;
+}
+
+.mayoTextMediaSplitCopy {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
+  text-align: left;
 }
 
-.testingFindingLabel {
+.mayoTextMediaSplitMediaRight .mayoTextMediaSplitCopy {
+  grid-column: 1;
+}
+
+.mayoTextMediaSplitCopyOnly {
+  width: 100%;
+  max-width: var(--case-prose-measure, 52ch);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.mayoTextMediaSplitLabel {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: var(--type-label);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--case-medical-accent, #3156af);
+  color: var(--case-medical-accent, #1641a6);
 }
 
-.testingFindingBody {
+.mayoTextMediaSplitBody {
   margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
-  line-height: 1.65;
+  font-size: var(--type-body);
+  line-height: var(--leading-body, 1.65);
   color: #333;
+}
+
+.mayoTextMediaSplitCopyOnly .mayoTextMediaSplitBody,
+.mayoTextMediaSplitCopyOnly :global(.case-prose-body) {
+  text-align: center;
+}
+
+.mayoTextMediaSplitCopy :global(.case-prose-body) {
+  text-align: left;
+}
+
+.mayoTextMediaSplitImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mayoTextMediaSplitExtra {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 28px);
+  margin-top: clamp(24px, 3vw, 32px);
+  width: 100%;
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.mayoTextMediaSplitExtraFigure {
+  margin: 0;
 }
 
 /* UI Design */
@@ -1503,65 +2232,156 @@
 .uiDesignResearch {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: clamp(32px, 4vw, 48px);
+  width: 100%;
+  max-width: 56rem;
+  margin-inline: auto;
 }
 
 .uiDesignResearchTrack + .uiDesignResearchTrack {
-  padding-top: 32px;
+  padding-top: clamp(32px, 4vw, 48px);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .uiDesignResearchLabel {
-  margin: 0 0 10px;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--case-medical-accent, #3156af);
+  display: none;
 }
 
 .uiDesignResearchBody {
-  margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
-  line-height: 1.65;
-  color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  display: none;
 }
 
 .uiDesignResearchFigure {
-  margin: 20px 0 0;
+  display: none;
 }
 
 .uiDesignResearchImage {
   display: block;
   width: 100%;
   height: auto;
+  margin-inline: auto;
 }
 
 .uiDesignIconSheetImage {
   display: block;
   width: 100%;
-  max-width: 720px;
+  max-width: 40rem;
   height: auto;
+  margin-inline: auto;
+}
+
+.flowFigure {
+  margin: clamp(16px, 2.5vw, 24px) auto 0;
+  width: 100%;
+  max-width: 48rem;
+}
+
+.flowFigureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+.figureCaption {
+  text-align: center;
+}
+
+.matrixNote,
+.matrixBridge {
+  max-width: var(--case-prose-measure, 52ch);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.designRationaleList {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.designRationaleItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(18px, 2.5vw, 24px);
+  border: 1px solid rgba(22, 65, 166, 0.14);
+  border-top: 3px solid var(--case-medical-accent, #1641a6);
+  background: #fff;
+  text-align: left;
+}
+
+.designRationaleItem:first-child {
+  padding-top: clamp(18px, 2.5vw, 24px);
+}
+
+.designRationaleLine {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.6;
+  color: #333;
+  text-align: center;
+}
+
+.designRationaleLabel {
+  display: block;
+  margin-bottom: 4px;
+  font-size: var(--type-label);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--case-medical-accent, #3156af);
+}
+
+.iterationList {
+  width: 100%;
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.iterationItem {
+  text-align: left;
+}
+
+.finalVideoCaption {
+  margin: 0 auto 20px;
+  font-size: var(--type-body);
+  line-height: 1.65;
+  color: #555;
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
+}
+
+.case-overview-youtube {
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
 }
 
 .uiDesignDefinition {
-  margin: 0;
-  padding: 0 0 0 20px;
-  border-left: 3px solid var(--case-medical-accent, #3156af);
-  font-size: clamp(1.0625rem, 1.15vw, 1.25rem);
+  margin: 0 auto;
+  padding: 16px 0 0;
+  border-left: none;
+  border-top: 3px solid var(--case-medical-accent, #3156af);
+  font-size: var(--type-h3);
   line-height: 1.65;
   font-style: italic;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .uiDesignSolutionsLead {
-  margin: 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .uiDesignSolutionItem + .uiDesignSolutionItem {
@@ -1575,41 +2395,49 @@
 }
 
 .uiDesignSolutionIntro {
-  margin: 0 0 16px;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  margin: 0 auto 16px;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #555;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .uiDesignSolutionSplit {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 28px 32px;
-  align-items: start;
-  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .uiDesignSolutionSplitFigure {
   margin: 0;
+  width: 100%;
   min-width: 0;
 }
 
 .uiDesignSolutionSplitFigure .uiDesignIconSheetImage {
-  max-width: none;
+  max-width: 100%;
+  margin-inline: auto;
 }
 
 .uiDesignSolutionSplitCopy {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   min-width: 0;
-  padding-top: 4px;
+  padding-top: 0;
+  width: 100%;
 }
 
 .uiDesignSolutionSplitTitle {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: var(--mayo-t-2);
   font-weight: 600;
   line-height: 1.4;
   color: #222;
@@ -1617,14 +2445,14 @@
 
 .uiDesignSolutionSplitBody {
   margin: 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #555;
 }
 
 .uiDesignTestingBody {
   margin: 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
   max-width: var(--case-prose-measure, 68ch);
@@ -1633,7 +2461,7 @@
 .uiDesignTestingLink {
   display: inline-block;
   margin-top: 16px;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1653,7 +2481,7 @@
 
 .uiDesignValidationFindingLabel {
   margin: 0 0 16px;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1673,7 +2501,7 @@
 
 .uiDesignValidationFindingBody {
   margin: 16px 0 0;
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #555;
   max-width: var(--case-prose-measure, 68ch);
@@ -1695,9 +2523,16 @@
 
 /* Brand */
 
-.medicalLayerBody > .case-prose-body + :not(.case-prose-body),
+.medicalLayerBody > .case-prose-body + :not(.case-prose-body) {
+  margin-top: 20px;
+}
+
 .medicalLayerBody > .case-prose-body + .case-prose-body {
-  margin-top: 16px;
+  margin-top: 8px;
+}
+
+.medicalLayerBody .insightCorrespondenceItem .case-prose-body + .case-prose-body {
+  margin-top: 4px;
 }
 
 .medicalLayerBody .medicalCardGrid,
@@ -1707,7 +2542,7 @@
 .medicalLayerBody .problemDefinedGrid,
 .medicalLayerBody .researchImageGrid,
 .medicalLayerBody .researchPersona,
-.medicalLayerBody .researchRubricModules {
+.medicalLayerBody .researchRubricTableWrap {
   margin-top: 24px;
 }
 .medicalLayerBody .rubricFigure,
@@ -1770,7 +2605,7 @@
 
 .figureCaption {
   margin-top: 10px;
-  font-size: var(--case-t4, 0.8125rem);
+  font-size: var(--mayo-t-2);
   line-height: 1.5;
   color: #666;
 }
@@ -1799,7 +2634,7 @@
 }
 
 .timeoutIndex {
-  font-size: 0.75rem;
+  font-size: var(--mayo-t-1);
   font-weight: 600;
   letter-spacing: 0.08em;
   color: #3156af;
@@ -1807,19 +2642,9 @@
 
 .timeoutText {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.45;
   color: #222;
-}
-
-.flowFigure {
-  margin: clamp(24px, 4vw, 32px) 0 0;
-}
-
-.flowFigureImage {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 /* Evaluator validation */
@@ -1893,12 +2718,16 @@
 .outcomeComparisonBlock {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 28px;
+  width: 100%;
+  text-align: center;
 }
 
 .outcomeComparisonBlock :global(.case-prose-body) {
-  margin: 0;
-  max-width: var(--case-prose-measure, 68ch);
+  margin: 0 auto;
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .outcomeMatrixWrap {
@@ -1916,7 +2745,7 @@
   width: 14%;
   padding: 0 16px 14px 0;
   border-bottom: 2px solid var(--case-medical-accent, #3156af);
-  font-size: 0.6875rem;
+  font-size: var(--mayo-t-1);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1935,7 +2764,7 @@
 .outcomeMatrix thead th {
   border-top: none;
   padding-top: 0;
-  font-size: clamp(0.8125rem, 0.95vw, 0.9375rem);
+  font-size: var(--mayo-t-2);
   line-height: 1.35;
   font-weight: 700;
   color: var(--case-medical-accent, #3156af);
@@ -1948,7 +2777,7 @@
 
 .outcomeMatrixRowLabel {
   text-align: left;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   font-weight: 700;
   color: var(--case-medical-accent, #3156af);
   padding-left: 0;
@@ -1960,7 +2789,7 @@
 
 .outcomeMatrixValue {
   display: block;
-  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  font-size: var(--type-h3);
   line-height: 1.2;
   font-weight: 700;
   color: #111;
@@ -1973,14 +2802,14 @@
 .outcomeMatrixNote {
   display: block;
   margin-top: 6px;
-  font-size: 0.75rem;
+  font-size: var(--mayo-t-1);
   line-height: 1.45;
   color: #666;
 }
 
 .outcomeMatrixCellResult {
   background: rgba(49, 86, 175, 0.06);
-  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  font-size: var(--type-h3);
   font-weight: 700;
   color: var(--case-medical-accent, #3156af);
 }
@@ -2018,14 +2847,14 @@
 }
 
 .metricDeltaValue {
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-size: var(--mayo-t-7);
   line-height: 1;
   font-weight: 700;
   letter-spacing: -0.04em;
 }
 
 .metricDeltaUnit {
-  font-size: clamp(1.125rem, 1.8vw, 1.625rem);
+  font-size: var(--mayo-t-5);
   line-height: 1;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -2035,7 +2864,7 @@
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  font-size: var(--type-h3);
   line-height: 1;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -2049,7 +2878,7 @@
 
 .metricDeltaLabel {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.45;
   color: #555;
 }
@@ -2068,7 +2897,7 @@
 
 .kicker {
   margin: 0;
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.35;
   font-weight: 700;
   color: var(--case-medical-accent, #3156af);
@@ -2077,7 +2906,7 @@
 
 .researchDimensionsLead {
   margin: 0 0 28px;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
   max-width: var(--case-prose-measure, 68ch);
@@ -2099,21 +2928,33 @@
 .researchLineIntro {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0;
   max-width: none;
+  text-align: center;
 }
 
 .researchLineBridge {
   margin-top: 16px;
   padding-top: 14px;
   border-top: 1px solid rgba(49, 86, 175, 0.2);
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.mayoTextMediaSplitCopy .researchLineBridge {
+  margin-top: 12px;
+  padding-top: 12px;
+  max-width: none;
+  margin-inline: 0;
+  text-align: left;
 }
 
 .researchLineFeeds {
   display: block;
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2121,32 +2962,34 @@
 }
 
 .researchLinePurpose {
-  margin: 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .researchLineBody {
-  margin: 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
 .researchLineNote {
   margin: 6px 0 0;
-  font-size: clamp(0.875rem, 0.95vw, 1rem);
+  font-size: var(--type-body);
   line-height: 1.55;
   color: #555;
 }
 
 .researchPersonaWrap {
-  width: calc(100% + 232px);
+  width: 100%;
   max-width: none;
-  margin-left: -232px;
+  margin-inline: auto;
 }
 
 .researchPersonaWrapLead .researchPersona {
@@ -2170,6 +3013,24 @@
   border-top: 1px solid rgba(49, 86, 175, 0.22);
   width: 100%;
   max-width: none;
+}
+
+.researchPersonaCompact {
+  max-width: 40rem;
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 16px 20px;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.researchPersonaCompact .researchPersonaContent {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.researchPersonaCompact .researchPersonaSection {
+  gap: 8px;
 }
 
 .researchPersonaPhoto {
@@ -2207,7 +3068,7 @@
 
 .researchPersonaName {
   margin: 0;
-  font-size: clamp(1.125rem, 1.4vw, 1.5rem);
+  font-size: var(--type-h3);
   line-height: 1.2;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -2219,7 +3080,7 @@
   margin: 2px 0 0;
   padding-top: 12px;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.55;
   color: #666;
 }
@@ -2238,7 +3099,7 @@
   grid-template-columns: 16px minmax(0, 1fr);
   gap: 8px 10px;
   align-items: start;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.45;
 }
 
@@ -2274,7 +3135,7 @@
   margin: 0 0 8px;
   padding-bottom: 6px;
   border-bottom: 1px solid rgba(49, 86, 175, 0.22);
-  font-size: 0.6875rem;
+  font-size: var(--mayo-t-1);
   line-height: 1.3;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -2284,7 +3145,7 @@
 
 .researchPersonaBio {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.55;
   color: #444;
 }
@@ -2292,7 +3153,7 @@
 .researchPersonaList {
   margin: 0;
   padding: 0 0 0 1em;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.55;
   color: #444;
 }
@@ -2318,7 +3179,7 @@
 }
 
 .researchPersonaRatingLabel {
-  font-size: 0.75rem;
+  font-size: var(--mayo-t-1);
   line-height: 1.35;
   color: #444;
 }
@@ -2348,83 +3209,96 @@
 }
 
 .researchRubricIntro {
-  margin: 0 0 24px;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  margin: 0 auto 20px;
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
-  max-width: var(--case-prose-measure, 68ch);
+  max-width: var(--case-prose-measure, 52ch);
+  text-align: center;
 }
 
-.researchRubricModules {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.researchRubricModule {
-  min-width: 0;
-  padding-top: 24px;
-  border-top: 2px solid var(--case-medical-accent, #3156af);
-}
-
-.researchRubricModuleHead {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.researchRubricModuleTitle {
-  margin: 0;
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
-  font-weight: 700;
-  color: var(--case-medical-accent, #3156af);
-}
-
-.researchRubricModuleCount {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #888;
+.researchRubricTableWrap {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+  overflow-x: auto;
 }
 
 .researchRubricTable {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
+  table-layout: fixed;
 }
 
 .researchRubricTable th,
 .researchRubricTable td {
-  padding: 10px 8px 10px 0;
-  border-top: 1px solid rgba(49, 86, 175, 0.12);
+  padding: 12px 14px;
+  border: 1px solid rgba(49, 86, 175, 0.14);
   vertical-align: top;
-  line-height: 1.4;
+  line-height: 1.45;
   text-align: left;
 }
 
 .researchRubricTable thead th {
-  border-top: none;
-  padding-top: 0;
-  font-weight: 600;
-  color: var(--case-medical-accent, #3156af);
+  background: var(--case-medical-accent, #3156af);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--mayo-t-1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-color: var(--case-medical-accent, #3156af);
 }
 
-.researchRubricTable tbody th {
+.researchRubricTable thead th:first-child {
+  width: 16%;
+}
+
+.researchRubricTable thead th:nth-child(2) {
+  width: 44%;
+}
+
+.researchRubricTable thead th:nth-child(3) {
+  width: 40%;
+}
+
+.researchRubricModuleCell {
+  background: rgba(49, 86, 175, 0.06);
+  font-weight: 700;
+  color: var(--case-medical-accent, #3156af);
+  vertical-align: middle;
+}
+
+.researchRubricModuleTitle {
+  display: block;
+  font-size: var(--type-body);
+  line-height: 1.3;
+}
+
+.researchRubricModuleCount {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--mayo-t-1);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.researchRubricTable tbody th[scope="row"] {
   font-weight: 500;
   color: #333;
+  background: #fff;
 }
 
 .researchRubricTable tbody td {
-  color: #666;
-  padding-right: 0;
+  color: #555;
+  background: #fff;
 }
 
-.researchRubricTable tbody tr:last-child th,
-.researchRubricTable tbody tr:last-child td {
-  border-bottom: 1px solid rgba(49, 86, 175, 0.12);
+.researchRubricTable tbody tr:nth-child(even) th[scope="row"],
+.researchRubricTable tbody tr:nth-child(even) td {
+  background: rgba(49, 86, 175, 0.03);
 }
 
 .judgmentFlow {
@@ -2461,7 +3335,7 @@
 .judgmentFlowchartKind {
   display: block;
   margin: 0 0 10px;
-  font-size: 0.8125rem;
+  font-size: var(--mayo-t-2);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2471,7 +3345,7 @@
 .judgmentFlowchartText,
 .judgmentFlowchartLead {
   margin: 0;
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-size: var(--type-body);
   line-height: 1.65;
   color: #333;
 }
@@ -2496,7 +3370,7 @@
   margin: 0;
   padding: 10px 12px 10px 28px;
   border: 1px solid rgba(49, 86, 175, 0.2);
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: var(--type-body);
   line-height: 1.5;
   color: #333;
 }
@@ -2527,7 +3401,7 @@
   margin: 20px 0 0;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
-  font-size: 0.875rem;
+  font-size: var(--mayo-t-2);
   line-height: 1.5;
   color: #666;
   max-width: none;
@@ -2561,11 +3435,20 @@
 }
 
 @media (max-width: 960px) {
+  .overviewSpecGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .roleStatGrid,
+  .successCriteriaGrid {
+    grid-template-columns: 1fr;
+  }
+
   .medicalCardGridCols2,
   .medicalCardGridCols3,
   .medicalCardGridCols4,
   .researchGrid,
-  .researchRubricModules,
+  .researchRubricTableWrap,
   .researchPersonaWrap {
     width: 100%;
     margin-left: 0;
@@ -2575,16 +3458,6 @@
   .medicalCardGridCols3,
   .medicalCardGridCols4 {
     grid-template-columns: 1fr;
-  }
-
-  .insightCorrespondenceRow {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .insightCorrespondenceArrow {
-    justify-self: start;
-    transform: rotate(90deg);
   }
 
   .researchPersona {
@@ -2607,10 +3480,14 @@
 
   .brandImageGrid,
   .problemDefinedGrid,
-  .problemInsightContrast,
-  .problemLayer,
-  .medicalLayer {
+  .fieldworkCardGrid,
+  .fieldworkMosaicFrame,
+  .problemInsightContrast {
     grid-template-columns: 1fr;
+  }
+
+  .fieldworkMosaicColOffset {
+    margin-top: 0;
   }
 
   .problemLayer,
@@ -2628,13 +3505,32 @@
     gap: 20px;
   }
 
+  .mayoTextMediaSplit,
+  .mayoTextMediaSplitMediaRight {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .mayoTextMediaSplitMedia,
+  .mayoTextMediaSplitMediaRight .mayoTextMediaSplitMedia,
+  .mayoTextMediaSplitCopy,
+  .mayoTextMediaSplitMediaRight .mayoTextMediaSplitCopy {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .mayoTextMediaSplitCopy :global(.case-prose-body),
+  .mayoTextMediaSplitCopy .onboardingStageDetail {
+    text-align: center;
+  }
+
   .uiDesignSolutionSplit {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
   .onboardingStageRow {
-    grid-template-columns: 1fr;
     gap: 20px;
   }
 
@@ -2659,7 +3555,6 @@
   }
 
   .testingFindingRow {
-    grid-template-columns: 1fr;
     gap: 20px;
   }
 
@@ -2710,11 +3605,15 @@
 
   .matrixOption span {
     max-width: none;
-    font-size: 0.75rem;
+    font-size: var(--mayo-t-1);
   }
 }
 
 @media (max-width: 720px) {
+  .overviewSpecGrid {
+    grid-template-columns: 1fr;
+  }
+
   .matrix {
     display: block;
     min-width: 0;

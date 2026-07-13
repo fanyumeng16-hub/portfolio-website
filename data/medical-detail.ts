@@ -40,34 +40,34 @@ export const medicalDemoVideo = {
 };
 
 export const medicalResearch = {
-  title: "Research",
-  kicker: "Research",
+  title: "Deep-dive Research",
+  kicker: "Opportunity-driven Research",
   dimensionsLead:
-    "With our targets defined in Design Standards, research had to run across these dimensions first, each line feeding a specific requirement, not a generic insights deck.",
+    "Targeted research across four dimensions—each feeding a specific design requirement.",
   dimensions: [
     {
       id: "user",
       index: "01",
       title: "User Research",
-      body: "How nurses with uneven MR fluency experience real-time feedback during BLS certification.",
+      body: "MR fluency and real-time feedback during certification.",
     },
     {
       id: "clinical",
       index: "02",
       title: "Clinical Standards",
-      body: "How Mayo's BLS rubric breaks into measurable compression, ventilation, and AED parameters.",
+      body: "BLS rubric as measurable compression, ventilation, and AED parameters.",
     },
     {
       id: "competitor",
       index: "03",
       title: "Competitor Research",
-      body: "How existing MR training tools trade usability for feature volume, a counter-example at certification scale.",
+      body: "Where MR training tools trade usability for feature volume.",
     },
     {
       id: "rubric",
       index: "04",
       title: "Evaluation Rubric",
-      body: "How seventeen certification parameters across CPR, BVM, and AED define what the system must judge.",
+      body: "17 parameters across CPR, BVM, and AED.",
     },
   ],
   dimensionResearch: medicalDimensionResearch,
@@ -75,8 +75,7 @@ export const medicalResearch = {
     {
       id: "user-research",
       title: "User Research",
-      purpose:
-        "Understand how real-time feedback could work for nurses entering BLS certification with uneven MR familiarity.",
+      purpose: "Nurses are clinically ready; MR fluency varies.",
       persona: {
         name: "Jordan M.",
         photo: {
@@ -84,69 +83,41 @@ export const medicalResearch = {
           alt: "A nurse in blue scrubs attending to a patient in a bright clinical setting.",
         },
         demographics: [
-          { icon: "experience", label: "Experience", value: "5 years acute care" },
-          { icon: "location", label: "Location", value: "Mayo Clinic Jacksonville" },
-          { icon: "role", label: "Role", value: "Registered Nurse" },
-          {
-            icon: "certification",
-            label: "Certification",
-            value: "BLS candidate · first MR session",
-          },
+          { icon: "role", label: "Role", value: "RN · BLS candidate" },
+          { icon: "location", label: "Site", value: "Mayo Clinic Jacksonville" },
         ],
-        bio: "Clinically prepared but new to mixed reality. Enters certification confident in BLS protocol, uncertain with headset gestures and spatial UI under time pressure.",
+        bio: "Confident in BLS, new to MR. Under observation, spatial UI competes with clinical recall.",
         wants: [
-          "Real-time correction during assessment, not after",
-          "Onboarding that separates device learning from clinical stakes",
-          "Feedback readable at a glance while hands stay on task",
+          "Real-time correction during assessment",
+          "Device learning before clinical stakes",
         ],
-        mrFluency: [
-          { label: "Headset comfort", level: 2 },
-          { label: "Hand tracking", level: 2 },
-          { label: "Spatial UI navigation", level: 1 },
-          { label: "Prior MR experience", level: 1 },
-        ],
-        clinicalReadiness: [
-          { label: "BLS clinical prep", level: 4 },
-          { label: "In-person cert experience", level: 4 },
-          { label: "Simulation familiarity", level: 3 },
-          { label: "Confidence under observation", level: 3 },
-        ],
-        frustrations: [
-          "Learning the headset while recalling BLS steps at the same time",
-          "No shared MR baseline across the nurse cohort",
-          "Delayed feedback turns small form errors into failed checkpoints",
-        ],
-        summary:
-          "Device learning and BLS recall compete for attention, feedback must work before MR fluency is established.",
       },
     },
     {
       id: "clinical-standards",
       title: "Clinical Standards Research",
-      purpose:
-        "Map BLS clinical requirements into quantifiable parameters aligned with Mayo's certification rubric.",
+      purpose: "Map BLS requirements into quantifiable certification parameters.",
       images: [
         {
           src: "/images/mayo-Basic%20research.png",
           alt: "BVM and AED asset research boards mapping equipment references, hand interactions, and clinical specifications",
-          caption: "BVM and AED equipment research, assets, interactions, and clinical specs.",
+          caption: "BVM and AED equipment research.",
         },
         {
           src: "/images/List%20of%20Hand%20Interactions%20in%20each%20BLS%20Steps.png",
           alt: "Hand interaction inventory mapped to each BLS certification step across CPR, BVM, and AED segments",
-          caption: "Hand interactions catalogued per BLS step.",
+          caption: "Hand interactions per BLS step.",
         },
       ],
     },
     {
       id: "competitor-research",
       title: "Competitor Research",
-      purpose:
-        "Benchmark existing MR training tools to see where feature volume undermines novice usability at certification scale.",
+      purpose: "Benchmark MR training tools at certification scale.",
     },
   ],
   evaluationRubric: {
-    intro: "Seventeen parameters across three modules, each tied to a measurable clinical threshold.",
+    intro: "17 parameters across three modules.",
     modules: [
       {
         id: "cpr",

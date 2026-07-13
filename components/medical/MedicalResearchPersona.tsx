@@ -2,7 +2,12 @@ import type { ReactNode } from "react";
 import type { medicalResearch } from "@/data/medical-detail";
 import styles from "./MedicalSections.module.css";
 
-type Persona = NonNullable<(typeof medicalResearch.lines)[0]["persona"]>;
+type Persona = NonNullable<(typeof medicalResearch.lines)[0]["persona"]> & {
+  mrFluency?: { label: string; level: number }[];
+  clinicalReadiness?: { label: string; level: number }[];
+  frustrations?: string[];
+  summary?: string;
+};
 type DemographicIcon = Persona["demographics"][number]["icon"];
 
 function PersonaIcon({ type }: { type: DemographicIcon }) {
@@ -132,8 +137,18 @@ function PersonaTextBlock({
 }
 
 export function MedicalResearchPersona({ persona }: { persona: Persona }) {
+  const hasAside = Boolean(
+    persona.mrFluency?.length ||
+      persona.clinicalReadiness?.length ||
+      persona.frustrations?.length,
+  );
+
   return (
-    <article className={styles.researchPersona}>
+    <article
+      className={`${styles.researchPersona}${
+        !hasAside ? ` ${styles.researchPersonaCompact}` : ""
+      }`}
+    >
       {persona.photo ? (
         <figure className={styles.researchPersonaPhoto}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -172,23 +187,32 @@ export function MedicalResearchPersona({ persona }: { persona: Persona }) {
               ))}
             </ul>
           </PersonaTextBlock>
-
-          {persona.summary ? (
-            <p className={styles.researchPersonaSummary}>{persona.summary}</p>
-          ) : null}
         </div>
 
-        <div className={styles.researchPersonaAside}>
-          <PersonaRatingBlock title="MR Fluency" items={persona.mrFluency} />
-          <PersonaRatingBlock title="Clinical Readiness" items={persona.clinicalReadiness} />
-          <PersonaTextBlock title="Frustrations">
-            <ul className={styles.researchPersonaList}>
-              {persona.frustrations.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </PersonaTextBlock>
-        </div>
+        {persona.mrFluency?.length ||
+        persona.clinicalReadiness?.length ||
+        persona.frustrations?.length ? (
+          <div className={styles.researchPersonaAside}>
+            {persona.mrFluency?.length ? (
+              <PersonaRatingBlock title="MR Fluency" items={persona.mrFluency} />
+            ) : null}
+            {persona.clinicalReadiness?.length ? (
+              <PersonaRatingBlock
+                title="Clinical Readiness"
+                items={persona.clinicalReadiness}
+              />
+            ) : null}
+            {persona.frustrations?.length ? (
+              <PersonaTextBlock title="Frustrations">
+                <ul className={styles.researchPersonaList}>
+                  {persona.frustrations.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </PersonaTextBlock>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </article>
   );

@@ -1,21 +1,31 @@
 import CaseOnboardingGestureCards from "@/components/CaseOnboardingGestureCards";
 import CaseOnboardingStages from "@/components/CaseOnboardingStages";
-import CaseAutoplayVideo from "@/components/CaseAutoplayVideo";
 import MedicalEvaluatorAlignment from "@/components/medical/MedicalEvaluatorAlignment";
 import {
   medicalDecision,
+  medicalDesignRationales,
   medicalEvaluation,
   medicalEvaluatorComparison,
+  medicalFinalVideo,
+  medicalIteration,
   medicalOnboarding,
   medicalUIDesign,
-  medicalUserTesting,
 } from "@/data/medical-content";
-import { MedicalProblemSection } from "./MedicalProblemSection";
 import { MedicalLayerShell } from "./MedicalLayerShell";
+import { MayoTextMediaSplit } from "./MayoTextMediaSplit";
 import { MedicalSection } from "./MedicalSection";
 import styles from "./MedicalSections.module.css";
 
-export { MedicalProblemSection };
+export {
+  MedicalProblemSection,
+  MedicalClientBriefSection,
+  MedicalProblemStatementSection,
+  MedicalDefinedProblemsSection,
+  MedicalPrimaryResearchSection,
+  MedicalOnsiteResearchSection,
+  MedicalResearchSynthesisSection,
+  MedicalResearchInsightSection,
+} from "./MedicalProblemSection";
 
 type UIDesignSplitItem = {
   label: string;
@@ -32,60 +42,67 @@ function UIDesignSolutionSplit({
   src,
   alt,
   imageClassName,
-}: Omit<UIDesignSplitItem, "label">) {
+  mediaSide = "left",
+}: Omit<UIDesignSplitItem, "label"> & { mediaSide?: "left" | "right" }) {
   return (
-    <div className={styles.uiDesignSolutionSplit}>
-      <figure className={styles.uiDesignSolutionSplitFigure}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={src}
-          alt={alt}
-          className={imageClassName ?? styles.uiDesignResearchImage}
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
-      <div className={styles.uiDesignSolutionSplitCopy}>
-        <h6 className={styles.uiDesignSolutionSplitTitle}>{title}</h6>
-        <p className={styles.uiDesignSolutionSplitBody}>{body}</p>
-      </div>
-    </div>
+    <MayoTextMediaSplit
+      mediaSide={mediaSide}
+      image={{ src, alt, className: imageClassName ?? styles.uiDesignResearchImage }}
+    >
+      <p className={styles.mayoTextMediaSplitBody}>
+        <strong className="mayoBodyEm">{title}</strong>
+        {" — "}
+        {body}
+      </p>
+    </MayoTextMediaSplit>
   );
 }
 
-export function MedicalBrandSpatialSection() {
-  const {
-    title,
-    intro,
-    dimensions,
-    userFlow,
-    targetDefinition,
-    solutions,
-    testingBridge,
-    iconSheet,
-    screensOverview,
-  } = medicalUIDesign;
-  const round2IconFinding = medicalUserTesting.timeline[1]?.findings[0];
-  const round2IconVideo =
-    round2IconFinding && "videoSrc" in round2IconFinding
-      ? round2IconFinding.videoSrc
-      : undefined;
+export function DesignRationaleList() {
+  return (
+    <ul className={styles.designRationaleList}>
+      {medicalDesignRationales.map((item) => (
+        <li className={styles.designRationaleItem} key={item.id}>
+          <p className="case-prose-body">
+            <span className="mayoBodyLabel">Insight</span> {item.insight}
+          </p>
+          <p className="case-prose-body">
+            <span className="mayoBodyLabel">Decision</span> {item.decision}
+          </p>
+          <p className="case-prose-body">
+            <span className="mayoBodyLabel">Why</span> {item.why}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function MedicalFlowWireframesSection() {
+  const { flowWireframes, dimensions, userFlow, targetDefinition, solutions } = medicalUIDesign;
 
   return (
-    <MedicalSection id="mayo-brand-spatial" title={title} intro={intro}>
+    <MedicalSection
+      id="mayo-flow-wireframes"
+      title={flowWireframes.title}
+    >
       <div className={styles.medicalLayers}>
-        <MedicalLayerShell index="01" label="Three UI Dimensions">
+        <MedicalLayerShell label="Decision Rationale">
+          <DesignRationaleList />
+        </MedicalLayerShell>
+
+        <MedicalLayerShell label="Three UI Dimensions">
           <ul className={`${styles.medicalCardGrid} ${styles.medicalCardGridCols3}`}>
             {dimensions.map((dimension) => (
               <li className={styles.medicalCard} key={dimension.id}>
-                <h5 className={styles.medicalCardTitle}>{dimension.title}</h5>
+                <p className={styles.medicalCardTitle}>{dimension.title}</p>
                 <p className={styles.medicalCardBody}>{dimension.body}</p>
               </li>
             ))}
           </ul>
         </MedicalLayerShell>
 
-        <MedicalLayerShell index="02" label={userFlow.label}>
+        <MedicalLayerShell label={userFlow.label}>
           <figure className={styles.flowFigure}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -101,17 +118,31 @@ export function MedicalBrandSpatialSection() {
           </figure>
         </MedicalLayerShell>
 
-        <MedicalLayerShell index="03" label="Target UI Definition">
-          <p className={styles.uiDesignDefinition}>{targetDefinition}</p>
-        </MedicalLayerShell>
+        {targetDefinition ? (
+          <MedicalLayerShell label="Target UI Definition">
+            <p className={styles.uiDesignDefinition}>{targetDefinition}</p>
+          </MedicalLayerShell>
+        ) : null}
 
-        <MedicalLayerShell index="04" label="Design Solutions">
-          <p className={styles.uiDesignSolutionsLead}>{solutions.lead}</p>
-        </MedicalLayerShell>
+        {solutions.lead ? (
+          <MedicalLayerShell label="Design Solutions">
+            <p className={styles.uiDesignSolutionsLead}>{solutions.lead}</p>
+          </MedicalLayerShell>
+        ) : null}
+      </div>
+    </MedicalSection>
+  );
+}
 
+export function MedicalUIScreensSection() {
+  const { screens, solutions, iconSheet, screensOverview } = medicalUIDesign;
+
+  return (
+    <MedicalSection id="mayo-ui-screens" title={screens.title}>
+      <div className={styles.medicalLayers}>
         {solutions.candidates.map((image, index) => (
           <MedicalLayerShell
-            index={String(5 + index).padStart(2, "0")}
+
             label={image.label}
             key={image.src}
           >
@@ -131,7 +162,10 @@ export function MedicalBrandSpatialSection() {
           </MedicalLayerShell>
         ))}
 
-        <MedicalLayerShell index="06" label={iconSheet.label}>
+        <MedicalLayerShell
+
+          label={iconSheet.label}
+        >
           <UIDesignSolutionSplit
             title={iconSheet.title}
             body={iconSheet.body}
@@ -141,7 +175,10 @@ export function MedicalBrandSpatialSection() {
           />
         </MedicalLayerShell>
 
-        <MedicalLayerShell index="07" label={screensOverview.label}>
+        <MedicalLayerShell
+
+          label={screensOverview.label}
+        >
           <UIDesignSolutionSplit
             title={screensOverview.title}
             body={screensOverview.body}
@@ -149,40 +186,94 @@ export function MedicalBrandSpatialSection() {
             alt={screensOverview.alt}
           />
         </MedicalLayerShell>
-
-        <MedicalLayerShell index="08" label={solutions.applied.label}>
-          <p className={styles.uiDesignSolutionIntro}>{solutions.applied.body}</p>
-          {solutions.applied.images.map((image, imageIndex) => (
-            <div className={styles.uiDesignFinalUiMedia} key={image.src}>
-              <figure className={styles.uiDesignResearchFigure}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className={styles.uiDesignResearchImage}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
-              {imageIndex === 0 && round2IconVideo ? (
-                <CaseAutoplayVideo
-                  className={styles.uiDesignFinalUiVideo}
-                  src={round2IconVideo}
-                  alt={round2IconFinding?.alt ?? ""}
-                />
-              ) : null}
-            </div>
-          ))}
-        </MedicalLayerShell>
-
-        <MedicalLayerShell index="09" label="Validation">
-          <p className={styles.uiDesignTestingBody}>{testingBridge.body}</p>
-          <a className={styles.uiDesignTestingLink} href={`#${testingBridge.anchorId}`}>
-            {testingBridge.anchorLabel} →
-          </a>
-        </MedicalLayerShell>
       </div>
     </MedicalSection>
+  );
+}
+
+export function MedicalIterationSection() {
+  const { title, intro, items } = medicalIteration;
+
+  return (
+    <MedicalSection id="mayo-iteration" title={title} intro={intro}>
+      <ul className={styles.iterationList}>
+        {items.map((item, index) => (
+          <li className={styles.iterationItem} key={item.id}>
+            <p className={styles.iterationIndex}>{String(index + 1).padStart(2, "0")}</p>
+            <div className={styles.iterationCopy}>
+          <p className="case-prose-body">
+            <span className="mayoBodyLabel">We observed</span> {item.observed}
+          </p>
+          <p className="case-prose-body">
+            <span className="mayoBodyLabel">We changed</span> {item.changed}
+          </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </MedicalSection>
+  );
+}
+
+export function MedicalFinalDeliverablesSection({ embedded }: { embedded?: boolean } = {}) {
+  const { final, solutions } = medicalUIDesign;
+
+  const content = (
+    <div className={styles.medicalLayers}>
+      <MedicalLayerShell label={solutions.applied.label} anchorId={embedded ? "mayo-final" : undefined}>
+        <p className={styles.uiDesignSolutionIntro}>{solutions.applied.body}</p>
+        {solutions.applied.images.map((image) => (
+          <div className={styles.uiDesignFinalUiMedia} key={image.src}>
+            <figure className={styles.uiDesignResearchFigure}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={image.src}
+                alt={image.alt}
+                className={styles.uiDesignResearchImage}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        ))}
+      </MedicalLayerShell>
+
+      <MedicalLayerShell label="Final Concept">
+        {medicalFinalVideo.caption ? (
+          <p className={styles.finalVideoCaption}>{medicalFinalVideo.caption}</p>
+        ) : null}
+        <div className="case-overview-youtube">
+          <iframe
+            className="case-overview-youtube-embed"
+            src={`https://www.youtube.com/embed/${medicalFinalVideo.videoId}?autoplay=0&mute=0&playsinline=1`}
+            title={medicalFinalVideo.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+      </MedicalLayerShell>
+    </div>
+  );
+
+  if (embedded) {
+    return content;
+  }
+
+  return (
+    <MedicalSection id="mayo-final" title={final.title}>
+      {content}
+    </MedicalSection>
+  );
+}
+
+/** @deprecated Use MedicalFlowWireframesSection and MedicalUIScreensSection */
+export function MedicalBrandSpatialSection() {
+  return (
+    <>
+      <MedicalFlowWireframesSection />
+      <MedicalUIScreensSection />
+    </>
   );
 }
 
@@ -190,37 +281,32 @@ function decisionMatrixColumnClass(
   column: { id: string; verdict?: "selected" | "rejected" },
   styles: Record<string, string>,
 ) {
+  const classes: string[] = [];
+
   if (column.id === "baseline") {
-    return styles.decisionMatrixColBaselineBg;
+    classes.push(styles.decisionMatrixColBaselineBg);
   }
   if (column.verdict === "selected") {
-    return styles.decisionMatrixColSelected;
+    classes.push(styles.decisionMatrixColSelected);
   }
-  return "";
+  if (column.id === "mr") {
+    classes.push(styles.decisionMatrixColMr);
+  }
+  if (column.verdict === "rejected") {
+    classes.push(styles.decisionMatrixColRejected);
+  }
+
+  return classes.join(" ");
 }
 
-export function MedicalDecisionSection() {
-  const {
-    title,
-    intro,
-    matrix,
-    matrixNote,
-    matrixBridge,
-    standardsIntro,
-    standards,
-  } = medicalDecision;
+export function DecisionMatrixContent() {
+  const { matrix, matrixNote, matrixBridge } = medicalDecision;
   const { columns, criteria } = matrix;
 
   return (
-    <MedicalSection id="mayo-decision" title={title} intro={intro}>
-      <div className={styles.medicalLayers}>
-        <MedicalLayerShell
-          index="01"
-          label="Decision Matrix"
-          className={styles.medicalLayerFullWidth}
-        >
-          <div className={styles.decisionMatrixWrap}>
-            <table className={styles.decisionMatrix}>
+    <>
+      <div className={styles.decisionMatrixWrap}>
+        <table className={styles.decisionMatrix}>
               <thead>
                 <tr>
                   <th scope="col" className={styles.decisionMatrixCorner} />
@@ -318,24 +404,77 @@ export function MedicalDecisionSection() {
               </tbody>
             </table>
           </div>
-          <p className={styles.matrixNote}>{matrixNote}</p>
-          <p className={styles.matrixBridge}>{matrixBridge}</p>
-        </MedicalLayerShell>
+          {matrixNote ? <p className={styles.matrixNote}>{matrixNote}</p> : null}
+          {matrixBridge ? <p className={styles.matrixBridge}>{matrixBridge}</p> : null}
+    </>
+  );
+}
 
-        <MedicalLayerShell
-          index="02"
-          label="Design Standards"
-          anchorId="mayo-standards"
-        >
-          <p className="case-prose-body">{standardsIntro}</p>
-          <ul className={`${styles.medicalCardGrid} ${styles.medicalCardGridCols3}`}>
-            {standards.map((item) => (
-              <li className={`${styles.medicalCard} ${styles.medicalCardWide}`} key={item.id}>
-                <StandardIcon type={item.icon} />
-                <h4 className={styles.medicalCardTitle}>{item.title}</h4>
-              </li>
-            ))}
-          </ul>
+export function DesignStandardsContent() {
+  const { standardsIntro, standards } = medicalDecision;
+
+  return (
+    <>
+      <p className="case-prose-body">{standardsIntro}</p>
+      <ul className={`${styles.medicalCardGrid} ${styles.medicalCardGridCols3}`}>
+        {standards.map((item) => (
+          <li className={`${styles.medicalCard} ${styles.medicalCardWide}`} key={item.id}>
+            <StandardIcon type={item.icon} />
+            <p className={styles.medicalCardTitle}>{item.title}</p>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+export function ThreeUiDimensionsContent() {
+  const { dimensions } = medicalUIDesign;
+
+  return (
+    <ul className={`${styles.medicalCardGrid} ${styles.medicalCardGridCols3}`}>
+      {dimensions.map((dimension) => (
+        <li className={styles.medicalCard} key={dimension.id}>
+          <p className={styles.medicalCardTitle}>{dimension.title}</p>
+          <p className={styles.medicalCardBody}>{dimension.body}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function UserFlowContent() {
+  const { userFlow } = medicalUIDesign;
+
+  return (
+    <figure className={styles.flowFigure}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={userFlow.src}
+        alt={userFlow.alt}
+        className={styles.flowFigureImage}
+        loading="lazy"
+        decoding="async"
+      />
+      {userFlow.caption ? (
+        <figcaption className={styles.figureCaption}>{userFlow.caption}</figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+/** @deprecated Use MedicalOpportunityChapter */
+export function MedicalDecisionSection() {
+  const { title, intro } = medicalDecision;
+
+  return (
+    <MedicalSection id="mayo-decision" title={title} intro={intro}>
+      <div className={styles.medicalLayers}>
+        <MedicalLayerShell label="Decision Matrix" className={styles.medicalLayerFullWidth}>
+          <DecisionMatrixContent />
+        </MedicalLayerShell>
+        <MedicalLayerShell label="Design Standards" anchorId="mayo-standards">
+          <DesignStandardsContent />
         </MedicalLayerShell>
       </div>
     </MedicalSection>
@@ -417,17 +556,19 @@ export function MedicalOnboardingSection() {
   return (
     <MedicalSection id="mayo-onboarding" title={title} intro={origin}>
       <div className={styles.medicalLayers}>
-        <MedicalLayerShell index="01" label="Design Method">
-          <p className="case-prose-body">{designMethodLead}</p>
+        <MedicalLayerShell label="Design Method">
+          {designMethodLead ? (
+            <p className="case-prose-body">{designMethodLead}</p>
+          ) : null}
           <CaseOnboardingGestureCards cards={gestureCards} />
         </MedicalLayerShell>
 
-        <MedicalLayerShell index="02" label="Four Progressive Stages">
-          <p className="case-prose-body">{stagesIntro}</p>
+        <MedicalLayerShell label="Four Progressive Stages">
+          {stagesIntro ? <p className="case-prose-body">{stagesIntro}</p> : null}
           <CaseOnboardingStages stages={stages} />
         </MedicalLayerShell>
 
-        <MedicalLayerShell index="03" label="AED: Dual-channel Input">
+        <MedicalLayerShell label="AED: Dual-channel Input">
           <p className="case-prose-body">{dualChannelInput.problem}</p>
           <p className={`case-prose-body ${styles.onboardingSolution}`}>
             {dualChannelInput.solution}
@@ -445,23 +586,23 @@ export function MedicalEvaluationSection() {
   return (
     <MedicalSection id="mayo-evaluation" title={title}>
       <div className={styles.medicalLayers}>
-        <MedicalLayerShell index="01" label="Evaluation Framework">
+        <MedicalLayerShell label="Evaluation Framework">
           <ul className={`${styles.medicalCardGrid} ${styles.medicalCardGridCols2}`}>
             {framework.map((item) => (
               <li className={styles.medicalCard} key={item.id}>
-                <h4 className={styles.medicalCardTitle}>{item.title}</h4>
+                <p className={styles.medicalCardTitle}>{item.title}</p>
                 <p className={styles.medicalCardBody}>{item.body}</p>
               </li>
             ))}
           </ul>
         </MedicalLayerShell>
 
-        <MedicalLayerShell index="02" label="Report Interface">
-          <p className="case-prose-body">{reportIntro}</p>
+        <MedicalLayerShell label="Report Interface">
+          {reportIntro ? <p className="case-prose-body">{reportIntro}</p> : null}
           <CaseOnboardingStages stages={reportViews} />
         </MedicalLayerShell>
 
-        <MedicalLayerShell index="03" label={validationTitle}>
+        <MedicalLayerShell label={validationTitle}>
           <MedicalEvaluatorAlignment />
         </MedicalLayerShell>
       </div>
@@ -469,4 +610,9 @@ export function MedicalEvaluationSection() {
   );
 }
 
+export { MedicalDeepDiveOverviewSection } from "./MedicalResearchNarrative";
+export {
+  MedicalResearchDetailSection,
+  MedicalResearchSection,
+} from "./MedicalResearchSection";
 export { MedicalOutcomeSection } from "./MedicalOutcomeSection";

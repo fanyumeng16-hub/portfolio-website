@@ -5,6 +5,8 @@ type SectionProps = {
   id: string;
   title: string;
   intro?: string;
+  hideHeader?: boolean;
+  embedded?: boolean;
   children?: ReactNode;
 };
 
@@ -12,17 +14,25 @@ export function MedicalSection({
   id,
   title,
   intro,
+  hideHeader,
+  embedded,
   children,
 }: SectionProps) {
+  if (embedded) {
+    return <div className={styles.embeddedSection}>{children}</div>;
+  }
+
   return (
     <section className={`case-prose-section ${styles.section}`} id={id}>
       <div className="case-prose-inner">
-        <header className={styles.sectionHeader}>
-          <div className={styles.sectionTitleRow}>
-            <h3 className="case-prose-title">{title}</h3>
-          </div>
-          {intro ? <p className="case-prose-body">{intro}</p> : null}
-        </header>
+        {hideHeader ? null : (
+          <header className={styles.sectionHeader}>
+            <div className={styles.sectionTitleRow}>
+              <h3 className="case-prose-title">{title}</h3>
+            </div>
+            {intro ? <p className="case-prose-body">{intro}</p> : null}
+          </header>
+        )}
         {children}
       </div>
     </section>

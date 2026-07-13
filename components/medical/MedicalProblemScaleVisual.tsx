@@ -3,7 +3,7 @@ import styles from "./MedicalProblemScaleVisual.module.css";
 export type CounterpartType = "people" | "checklist";
 
 export type ScaleVisualState = {
-  headline: string;
+  headline?: string;
   evaluatorCount: number;
   evaluatorLabel: string;
   counterpartCount: number;
@@ -91,9 +91,9 @@ export default function MedicalProblemScaleVisual({
       <div
         className={styles.chart}
         role="img"
-        aria-label={`${headline} ${evaluatorCount} ${evaluatorLabel}, ${counterpartCount} ${counterpartLabel}`}
+        aria-label={`${headline ? `${headline} ` : ""}${evaluatorCount} ${evaluatorLabel}, ${counterpartCount} ${counterpartLabel}`}
       >
-        <p className={styles.headline}>{headline}</p>
+        {headline ? <p className={styles.headline}>{headline}</p> : null}
 
         <div className={styles.columns}>
           <div className={`${styles.column} ${styles.columnEvaluator}`}>
