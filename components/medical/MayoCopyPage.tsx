@@ -24,15 +24,16 @@ import {
   mayocopyIndustryResearchSections,
   mayocopyLimitations,
   mayocopyMyRoleCards,
-  mayocopyOnboardingDesignMethod,
   mayocopyOnboardingIntro,
   mayocopyOnboardingOpening,
   mayocopyOnboardingStages,
+  mayocopyOpeningMedia,
   mayocopyOverallInsightCards,
   mayocopyOverallInsightIntro,
   mayocopyPrimaryPainPoints,
   mayocopyPrimaryResearchIntro,
   mayocopyPrimaryResearchTracks,
+  mayocopyResearchNote,
   mayocopyProblemStatement,
   mayocopyResearchBuildCards,
   mayocopyTechnicalResearchIntro,
@@ -49,8 +50,8 @@ import {
   mayocopyVisualResearchIntro,
   mayocopyVisualResearchSections,
   mayocopyWhatsNext,
-  mayocopyWhyMr,
-  mayocopyWhyMrFigure,
+  mayocopyConcept,
+  mayocopyConceptFigure,
 } from "@/data/mayocopy-content";
 import styles from "./MayoCopyPage.module.css";
 
@@ -233,27 +234,47 @@ function QuoteCard({
 function PrimaryResearchTrack({
   title,
   fields,
-  quote,
-  cite,
-  tail,
+  quotes,
   image,
-  imageSide = "left",
 }: {
   title: string;
   fields: readonly { label: string; value: string }[];
-  quote: string;
-  cite: string;
-  tail: "left" | "right";
+  quotes: readonly { quote: string; cite: string; tail: "left" | "right" }[];
   image: { src: string; alt: string; width: number; height: number };
   imageSide?: "left" | "right";
 }) {
   return (
     <article className={styles.researchTrack}>
       <h3 className={styles.subsectionTitle}>{title}</h3>
-      <TextMediaRow fields={fields} image={image} imageSide={imageSide} />
-      <QuoteCard cite={cite} tail={tail}>
-        {quote}
-      </QuoteCard>
+      <figure className={styles.researchTrackHero}>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          className={styles.researchTrackHeroImage}
+          sizes="(max-width: 900px) 100vw, min(1069px, 100vw)"
+        />
+        {fields.length ? (
+          <dl className={styles.researchTrackHeroMeta}>
+            {fields.map((field) => (
+              <div key={field.label} className={styles.researchTrackHeroMetaItem}>
+                <dt>{field.label}</dt>
+                <dd>{field.value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
+      </figure>
+      {quotes.length ? (
+        <div className={styles.researchTrackQuotes}>
+          {quotes.map((item) => (
+            <QuoteCard key={`${item.cite}-${item.quote}`} cite={item.cite} tail={item.tail}>
+              {item.quote}
+            </QuoteCard>
+          ))}
+        </div>
+      ) : null}
     </article>
   );
 }
@@ -307,6 +328,7 @@ function SecondaryResearchSection({
           key={image.src}
           image={image}
           imageSide={mediaRowSide(imageSide, index + 1)}
+          variant={mediaVariant}
         />
       ))}
       {showRubric ? <RubricTable rubric={mayocopyEvaluationRubric} showIntro={false} /> : null}
@@ -464,7 +486,7 @@ function TextMediaRow({
   variant = "default",
 }: {
   title?: string;
-  body?: string;
+  body?: string | readonly string[];
   fields?: readonly { label: string; value: string }[];
   image: {
     src?: string;
@@ -478,10 +500,11 @@ function TextMediaRow({
     objectPosition?: string;
   };
   imageSide?: "left" | "right";
-  variant?: "default" | "industry" | "stage";
+  variant?: "default" | "industry" | "stage" | "panel";
 }) {
   const hasCopy = Boolean(title || body || fields?.length);
   const isReverse = imageSide === "right";
+  const bodyParagraphs = Array.isArray(body) ? body : body ? [body] : [];
 
   return (
     <article
@@ -489,7 +512,7 @@ function TextMediaRow({
         isReverse ? ` ${styles.researchMediaRowReverse}` : ""
       }${variant === "industry" ? ` ${styles.researchMediaRowIndustry}` : ""}${
         variant === "stage" ? ` ${styles.researchMediaRowStage}` : ""
-      }`}
+      }${variant === "panel" ? ` ${styles.researchMediaRowPanel}` : ""}`}
     >
       <figure className={styles.researchMediaFigure}>
         {image.videoSrc ? (
@@ -528,7 +551,9 @@ function TextMediaRow({
               ))}
             </dl>
           ) : null}
-          {body ? <p>{body}</p> : null}
+          {bodyParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       ) : null}
     </article>
@@ -1060,24 +1085,77 @@ function SensorToScreenSection({
 }) {
   return (
     <ContentStack className={styles.industryResearchStack}>
-      <article className={`${styles.researchMediaRow} ${styles.researchMediaRowReverse}`}>
-        <figure className={styles.researchMediaFigure}>
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            className={styles.researchMediaImage}
-            sizes="(max-width: 760px) 100vw, 511px"
+      <div className={styles.testingRoundCardRow}>
+        {sections.map((section) => (
+          <TestingRoundHighlightCard
+            key={section.title}
+            label={section.title}
+            body={section.body}
           />
-          {image.caption ? (
-            <figcaption className={styles.researchMediaCaption}>{image.caption}</figcaption>
-          ) : null}
-        </figure>
-        <CopySubsections items={sections} />
-      </article>
+        ))}
+      </div>
+      <figure className={styles.researchTrackHero}>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          className={styles.researchTrackHeroImage}
+          sizes="(max-width: 900px) 100vw, min(1069px, 100vw)"
+        />
+        {image.caption ? (
+          <figcaption className={styles.conceptHeroCredit}>{image.caption}</figcaption>
+        ) : null}
+      </figure>
       <MayoSensorFlowDiagram diagram={diagram} />
     </ContentStack>
+  );
+}
+
+function ResearchCardGrid({
+  sections,
+}: {
+  sections: readonly {
+    title: string;
+    body: string;
+    image: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+      credit?: string;
+      objectPosition?: string;
+    };
+  }[];
+}) {
+  return (
+    <ul className={styles.industryResearchGrid}>
+      {sections.map((section) => (
+        <li key={section.title} className={styles.industryResearchCard}>
+          <figure className={styles.industryResearchCardFigure}>
+            <Image
+              src={section.image.src}
+              alt={section.image.alt}
+              width={section.image.width}
+              height={section.image.height}
+              className={styles.industryResearchCardImage}
+              style={
+                section.image.objectPosition
+                  ? { objectPosition: section.image.objectPosition }
+                  : undefined
+              }
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+            {section.image.credit ? (
+              <figcaption className={styles.industryResearchCardCredit}>
+                {section.image.credit}
+              </figcaption>
+            ) : null}
+          </figure>
+          <TestingRoundHighlightCard label={section.title} body={section.body} />
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -1213,10 +1291,56 @@ function EmphasisQuote({
   );
 }
 
+function OpeningMediaStack({
+  items,
+}: {
+  items: typeof mayocopyOpeningMedia;
+}) {
+  return (
+    <ContentStack className={styles.openingMediaStack}>
+      {items.map((item) => {
+        const key = item.type === "video" ? item.videoSrc : item.src;
+        return (
+          <figure key={key} className={styles.openingMediaFigure}>
+            {item.type === "video" ? (
+              <CaseAutoplayVideo
+                src={item.videoSrc}
+                alt={item.alt}
+                className={styles.openingMediaAsset}
+              />
+            ) : (
+              <Image
+                src={item.src}
+                alt={item.alt}
+                width={item.width}
+                height={item.height}
+                className={styles.openingMediaAsset}
+                sizes="(max-width: 900px) 100vw, min(1069px, 100vw)"
+                style={{ width: "100%", height: "auto" }}
+                priority
+              />
+            )}
+            {item.overlay ? (
+              <dl className={styles.openingMediaOverlay}>
+                <div className={styles.openingMediaOverlayItem}>
+                  <dt>{item.overlay.label}</dt>
+                  <dd>{item.overlay.value}</dd>
+                </div>
+              </dl>
+            ) : null}
+          </figure>
+        );
+      })}
+    </ContentStack>
+  );
+}
+
 export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: boolean }) {
   return (
     <div className={`${styles.page}${withSiteHero ? ` ${styles.pageWithSiteHero}` : ""}`}>
       <main className={styles.artboard}>
+        <OpeningMediaStack items={mayocopyOpeningMedia} />
+
         <ChapterSection id="mayocopy-ch01-overview" index="01" title="My Role">
           <RoleCardsGrid cards={mayocopyMyRoleCards} />
         </ChapterSection>
@@ -1224,20 +1348,26 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
         <ChapterSection id="mayocopy-ch02-problem" index="02" title="Problem">
           <H2Section id="mayocopy-client-brief" title="Client-Provided Brief">
             <ContentStack>
-              <EmphasisQuote attribution={mayocopyClientBrief.attribution}>
-                {mayocopyClientBrief.quote}
-              </EmphasisQuote>
-              <SectionLeadText>{mayocopyClientBrief.followUp}</SectionLeadText>
+              <EmphasisQuote>{mayocopyClientBrief.quote}</EmphasisQuote>
             </ContentStack>
           </H2Section>
 
           <H2Section id="mayocopy-defined-problem" title="Defined Problem">
-            <ContentStack>
-              <TextMediaRow
-                title={mayocopyBlsIntro.title}
-                body={mayocopyBlsIntro.body}
-                image={mayocopyBlsIntro.image}
-              />
+            <ContentStack className={styles.industryResearchStack}>
+              <div className={styles.blsIntroLead}>
+                <h3 className={styles.blsIntroTitle}>{mayocopyBlsIntro.title}</h3>
+                <p className={styles.blsIntroBody}>{mayocopyBlsIntro.body}</p>
+              </div>
+              <figure className={styles.blsIntroFigure}>
+                <Image
+                  src={mayocopyBlsIntro.image.src}
+                  alt={mayocopyBlsIntro.image.alt}
+                  width={mayocopyBlsIntro.image.width}
+                  height={mayocopyBlsIntro.image.height}
+                  className={styles.blsIntroImage}
+                  sizes="100vw"
+                />
+              </figure>
               <ul className={styles.problemGrid}>
                 {mayocopyDefinedProblems.map((problem) => (
                   <li
@@ -1269,7 +1399,8 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           </H2Section>
 
           <H2Section id="mayocopy-primary-insight" title="Primary Research Insight">
-            <ContentStack>
+            <ContentStack className={styles.industryResearchStack}>
+              <FlowSectionFigure image={mayocopyResearchNote} />
               <p className={styles.painPointsLabel}>Three Pain Points</p>
               <ul className={styles.problemGrid}>
                 {mayocopyPrimaryPainPoints.map((point, index) => (
@@ -1287,16 +1418,7 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           <H2Section id="mayocopy-industry-research" title="Industry Research">
             <ContentStack className={styles.industryResearchStack}>
               <SectionLeadText>{mayocopyIndustryResearchIntro}</SectionLeadText>
-              {mayocopyIndustryResearchSections.map((section, index) => (
-                <SecondaryResearchSection
-                  key={section.title}
-                  title={section.title}
-                  body={section.body}
-                  images={"image" in section ? [section.image] : undefined}
-                  imageSide={index % 2 === 0 ? "left" : "right"}
-                  mediaVariant="industry"
-                />
-              ))}
+              <ResearchCardGrid sections={mayocopyIndustryResearchSections} />
             </ContentStack>
           </H2Section>
         </ChapterSection>
@@ -1308,70 +1430,48 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
               <DecisionMatrixTable matrix={mayocopyDecisionMatrix} />
             </ContentStack>
           </H2Section>
-          <H2Section id="mayocopy-why-mr" title="Why MR">
-            <TextMediaRow
-              title={mayocopyWhyMr.title}
-              body={mayocopyWhyMr.body}
-              image={{
-                src: mayocopyWhyMrFigure.src,
-                alt: mayocopyWhyMrFigure.alt,
-                width: mayocopyWhyMrFigure.width,
-                height: mayocopyWhyMrFigure.height,
-                credit: mayocopyWhyMrFigure.credit,
-              }}
-              imageSide="right"
-              variant="industry"
-            />
+          <H2Section id="mayocopy-concept" title="Concept">
+            <ContentStack className={styles.industryResearchStack}>
+              <p className={styles.conceptLead}>{mayocopyConcept.lead}</p>
+              <figure className={styles.researchTrackHero}>
+                <Image
+                  src={mayocopyConceptFigure.src}
+                  alt={mayocopyConceptFigure.alt}
+                  width={mayocopyConceptFigure.width}
+                  height={mayocopyConceptFigure.height}
+                  className={styles.researchTrackHeroImage}
+                  sizes="(max-width: 900px) 100vw, min(1069px, 100vw)"
+                />
+                <dl className={styles.conceptPointsRow}>
+                  {mayocopyConcept.points.map((point) => (
+                    <div key={point.label} className={styles.conceptPoint}>
+                      <dt>{point.label}</dt>
+                      <dd>{point.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {mayocopyConceptFigure.credit ? (
+                  <figcaption className={styles.conceptHeroCredit}>
+                    {mayocopyConceptFigure.credit}
+                  </figcaption>
+                ) : null}
+              </figure>
+            </ContentStack>
           </H2Section>
         </ChapterSection>
 
         <ChapterSection id="mayocopy-ch04-solution-research" index="04" title="Solution Research">
           <H2Section id="mayocopy-visual-research" title="Visual Research">
-            <ContentStack>
+            <ContentStack className={styles.industryResearchStack}>
               <SectionLeadText>{mayocopyVisualResearchIntro}</SectionLeadText>
-              {mayocopyVisualResearchSections.map((section, index) => (
-                <SecondaryResearchSection
-                  key={section.title}
-                  title={section.title}
-                  body={section.body}
-                  images={"images" in section ? section.images : undefined}
-                  imageSide={index % 2 === 0 ? "left" : "right"}
-                />
-              ))}
+              <ResearchCardGrid sections={mayocopyVisualResearchSections} />
             </ContentStack>
           </H2Section>
 
           <H2Section id="mayocopy-technical-research" title="Technical Research">
-            <ContentStack>
+            <ContentStack className={styles.industryResearchStack}>
               <SectionLeadText>{mayocopyTechnicalResearchIntro}</SectionLeadText>
-              {mayocopyTechnicalResearchSections.map((section, index) => (
-                <SecondaryResearchSection
-                  key={section.title}
-                  title={section.title}
-                  body={section.body}
-                  images={"images" in section ? section.images : undefined}
-                  imageSide={index % 2 === 0 ? "left" : "right"}
-                  showRubric={"showRubric" in section ? section.showRubric : undefined}
-                />
-              ))}
-            </ContentStack>
-          </H2Section>
-
-          <H2Section id="mayocopy-cross-functional" title="Cross-Functional Alignment">
-            <ContentStack>
-              <SubsectionLead
-                title={mayocopyCrossFunctionalIntro.title}
-                body={mayocopyCrossFunctionalIntro.body}
-              />
-              {mayocopyCrossFunctionalItems.map((item, index) => (
-                <TextMediaRow
-                  key={item.title}
-                  title={item.title}
-                  body={item.body}
-                  image={item.image}
-                  imageSide={mediaRowSide("left", index)}
-                />
-              ))}
+              <ResearchCardGrid sections={mayocopyTechnicalResearchSections} />
             </ContentStack>
           </H2Section>
 
@@ -1413,15 +1513,7 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           </H2Section>
           <H2Section id="mayocopy-main-features" title="Main Features">
             <ContentStack className={styles.industryResearchStack}>
-              {mayocopyMainFeatures.map((feature, index) => (
-                <TextMediaRow
-                  key={feature.title}
-                  title={feature.title}
-                  body={feature.body}
-                  image={feature.image}
-                  imageSide={mediaRowSide("left", index)}
-                />
-              ))}
+              <ResearchCardGrid sections={mayocopyMainFeatures} />
             </ContentStack>
           </H2Section>
         </ChapterSection>
@@ -1430,6 +1522,7 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           <H2Section id="mayocopy-user-flow" title="User Flow">
             <ContentStack className={styles.userFlowSection}>
               <SectionLeadText>{mayocopyUserFlow.intro}</SectionLeadText>
+              <FlowSectionFigure image={mayocopyUserFlow.figure} />
               <MayoUserFlowDiagram diagram={mayocopyUserFlowDiagram} />
             </ContentStack>
           </H2Section>
@@ -1444,14 +1537,14 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           </H2Section>
 
           <H2Section id="mayocopy-user-flow-assessment" title="Assessment">
-            <ContentStack>
+            <ContentStack className={styles.industryResearchStack}>
               <SectionLeadText>{mayocopyUserFlowAssessment.body}</SectionLeadText>
               <FlowSectionFigure image={mayocopyUserFlowAssessment.image} />
             </ContentStack>
           </H2Section>
 
           <H2Section id="mayocopy-user-flow-evaluation" title="Evaluation">
-            <ContentStack>
+            <ContentStack className={styles.industryResearchStack}>
               <SectionLeadText>{mayocopyUserFlowEvaluation.body}</SectionLeadText>
               <FlowSectionFigure image={mayocopyUserFlowEvaluation.image} />
             </ContentStack>
@@ -1465,21 +1558,29 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           subtitle={mayocopyOnboardingIntro}
         >
           <ContentStack className={styles.industryResearchStack}>
-            {mayocopyOnboardingOpening.map((image) => (
-              <FlowSectionFigure key={image.src} image={image} />
-            ))}
+            {mayocopyOnboardingOpening.map((image) =>
+              "overlay" in image && image.overlay ? (
+                <figure key={image.src} className={styles.researchTrackHero}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className={styles.researchTrackHeroImage}
+                    sizes="(max-width: 900px) 100vw, min(1069px, 100vw)"
+                  />
+                  <dl className={styles.researchTrackHeroMeta}>
+                    <div className={styles.researchTrackHeroMetaItem}>
+                      <dt>{image.overlay.label}</dt>
+                      <dd>{image.overlay.value}</dd>
+                    </div>
+                  </dl>
+                </figure>
+              ) : (
+                <FlowSectionFigure key={image.src} image={image} />
+              ),
+            )}
           </ContentStack>
-
-          <H2Section id="mayocopy-design-method" title="Design Method">
-            <ContentStack className={styles.industryResearchStack}>
-              <TextMediaRow
-                body={mayocopyOnboardingDesignMethod.body}
-                image={mayocopyOnboardingDesignMethod.image}
-                imageSide="right"
-              />
-              <FlowSectionFigure image={mayocopyOnboardingDesignMethod.screens} />
-            </ContentStack>
-          </H2Section>
 
           <H2Section id="mayocopy-four-progressive-stages" title="Four Progressive Stages">
             <ContentStack className={styles.industryResearchStack}>
@@ -1490,6 +1591,7 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
                   body={stage.body}
                   image={stage.image}
                   imageSide={mediaRowSide("left", index)}
+                  variant="panel"
                 />
               ))}
               <TextMediaRow
@@ -1497,6 +1599,7 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
                 body={mayocopyOnboardingStages.pauseCheck.body}
                 image={mayocopyOnboardingStages.pauseCheck.image}
                 imageSide={mediaRowSide("left", mayocopyOnboardingStages.stages.length)}
+                variant="panel"
               />
             </ContentStack>
           </H2Section>
@@ -1534,6 +1637,25 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           <H2Section id="mayocopy-round-2" title="Round 2 — On-Site at Mayo Clinic Jacksonville">
             <UsabilityTestingRound round={mayocopyUsabilityRound2} />
           </H2Section>
+
+          <H2Section id="mayocopy-cross-functional" title="Cross-Functional Alignment">
+            <ContentStack className={styles.industryResearchStack}>
+              <SubsectionLead
+                title={mayocopyCrossFunctionalIntro.title}
+                body={mayocopyCrossFunctionalIntro.body}
+              />
+              {mayocopyCrossFunctionalItems.map((item, index) => (
+                <TextMediaRow
+                  key={item.title}
+                  title={item.title}
+                  body={item.body}
+                  image={item.image}
+                  imageSide={mediaRowSide("left", index)}
+                  variant="industry"
+                />
+              ))}
+            </ContentStack>
+          </H2Section>
         </ChapterSection>
 
         <ChapterSection id="mayocopy-ch10-final-ui" index="10" title="Final UI">
@@ -1550,7 +1672,7 @@ export default function MayoCopyPage({ withSiteHero = false }: { withSiteHero?: 
           </H2Section>
 
           <H2Section id="mayocopy-final-concept" title="Final Concept">
-            <ContentStack>
+            <ContentStack className={styles.industryResearchStack}>
               <SectionLeadText>{mayocopyFinalConcept.body}</SectionLeadText>
               <FinalConceptVideo video={mayocopyFinalConcept.video} />
             </ContentStack>

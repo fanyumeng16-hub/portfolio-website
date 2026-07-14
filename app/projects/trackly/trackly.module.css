@@ -193,6 +193,17 @@
   padding-top: var(--trackly-gap-lg);
 }
 
+/* 开篇三张图：图与图之间无缝衔接 */
+.page:global(.case-page-trackly)
+  :global(
+    .case-hero
+      + .case-gallery-section--seamless
+      .case-gallery-seamless-panel
+      + .case-gallery-seamless-panel
+  ) {
+  margin-top: 0;
+}
+
 /* Gallery + feature mock images — narrower than prose (board PNGs are 1920px with margins) */
 .page:global(.case-page-trackly.case-page-with-toc:not(.case-page-template))
   :global(.case-gallery-section--seamless) {

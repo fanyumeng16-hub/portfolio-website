@@ -26,7 +26,7 @@ export const mayocopySections: CaseTocSection[] = [
     indexLabel: "03",
     children: [
       { id: "mayocopy-decision-matrix", label: "Decision Matrix" },
-      { id: "mayocopy-why-mr", label: "Why MR" },
+      { id: "mayocopy-concept", label: "Concept" },
     ],
   },
   {
@@ -36,7 +36,6 @@ export const mayocopySections: CaseTocSection[] = [
     children: [
       { id: "mayocopy-visual-research", label: "Visual Research" },
       { id: "mayocopy-technical-research", label: "Technical Research" },
-      { id: "mayocopy-cross-functional", label: "Cross-Functional" },
       { id: "mayocopy-overall-insight", label: "Overall Insight" },
     ],
   },
@@ -66,7 +65,6 @@ export const mayocopySections: CaseTocSection[] = [
     label: "Onboarding",
     indexLabel: "07",
     children: [
-      { id: "mayocopy-design-method", label: "Design Method" },
       { id: "mayocopy-four-progressive-stages", label: "Four Stages" },
     ],
   },
@@ -87,6 +85,7 @@ export const mayocopySections: CaseTocSection[] = [
     children: [
       { id: "mayocopy-round-1", label: "Round 1" },
       { id: "mayocopy-round-2", label: "Round 2" },
+      { id: "mayocopy-cross-functional", label: "Cross-Functional" },
     ],
   },
   {

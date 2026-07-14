@@ -12,6 +12,22 @@ export const tracklyGalleryIntro: GallerySlide[] = [
     src: `${base}/Trackly15.png`,
     alt: "Trackly mobile app prototype screens",
   },
+  {
+    id: "trackly-arrival-alerts",
+    title: "Arrival Alerts",
+    hideTitle: true,
+    tocLabel: false,
+    src: `${base}/Trackly-notification.png`,
+    alt: "Trackly push notifications confirming package arrival and successful pickup",
+  },
+  {
+    id: "trackly-anomaly-alert-intro",
+    title: "Anomaly Alert",
+    hideTitle: true,
+    tocLabel: false,
+    src: `${base}/Trackly21.png`,
+    alt: "Anomaly alert: Trackly catches issues and connects you to Sarah before you ask",
+  },
 ];
 
 /** Sitemap、Mid-Fi — 可用性测试之前 */

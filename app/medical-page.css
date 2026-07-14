@@ -7,9 +7,11 @@
   --case-medical-display-weight: 800;
   font-family: var(--case-medical-font);
   font-style: normal;
-  --case-content-max: 75rem;
-  --case-medical-block-max: 75rem;
-  --case-content-gutter: clamp(24px, 4vw, 48px);
+  --mayo-rail: 0px;
+  /* Hero 与正文画幅对齐：972×1.1 ≈ 66.7rem，小屏吃满可用宽 */
+  --case-content-max: min(66.6875rem, 100%);
+  --case-medical-block-max: var(--case-content-max);
+  --case-content-gutter: clamp(16px, 2.5vw, 28px);
   --case-title-marker-width: clamp(10px, 1.1vw, 14px);
   --case-title-marker-gap: clamp(12px, 1.4vw, 16px);
   --case-title-text-indent: calc(
@@ -52,14 +54,14 @@
   --mayo-t-9: calc(var(--mayo-t-8) * var(--mayo-type-ratio));
 
   /* Semantic aliases — page-wide */
-  --type-h1: var(--mayo-t-5);
-  --type-display: var(--mayo-t-5);
-  --type-kicker-display: var(--mayo-t-2);
-  --type-chapter: var(--mayo-t-5);
-  --type-h2: var(--mayo-t-4);
-  --type-h3: var(--mayo-t-3);
-  --type-body: var(--mayo-t-2);
-  --type-label: var(--mayo-t-1);
+  --type-h1: calc(var(--mayo-t-5) + 1px);
+  --type-display: calc(var(--mayo-t-5) + 1px);
+  --type-kicker-display: calc(var(--mayo-t-2) + 1px);
+  --type-chapter: calc(var(--mayo-t-5) + 1px);
+  --type-h2: calc(var(--mayo-t-4) + 1px);
+  --type-h3: calc(var(--mayo-t-3) + 1px);
+  --type-body: calc(var(--mayo-t-2) + 1px);
+  --type-label: calc(var(--mayo-t-1) + 1px);
   --leading-body: 1.65;
 
   /* Mayo layout tokens — available outside MayoBlock wrappers */
@@ -129,6 +131,7 @@
   align-items: stretch;
   gap: 24px;
   width: 100%;
+  max-width: var(--case-content-max);
 }
 
 .case-page-template.case-page-light.case-page-medical .case-hero-detail-grid > .case-overview-meta {
@@ -139,17 +142,36 @@
 
 .case-page-template.case-page-light.case-page-medical .case-hero-detail-grid > .case-hero-copy {
   width: 100%;
-  max-width: var(--case-prose-measure);
+  max-width: none;
   margin-inline: 0;
 }
 
 .case-page-template.case-page-light.case-page-medical .case-hero-copy .case-hero-intro {
   text-align: left;
+  max-width: none;
 }
 
 .case-page-template.case-page-light.case-page-medical .case-overview-meta--hero {
   justify-items: start;
   text-align: left;
+}
+
+/* Platform / Scale 与 Timeline / Team 同为双列横排（对齐 Trackly meta 节奏） */
+.case-page-template.case-page-light.case-page-medical
+  .case-overview-meta--hero
+  .case-overview-meta-rest {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .case-page-template.case-page-light.case-page-medical
+    .case-overview-meta--hero
+    .case-overview-meta-rest {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Section titles — centered, no left marker bar */
@@ -508,7 +530,7 @@
 .case-page-template.case-page-light.case-page-medical .case-toc-index {
   min-width: 1.75rem;
   margin-top: 0;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.06em;
   color: rgba(22, 65, 166, 0.34);
@@ -525,7 +547,7 @@
 }
 
 .case-page-template.case-page-light.case-page-medical .case-toc-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
 }
@@ -546,7 +568,7 @@
 }
 
 .case-page-template.case-page-light.case-page-medical .case-toc-item--sub .case-toc-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 200;
   letter-spacing: 0.01em;
   text-transform: none;

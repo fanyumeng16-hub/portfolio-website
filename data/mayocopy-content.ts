@@ -6,6 +6,53 @@ export const mayocopyHero = {
     "A Mayo Clinic × SCADpro collaboration to build MR BLS certification at clinical scale — 28 evaluators, 400+ nurses, every assessment one-on-one in person, without lowering rigor. From Jacksonville field research through on-device and on-site testing, I owned gesture vocabulary, the full certification flow, visual system end to end, and both usability rounds.",
 } as const;
 
+export const mayocopyOpeningMedia = [
+  {
+    type: "image" as const,
+    src: "/images/mayo-opening-hero.png",
+    alt: "Candidate reviewing a BLS Assessment Report in Mixed Reality on a Meta Quest headset",
+    width: 2170,
+    height: 1098,
+    overlay: {
+      label: "Assessment Report",
+      value: "Post-session results reviewed in MR",
+    },
+  },
+  {
+    type: "image" as const,
+    src: "/images/mayo-opening-kit.png",
+    alt: "Mayo Clinic MR BLS certification kit with CPR manikin, Meta Quest 3, and carry case",
+    width: 1442,
+    height: 808,
+    overlay: {
+      label: "Certification Kit",
+      value: "Quest 3, manikin, and portable carry case",
+    },
+  },
+  {
+    type: "image" as const,
+    src: "/images/mayo-opening-scenario.png",
+    alt: "Two headset users performing CPR and BVM with a virtual agent overlay in Mixed Reality",
+    width: 1734,
+    height: 876,
+    overlay: {
+      label: "Live Scenario",
+      value: "CPR and BVM with a virtual agent in passthrough",
+    },
+  },
+  {
+    type: "video" as const,
+    videoSrc: "/images/mayo-opening.mp4",
+    alt: "Opening demo of the Mixed Reality BLS certification experience",
+    width: 1920,
+    height: 1080,
+    overlay: {
+      label: "Experience Demo",
+      value: "End-to-end MR BLS certification walkthrough",
+    },
+  },
+] as const;
+
 export const mayocopySpec = [
   { label: "Timeline", value: "10 Weeks" },
   { label: "Team", value: "20-Person Interdisciplinary Team" },
@@ -29,10 +76,8 @@ export const mayocopyMyRoleCards = [
 ] as const;
 
 export const mayocopyClientBrief = {
-  attribution: "Mayo Clinic's BLS program lead put it plainly:",
   quote:
     "The certification process feels like it takes too much staff time, but there is no precise definition of the problem beyond that feeling.",
-  followUp: "That vagueness was the actual starting point. Nothing was pre-scoped.",
 } as const;
 
 export const mayocopyDefinedProblems = [
@@ -55,13 +100,12 @@ export const mayocopyDefinedProblems = [
 
 export const mayocopyBlsIntro = {
   title: "What BLS Certification Is",
-  body:
-    "BLS (Basic Life Support) certification is Mayo Clinic's annual credentialing assessment for nursing staff. Each candidate performs CPR compressions, bag-valve-mask ventilation, and AED operation on a manikin while a certified evaluator observes one-on-one, in person. Pass/fail judgment follows 17 clinical parameters across all three modules.",
+  body: "Mayo's annual nursing credential: CPR, BVM, and AED on a manikin, scored one-on-one across 17 clinical parameters.",
   image: {
     src: "/images/mayoBrief.png",
     alt: "Illustration of nurses queued in a hospital corridor outside a BLS certification room",
-    width: 511,
-    height: 366,
+    width: 2170,
+    height: 1098,
   },
 } as const;
 
@@ -74,16 +118,32 @@ export const mayocopyPrimaryResearchTracks = [
       { label: "Duration:", value: "30 min each" },
       { label: "Location:", value: "Mayo Clinic, Jacksonville" },
     ],
-    quote:
-      "We don't have enough evaluators to keep up with volume. Hiring more is not a realistic lever for us.",
-    cite: "BLS Program Lead",
-    tail: "right" as const,
+    quotes: [
+      {
+        quote:
+          "We don't have enough evaluators to keep up with volume. Hiring more is not a realistic lever for us.",
+        cite: "BLS Program Lead",
+        tail: "right" as const,
+      },
+      {
+        quote:
+          "Every assessment is still one-to-one. That format protects rigor, and it also locks our capacity.",
+        cite: "Clinical Supervisor",
+        tail: "left" as const,
+      },
+      {
+        quote:
+          "If the system misses an error a live evaluator would catch, we cannot put it in front of candidates.",
+        cite: "Simulation Educator",
+        tail: "right" as const,
+      },
+    ],
     imageSide: "left" as const,
     image: {
       src: "/images/mayo-research.png",
       alt: "Design team and Mayo Clinic clinical staff observing BLS certification in a hospital simulation room",
-      width: 511,
-      height: 366,
+      width: 1776,
+      height: 937,
     },
   },
   {
@@ -94,16 +154,13 @@ export const mayocopyPrimaryResearchTracks = [
       { label: "Duration:", value: "30 min each" },
       { label: "Location:", value: "Mayo Clinic, Jacksonville" },
     ],
-    quote:
-      "Even strong nurses miss subtle form errors when they are also managing the room and the clock.",
-    cite: "Clinical Educator",
-    tail: "left" as const,
+    quotes: [],
     imageSide: "right" as const,
     image: {
       src: "/images/mayo-research2.png",
       alt: "Hands-on BLS equipment practice with AED electrode pads during on-site fieldwork",
-      width: 511,
-      height: 366,
+      width: 1922,
+      height: 1082,
     },
   },
 ] as const;
@@ -111,18 +168,25 @@ export const mayocopyPrimaryResearchTracks = [
 export const mayocopyPrimaryResearchIntro =
   "On-site primary research at Mayo Clinic Jacksonville, through stakeholder interviews and hands-on BLS practice observation.";
 
+export const mayocopyResearchNote = {
+  src: "/images/mayo/research-note.png",
+  alt: "Research notes from primary research — clustered observations across setup, pairing, interaction, spatial boundaries, and environment",
+  width: 2096,
+  height: 1332,
+} as const;
+
 export const mayocopyPrimaryPainPoints = [
   {
     title: "Capacity is structurally capped.",
-    body: "28 evaluators against 400+ candidates a year. Hiring can't close the gap, the 1:1 format itself is the ceiling.",
+    body: "28 evaluators vs 400+ candidates a year. The 1:1 format is the ceiling—hiring won't close it.",
   },
   {
-    title: "Attention can't cover multiple checkpoints at once.",
-    body: "Evaluators miss subtle errors once they're managing the room and the clock. 12+ checkpoints need simultaneous, real-time tracking, beyond what one person can attend to.",
+    title: "Attention can't cover every checkpoint.",
+    body: "12+ live checkpoints. Managing the room and the clock, evaluators miss subtle errors.",
   },
   {
-    title: "The technology itself carries a failure risk.",
-    body: "Quest 3 passthrough contrast has a hard threshold. Past it, the UI disappears under real clinical lighting, so MR can't be adopted blindly.",
+    title: "The technology itself can fail.",
+    body: "Quest 3 passthrough has a hard contrast threshold. Past it, UI vanishes under clinical lighting.",
   },
 ] as const;
 
@@ -149,7 +213,7 @@ export const mayocopyIndustryResearchIntro =
 export const mayocopyIndustryResearchSections = [
   {
     title: "More Evaluators.",
-    body: "Most programs respond to capacity strain by hiring and training more evaluators. Certification-grade judgment takes months to build—this scales linearly with cost and time, not with volume.",
+    body: "Most programs hire more evaluators. Certification-grade judgment takes months to build—capacity scales with cost, not volume.",
     image: {
       src: "/images/mayo/Industry%20Research-1.jpg",
       alt: "Industry research on hiring and training additional certification evaluators",
@@ -159,7 +223,7 @@ export const mayocopyIndustryResearchSections = [
   },
   {
     title: "Physical Manikin.",
-    body: "Sensor-equipped manikins provide real-time feedback during practice—established in nursing and EMT training. Feedback quality is high, but the format still requires one evaluator per session; capacity is unchanged.",
+    body: "Sensor manikins give strong real-time feedback. Sessions still need one evaluator each, so capacity is unchanged.",
     image: {
       src: "/images/mayo/Industry%20Research-2.jpg",
       alt: "Industry research on sensor-equipped physical manikins for skills training",
@@ -169,7 +233,7 @@ export const mayocopyIndustryResearchSections = [
   },
   {
     title: "Remote Video.",
-    body: "Used to reduce venue dependency in some certification programs. Trades in-person overhead for lower spatial and angle accuracy—evaluators still assess one candidate at a time, just remotely.",
+    body: "Remote video cuts venue dependency. Evaluators still assess one candidate at a time, with lower spatial accuracy.",
     image: {
       src: "/images/mayo/Industry%20Research-3.png",
       alt: "Industry research on remote video assessment in certification programs",
@@ -179,7 +243,7 @@ export const mayocopyIndustryResearchSections = [
   },
   {
     title: "Mixed Reality.",
-    body: "Adoption in healthcare training has grown over the past decade, mostly in surgical skills practice. XR feedback performs comparably to other real-time methods—it is not inherently more accurate. Purpose-built tools for high-volume certification are rare; most applications target one-time skills training, not repeated at-scale assessment.",
+    body: "Common in skills practice, rare for high-volume certification. Most tools train once, not assess at scale.",
     image: {
       src: "/images/mayo/Industry%20Research-4.jpg",
       alt: "Nursing students using Oculus headsets to simulate hospital patient treatment in VR",
@@ -198,20 +262,22 @@ export const mayocopyVisualResearchSections = [
   {
     title: "Brand.",
     body: "Mayo's tone across touchpoints: confident, reassuring, never clinical or cold.",
-    images: [
-      {
-        src: "/images/mayo-brand-research2.png",
-        alt: "Mayo Clinic brand audit across social media, presentations, and clinical publications",
-        width: 511,
-        height: 366,
-      },
-      {
-        src: "/images/mayo-visual%20research.png",
-        alt: "Brand and design language research board covering Mayo Clinic identity, web and social touchpoints, and clinical case references",
-        width: 511,
-        height: 366,
-      },
-    ],
+    image: {
+      src: "/images/mayo-visual%20research.png",
+      alt: "Brand and design language research board covering Mayo Clinic identity, web and social touchpoints, and clinical case references",
+      width: 511,
+      height: 366,
+    },
+  },
+  {
+    title: "VR UI.",
+    body: "Spatial UI patterns for passthrough MR—depth, contrast, and hand-reachable controls that stay readable in clinical light.",
+    image: {
+      src: "/images/mayo/vr-ui-research.png",
+      alt: "VR UI research board of spatial interface patterns, passthrough panels, and hand interaction references",
+      width: 1586,
+      height: 1290,
+    },
   },
 ] as const;
 
@@ -221,53 +287,43 @@ export const mayocopyTechnicalResearchIntro =
 export const mayocopyTechnicalResearchSections = [
   {
     title: "Spatial / VR.",
-    body: "Quest 3 passthrough contrast has a hard legibility threshold. Past it, UI disappears under real clinical lighting.",
-    images: [
-      {
-        src: "/images/mayo-brand-research3.png",
-        alt: "Spatial UI readability research comparing contrast and color systems in passthrough MR environments on device",
-        width: 511,
-        height: 366,
-      },
-    ],
+    body: "Quest 3 passthrough has a hard contrast threshold. Past it, UI disappears under clinical lighting.",
+    image: {
+      src: "/images/mayo-brand-research3.png",
+      alt: "Spatial UI readability research comparing contrast and color systems in passthrough MR environments on device",
+      width: 511,
+      height: 366,
+    },
   },
   {
     title: "Clinical Standards.",
     body: "BVM and AED equipment, hand interactions per BLS step, mapped into measurable parameters.",
-    images: [
-      {
-        src: "/images/mayo-Basic%20research.png",
-        alt: "BVM and AED asset research boards mapping equipment references, hand interactions, and clinical specifications",
-        width: 511,
-        height: 366,
-      },
-    ],
+    image: {
+      src: "/images/mayo-Basic%20research.png",
+      alt: "BVM and AED asset research boards mapping equipment references, hand interactions, and clinical specifications",
+      width: 511,
+      height: 366,
+    },
   },
   {
     title: "Competitor Research.",
-    body: "Existing MR training tools trade usability for feature volume. None built for a credentialing context.",
-    images: [
-      {
-        src: "/images/mayo-screens.png",
-        alt: "MR training UI flows benchmarked against credentialing-stage assessment requirements",
-        width: 511,
-        height: 366,
-      },
-    ],
+    body: "Existing MR training tools trade usability for feature volume. None built for credentialing.",
+    image: {
+      src: "/images/mayo-screens.png",
+      alt: "MR training UI flows benchmarked against credentialing-stage assessment requirements",
+      width: 511,
+      height: 366,
+    },
   },
   {
     title: "Evaluation Rubric.",
-    body:
-      "17 parameters across three modules—CPR, BVM, and AED—define Mayo's pass/fail bar. This research mapped each threshold into a design requirement: what the system must observe, signal, and log before a certification call is valid.",
-    images: [
-      {
-        src: "/images/Evaluation%20System.png",
-        alt: "BLS evaluation rubric screenshot mapping CPR, BVM, and AED tasks to pass/fail criteria and clinical metrics",
-        width: 511,
-        height: 366,
-      },
-    ],
-    showRubric: true,
+    body: "17 parameters across CPR, BVM, and AED define the pass/fail bar—and what the system must observe to match it.",
+    image: {
+      src: "/images/Evaluation%20System.png",
+      alt: "BLS evaluation rubric screenshot mapping CPR, BVM, and AED tasks to pass/fail criteria and clinical metrics",
+      width: 511,
+      height: 366,
+    },
   },
 ] as const;
 
@@ -327,9 +383,8 @@ export const mayocopyDesignDimensions = [
 
 export const mayocopyMainFeatures = [
   {
-    title: "Gesture Vocabulary, Mapped to Real BLS Actions",
-    body:
-      "Every hand interaction split into two categories: physical object interaction (touch, precision placement, grab and release, two-hand manipulation, continuous press for compressions, knob rotation) and system UI interaction (button selection, menu navigation, instruction prompts, progress indicators). Each BLS step maps to one specific gesture, not a generic point-and-click.",
+    title: "Gesture Vocabulary.",
+    body: "Each BLS step maps to one specific gesture—physical object actions and system UI—not generic point-and-click.",
     image: {
       src: "/images/mayo-icon.png",
       alt: "Gesture icon vocabulary for MR onboarding and BLS interactions including click, rotate, press, CPR, BVM, and AED",
@@ -338,9 +393,8 @@ export const mayocopyMainFeatures = [
     },
   },
   {
-    title: "Near-Field Interaction Feedback",
-    body:
-      "A visual glow activates as fingers approach an interactive object, teaching the pinch-to-interact gesture before the candidate has to rely on memory alone.",
+    title: "Near-Field Feedback.",
+    body: "A glow activates as fingers approach an object, teaching pinch-to-interact before candidates rely on memory alone.",
     image: {
       src: "/images/mayo-ui.png",
       alt: "Near-field glow feedback on an MR interface object before pinch-to-interact selection",
@@ -349,9 +403,8 @@ export const mayocopyMainFeatures = [
     },
   },
   {
-    title: "Voice-Guided Onboarding",
-    body:
-      "Narration guides each onboarding step, layered on top of the visual gesture teaching, so instruction doesn't depend on reading text mid-task.",
+    title: "Voice-Guided Onboarding.",
+    body: "Narration guides each step on top of visual gesture teaching, so instruction doesn't depend on reading mid-task.",
     image: {
       src: "/images/mayo-onboardingitem.png",
       alt: "Voice-guided MR onboarding prompts layered on gesture teaching screens",
@@ -360,20 +413,8 @@ export const mayocopyMainFeatures = [
     },
   },
   {
-    title: "Scene Transitions Built for Passthrough",
-    body:
-      "Glow and fade-in transitions between scenes, tuned specifically for the MR environment rather than ported from flat-screen UI conventions.",
-    image: {
-      src: "/images/mayo-screens.png",
-      alt: "MR onboarding screens showing passthrough scene transitions across progressive stages",
-      width: 511,
-      height: 366,
-    },
-  },
-  {
-    title: "Mayo Blue as the Clinical Readability System",
-    body:
-      "Mayo's signature blue anchors the core color system, chosen for high-contrast legibility in clinical settings, with background gradients added for warmth without breaking that contrast requirement.",
+    title: "Mayo Blue Readability.",
+    body: "Mayo's signature blue anchors the color system for high-contrast legibility in clinical settings.",
     image: {
       src: "/images/mayo-brand-styleguide.png",
       alt: "Mayo Clinic MR visual style guide with Mayo Blue typography, color, and spatial UI components",
@@ -386,6 +427,12 @@ export const mayocopyMainFeatures = [
 export const mayocopyUserFlow = {
   intro:
     "The certification journey has three parts: Onboarding, Assessment, and Evaluation. Everything branches from one question at the start, and both branches converge before Assessment begins.",
+  figure: {
+    src: "/images/mayo/user-flow.png",
+    alt: "User flow overview across Onboarding, Assessment, and Evaluation",
+    width: 2892,
+    height: 808,
+  },
 } as const;
 
 export const mayocopyUserFlowDiagram = {
@@ -495,6 +542,10 @@ export const mayocopyOnboardingOpening = [
     alt: "Onboarding flow diagram from MR experience check through gesture training, applied practice, and CPR/BVM/AED assessment",
     width: 1920,
     height: 1080,
+    overlay: {
+      label: "Onboarding flow",
+      value: "Four stages before BLS assessment begins",
+    },
   },
   {
     src: "/images/mayo-4.jpg",
@@ -503,23 +554,6 @@ export const mayocopyOnboardingOpening = [
     height: 1080,
   },
 ] as const;
-
-export const mayocopyOnboardingDesignMethod = {
-  body:
-    "Click, rotate, and press are taught on a radio, lamp, and television — familiar objects, not clinical ones. When the same rotate motion appears on an AED knob, it's already muscle memory.",
-  image: {
-    videoSrc: "/videos/Mr%20basic.mov",
-    alt: "MR onboarding teaching click, rotate, and press gestures on a radio, lamp, and television",
-    width: 511,
-    height: 366,
-  },
-  screens: {
-    src: "/images/mayo-screens.png",
-    alt: "Onboarding screen system across setup, gesture training, applied practice, and assessment handoff",
-    width: 1920,
-    height: 1080,
-  },
-} as const;
 
 export const mayocopyOnboardingStages = {
   pauseCheck: {
@@ -1033,13 +1067,25 @@ export const mayocopyDecisionMatrix = {
   ],
 } as const;
 
-export const mayocopyWhyMr = {
-  title: "Data pointed to MR.",
-  body:
-    "The other three directions each solved one constraint by giving up another. MR was not the only viable path — but relative to Mayo's requirements on fidelity, capacity, and venue independence, it best balanced real-time spatial feedback with the lowest long-term cost, without adding staffing or fixed venue dependency. Mayo accepted that tradeoff.",
+export const mayocopyConcept = {
+  lead: "We decided to use Mixed Reality.",
+  points: [
+    {
+      label: "Real-time spatial tracking",
+      value: "Matches live BLS checkpoints in depth, rate, and placement",
+    },
+    {
+      label: "Scales without more staff",
+      value: "Covers 400+ candidates a year without adding evaluators",
+    },
+    {
+      label: "Portable, venue-independent",
+      value: "No fixed room dependency that remote video still requires",
+    },
+  ],
 } as const;
 
-export const mayocopyWhyMrFigure = {
+export const mayocopyConceptFigure = {
   src: "/images/mayo/mayo-medstar-vr.webp",
   alt: "ER doctors training with virtual reality headsets at MedStar",
   credit: "MedStar plans to train ER doctors using virtual reality. Photograph by Evy Mages.",
