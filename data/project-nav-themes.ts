@@ -40,6 +40,11 @@ export const projectNavThemes: Record<string, ProjectNavTheme> = {
     accent: "#e8c96a",
     accentContrast: "#0b0b0b",
   },
+  unifeast: {
+    navTheme: "light",
+    accent: "#f89219",
+    accentContrast: "#ffffff",
+  },
   arcana: {
     navTheme: "dark",
     accent: "#c9a227",

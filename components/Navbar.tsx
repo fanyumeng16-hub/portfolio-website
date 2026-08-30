@@ -34,55 +34,49 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="site-nav">
-      <nav className="nav-bar" aria-label="Main navigation">
-        <a
-          className={`nav-item ${active === "home" ? "is-active" : ""}`}
-          href="#home"
-        >
-          Home
-        </a>
-
-        <span className="nav-divider" aria-hidden="true" />
-
-        <div className="nav-item-group nav-item-group--work">
+    <header className="site-nav site-nav--home">
+      <nav className="nav-bar nav-bar--home" aria-label="Main navigation">
+        <div className="nav-bar__group nav-bar__group--start">
           <a
-            className={`nav-item ${active === "work" ? "is-active" : ""}`}
-            href="#work"
+            className={`nav-item ${active === "home" ? "is-active" : ""}`}
+            href="#home"
           >
-            Work
+            Home
           </a>
 
-          <NavWorkDropdown projects={visibleProjects} />
+          <div className="nav-item-group nav-item-group--work">
+            <a
+              className={`nav-item ${active === "work" ? "is-active" : ""}`}
+              href="#work"
+            >
+              work
+            </a>
+
+            <NavWorkDropdown projects={visibleProjects} />
+          </div>
+
+          <a
+            className={`nav-item ${active === "about" ? "is-active" : ""}`}
+            href="#about"
+          >
+            about
+          </a>
         </div>
 
-        <span className="nav-divider" aria-hidden="true" />
+        <div className="nav-bar__group nav-bar__group--end">
+          <a
+            className="nav-item"
+            href="/YumengFan_Resume_UX.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Resume
+          </a>
 
-        <a
-          className={`nav-item ${active === "about" ? "is-active" : ""}`}
-          href="#about"
-        >
-          About
-        </a>
-
-        <span className="nav-spacer" aria-hidden="true" />
-
-        <span className="nav-divider" aria-hidden="true" />
-
-        <a
-          className="nav-item"
-          href="/YumengFan_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Resume
-        </a>
-
-        <span className="nav-divider" aria-hidden="true" />
-
-        <a className="nav-item" href="mailto:fanyumeng16@gmail.com">
-          Contact Me
-        </a>
+          <a className="nav-item nav-item--contact" href="mailto:fanyumeng16@gmail.com">
+            Contact me
+          </a>
+        </div>
       </nav>
     </header>
   );

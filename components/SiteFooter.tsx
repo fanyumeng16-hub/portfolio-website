@@ -29,7 +29,7 @@ export default function SiteFooter() {
             <a href="#about">About</a>
             <a href="#connect">Connect</a>
             <a
-              href="/YumengFan_Resume.pdf"
+              href="/YumengFan_Resume_UX.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >

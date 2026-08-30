@@ -13,12 +13,12 @@ export default function CaseNavbar({ projectId }: Props) {
   const project = getProject(projectId);
   if (!project) return null;
 
-  const { navTheme, accent, accentContrast } = getProjectNavTheme(projectId);
+  const { accent, accentContrast } = getProjectNavTheme(projectId);
   const otherProjects = visibleProjects.filter((item) => item.id !== projectId);
 
   return (
     <header
-      className={`site-nav site-nav--case site-nav--${navTheme}`}
+      className="site-nav site-nav--home site-nav--case"
       style={
         {
           "--case-accent": accent,
@@ -26,49 +26,43 @@ export default function CaseNavbar({ projectId }: Props) {
         } as CSSProperties
       }
     >
-      <nav className="nav-bar" aria-label="Main navigation">
-        <Link className="nav-item" href="/">
-          Home
-        </Link>
+      <nav className="nav-bar nav-bar--home" aria-label="Main navigation">
+        <div className="nav-bar__group nav-bar__group--start">
+          <Link className="nav-item" href="/">
+            Home
+          </Link>
 
-        <span className="nav-divider" aria-hidden="true" />
+          <div className="nav-item-group nav-item-group--work nav-item-group--project">
+            <span
+              className="nav-item nav-item--project is-active"
+              aria-current="page"
+              aria-haspopup="true"
+            >
+              <ProjectTitle title={project.navLabel} />
+            </span>
 
-        <div className="nav-item-group nav-item-group--work nav-item-group--project">
-          <span
-            className="nav-item nav-item--project is-active"
-            aria-current="page"
-            aria-haspopup="true"
-          >
-            <ProjectTitle title={project.navLabel} />
-          </span>
+            <NavWorkDropdown projects={otherProjects} />
+          </div>
 
-          <NavWorkDropdown projects={otherProjects} />
+          <Link className="nav-item" href="/#about">
+            about
+          </Link>
         </div>
 
-        <span className="nav-divider" aria-hidden="true" />
+        <div className="nav-bar__group nav-bar__group--end">
+          <a
+            className="nav-item"
+            href="/YumengFan_Resume_UX.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Resume
+          </a>
 
-        <Link className="nav-item" href="/#about">
-          About
-        </Link>
-
-        <span className="nav-spacer" aria-hidden="true" />
-
-        <span className="nav-divider" aria-hidden="true" />
-
-        <a
-          className="nav-item"
-          href="/YumengFan_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Resume
-        </a>
-
-        <span className="nav-divider" aria-hidden="true" />
-
-        <a className="nav-item" href="mailto:fanyumeng16@gmail.com">
-          Contact Me
-        </a>
+          <a className="nav-item nav-item--contact" href="mailto:fanyumeng16@gmail.com">
+            Contact me
+          </a>
+        </div>
       </nav>
     </header>
   );

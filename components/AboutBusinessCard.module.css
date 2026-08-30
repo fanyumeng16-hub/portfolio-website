@@ -1,0 +1,242 @@
+/* Figma Component 362:413 — Business Card Cover / Cover2 / Cover3 */
+
+.scrollTrack {
+  position: relative;
+  width: 100%;
+}
+
+.flowSlot {
+  width: 100%;
+}
+
+.pinSpacer {
+  width: 100%;
+  pointer-events: none;
+}
+
+.cardMount {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cardMount[data-pin-phase="pinned"],
+.cardMount[data-pin-phase="after"] {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 12;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.cardMount[data-pin-phase="pinned"] .root,
+.cardMount[data-pin-phase="after"] .root {
+  pointer-events: auto;
+}
+
+.stage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.root {
+  --card-ratio-h: 441.017;
+  --cover-closed-opacity: 1;
+  --cover-open-opacity: 0;
+  --cover-translate-y: 0%;
+  position: relative;
+  width: min(734px, 100%);
+  aspect-ratio: 734 / var(--card-ratio-h);
+  min-height: 200px;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: transparent;
+  text-align: inherit;
+  transition: aspect-ratio 0.65s cubic-bezier(0, 0, 0.674, 0.996);
+  will-change: aspect-ratio;
+}
+
+.root[data-expanded="true"],
+.root[data-detaching="true"] {
+  overflow: visible;
+}
+
+.root:focus-visible {
+  outline: 2px solid #2463c3;
+  outline-offset: 4px;
+}
+
+.cardSlot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--card-slot-ratio) / var(--card-ratio-h) * 100%);
+}
+
+/* Business Card — 734×441, fills card slot (362:372) */
+.cardInner {
+  position: absolute;
+  inset: 0;
+  background: #eaf7ff;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 325.37,103.32 — 246.72×30.84 (362:373) */
+.highlightA {
+  position: absolute;
+  left: 44.33%;
+  top: 23.43%;
+  width: 33.61%;
+  height: 6.99%;
+  background: #b1dfff;
+  pointer-events: none;
+}
+
+/* 124.9,134.16 — 181.19×30.84 (362:374) */
+.highlightB {
+  position: absolute;
+  left: 17.02%;
+  top: 30.42%;
+  width: 24.68%;
+  height: 6.99%;
+  background: #b1dfff;
+  pointer-events: none;
+}
+
+/* 518.89×198.15, top 103.81 (362:375) */
+.bio {
+  position: absolute;
+  top: 23.54%;
+  left: 50%;
+  width: 70.69%;
+  height: 44.93%;
+  transform: translateX(calc(-50% - 0.39px));
+  text-align: center;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-size: clamp(14px, 3.361cqw, 24.67px);
+  font-weight: 300;
+  line-height: 0;
+  color: #000;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.bioParagraph {
+  margin: 0;
+  line-height: normal;
+}
+
+.bioName {
+  font-weight: 500;
+}
+
+.bioPhone {
+  font-weight: 400;
+}
+
+.bio a {
+  font-weight: 400;
+  color: #2463c3;
+  text-decoration: none;
+}
+
+.bio a.bioEmail {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+/* top 337.42 (362:376) */
+.tea {
+  position: absolute;
+  top: 76.51%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-size: clamp(14px, 3.361cqw, 24.67px);
+  font-weight: 300;
+  line-height: normal;
+  color: #2463c3;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Cover — 958×571, left: -3px (362:347) */
+.coverLayer {
+  position: absolute;
+  left: -0.315%;
+  top: 0;
+  width: 100.63%;
+  height: 99.83%;
+  z-index: 2;
+  pointer-events: none;
+  backface-visibility: hidden;
+}
+
+.coverOpen {
+  opacity: var(--cover-open-opacity);
+  transform: translate3d(0, var(--cover-translate-y), 0);
+  transition:
+    opacity 0.42s ease,
+    transform 0.65s cubic-bezier(0, 0, 0.674, 0.996);
+  will-change: transform, opacity;
+}
+
+.coverClosed {
+  z-index: 3;
+  opacity: var(--cover-closed-opacity);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.38s ease;
+  will-change: opacity;
+}
+
+.coverImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+@media (max-width: 900px) {
+  .bio {
+    width: 82%;
+    font-size: clamp(13px, 3.8vw, 22px);
+  }
+
+  .tea {
+    font-size: clamp(13px, 3.8vw, 22px);
+    white-space: normal;
+    text-align: center;
+    max-width: 82%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .coverOpen,
+  .coverClosed {
+    transition: none;
+    will-change: auto;
+  }
+}
+
+.root[data-scroll-driven="true"] {
+  transition: none;
+  will-change: aspect-ratio;
+}
+
+.root[data-scroll-driven="true"] .coverOpen,
+.root[data-scroll-driven="true"] .coverClosed {
+  transition: none;
+}

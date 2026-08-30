@@ -8,6 +8,7 @@ export type Project = {
   subtitle: string;
   navLabel: string;
   navHint: string;
+  navType: string;
   tagIds: ProjectTagId[];
   tags: string[];
   category: string;
@@ -31,6 +32,7 @@ export const projects: Project[] = [
     subtitle: "Package Tracking Experience",
     navLabel: "Trackly",
     navHint: "Package Tracking",
+    navType: "APP",
     tagIds: ["ui-ux", "logistics", "delivery"],
     category: "UI/UX / Logistics / Delivery",
     description:
@@ -46,12 +48,30 @@ export const projects: Project[] = [
     subtitle: "Mixed Reality Medical Training System",
     navLabel: "Mayo Clinic",
     navHint: "Mixed Reality Training",
+    navType: "XR/MR",
     tagIds: ["branding", "ui-ux", "xr-mr", "unity"],
     category: "Branding / UI/UX / XR/MR / Unity",
     description:
       "A Mayo Clinic × SCADpro mixed reality project exploring clinical training workflows, hardware integration, and immersive BLS assessment design.",
     bullets: ["Mixed reality training", "Clinical assessment", "Medical interaction design"],
     image: "/images/medical.jpg",
+  }),
+  withTags({
+    id: "unifeast",
+    number: "010",
+    year: "2026",
+    title: "UniFeast",
+    subtitle: "Feast with your Friends",
+    navLabel: "UniFeast",
+    navHint: "Social Dining",
+    navType: "APP",
+    tagIds: ["ui-ux"],
+    category: "UI/UX",
+    description:
+      "A campus social dining app that helps friends discover meals, share food moments, and plan group feasts together.",
+    bullets: ["Social feed design", "Group dining flows", "Mobile product UI"],
+    image: "/images/UniFeast/1.png",
+    imageFit: "cover",
   }),
   withTags({
     id: "massie",
@@ -61,6 +81,7 @@ export const projects: Project[] = [
     subtitle: "City Plan Exhibit & Visitor Experience",
     navLabel: "Massie",
     navHint: "Visitor Experience",
+    navType: "WEB",
     tagIds: ["branding", "ui-ux"],
     category: "Branding / UI/UX",
     description:
@@ -80,6 +101,7 @@ export const projects: Project[] = [
     subtitle: "Multi-Modal Mind Offboarding System",
     navLabel: "Outloop",
     navHint: "Mind Offboarding",
+    navType: "APP",
     tagIds: ["ui-ux", "wellness", "offboarding"],
     category: "UI/UX / Wellness / Offboarding",
     description:
@@ -91,6 +113,7 @@ export const projects: Project[] = [
     ],
     image: "/images/outloop.png",
     imageFit: "cover",
+    hidden: true,
   }),
   withTags({
     id: "horizon",
@@ -100,6 +123,7 @@ export const projects: Project[] = [
     subtitle: "Mars Exploration Simulation",
     navLabel: "Horizon",
     navHint: "Mars Simulation",
+    navType: "APP",
     tagIds: ["xr-mr", "unity", "ui-ux"],
     category: "XR/MR / Unity / UI/UX",
     description:
@@ -116,12 +140,14 @@ export const projects: Project[] = [
     subtitle: "Mardi Gras Installation & AR Experience",
     navLabel: "Universal",
     navHint: "Mardi Gras AR",
+    navType: "AR",
     tagIds: ["branding", "xr-mr", "ui-ux"],
     category: "Branding / XR/MR / UI/UX",
     description:
       "A Universal × SCADpro Mardi Gras project combining physical installations, augmented reality, and guest UI for immersive festival experiences.",
     bullets: ["Mardi Gras installation", "AR interaction", "Guest-facing UI"],
     image: "/images/universal.jpg",
+    hidden: true,
   }),
   withTags({
     id: "heartbits",
@@ -131,6 +157,7 @@ export const projects: Project[] = [
     subtitle: "Interactive Rehabilitation Experience",
     navLabel: "Heartbits",
     navHint: "Rehabilitation Play",
+    navType: "APP",
     tagIds: ["sensor", "ui-ux"],
     category: "Sensor / UI/UX",
     description:
@@ -147,6 +174,7 @@ export const projects: Project[] = [
     subtitle: "Speculative Wellness Critique",
     navLabel: "ORA",
     navHint: "Wellness Critique",
+    navType: "WEB",
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:
@@ -167,6 +195,7 @@ export const projects: Project[] = [
     subtitle: "AI Tarot Experience",
     navLabel: "Arcana",
     navHint: "AI Tarot",
+    navType: "APP",
     tagIds: ["ui-ux"],
     category: "UI/UX",
     description:
