@@ -10,6 +10,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import styles from "./AboutBusinessCard.module.css";
+import { CoverClosedSvg, CoverOpenSvg } from "./AboutEnvelopeCovers";
 
 /** Figma 362:192 — Component 362:419 */
 export const ABOUT_CARD_W = 734;
@@ -17,10 +18,17 @@ export const ABOUT_CARD_H = 441.017;
 export const ABOUT_CARD_EXPANDED_H = 612.933;
 export const ABOUT_COVER3_TOP = 172.647;
 
-const PIN_TRAVEL_VH = 1.45;
+/**
+ * While pinned, page content feels paused — wheel only scrubs the envelope.
+ * OPEN: cover/mask animation
+ * HOLD: fully open card stays locked on screen
+ * then unpin → normal page scroll continues (Education next)
+ */
+const OPEN_TRAVEL_VH = 1.15;
+const HOLD_TRAVEL_VH = 0.5;
 
 type Variant = "cover" | "cover2" | "cover3";
-type PinPhase = "flow" | "pinned" | "after";
+type EnvelopePhase = "approach" | "opening" | "holding" | "released";
 
 const VARIANTS: Variant[] = ["cover", "cover2", "cover3"];
 
@@ -70,15 +78,13 @@ function variantMotion(variant: Variant): Motion {
 }
 
 function progressMotion(progress: number): Motion {
-  if (progress >= 1) {
-    return completedMotion();
-  }
+  if (progress >= 1) return completedMotion();
 
-  const openT = easeOutCubic(clamp((progress - 0.12) / 0.14, 0, 1));
+  const openT = easeOutCubic(clamp((progress - 0.1) / 0.16, 0, 1));
   const closedOpacity = 1 - openT;
 
-  const slide = easeOutCubic(clamp((progress - 0.28) / 0.38, 0, 1));
-  const fadeOut = easeOutCubic(clamp((progress - 0.88) / 0.12, 0, 1));
+  const slide = easeOutCubic(clamp((progress - 0.26) / 0.42, 0, 1));
+  const fadeOut = easeOutCubic(clamp((progress - 0.86) / 0.14, 0, 1));
   const openOpacity = Math.max(0, openT * (1 - fadeOut));
 
   return {
@@ -113,50 +119,38 @@ function motionStyle(motion: Motion, scrollDriven: boolean): CSSProperties {
   };
 }
 
-function pinSpacerHeight(vh: number, pinTravel: number, cardHeight: number) {
-  return pinTravel + Math.max(0, vh * 0.5 - cardHeight * 0.5);
-}
-
 export default function AboutBusinessCard() {
   const trackRef = useRef<HTMLDivElement>(null);
   const mountRef = useRef<HTMLDivElement>(null);
-  const pinStartY = useRef(0);
-  const pinTravelPx = useRef(800);
-  const cardHeightPx = useRef(ABOUT_CARD_H);
 
   const [variantIndex, setVariantIndex] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [openProgress, setOpenProgress] = useState(0);
+  const [envelopePhase, setEnvelopePhase] =
+    useState<EnvelopePhase>("approach");
+  const [pinned, setPinned] = useState(false);
   const [scrollDriven, setScrollDriven] = useState(true);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [pinPhase, setPinPhase] = useState<PinPhase>("flow");
-  const [layout, setLayout] = useState({
-    pinTravel: 800,
-    cardHeight: ABOUT_CARD_H,
-    pinSpacer: 1120,
-  });
+  const [cardHeight, setCardHeight] = useState(ABOUT_CARD_H);
+  const [openTravel, setOpenTravel] = useState(900);
+  const [holdTravel, setHoldTravel] = useState(400);
+  const [pinTop, setPinTop] = useState(120);
 
   const variant = VARIANTS[variantIndex];
 
   useEffect(() => {
-    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setReduceMotion(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    );
   }, []);
-
-  const pinPhaseRef = useRef<PinPhase>("flow");
-
-  useEffect(() => {
-    pinPhaseRef.current = pinPhase;
-  }, [pinPhase]);
 
   useEffect(() => {
     const measure = () => {
       const vh = window.innerHeight;
-      const pinTravel = vh * PIN_TRAVEL_VH;
-      const cardHeight = mountRef.current?.offsetHeight ?? ABOUT_CARD_H;
-      const pinSpacer = pinSpacerHeight(vh, pinTravel, cardHeight);
-
-      pinTravelPx.current = pinTravel;
-      cardHeightPx.current = cardHeight;
-      setLayout({ pinTravel, cardHeight, pinSpacer });
+      const height = mountRef.current?.offsetHeight ?? ABOUT_CARD_H;
+      setCardHeight(height);
+      setOpenTravel(vh * OPEN_TRAVEL_VH);
+      setHoldTravel(vh * HOLD_TRAVEL_VH);
+      setPinTop(Math.max(12, vh * 0.5 - height * 0.5));
     };
 
     measure();
@@ -165,100 +159,78 @@ export default function AboutBusinessCard() {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      setPinned(false);
+      setOpenProgress(1);
+      setEnvelopePhase("released");
+      return;
+    }
 
-    const section = document.getElementById("about");
-    if (!section) return;
-
-    const updateScrollMotion = () => {
+    const update = () => {
+      const track = trackRef.current;
       const mount = mountRef.current;
-      if (!mount) return;
+      if (!track || !mount) return;
 
       const vh = window.innerHeight;
-      const pinTravel = vh * PIN_TRAVEL_VH;
-      pinTravelPx.current = pinTravel;
-      cardHeightPx.current = mount.offsetHeight || cardHeightPx.current;
+      const height = mount.offsetHeight || cardHeight;
+      const openPx = vh * OPEN_TRAVEL_VH;
+      const holdPx = vh * HOLD_TRAVEL_VH;
+      const totalPx = openPx + holdPx;
+      const top = Math.max(12, vh * 0.5 - height * 0.5);
 
-      const scrollY = window.scrollY;
-      const phase = pinPhaseRef.current;
+      // Distance from “card should sit at center” through the pin range.
+      // Uses the track’s top — track is in normal document flow and tall enough
+      // to absorb wheel input while the card is position:fixed.
+      const trackTop = track.getBoundingClientRect().top;
+      const scrolled = top - trackTop;
 
-      if (phase === "flow") {
-        const rect = mount.getBoundingClientRect();
-        const cardCenterY = rect.top + rect.height / 2;
+      let phase: EnvelopePhase;
+      let isPinned = false;
+      let progress = 0;
 
-        if (cardCenterY <= vh * 0.5 + 1) {
-          pinStartY.current = scrollY;
-          pinPhaseRef.current = "pinned";
-          setPinPhase("pinned");
-          setScrollProgress(0);
-          setScrollDriven(true);
-        } else {
-          setScrollProgress(0);
-        }
-        return;
+      if (scrolled <= 0) {
+        phase = "approach";
+        isPinned = false;
+        progress = 0;
+      } else if (scrolled < openPx) {
+        phase = "opening";
+        isPinned = true;
+        progress = clamp(scrolled / openPx, 0, 1);
+      } else if (scrolled < totalPx) {
+        phase = "holding";
+        isPinned = true;
+        progress = 1;
+      } else {
+        phase = "released";
+        isPinned = false;
+        progress = 1;
       }
 
-      if (phase === "pinned") {
-        if (scrollY < pinStartY.current - 2) {
-          pinPhaseRef.current = "flow";
-          setPinPhase("flow");
-          setScrollProgress(0);
-          return;
-        }
-
-        const progress = clamp(
-          (scrollY - pinStartY.current) / pinTravel,
-          0,
-          1,
-        );
-        setScrollProgress(progress);
-        setScrollDriven(true);
-
-        if (progress >= 1) {
-          pinPhaseRef.current = "after";
-          setPinPhase("after");
-        }
-        return;
-      }
-
-      if (scrollY < pinStartY.current + pinTravel - 2) {
-        pinPhaseRef.current = "pinned";
-        setPinPhase("pinned");
-        const progress = clamp(
-          (scrollY - pinStartY.current) / pinTravel,
-          0,
-          1,
-        );
-        setScrollProgress(progress);
-        return;
-      }
-
-      setScrollProgress(1);
+      setCardHeight(height);
+      setOpenTravel(openPx);
+      setHoldTravel(holdPx);
+      setPinTop(top);
+      setOpenProgress(progress);
+      setEnvelopePhase(phase);
+      setPinned(isPinned);
       setScrollDriven(true);
     };
 
-    window.addEventListener("scroll", updateScrollMotion, { passive: true });
-    window.addEventListener("resize", updateScrollMotion);
-    updateScrollMotion();
-
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
-      window.removeEventListener("scroll", updateScrollMotion);
-      window.removeEventListener("resize", updateScrollMotion);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
-  }, [reduceMotion]);
+  }, [reduceMotion, cardHeight]);
 
   const motion = useMemo(() => {
     if (reduceMotion || !scrollDriven) {
       return variantMotion(variant);
     }
-    if (pinPhase === "flow") {
-      return variantMotion("cover");
-    }
-    if (pinPhase === "after") {
-      return completedMotion();
-    }
-    return progressMotion(scrollProgress);
-  }, [reduceMotion, scrollDriven, scrollProgress, variant, pinPhase]);
+    return progressMotion(openProgress);
+  }, [reduceMotion, scrollDriven, openProgress, variant]);
 
   const cycleVariant = useCallback(() => {
     setScrollDriven(false);
@@ -272,107 +244,126 @@ export default function AboutBusinessCard() {
     }
   };
 
-  const isScrollDriven = scrollDriven && !reduceMotion && pinPhase !== "flow";
-  const isFixed = pinPhase === "pinned" || pinPhase === "after";
-  const { cardHeight, pinSpacer } = layout;
+  const isScrollDriven = scrollDriven && !reduceMotion;
+  const trackHeight = cardHeight + openTravel + holdTravel;
+  const releasedTop = openTravel + holdTravel;
+
+  const mountStyle: CSSProperties | undefined = pinned
+    ? {
+        position: "fixed",
+        top: `${pinTop}px`,
+        left: 0,
+        right: 0,
+        zIndex: 20,
+      }
+    : envelopePhase === "released"
+      ? {
+          position: "absolute",
+          top: `${releasedTop}px`,
+          left: 0,
+          right: 0,
+          zIndex: 2,
+        }
+      : undefined;
 
   return (
     <div
       ref={trackRef}
       className={`${styles.scrollTrack} about-business-card-track`}
-      data-pin-phase={pinPhase}
+      data-envelope-phase={envelopePhase}
+      data-pinned={pinned ? "true" : "false"}
+      style={{
+        height: `${trackHeight}px`,
+        ["--about-card-h" as string]: `${cardHeight}px`,
+      }}
     >
       <div
-        className={styles.flowSlot}
-        style={isFixed ? { minHeight: `${cardHeight}px` } : undefined}
+        ref={mountRef}
+        className={`${styles.cardMount} about-business-card-mount`}
+        data-pinned={pinned ? "true" : "false"}
+        data-phase={envelopePhase}
+        style={mountStyle}
       >
-        <div
-          ref={mountRef}
-          className={`${styles.cardMount} about-business-card-mount`}
-          data-pin-phase={pinPhase}
-        >
-          <div className={`${styles.stage} about-business-card-stage`}>
-            <div
-              className={`${styles.root} about-business-card-root`}
-              data-variant={variant}
-              data-expanded={motion.expanded ? "true" : "false"}
-              data-detaching={motion.detaching ? "true" : "false"}
-              data-scroll-driven={isScrollDriven ? "true" : "false"}
-              style={motionStyle(motion, isScrollDriven)}
-              role="button"
-              tabIndex={0}
-              aria-label={`Business card envelope: ${variant}. Click to change state.`}
-              onClick={cycleVariant}
-              onKeyDown={handleKeyDown}
-            >
-              <div className={styles.cardSlot}>
-                <div className={styles.cardInner}>
-                  <div className={`${styles.bio} about-business-card-bio`}>
-                    <p className={styles.bioParagraph}>
-                      <strong className={styles.bioName}>Yumeng Fan</strong>
-                      <span>{` is an `}</span>
-                      <mark className={styles.mark}>Interaction Designer</mark>
-                      <span>{` and `}</span>
-                      <mark className={styles.mark}>UX Researcher</mark>
-                      <span>{`. To explore her work, visit `}</span>
-                      <a
-                        className={styles.bioLink}
-                        href="https://www.fanyumeng16.com"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        www.fanyumeng16.com
-                      </a>
-                      <span>{`. To start a conversation, reach her at `}</span>
-                      <a
-                        className={styles.bioEmail}
-                        href="mailto:fanyumeng16@gmail.com"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        fanyumeng16@gmail.com
-                      </a>
-                      <span>{` or call `}</span>
-                      <span className={styles.bioPhone}>+1 (412) 430 2950</span>
-                      <span>.</span>
-                    </p>
-                  </div>
-
-                  <p className={`${styles.tea} about-business-card-tea`}>
-                    Have a Tea with me!
+        <div className={`${styles.stage} about-business-card-stage`}>
+          <div
+            className={`${styles.root} about-business-card-root`}
+            data-variant={variant}
+            data-envelope-phase={envelopePhase}
+            data-expanded={motion.expanded ? "true" : "false"}
+            data-detaching={motion.detaching ? "true" : "false"}
+            data-scroll-driven={isScrollDriven ? "true" : "false"}
+            style={motionStyle(motion, isScrollDriven)}
+            role="button"
+            tabIndex={0}
+            aria-label={`Business card envelope: ${variant}. Click to change state.`}
+            onClick={cycleVariant}
+            onKeyDown={handleKeyDown}
+          >
+            <div className={styles.cardSlot}>
+              <div className={styles.cardInner}>
+                <div className={`${styles.bio} about-business-card-bio`}>
+                  <p className={styles.bioParagraph}>
+                    <strong className={styles.bioName}>Yumeng Fan</strong>
+                    <span>{` is an `}</span>
+                    <mark className={styles.mark}>Interaction Designer</mark>
+                    <span>{` and `}</span>
+                    <mark className={styles.mark}>UX Researcher</mark>
+                    <span>{`. To explore her work, visit `}</span>
+                    <a
+                      className={styles.bioLink}
+                      href="https://www.fanyumeng16.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      www.fanyumeng16.com
+                    </a>
+                    <span>{`. To start a conversation, reach her at `}</span>
+                    <a
+                      className={styles.bioEmail}
+                      href="mailto:fanyumeng16@gmail.com"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      fanyumeng16@gmail.com
+                    </a>
+                    <span>{` or call `}</span>
+                    <a
+                      className={styles.bioPhone}
+                      href="tel:+14124302950"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      +1 (412) 430 2950
+                    </a>
+                    <span>.</span>
                   </p>
                 </div>
 
-                <div
-                  className={`${styles.coverLayer} ${styles.coverOpen}`}
-                  aria-hidden="true"
+                <a
+                  className={`${styles.tea} about-business-card-tea`}
+                  href="mailto:fanyumeng16@gmail.com"
+                  onClick={(event) => event.stopPropagation()}
                 >
-                  <img
-                    src="/images/about-envelope/cover-open.svg"
-                    alt=""
-                    className={styles.coverImg}
-                  />
-                </div>
+                  Have a Tea with me!
+                </a>
+              </div>
 
-                <div
-                  className={`${styles.coverLayer} ${styles.coverClosed}`}
-                  aria-hidden="true"
-                >
-                  <img
-                    src="/images/about-envelope/cover-closed.svg"
-                    alt=""
-                    className={styles.coverImg}
-                  />
-                </div>
+              <div
+                className={`${styles.coverLayer} ${styles.coverOpen}`}
+                aria-hidden="true"
+              >
+                <CoverOpenSvg className={styles.coverImg} />
+              </div>
+
+              <div
+                className={`${styles.coverLayer} ${styles.coverClosed}`}
+                aria-hidden="true"
+              >
+                <CoverClosedSvg className={styles.coverImg} />
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div
-        className={styles.pinSpacer}
-        aria-hidden="true"
-        style={{ height: `${pinSpacer}px` }}
-      />
     </div>
   );
 }

@@ -8,6 +8,10 @@ export const HOME_PROJECT_GRID_SLOTS = 6;
 type Props = {
   project: Project;
   index: number;
+  /** When false, render a non-linking card (e.g. WIP Devlop). */
+  linkable?: boolean;
+  /** Always show the hover cover (title / year / tags) — used for still-working WIP. */
+  coverAlways?: boolean;
 };
 
 export function ProjectGridPlaceholder() {
@@ -32,74 +36,101 @@ export function ProjectGridPlaceholder() {
 
 function coverTypeLabel(navType: string) {
   if (navType === "APP") return "APP Design";
+  if (navType === "WEB") return "Web Design";
   return navType;
 }
 
-export default function ProjectGridCard({ project, index }: Props) {
+export default function ProjectGridCard({
+  project,
+  index,
+  linkable = true,
+  coverAlways = false,
+}: Props) {
   const typeLabel = coverTypeLabel(project.navType);
   const coverTags = [
     typeLabel,
     ...project.tags.filter((tag) => tag !== typeLabel),
   ].slice(0, 3);
+  const linkClassName = coverAlways
+    ? "project-grid-link project-grid-link--cover-always"
+    : "project-grid-link";
+
+  const media = (
+    <div className="project-grid-media">
+      {!coverAlways ? (
+        <div className="project-grid-image-crop">
+          <Image
+            src={project.image}
+            alt=""
+            fill
+            sizes="(max-width: 900px) 50vw, 33vw"
+            priority={index < 2}
+            className="project-grid-image"
+          />
+        </div>
+      ) : null}
+
+      {/* Figma 213:1705 — Card cover (hover) · 672×375 */}
+      <div
+        className="project-grid-cover"
+        aria-hidden={coverAlways ? undefined : true}
+      >
+        <span className="project-grid-cover-pin project-grid-cover-pin--tl">
+          <img src="/images/home-card-cover-pin.svg" alt="" />
+        </span>
+        <span className="project-grid-cover-pin project-grid-cover-pin--tr">
+          <img src="/images/home-card-cover-pin.svg" alt="" />
+        </span>
+        <span className="project-grid-cover-pin project-grid-cover-pin--bl">
+          <img src="/images/home-card-cover-pin.svg" alt="" />
+        </span>
+        <span className="project-grid-cover-pin project-grid-cover-pin--br">
+          <img src="/images/home-card-cover-pin.svg" alt="" />
+        </span>
+
+        <div className="project-grid-cover-inner">
+          <div className="project-grid-cover-head">
+            <p className="project-grid-cover-title">
+              <ProjectTitle title={project.title} />
+            </p>
+            <p className="project-grid-cover-subtitle">{project.subtitle}</p>
+          </div>
+
+          <div className="project-grid-cover-foot">
+            <p className="project-grid-cover-year">{project.year}</p>
+            {coverTags.length > 0 ? (
+              <div className="project-grid-cover-tags">
+                {coverTags.map((tag) => (
+                  <span key={tag} className="project-grid-cover-tag">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <article className="project-grid-card">
-      <Link
-        href={`/projects/${project.id}`}
-        className="project-grid-link"
-        aria-label={`${project.title}, ${project.year}. ${project.subtitle}`}
-      >
-        <div className="project-grid-media">
-          <div className="project-grid-image-crop">
-            <Image
-              src={project.image}
-              alt=""
-              fill
-              sizes="(max-width: 900px) 50vw, 33vw"
-              priority={index < 2}
-              className="project-grid-image"
-            />
-          </div>
-
-          {/* Figma 213:1705 — Card cover (hover) · 672×375 */}
-          <div className="project-grid-cover" aria-hidden="true">
-            <span className="project-grid-cover-pin project-grid-cover-pin--tl">
-              <img src="/images/home-card-cover-pin.svg" alt="" />
-            </span>
-            <span className="project-grid-cover-pin project-grid-cover-pin--tr">
-              <img src="/images/home-card-cover-pin.svg" alt="" />
-            </span>
-            <span className="project-grid-cover-pin project-grid-cover-pin--bl">
-              <img src="/images/home-card-cover-pin.svg" alt="" />
-            </span>
-            <span className="project-grid-cover-pin project-grid-cover-pin--br">
-              <img src="/images/home-card-cover-pin.svg" alt="" />
-            </span>
-
-            <div className="project-grid-cover-inner">
-              <div className="project-grid-cover-head">
-                <p className="project-grid-cover-title">
-                  <ProjectTitle title={project.title} />
-                </p>
-                <p className="project-grid-cover-subtitle">{project.subtitle}</p>
-              </div>
-
-              <div className="project-grid-cover-foot">
-                <p className="project-grid-cover-year">{project.year}</p>
-                {coverTags.length > 0 ? (
-                  <div className="project-grid-cover-tags">
-                    {coverTags.map((tag) => (
-                      <span key={tag} className="project-grid-cover-tag">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            </div>
-          </div>
+      {linkable ? (
+        <Link
+          href={`/projects/${project.id}`}
+          className={linkClassName}
+          aria-label={`${project.title}, ${project.year}. ${project.subtitle}`}
+        >
+          {media}
+        </Link>
+      ) : (
+        <div
+          className={linkClassName}
+          aria-label={`${project.title}, ${project.year}. ${project.subtitle}`}
+        >
+          {media}
         </div>
-      </Link>
+      )}
     </article>
   );
 }

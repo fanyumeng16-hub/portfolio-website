@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Albert_Sans, Readex_Pro, Special_Elite } from "next/font/google";
+import { Albert_Sans, Readex_Pro, Roboto_Flex, Special_Elite } from "next/font/google";
 import "@fontsource/bitcount-grid-single/400.css";
 import "@fontsource/bitcount-grid-single/700.css";
 import { MicrosoftClarity } from "@/components/MicrosoftClarity";
@@ -26,6 +26,14 @@ const specialElite = Special_Elite({
   weight: "400",
 });
 
+/** Closest web match to Figma SF Pro Expanded (wdth ≈ 132). */
+const robotoFlex = Roboto_Flex({
+  subsets: ["latin"],
+  variable: "--font-roboto-flex",
+  display: "swap",
+  axes: ["wdth"],
+});
+
 export const metadata: Metadata = {
   title: "Yumeng Fan, UX & Interaction Designer",
   description:
@@ -40,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${albertSans.variable} ${readexPro.variable} ${specialElite.variable} h-full antialiased`}
+      className={`${albertSans.variable} ${readexPro.variable} ${specialElite.variable} ${robotoFlex.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col">

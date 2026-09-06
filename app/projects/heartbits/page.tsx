@@ -1,5 +1,5 @@
 import CaseNavbar from "@/components/CaseNavbar";
-import CaseDetailSection from "@/components/CaseDetailSection";
+import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
 import CaseOverviewSection from "@/components/CaseOverviewSection";
 import CaseTemplateLayout from "@/components/CaseTemplateLayout";
@@ -9,7 +9,6 @@ import {
   heartbitsOverviewVideo,
   heartbitsSpec,
 } from "@/data/heartbits-content";
-import { heartbitsGallerySection } from "@/data/heartbits-detail";
 import { heartbitsGalleryImages } from "@/data/heartbits-gallery";
 import { buildCaseTocSections } from "@/lib/case-toc";
 
@@ -18,7 +17,7 @@ const heartbitsSections = buildCaseTocSections(
     { id: "case-intro", label: "Introduction" },
     { id: "case-overview", label: "Overview" },
   ],
-  { images: heartbitsGalleryImages }
+  { images: heartbitsGalleryImages },
 );
 
 export default function HeartbitsPage() {
@@ -34,6 +33,8 @@ export default function HeartbitsPage() {
           subtitle={heartbitsHero.subtitle}
           intro={heartbitsHero.intro}
           spec={heartbitsSpec}
+          cover={heartbitsHero.cover}
+          coverPriority
         />
       }
     >
@@ -42,7 +43,7 @@ export default function HeartbitsPage() {
         media={heartbitsOverviewVideo}
       />
 
-      <CaseDetailSection section={heartbitsGallerySection} />
+      <CaseGallery images={heartbitsGalleryImages} seamless />
     </CaseTemplateLayout>
   );
 }

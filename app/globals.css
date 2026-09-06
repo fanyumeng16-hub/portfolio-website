@@ -4816,6 +4816,27 @@ img {
   color: rgba(196, 92, 122, 0.75);
 }
 
+.case-page-template.case-page-heartbits .case-hero-subtitle,
+.case-page-template.case-page-ora .case-hero-subtitle {
+  color: var(--case-accent);
+}
+
+.case-page-template.case-page-heartbits .case-toc--light .case-toc-item.is-active,
+.case-page-template.case-page-ora .case-toc--light .case-toc-item.is-active {
+  color: var(--case-accent);
+}
+
+.case-page-template.case-page-heartbits
+  .case-toc--light
+  .case-toc-item.is-active
+  .case-toc-index,
+.case-page-template.case-page-ora
+  .case-toc--light
+  .case-toc-item.is-active
+  .case-toc-index {
+  color: color-mix(in srgb, var(--case-accent) 75%, transparent);
+}
+
 /* Horizon — dark template */
 .case-page-template.case-page-horizon {
   --case-t2: 1rem; /* 16px, −2px from default */
@@ -6532,8 +6553,13 @@ body:has(.case-page-horizon) {
 /* Homepage — Figma 362:192 @ 2011.833px */
 .home-page {
   --home-design-w: 2011.833px;
-  /* Floor keeps type/touch usable on phones; never shrink below ~50% of design */
-  --home-r: min(1, max(0.5, calc(100vw / var(--home-design-w))));
+  /* Cap ~Chrome 75% on large displays; floor keeps phones usable */
+  --home-r-max: 0.75;
+  --home-r-min: 0.5;
+  --home-r: min(
+    var(--home-r-max),
+    max(var(--home-r-min), calc(100vw / var(--home-design-w)))
+  );
   --home-blue: #2b00ff;
   --home-blue-soft: #ffffff;
   /* Nav 362:256 */
@@ -6641,7 +6667,12 @@ body:has(.case-page-horizon) {
 /* —— Nav (362:256) —— */
 .site-nav--home {
   --home-design-w: 2011.833px;
-  --home-r: min(1, max(0.5, calc(100vw / var(--home-design-w))));
+  --home-r-max: 0.75;
+  --home-r-min: 0.5;
+  --home-r: min(
+    var(--home-r-max),
+    max(var(--home-r-min), calc(100vw / var(--home-design-w)))
+  );
   --home-blue: #2b00ff;
   --home-blue-soft: #ffffff;
   --home-nav-h: calc(71.94px * var(--home-r));
@@ -7181,7 +7212,12 @@ body:has(.case-page-horizon) {
 
 .case-page:has(.site-nav--home) {
   --home-design-w: 2011.833px;
-  --home-r: min(1, max(0.5, calc(100vw / var(--home-design-w))));
+  --home-r-max: 0.75;
+  --home-r-min: 0.5;
+  --home-r: min(
+    var(--home-r-max),
+    max(var(--home-r-min), calc(100vw / var(--home-design-w)))
+  );
   --home-nav-h: calc(71.94px * var(--home-r));
   --home-nav-offset-top: calc(36px * var(--home-r));
 }
@@ -7363,7 +7399,8 @@ body:has(.case-page-horizon) {
   margin: 0;
   font-family: var(--font-special-elite), "Special Elite", cursive;
   font-size: var(--home-heading-size);
-  font-weight: 400;
+  font-weight: 700;
+  font-synthesis: weight;
   line-height: 1.4;
   letter-spacing: 0;
   text-transform: capitalize;
@@ -8079,8 +8116,13 @@ body:has(.home-page) {
 }
 
 .home-page .project-grid-link:hover .project-grid-cover,
-.home-page .project-grid-link:focus-visible .project-grid-cover {
+.home-page .project-grid-link:focus-visible .project-grid-cover,
+.home-page .project-grid-link--cover-always .project-grid-cover {
   opacity: 1;
+}
+
+.home-page .project-grid-link--cover-always .project-grid-media {
+  background: #f7f7f7;
 }
 
 .home-page .project-grid-cover-pin {
@@ -8297,7 +8339,8 @@ body:has(.home-page) {
   }
 
   .home-page .project-grid-link:hover .project-grid-cover,
-  .home-page .project-grid-link:focus-visible .project-grid-cover {
+  .home-page .project-grid-link:focus-visible .project-grid-cover,
+  .home-page .project-grid-link--cover-always .project-grid-cover {
     opacity: 1;
   }
 }

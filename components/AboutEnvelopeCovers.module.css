@@ -1,0 +1,55 @@
+/* Envelope flaps — mask paths from Figma 958×571 cover SVGs */
+
+.root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.flap {
+  position: absolute;
+  inset: 0;
+  background: rgba(43, 0, 255, 0.1);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* Side flaps: Figma blur-radius 22.2 → backdrop blur(11.1px) */
+.flapLeft,
+.flapRight {
+  backdrop-filter: blur(11.1px);
+  -webkit-backdrop-filter: blur(11.1px);
+}
+
+/* Top / bottom flaps: Figma blur-radius 13.9 → backdrop blur(6.95px) */
+.flapBottom,
+.flapTop {
+  backdrop-filter: blur(6.95px);
+  -webkit-backdrop-filter: blur(6.95px);
+}
+
+.flapLeft {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M3 0H33.7742L321 293.418V571H3V0Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M3 0H33.7742L321 293.418V571H3V0Z'/%3E%3C/svg%3E");
+}
+
+.flapRight {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M955 0H925L645 293.418V571H955V0Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M955 0H925L645 293.418V571H955V0Z'/%3E%3C/svg%3E");
+}
+
+.flapBottom {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M352.053 319.81C359.173 314.731 367.701 312 376.447 312H601.408C610.552 312 619.447 314.984 626.74 320.5L958 571H0L352.053 319.81Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M352.053 319.81C359.173 314.731 367.701 312 376.447 312H601.408C610.552 312 619.447 314.984 626.74 320.5L958 571H0L352.053 319.81Z'/%3E%3C/svg%3E");
+}
+
+.flapTop {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M473.656 453.722C481.982 457.102 491.308 457.049 499.595 453.575L955 262.618V0H3V262.618L473.656 453.722Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 958 571' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M473.656 453.722C481.982 457.102 491.308 457.049 499.595 453.575L955 262.618V0H3V262.618L473.656 453.722Z'/%3E%3C/svg%3E");
+}

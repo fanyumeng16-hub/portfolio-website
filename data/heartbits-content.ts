@@ -4,6 +4,12 @@ export const heartbitsHero = {
   subtitle: "Interactive Rehabilitation Experience",
   intro:
     "Heartbits is a family-centered rehabilitation experience that transforms repetitive rotator cuff recovery into collaborative gameplay. By combining physical therapy movements with emotional support and shared interaction, the system encourages long-term engagement while reducing anxiety throughout the rehabilitation journey.",
+  cover: {
+    src: "/images/heartbits.jpg",
+    alt: "Heartbits interactive rehabilitation experience",
+    width: 1920,
+    height: 1080,
+  },
 };
 
 export const heartbitsSpec: CaseSpecRow[] = [

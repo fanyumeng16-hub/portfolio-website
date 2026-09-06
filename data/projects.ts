@@ -204,6 +204,44 @@ export const projects: Project[] = [
     image: "/images/arcana.jpg",
     hidden: true,
   }),
+  withTags({
+    id: "devlop",
+    number: "011",
+    year: "2026",
+    title: "Devlop",
+    subtitle: "iOS Camera App",
+    navLabel: "Devlop",
+    navHint: "iOS Camera",
+    navType: "APP",
+    tagIds: ["ui-ux"],
+    category: "UI/UX",
+    description:
+      "An iOS camera app designed and built independently with Claude Code and Cursor — using AI to sharpen product judgment rather than replace it.",
+    bullets: ["iOS product design", "Camera experience", "AI-assisted build"],
+    image: "/images/Trackly.jpg",
+    hidden: true,
+  }),
+  withTags({
+    id: "pawpawn",
+    number: "012",
+    year: "2026",
+    title: "Pawpawn",
+    subtitle: "Secondhand Market for Animal Rescue",
+    navLabel: "Pawpawn",
+    navHint: "Charity Resale",
+    navType: "WEB",
+    tagIds: ["ui-ux"],
+    category: "UI/UX",
+    description:
+      "A web marketplace for secondhand goods where seller proceeds go to stray-animal rescue. Grounded in shelter field research and shaped with systems thinking across the full resale-to-donation flow.",
+    bullets: [
+      "Shelter field research",
+      "Systems-thinking service design",
+      "Charity-linked resale web platform",
+    ],
+    image: "/images/home-card-placeholder.svg",
+    hidden: true,
+  }),
 ];
 
 export const visibleProjects = projects.filter((project) => !project.hidden);

@@ -7,6 +7,7 @@ import styles from "./OraPosterMarquee.module.css";
 type Props = {
   posters: OraPoster[];
   sectionId?: string;
+  title?: string;
 };
 
 function PosterGroup({
@@ -42,6 +43,7 @@ function PosterGroup({
 export default function OraPosterMarquee({
   posters,
   sectionId = "case-posters",
+  title = "Posters",
 }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef(0);
@@ -94,6 +96,7 @@ export default function OraPosterMarquee({
 
   return (
     <section className={styles.section} id={sectionId}>
+      {title ? <h3 className={`case-prose-title ${styles.heading}`}>{title}</h3> : null}
       <div className={styles.viewport}>
         <div
           ref={trackRef}

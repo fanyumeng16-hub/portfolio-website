@@ -6,6 +6,11 @@
   padding: 40px 0;
 }
 
+.heading {
+  margin: 0 0 28px;
+  padding-inline: 0;
+}
+
 .viewport {
   overflow: hidden;
   width: 100%;

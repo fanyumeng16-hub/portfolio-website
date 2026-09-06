@@ -11,6 +11,13 @@ export const outloopGalleryImages: GallerySlide[] = [
     alt: "Outloop multi-modal mind offboarding experience demo",
   },
   {
+    id: "outloop-2",
+    title: "Context",
+    tocLabel: "Context",
+    src: "/images/outloop2.png",
+    alt: "Outloop project context and research framing",
+  },
+  {
     id: "outloop-3",
     title: "Problem Space",
     tocLabel: "Problem Space",
@@ -35,7 +42,7 @@ export const outloopGalleryImages: GallerySlide[] = [
     id: "outloop-6-alt",
     title: "Intervention Flow",
     tocLabel: false,
-    src: "/images/outloop6。2.png",
+    src: "/images/outloop6.2.png",
     alt: "Outloop intervention flow detail",
   },
   {
@@ -51,6 +58,13 @@ export const outloopGalleryImages: GallerySlide[] = [
     tocLabel: "Component Library",
     src: "/images/outloop8.png",
     alt: "Outloop interface design",
+  },
+  {
+    id: "outloop-8-alt",
+    title: "UI Detail",
+    tocLabel: false,
+    src: "/images/outloop8.2.png",
+    alt: "Outloop interface detail screens",
   },
   {
     id: "outloop-9",

@@ -1,14 +1,22 @@
 import CaseNavbar from "@/components/CaseNavbar";
 import CaseGallery from "@/components/CaseGallery";
 import CaseHero from "@/components/CaseHero";
+import CaseOverviewSection from "@/components/CaseOverviewSection";
 import CaseTemplateLayout from "@/components/CaseTemplateLayout";
-import { outloopHero, outloopSpec } from "@/data/outloop-content";
+import {
+  outloopHero,
+  outloopOverviewBody,
+  outloopSpec,
+} from "@/data/outloop-content";
 import { outloopGalleryImages } from "@/data/outloop-gallery";
 import { buildCaseTocSections } from "@/lib/case-toc";
 
 const outloopSections = buildCaseTocSections(
-  [{ id: "case-intro", label: "Introduction" }],
-  { images: outloopGalleryImages }
+  [
+    { id: "case-intro", label: "Introduction" },
+    { id: "case-overview", label: "Overview" },
+  ],
+  { images: outloopGalleryImages },
 );
 
 export default function OutloopPage() {
@@ -30,6 +38,7 @@ export default function OutloopPage() {
         />
       }
     >
+      <CaseOverviewSection body={outloopOverviewBody} />
       <CaseGallery images={outloopGalleryImages} seamless />
     </CaseTemplateLayout>
   );

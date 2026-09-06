@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type MouseEvent } from "react";
+import NavAboutDropdown from "@/components/NavAboutDropdown";
 import NavWorkDropdown from "@/components/NavWorkDropdown";
 import { visibleProjects } from "@/data/projects";
 
@@ -9,7 +10,9 @@ const NARROW_NAV_MQ = "(max-width: 900px)";
 export default function Navbar() {
   const [active, setActive] = useState("home");
   const [workOpen, setWorkOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const workRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,17 +41,25 @@ export default function Navbar() {
 
   useEffect(() => {
     const onPointerDown = (event: PointerEvent) => {
-      if (!workOpen) return;
-      const node = workRef.current;
-      if (node && !node.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (workOpen && workRef.current && !workRef.current.contains(target)) {
         setWorkOpen(false);
+      }
+      if (aboutOpen && aboutRef.current && !aboutRef.current.contains(target)) {
+        setAboutOpen(false);
       }
     };
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setWorkOpen(false);
+      if (event.key === "Escape") {
+        setWorkOpen(false);
+        setAboutOpen(false);
+      }
     };
     const onResize = () => {
-      if (!window.matchMedia(NARROW_NAV_MQ).matches) setWorkOpen(false);
+      if (!window.matchMedia(NARROW_NAV_MQ).matches) {
+        setWorkOpen(false);
+        setAboutOpen(false);
+      }
     };
 
     window.addEventListener("pointerdown", onPointerDown);
@@ -59,15 +70,27 @@ export default function Navbar() {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("resize", onResize);
     };
-  }, [workOpen]);
+  }, [workOpen, aboutOpen]);
 
   const onWorkClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (!window.matchMedia(NARROW_NAV_MQ).matches) return;
     event.preventDefault();
+    setAboutOpen(false);
     setWorkOpen((open) => !open);
     const work = document.getElementById("work");
     if (work) {
       work.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const onAboutClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!window.matchMedia(NARROW_NAV_MQ).matches) return;
+    event.preventDefault();
+    setWorkOpen(false);
+    setAboutOpen((open) => !open);
+    const about = document.getElementById("about");
+    if (about) {
+      about.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -78,7 +101,10 @@ export default function Navbar() {
           <a
             className={`nav-item ${active === "home" ? "is-active" : ""}`}
             href="#home"
-            onClick={() => setWorkOpen(false)}
+            onClick={() => {
+              setWorkOpen(false);
+              setAboutOpen(false);
+            }}
           >
             Home
           </a>
@@ -105,13 +131,30 @@ export default function Navbar() {
             />
           </div>
 
-          <a
-            className={`nav-item ${active === "about" ? "is-active" : ""}`}
-            href="#about"
-            onClick={() => setWorkOpen(false)}
+          <div
+            ref={aboutRef}
+            className={`nav-item-group nav-item-group--work${
+              aboutOpen ? " is-open" : ""
+            }`}
+            data-nav="about"
           >
-            About
-          </a>
+            <a
+              className={`nav-item ${active === "about" ? "is-active" : ""}`}
+              href="#about"
+              aria-expanded={aboutOpen}
+              aria-haspopup="true"
+              onClick={onAboutClick}
+            >
+              About
+            </a>
+
+            <NavAboutDropdown
+              onNavigate={() => {
+                setAboutOpen(false);
+                setWorkOpen(false);
+              }}
+            />
+          </div>
         </div>
 
         <div className="nav-bar__group nav-bar__group--end">

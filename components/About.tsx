@@ -1,4 +1,6 @@
 import AboutBusinessCard from "@/components/AboutBusinessCard";
+import AboutEducationTypewriter from "@/components/AboutEducationTypewriter";
+import AboutPastNow from "@/components/AboutPastNow";
 
 export default function About() {
   return (
@@ -15,6 +17,9 @@ export default function About() {
         </div>
       </div>
       <AboutBusinessCard />
+      {/* Past/NOW always mounted so About nav anchors work before typing finishes */}
+      <AboutEducationTypewriter />
+      <AboutPastNow />
     </section>
   );
 }

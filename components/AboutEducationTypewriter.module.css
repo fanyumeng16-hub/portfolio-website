@@ -1,0 +1,219 @@
+/* Figma 235:1821+ — About story typewriter */
+
+.root {
+  --edu-heading-size: calc(28.746px * var(--home-r, 1));
+  --edu-date-size: calc(20px * var(--home-r, 1));
+  --edu-body-size: calc(24px * var(--home-r, 1));
+  --edu-max-w: calc(650px * var(--home-r, 1) / var(--home-r-max, 0.75));
+  --edu-gap-title: calc(40px * var(--home-r, 1));
+  --edu-block-gap: calc(30px * var(--home-r, 1));
+  width: 100%;
+  max-width: var(--home-design-w, 2012px);
+  margin-inline: auto;
+  padding-top: calc(160px * var(--home-r, 1));
+  padding-bottom: calc(24px * var(--home-r, 1));
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  scroll-margin-top: calc(96px * var(--home-r, 1));
+}
+
+.root[data-active="true"] {
+  cursor: pointer;
+}
+
+.navAnchor {
+  height: 0;
+  scroll-margin-top: calc(96px * var(--home-r, 1));
+}
+
+.skipHint {
+  margin: calc(20px * var(--home-r, 1)) 0 0;
+  text-align: center;
+  font-family: var(--font-special-elite), "Special Elite", cursive;
+  font-size: calc(14px * var(--home-r, 1));
+  font-weight: 400;
+  line-height: 1.4;
+  color: #8a8a8a;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  animation: about-edu-hint 1.6s ease-in-out infinite;
+}
+
+@keyframes about-edu-hint {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.heading {
+  margin: calc(48px * var(--home-r, 1)) 0 var(--edu-gap-title);
+  text-align: center;
+  font-family: var(--font-special-elite), "Special Elite", cursive;
+  font-size: var(--edu-heading-size);
+  font-weight: 700;
+  font-synthesis: weight;
+  line-height: 1.4;
+  text-transform: capitalize;
+  color: #000;
+  -webkit-text-stroke: calc(0.5px * var(--home-r, 1)) #000;
+  paint-order: stroke fill;
+  scroll-margin-top: calc(96px * var(--home-r, 1));
+}
+
+.heading:first-of-type {
+  margin-top: 0;
+}
+
+.headingMuted {
+  color: #474747;
+  -webkit-text-stroke-color: #474747;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.stream {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--edu-block-gap);
+  width: min(100%, var(--edu-max-w));
+  min-height: calc(120px * var(--home-r, 1));
+  text-align: center;
+  box-sizing: border-box;
+  padding-inline: 16px;
+}
+
+.date {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-special-elite), "Special Elite", cursive;
+  font-size: var(--edu-date-size);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: capitalize;
+  color: #2b00ff;
+}
+
+.body,
+.loading,
+.nowBody {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-special-elite), "Special Elite", cursive;
+  font-size: var(--edu-body-size);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: none;
+  color: #000;
+}
+
+.nowBody {
+  max-width: calc(650px * var(--home-r, 1) / var(--home-r-max, 0.75));
+  margin-inline: auto;
+}
+
+.hl {
+  color: #2b00ff;
+}
+
+.loading {
+  letter-spacing: 0.12em;
+  min-height: 1.4em;
+}
+
+.loadingPulse {
+  animation: about-edu-loading 1.1s ease-in-out infinite;
+}
+
+@keyframes about-edu-loading {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.caret,
+.caretInline {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 0.06em;
+  vertical-align: -0.08em;
+  background: #2b00ff;
+  animation: about-edu-caret 0.85s steps(1, end) infinite;
+}
+
+.caret {
+  margin-top: 4px;
+}
+
+@keyframes about-edu-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.afterSlot {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .root {
+    --edu-heading-size: clamp(16px, 4vw, 24px);
+    --edu-date-size: clamp(14px, 3.2vw, 18px);
+    --edu-body-size: clamp(14px, 3.4vw, 22px);
+    padding-top: 96px;
+    padding-inline: 16px;
+  }
+
+  .stream {
+    gap: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .caretInline,
+  .loadingPulse,
+  .skipHint {
+    animation: none;
+  }
+
+  .skipHint {
+    opacity: 0.7;
+  }
+}
