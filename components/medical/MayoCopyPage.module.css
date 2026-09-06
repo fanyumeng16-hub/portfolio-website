@@ -20,8 +20,8 @@
   container-type: inline-size;
   container-name: mayo-page;
 
-  /* 相对 972 设计列：列越宽越接近 1 */
-  --mayo-s: min(1, calc(100cqw / (var(--mayo-content) * 1px)));
+  /* 相对 972 设计列：列越宽越接近 1；窄屏保留可读下限 */
+  --mayo-s: min(1, max(0.55, calc(100cqw / (var(--mayo-content) * 1px))));
 
   /* 原稿字号体系（随内容列宽度缩放） */
   --mayo-title: calc(25px * var(--mayo-s));
@@ -1543,6 +1543,13 @@
 }
 
 @media (max-width: 760px) {
+  .page {
+    padding-inline: clamp(12px, 4vw, 20px);
+    --mayo-s: min(1, max(0.62, calc(100cqw / (var(--mayo-content) * 1px))));
+    --mayo-gap-subsection: clamp(2rem, 6vw, 3.5rem);
+    --mayo-gap-content: clamp(1.15rem, 3.5vw, 2rem);
+  }
+
   .userFlowCanvas {
     width: 100%;
   }

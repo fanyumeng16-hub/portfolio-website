@@ -15,9 +15,8 @@ const arcanaSections = [
 
 export default function ArcanaPage() {
   return (
-    <main className="case-page case-page-with-toc">
+    <main className="case-page case-page-arcana case-page-opening case-page-with-toc">
       <CaseToc sections={arcanaSections} />
-
       <CaseNavbar projectId="arcana" />
 
       <CaseHero

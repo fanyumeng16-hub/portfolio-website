@@ -71,6 +71,7 @@ export function caseTemplateMainClassName(
 ): string {
   return [
     "case-page",
+    "case-page-opening",
     pageTheme === "light" ? "case-page-light" : "",
     CASE_TEMPLATE.pageClass,
     projectClass,

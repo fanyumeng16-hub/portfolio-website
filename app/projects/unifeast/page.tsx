@@ -15,7 +15,7 @@ const unifeastSpec = [
 
 export default function UniFeastPage() {
   return (
-    <main className="case-page case-page-light case-page-with-toc">
+    <main className="case-page case-page-light case-page-unifeast case-page-opening case-page-with-toc">
       <CaseToc sections={unifeastSections} theme="light" />
 
       <CaseNavbar projectId="unifeast" />

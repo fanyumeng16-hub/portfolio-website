@@ -2,7 +2,7 @@ type MetaRow = { label: string; value: string };
 
 type Props = {
   rows: MetaRow[];
-  layout?: "inline" | "stack" | "hero";
+  layout?: "inline" | "stack" | "hero" | "rows";
 };
 
 function splitHeroRows(rows: MetaRow[]) {
@@ -56,6 +56,16 @@ export default function CaseOverviewMeta({
             ))}
           </div>
         ) : null}
+      </dl>
+    );
+  }
+
+  if (layout === "rows") {
+    return (
+      <dl className="case-overview-meta case-overview-meta--rows">
+        {rows.map((row) => (
+          <MetaItem row={row} key={row.label} />
+        ))}
       </dl>
     );
   }

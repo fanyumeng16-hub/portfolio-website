@@ -25,50 +25,77 @@ export function ProjectGridPlaceholder() {
           />
         </div>
         <div className="project-grid-media" />
-        <div className="project-grid-body" />
       </div>
     </article>
   );
 }
 
+function coverTypeLabel(navType: string) {
+  if (navType === "APP") return "APP Design";
+  return navType;
+}
+
 export default function ProjectGridCard({ project, index }: Props) {
+  const typeLabel = coverTypeLabel(project.navType);
+  const coverTags = [
+    typeLabel,
+    ...project.tags.filter((tag) => tag !== typeLabel),
+  ].slice(0, 3);
+
   return (
     <article className="project-grid-card">
-      <Link href={`/projects/${project.id}`} className="project-grid-link">
-        <span className="project-grid-pin project-grid-pin--tl" aria-hidden="true" />
-        <span className="project-grid-pin project-grid-pin--tr" aria-hidden="true" />
-        <span className="project-grid-pin project-grid-pin--bl" aria-hidden="true" />
-        <span className="project-grid-pin project-grid-pin--br" aria-hidden="true" />
-        <span className="project-grid-hover-mark" aria-hidden="true">
-          <img
-            src="/images/home-card-hover-center.svg"
-            alt=""
-            className="project-grid-hover-mark-img"
-          />
-        </span>
-
+      <Link
+        href={`/projects/${project.id}`}
+        className="project-grid-link"
+        aria-label={`${project.title}, ${project.year}. ${project.subtitle}`}
+      >
         <div className="project-grid-media">
           <div className="project-grid-image-crop">
             <Image
               src={project.image}
-              alt={project.title}
+              alt=""
               fill
               sizes="(max-width: 900px) 50vw, 33vw"
               priority={index < 2}
               className="project-grid-image"
             />
           </div>
-        </div>
 
-        <div className="project-grid-body">
-          <div className="project-grid-copy">
-            <h2 className="project-grid-heading">
-              <ProjectTitle title={project.title} />
-            </h2>
+          {/* Figma 213:1705 — Card cover (hover) · 672×375 */}
+          <div className="project-grid-cover" aria-hidden="true">
+            <span className="project-grid-cover-pin project-grid-cover-pin--tl">
+              <img src="/images/home-card-cover-pin.svg" alt="" />
+            </span>
+            <span className="project-grid-cover-pin project-grid-cover-pin--tr">
+              <img src="/images/home-card-cover-pin.svg" alt="" />
+            </span>
+            <span className="project-grid-cover-pin project-grid-cover-pin--bl">
+              <img src="/images/home-card-cover-pin.svg" alt="" />
+            </span>
+            <span className="project-grid-cover-pin project-grid-cover-pin--br">
+              <img src="/images/home-card-cover-pin.svg" alt="" />
+            </span>
 
-            <div className="project-grid-meta">
-              <span className="project-grid-year">{project.year}</span>
-              <p className="project-grid-subtitle">{project.subtitle}</p>
+            <div className="project-grid-cover-inner">
+              <div className="project-grid-cover-head">
+                <p className="project-grid-cover-title">
+                  <ProjectTitle title={project.title} />
+                </p>
+                <p className="project-grid-cover-subtitle">{project.subtitle}</p>
+              </div>
+
+              <div className="project-grid-cover-foot">
+                <p className="project-grid-cover-year">{project.year}</p>
+                {coverTags.length > 0 ? (
+                  <div className="project-grid-cover-tags">
+                    {coverTags.map((tag) => (
+                      <span key={tag} className="project-grid-cover-tag">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>

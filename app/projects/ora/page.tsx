@@ -23,9 +23,8 @@ const oraSections = [
 
 export default function OraPage() {
   return (
-    <main className="case-page case-page-light case-page-with-toc">
+    <main className="case-page case-page-light case-page-ora case-page-opening case-page-with-toc">
       <CaseToc sections={oraSections} theme="light" />
-
       <CaseNavbar projectId="ora" />
 
       <CaseHero

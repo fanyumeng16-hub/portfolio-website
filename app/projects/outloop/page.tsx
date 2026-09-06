@@ -25,6 +25,8 @@ export default function OutloopPage() {
           subtitle={outloopHero.subtitle}
           intro={outloopHero.intro}
           spec={outloopSpec}
+          cover={outloopHero.cover}
+          coverPriority
         />
       }
     >

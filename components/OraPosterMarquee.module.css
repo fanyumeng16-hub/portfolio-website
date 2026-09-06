@@ -41,7 +41,22 @@
 }
 
 @media (max-width: 900px) {
+  .section {
+    padding: 28px 0;
+  }
+
   .item {
-    height: 352px;
+    height: min(42vw, 280px);
+  }
+}
+
+@media (max-width: 600px) {
+  .item {
+    height: min(48vw, 200px);
+  }
+
+  .group {
+    gap: 12px;
+    padding-right: 12px;
   }
 }

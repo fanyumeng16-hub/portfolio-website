@@ -27,7 +27,7 @@ The project pairs environmental set pieces with device-based AR interactions and
 
 function UniversalCaseContent() {
   return (
-    <main className="case-page case-page-universal case-page-with-toc">
+    <main className="case-page case-page-universal case-page-opening case-page-with-toc">
       <CaseToc sections={universalSections} />
 
       <CaseNavbar projectId="universal" />

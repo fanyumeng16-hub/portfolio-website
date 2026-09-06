@@ -54,7 +54,8 @@
 
 .inner {
   width: min(var(--trackly-content-max, 75rem), 100%);
-  margin: 0 auto;
+  margin: 0 0 0 var(--trackly-inset, 0);
+  margin-right: auto;
   padding: var(--trackly-section-py) var(--trackly-section-px);
   box-sizing: border-box;
   display: flex;
@@ -155,9 +156,10 @@
   margin: 0;
   font-size: var(--trackly-fs-body);
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
   color: #333;
   max-width: var(--trackly-text-max);
+  font-variation-settings: "wght" 300;
 }
 
 .leadWide {
@@ -238,9 +240,10 @@
   margin: 0 0 var(--trackly-gap-md);
   font-size: var(--trackly-fs-body);
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
   color: #333;
   max-width: var(--trackly-text-max);
+  font-variation-settings: "wght" 300;
 }
 
 .body:last-child {

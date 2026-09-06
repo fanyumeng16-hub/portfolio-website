@@ -307,15 +307,14 @@ export default function AboutBusinessCard() {
             >
               <div className={styles.cardSlot}>
                 <div className={styles.cardInner}>
-                  <span className={styles.highlightA} aria-hidden="true" />
-                  <span className={styles.highlightB} aria-hidden="true" />
-
                   <div className={`${styles.bio} about-business-card-bio`}>
                     <p className={styles.bioParagraph}>
                       <strong className={styles.bioName}>Yumeng Fan</strong>
-                      <span>{` is an Interaction Designer and UX Researcher. To explore her work, visit `}</span>
-                    </p>
-                    <p className={styles.bioParagraph}>
+                      <span>{` is an `}</span>
+                      <mark className={styles.mark}>Interaction Designer</mark>
+                      <span>{` and `}</span>
+                      <mark className={styles.mark}>UX Researcher</mark>
+                      <span>{`. To explore her work, visit `}</span>
                       <a
                         className={styles.bioLink}
                         href="https://www.fanyumeng16.com"
@@ -329,11 +328,9 @@ export default function AboutBusinessCard() {
                         href="mailto:fanyumeng16@gmail.com"
                         onClick={(event) => event.stopPropagation()}
                       >
-                        fanyumeng16@gmail.com{" "}
+                        fanyumeng16@gmail.com
                       </a>
-                    </p>
-                    <p className={styles.bioParagraph}>
-                      <span>or call </span>
+                      <span>{` or call `}</span>
                       <span className={styles.bioPhone}>+1 (412) 430 2950</span>
                       <span>.</span>
                     </p>

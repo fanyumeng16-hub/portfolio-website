@@ -14,7 +14,7 @@ type Props = {
 };
 
 /**
- * Case study shell: fixed left TOC + centered main column.
+ * Case study shell: shared Trackly-style opening + fixed TOC + content column.
  * @see docs/CASE-TEMPLATE.md
  */
 export default function CaseTemplateLayout({

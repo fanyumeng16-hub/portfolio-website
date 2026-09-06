@@ -479,23 +479,54 @@
   font-family: var(--case-medical-font);
 }
 
-/* Hero — match Mayo body typography (no template uppercase) */
-.case-page-template.case-page-light.case-page-medical .case-hero-title,
-.case-page-template.case-page-light.case-page-medical .case-hero-left h1 {
-  text-transform: none;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+/* Hero — shared opening type (Special Elite / Readex); Mayo body keeps Geologica below */
+.case-page-template.case-page-light.case-page-medical.case-page-opening .case-hero-title,
+.case-page-template.case-page-light.case-page-medical.case-page-opening .case-hero-left h1 {
+  text-transform: capitalize;
+  font-family: var(--font-special-elite), "Special Elite", cursive;
+  font-weight: 400;
+  letter-spacing: 0;
+  -webkit-text-stroke: calc(1px * var(--case-opening-r)) var(--case-opening-title-stroke);
+  paint-order: stroke fill;
 }
 
-.case-page-template.case-page-light.case-page-medical .case-hero-subtitle {
-  font-weight: 600;
-  letter-spacing: -0.01em;
+.case-page-template.case-page-light.case-page-medical.case-page-opening .case-hero-subtitle {
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+  color: var(--case-accent, #1641a6);
+  font-variation-settings: "wght" 300;
+  font-synthesis: none;
 }
 
-.case-page-template.case-page-light.case-page-medical .case-hero-intro {
-  font-family: var(--case-medical-font);
-  font-weight: 200;
-  line-height: 1.65;
+.case-page-template.case-page-light.case-page-medical.case-page-opening .case-hero-intro {
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0;
+  font-variation-settings: "wght" 300;
+  font-synthesis: none;
+}
+
+.case-page-template.case-page-light.case-page-medical.case-page-opening
+  .case-overview-meta--rows
+  .case-overview-meta-item
+  dt {
+  font-family: var(--font-special-elite), "Special Elite", cursive;
+  color: var(--case-accent, #1641a6);
+}
+
+.case-page-template.case-page-light.case-page-medical.case-page-opening
+  .case-overview-meta--rows
+  .case-overview-meta-item
+  dd,
+.case-page-template.case-page-light.case-page-medical.case-page-opening .case-hero-intro-label {
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+}
+
+.case-page-template.case-page-light.case-page-medical.case-page-opening .case-hero-intro-label {
+  font-family: var(--font-special-elite), "Special Elite", cursive;
+  color: var(--case-accent, #1641a6);
 }
 
 /* Left TOC — Geologica, Mayo blue, lighter sub-labels */

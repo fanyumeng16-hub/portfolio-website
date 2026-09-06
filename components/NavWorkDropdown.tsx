@@ -5,6 +5,7 @@ import type { Project } from "@/data/projects";
 
 type Props = {
   projects: Project[];
+  onNavigate?: () => void;
 };
 
 function formatNavType(label: string) {
@@ -12,7 +13,7 @@ function formatNavType(label: string) {
   return label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
 }
 
-export default function NavWorkDropdown({ projects }: Props) {
+export default function NavWorkDropdown({ projects, onNavigate }: Props) {
   return (
     <div className="nav-work-dropdown" data-figma-node="371:988">
       {projects.map((project) => (
@@ -20,6 +21,7 @@ export default function NavWorkDropdown({ projects }: Props) {
           key={project.id}
           href={`/projects/${project.id}`}
           className="nav-work-item"
+          onClick={onNavigate}
         >
           <span className="nav-work-item-group">
             <span className="nav-work-item-chip">

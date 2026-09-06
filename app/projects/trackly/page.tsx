@@ -22,7 +22,7 @@ const tracklyTitle = <ProjectTitle title="Trackly" />;
 export default function TracklyPage() {
   return (
     <main
-      className={`case-page case-page-light case-page-trackly case-page-with-toc ${styles.page}`}
+      className={`case-page case-page-light case-page-trackly case-page-opening case-page-with-toc ${styles.page}`}
     >
       <CaseToc sections={tracklySections} theme="light" />
 
@@ -32,7 +32,14 @@ export default function TracklyPage() {
         title={tracklyTitle}
         subtitle="Package Tracking Experience"
         spec={tracklySpec}
+        specLayout="rows"
+        introLabel="overview"
         intro={tracklyIntro}
+        cover={{
+          src: "/images/trackly/Trackly-hero-cover.png",
+          alt: "Hand holding a phone showing the Trackly package tracking app",
+        }}
+        coverPriority
       />
 
       <CaseGallery images={tracklyGalleryIntro} seamless />
@@ -40,10 +47,7 @@ export default function TracklyPage() {
       <TracklyProseSection sectionId="trackly-context" />
       <TracklyProseSection sectionId="trackly-approach" />
 
-      <section
-        className={`case-content-column ${styles.researchGroup}`}
-        id="trackly-research"
-      >
+      <section className={styles.researchGroup} id="trackly-research">
         <TracklyProseSection sectionId="trackly-research-methodology" />
         <TracklyProseSection sectionId="trackly-research-detail" />
       </section>

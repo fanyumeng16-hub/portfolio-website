@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Albert_Sans, Readex_Pro } from "next/font/google";
+import { Albert_Sans, Readex_Pro, Special_Elite } from "next/font/google";
 import "@fontsource/bitcount-grid-single/400.css";
 import "@fontsource/bitcount-grid-single/700.css";
 import { MicrosoftClarity } from "@/components/MicrosoftClarity";
@@ -19,6 +19,13 @@ const readexPro = Readex_Pro({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const specialElite = Special_Elite({
+  subsets: ["latin"],
+  variable: "--font-special-elite",
+  display: "swap",
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Yumeng Fan, UX & Interaction Designer",
   description:
@@ -33,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${albertSans.variable} ${readexPro.variable} h-full antialiased`}
+      className={`${albertSans.variable} ${readexPro.variable} ${specialElite.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col">

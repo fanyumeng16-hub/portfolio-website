@@ -5,20 +5,20 @@ const base = "/images/trackly";
 /** 开篇视觉 — Problem 之前 */
 export const tracklyGalleryIntro: GallerySlide[] = [
   {
+    id: "trackly-hero-scene",
+    title: "Arrival Experience",
+    hideTitle: true,
+    tocLabel: false,
+    src: `${base}/Trackly-hero-scene.png`,
+    alt: "Person using Trackly at a smart locker with arrival and pickup notifications",
+  },
+  {
     id: "trackly-prototype",
     title: "Prototype",
     hideTitle: true,
     tocLabel: false,
     src: `${base}/Trackly15.png`,
     alt: "Trackly mobile app prototype screens",
-  },
-  {
-    id: "trackly-arrival-alerts",
-    title: "Arrival Alerts",
-    hideTitle: true,
-    tocLabel: false,
-    src: `${base}/Trackly-notification.png`,
-    alt: "Trackly push notifications confirming package arrival and successful pickup",
   },
   {
     id: "trackly-anomaly-alert-intro",

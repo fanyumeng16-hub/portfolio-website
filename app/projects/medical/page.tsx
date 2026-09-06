@@ -16,7 +16,7 @@ const medicalTitle = <ProjectTitle title="MAYO CLINIC × SCADpro" />;
 
 export default function MedicalProjectPage() {
   return (
-    <main className="case-page case-page-template case-page-light case-page-medical case-page-with-toc">
+    <main className="case-page case-page-template case-page-light case-page-medical case-page-opening case-page-with-toc">
       <CaseToc sections={mayocopySections} theme="light" />
       <CaseNavbar projectId="medical" />
 

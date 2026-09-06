@@ -1,12 +1,36 @@
 .page {
-  /* Colors */
+  /* Colors — Figma 213:1414 */
   --trackly-navy: #114390;
-  --trackly-blue: #4a69e2;
+  --trackly-blue: #426aeb;
   --trackly-sky: #d6e0ff;
   --trackly-pale: #eef2ff;
   --trackly-text: #111;
   --trackly-red: #e86b6b;
   --trackly-red-pale: #fff0f0;
+
+  /*
+   * Figma 213:1414 @ 2012 design width
+   * Content left 205 · copy 1125 · scene 1166 · TOC 1499/425
+   */
+  --trackly-figma-w: 2012px;
+  --trackly-hero-r: min(1, calc(100vw / var(--trackly-figma-w)));
+  --trackly-inset: calc(205px * var(--trackly-hero-r));
+  --trackly-copy-w: calc(1125px * var(--trackly-hero-r));
+  --trackly-scene-w: calc(1166px * var(--trackly-hero-r));
+  --trackly-toc-w: calc(280px * var(--trackly-hero-r));
+  --trackly-toc-right: calc(48px * var(--trackly-hero-r));
+  --trackly-toc-rail: calc(360px * var(--trackly-hero-r));
+
+  --trackly-hero-title: calc(48px * var(--trackly-hero-r));
+  --trackly-hero-subtitle: calc(24px * var(--trackly-hero-r));
+  --trackly-hero-meta: calc(20px * var(--trackly-hero-r));
+  --trackly-hero-body: calc(24px * var(--trackly-hero-r));
+  --trackly-hero-label-w: calc(58px * var(--trackly-hero-r));
+  --trackly-hero-meta-gap: calc(22px * var(--trackly-hero-r));
+  --trackly-hero-meta-col-gap: calc(39px * var(--trackly-hero-r));
+  --trackly-hero-stack-gap: calc(75px * var(--trackly-hero-r));
+  --trackly-hero-overview-gap: calc(13px * var(--trackly-hero-r));
+  --trackly-hero-title-gap: 0px;
 
   /*
    * Typography — 1920px artboard, scaled to content column
@@ -58,12 +82,12 @@
   /* Vertical rhythm between blocks within a section */
   --trackly-block-gap: var(--trackly-gap-2xl);
 
-  /* Content canvas — 1200px @16px base (62.5% of 1920 artboard) */
-  --trackly-content-max: 75rem;
-  --trackly-block-max: 75rem;
-  --trackly-gallery-max: 75rem;
+  /* Content canvas — follow Figma left rail, not a centered 1200 box */
+  --trackly-content-max: var(--trackly-copy-w);
+  --trackly-block-max: var(--trackly-copy-w);
+  --trackly-gallery-max: var(--trackly-scene-w);
   --trackly-section-py: clamp(3.5rem, 6vw, 5rem);
-  --trackly-section-px: clamp(1.75rem, 3.5vw, 2.75rem);
+  --trackly-section-px: 0;
   --trackly-gap-3xl: 5rem;
   --trackly-gap-2xl: 3.5rem;
   --trackly-gap-xl: 2.25rem;
@@ -71,7 +95,7 @@
   --trackly-gap-md: 1rem;
   --trackly-gap-sm: 0.75rem;
   --trackly-gap-row: var(--trackly-gap-2xl);
-  --trackly-text-max: 50rem;
+  --trackly-text-max: var(--trackly-copy-w);
 
   font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
   background: #fff;
@@ -93,7 +117,8 @@
 .page :global(.case-toc-item) {
   align-items: center;
   gap: 10px;
-  font-weight: 400;
+  font-family: var(--font-readex-pro), "Readex Pro", sans-serif;
+  font-weight: 300;
   color: #94a3b8;
 }
 
@@ -103,6 +128,7 @@
 
 .page :global(.case-toc-item.is-active) {
   transform: none;
+  color: var(--trackly-blue);
   font-weight: 500;
 }
 
@@ -114,7 +140,7 @@
   text-align: right;
   line-height: 1;
   font-size: 10px;
-  font-weight: 400;
+  font-weight: 300;
   color: #cbd5e1;
 }
 
@@ -122,10 +148,15 @@
   color: #94a3b8;
 }
 
+.page :global(.case-toc-item.is-active .case-toc-index) {
+  color: rgba(66, 106, 235, 0.72);
+  font-weight: 500;
+}
+
 .page :global(.case-toc-label) {
   flex: 1;
   min-width: 0;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
 }
@@ -170,11 +201,13 @@
   opacity: 0.85;
 }
 
+/* TOC anchor only — do not add inset; child .inner already has --trackly-inset */
 .researchGroup {
   display: block;
-  width: min(var(--trackly-content-max), 100%);
-  max-width: var(--trackly-content-max);
-  margin-inline: auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   scroll-margin-top: calc(var(--case-nav-height, 88px) + 20px);
 }
@@ -183,44 +216,23 @@
   scroll-margin-top: calc(var(--case-nav-height, 88px) + 20px);
 }
 
-/* Tighter gap between intro copy and first gallery image */
-.page:global(.case-page-trackly) :global(.case-hero-body) {
-  padding-bottom: var(--trackly-gap-xl);
+/* Gallery + feature mock images — Trackly body (opening layout is shared .case-page-opening) */
+@media (min-width: 901px) {
+  .page:global(.case-page-trackly.case-page-with-toc:not(.case-page-template))
+    :global(.case-gallery-section--seamless) {
+    width: min(var(--trackly-scene-w), calc(100% - var(--trackly-inset)));
+    max-width: var(--trackly-scene-w);
+  }
 }
 
-.page:global(.case-page-trackly)
-  :global(.case-hero + .case-gallery-section--seamless) {
-  padding-top: var(--trackly-gap-lg);
-}
-
-/* 开篇三张图：图与图之间无缝衔接 */
-.page:global(.case-page-trackly)
-  :global(
-    .case-hero
-      + .case-gallery-section--seamless
-      .case-gallery-seamless-panel
-      + .case-gallery-seamless-panel
-  ) {
-  margin-top: 0;
-}
-
-/* Gallery + feature mock images — narrower than prose (board PNGs are 1920px with margins) */
 .page:global(.case-page-trackly.case-page-with-toc:not(.case-page-template))
   :global(.case-gallery-section--seamless) {
-  width: min(var(--trackly-gallery-max), 100%);
-  max-width: var(--trackly-gallery-max);
-  margin-inline: auto;
-  padding-inline: var(--trackly-section-px);
   padding-block: var(--trackly-section-py);
   box-sizing: border-box;
 }
 
 .page:global(.case-page-trackly.case-page-with-toc:not(.case-page-template))
   :global(.case-content-column) {
-  width: min(var(--trackly-content-max), 100%);
-  max-width: var(--trackly-content-max);
-  margin-inline: auto;
-  padding-inline: var(--trackly-section-px);
   box-sizing: border-box;
 }
 
@@ -270,4 +282,42 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 900px) {
+  .page {
+    --trackly-inset: clamp(1.25rem, 5vw, 2rem);
+    --trackly-copy-w: 100%;
+    --trackly-scene-w: 100%;
+    --trackly-content-max: 100%;
+    --trackly-gallery-max: 100%;
+    --trackly-toc-rail: 0px;
+    /* % / 120rem collapses type on phones — use viewport floor instead */
+    --trackly-scale: clamp(0.42, calc(100vw / 1100px), 0.7);
+    --trackly-hero-stack-gap: clamp(1.75rem, 5.5vw, 2.75rem);
+    --trackly-hero-meta-gap: clamp(0.65rem, 2vw, 1rem);
+    --trackly-hero-meta-col-gap: clamp(0.85rem, 3vw, 1.5rem);
+    --trackly-hero-overview-gap: clamp(0.45rem, 1.5vw, 0.75rem);
+    --trackly-section-py: clamp(2.25rem, 7vw, 3.75rem);
+    --trackly-gap-3xl: clamp(2rem, 6vw, 3.5rem);
+    --trackly-gap-2xl: clamp(1.5rem, 5vw, 2.5rem);
+    --trackly-gap-xl: clamp(1.15rem, 4vw, 2rem);
+    --trackly-gap-lg: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .page:global(.case-page-trackly) :global(.case-gallery-section--seamless),
+  .page:global(.case-page-trackly) :global(.case-content-column) {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    padding-inline: var(--trackly-inset);
+    box-sizing: border-box;
+  }
+
+  .researchGroup {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
 }

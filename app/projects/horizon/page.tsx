@@ -70,7 +70,7 @@ export default function HorizonPage() {
         />
       }
     >
-      <CaseOverviewSection body={horizonOverviewBody} media={horizonOverviewVideo} />
+      <CaseOverviewSection title="" body={horizonOverviewBody} media={horizonOverviewVideo} />
 
       <HorizonContextSection />
       <HorizonGoalSection />

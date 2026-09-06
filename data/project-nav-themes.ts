@@ -17,7 +17,7 @@ export const projectNavThemes: Record<string, ProjectNavTheme> = {
   },
   trackly: {
     navTheme: "light",
-    accent: "#4a69e2",
+    accent: "#426aeb",
     accentContrast: "#ffffff",
   },
   heartbits: {

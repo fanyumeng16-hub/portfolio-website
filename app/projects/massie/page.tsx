@@ -20,7 +20,7 @@ const massieSpec = [
 
 export default function MassieProjectPage() {
   return (
-    <main className="case-page case-page-light case-page-massie case-page-with-toc">
+    <main className="case-page case-page-light case-page-massie case-page-opening case-page-with-toc">
       <CaseToc sections={massieSections} theme="light" />
 
       <CaseNavbar projectId="massie" />
